@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.StudentScorePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ESWIPE.Models"
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodels:StudentScoreViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:StudentScoreViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        BackgroundColor="Transparent"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding Student}"
+        RefreshCommand="{Binding RefreshCommandStudent}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Student">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Quiz Code: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Score: "
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding QuizCode}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding QuizScore}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+</ContentPage>

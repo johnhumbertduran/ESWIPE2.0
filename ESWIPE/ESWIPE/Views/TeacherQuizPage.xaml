@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.TeacherQuizPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ESWIPE.Models"
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodels:TeacherQuizViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TeacherQuizViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        BackgroundColor="Transparent"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding Quiz}"
+        RefreshCommand="{Binding RefreshCommandQuiz}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Quiz">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Date Created: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Created By: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Subject Quiz Code: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Subject Quiz Qty: "
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding DateCreated}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding CreatedBy}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding SubjectQuizCode}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding SubjectQuizQty}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+</ContentPage>

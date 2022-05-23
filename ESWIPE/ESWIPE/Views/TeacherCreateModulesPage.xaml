@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.TeacherCreateModulesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TeacherCreateModulesViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="0" BackgroundColor="LightGray">
+        <Grid>
+            <StackLayout Margin="0" Padding="0" />
+            <StackLayout Margin="15,20,15,0">
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="30"
+                    HasShadow="True"
+                    HeightRequest="520"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="30"
+                                Text="Create Module"
+                                TextColor="Black" />
+                        </StackLayout>
+
+                        <StackLayout Margin="0,20,0,0">
+
+                            <!--  Created By  -->
+                            <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Created By"
+                                        Text="{Binding CreatedBy, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+                            <!--  Subject Code  -->
+                            <Frame
+                                Margin="0,30,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Subject Code"
+                                        Text="{Binding SubjectCode, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+                            <!--  Subject Quiz Code  -->
+                            <Frame
+                                Margin="0,30,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Subject Quiz Code"
+                                        Text="{Binding SubjectQuizCode, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+                            <!--  Subject Quiz Qty  -->
+                            <Frame
+                                Margin="0,30,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Subject Quiz Qty"
+                                        Text="{Binding SubjectQuizQty, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <Button
+                            Margin="0,20,0,10"
+                            Padding="30,15,30,15"
+                            Background="purple"
+                            Command="{Binding AddCommand}"
+                            CornerRadius="30"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Start"
+                            Text="Create"
+                            TextColor="White" />
+
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+
+
+</ContentPage>

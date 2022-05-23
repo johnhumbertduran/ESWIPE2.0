@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.TeacherRegisterStudentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:ESWIPE.ViewModels">
+
+    <ContentPage.BindingContext>
+        <model:TeacherRegisterStudentViewModel />
+    </ContentPage.BindingContext>
+
+
+    <StackLayout Padding="0" BackgroundColor="LightGray">
+        <Grid>
+            <StackLayout Margin="0" Padding="0" />
+            <StackLayout Margin="15,60,15,0">
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="30"
+                    HasShadow="True"
+                    HeightRequest="450"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="30"
+                                Text="Register Student"
+                                TextColor="Black" />
+                        </StackLayout>
+
+                        <StackLayout Margin="0,20,0,0">
+
+                            <!--  Name  -->
+                            <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Name"
+                                        Text="{Binding StudentName, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+                            <!--  Year  -->
+                            <Frame
+                                Margin="0,30,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Year"
+                                        Text="{Binding StudentYear, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+                            <!--  Section  -->
+                            <Frame
+                                Margin="0,30,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Section"
+                                        Text="{Binding StudentSection, Mode=TwoWay}"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <Button
+                            Margin="0,20,0,10"
+                            Padding="30,15,30,15"
+                            Background="purple"
+                            Command="{Binding AddCommand}"
+                            CornerRadius="30"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Start"
+                            Text="Register"
+                            TextColor="White" />
+
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+
+
+</ContentPage>

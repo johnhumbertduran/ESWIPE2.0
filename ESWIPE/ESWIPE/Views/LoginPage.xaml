@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+
+    <StackLayout Padding="0" BackgroundColor="LightGray">
+        <Grid>
+            <StackLayout Margin="0" Padding="0">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="MediumPurple"
+                    HeightRequest="250"
+                    HorizontalOptions="FillAndExpand">
+                    <Image
+                        Margin="0"
+                        Aspect="Fill"
+                        Source="cover.png" />
+
+                </Frame>
+            </StackLayout>
+
+            <StackLayout>
+                <Label
+                    Margin="0,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="70"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="E-SWIPE"
+                    TextColor="Beige"
+                    VerticalOptions="Start" />
+            </StackLayout>
+
+            <StackLayout Margin="15,130,15,0">
+                <Frame
+                    BackgroundColor="White"
+                    HasShadow="True"
+                    HeightRequest="400"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="30"
+                                Text="Sign In"
+                                TextColor="Black" />
+                        </StackLayout>
+
+                        <StackLayout Margin="0,10,0,0">
+                            <Frame
+                                Margin="0,20,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame
+                                        Margin="10"
+                                        Padding="7,7,0,7"
+                                        BackgroundColor="AliceBlue"
+                                        BorderColor="DarkGray"
+                                        CornerRadius="50"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="40" />
+                                    <Entry
+                                        x:Name="username"
+                                        Margin="0,0,35,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Username"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame
+                                Margin="0,20,0,0"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame
+                                        Margin="10"
+                                        Padding="7,7,0,7"
+                                        BackgroundColor="AliceBlue"
+                                        BorderColor="DarkGray"
+                                        CornerRadius="50"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="40" />
+                                    <Entry
+                                        x:Name="password"
+                                        Margin="0,0,35,0"
+                                        HorizontalOptions="FillAndExpand"
+                                        IsPassword="True"
+                                        Placeholder="Password"
+                                        TextColor="Black" />
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+
+                        <Button
+                            Margin="0,10,0,0"
+                            Background="purple"
+                            Clicked="Button_Clicked"
+                            CornerRadius="30"
+                            FontAttributes="Bold"
+                            Text="Login"
+                            TextColor="White" />
+
+                        <StackLayout Margin="30,10,30,0" Orientation="Horizontal">
+                            <CheckBox IsChecked="False" Color="Purple" />
+                            <Label
+                                HorizontalTextAlignment="Start"
+                                Text="Remember Me"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"
+                                HorizontalTextAlignment="End"
+                                Text="Forgot Password"
+                                TextColor="Purple"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

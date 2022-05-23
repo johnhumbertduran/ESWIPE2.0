@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESWIPE.Views.Grade7Module1Heading1Page"
+             Title="Development Team of the Module"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:models="clr-namespace:ESWIPE.Models"
+             xmlns:views="clr-namespace:ESWIPE.Views"
+             x:DataType="views:Grade7Module1Heading1Page">
+
+    <ContentPage.BindingContext>
+        <views:Grade7Module1Heading1Page />
+    </ContentPage.BindingContext>
+
+    <!--<d:ContentPage.BindingContext>
+        <pages:Page2/>
+    </d:ContentPage.BindingContext>-->
+
+    <ListView
+        CachingStrategy="RecycleElement"
+        BackgroundColor="Transparent"
+        HasUnevenRows="True"
+        SeparatorVisibility="Default">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding=".5">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding HeadingId}"
+                                        VerticalOptions="Center" />
+
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</ContentPage>

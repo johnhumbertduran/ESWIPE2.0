@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.StudentModulesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ESWIPE.Models"
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="viewmodels:StudentModulesViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:StudentModulesViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        BackgroundColor="Transparent"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding Module}"
+        RefreshCommand="{Binding RefreshCommandModule}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Module">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Date Created: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Module Code: "
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding DateCreated}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding SubjectCode}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+</ContentPage>

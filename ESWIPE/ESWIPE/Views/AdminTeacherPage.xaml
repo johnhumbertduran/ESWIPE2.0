@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ESWIPE.Views.AdminTeacherPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ESWIPE.Models"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    xmlns:views="clr-namespace:ESWIPE.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="TeacherPage"
+    x:DataType="viewmodels:AdminTeacherViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AdminTeacherViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ListView
+        BackgroundColor="Transparent"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding Teachers}"
+        RefreshCommand="{Binding RefreshCommand}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:TeacherModel">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem
+                            Command="{Binding Source={x:Reference TeacherPage}, Path=BindingContext.SelectedTeacherCommand}"
+                            CommandParameter="{Binding}"
+                            Text="Favorite" />
+                        <!--<MenuItem
+                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:AdminTeacherViewModel}}, Path=BindingContext.SelectedTeacherCommand}"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="true"
+                            Text="Delete" />-->
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Teacher Number: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Name: "
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="Section: "
+                                        VerticalOptions="Center" />
+
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding TeacherNumber}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding Section}"
+                                        VerticalOptions="Center" />
+
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

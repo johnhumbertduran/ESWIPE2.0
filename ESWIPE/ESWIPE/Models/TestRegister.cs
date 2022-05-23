@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ESWIPE.Models
+{
+    public class TestRegister
+    {
+        public string Key { get; set; }
+        public int TeacherNumber { get; set; }
+        public string Name { get; set; }
+        public string Section { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string UserRole { get; set; }
+    }
+}
