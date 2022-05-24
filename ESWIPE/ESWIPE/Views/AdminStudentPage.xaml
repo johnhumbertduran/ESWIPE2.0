@@ -17,8 +17,8 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
         ItemsSource="{Binding Student}"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
         RefreshCommand="{Binding RefreshCommandStudent}"
         RefreshControlColor="blue"
         SelectionMode="None">
@@ -52,19 +52,19 @@
                                 <StackLayout VerticalOptions="Center">
                                     <Label
                                         FontSize="Small"
-                                        Text="{Binding StudentNumber}"
+                                        Text="Binding "
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Small"
-                                        Text="{Binding Name}"
+                                        Text="Binding "
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Small"
-                                        Text="{Binding Year}"
+                                        Text="Binding "
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Small"
-                                        Text="{Binding Section}"
+                                        Text="Binding "
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </StackLayout>

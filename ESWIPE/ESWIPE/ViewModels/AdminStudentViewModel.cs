@@ -20,7 +20,7 @@ namespace ESWIPE.ViewModels
             Title = "Student's Data";
             Student = new ObservableRangeCollection<Student>();
             RefreshCommandStudent = new AsyncCommand(Refresh);
-            _ = Task.Run(async () => await Refresh());
+            //_ = Task.Run(async () => await Refresh());
         }
         async Task Refresh()
         {

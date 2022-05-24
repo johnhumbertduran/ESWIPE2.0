@@ -20,7 +20,7 @@ namespace ESWIPE.ViewModels
             Title = "Modules's Data";
             Module = new ObservableRangeCollection<Module>();
             RefreshCommandModule = new AsyncCommand(Refresh);
-            _ = Task.Run(async () => await Refresh());
+            //_ = Task.Run(async () => await Refresh());
         }
         async Task Refresh()
         {

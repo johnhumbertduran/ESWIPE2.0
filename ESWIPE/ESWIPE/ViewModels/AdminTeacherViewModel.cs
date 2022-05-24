@@ -93,7 +93,7 @@ namespace ESWIPE.ViewModels
             }
         }
 
-        public ICommand SelectedTeacherCommand => new MvvmHelpers.Commands.Command<TeacherModel>(async (teacher) =>
+        public ICommand SelectedTeacherCommand => new Xamarin.Forms.Command<TeacherModel>(async (teacher) =>
         {
             if (teacher != null)
             {

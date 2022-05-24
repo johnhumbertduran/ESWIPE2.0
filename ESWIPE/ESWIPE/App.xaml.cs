@@ -24,8 +24,8 @@ namespace ESWIPE
             //Barrel.ApplicationId = AppInfo.PackageName;
 
             MainPage = new AppShell();
+            DependencyService.Register<ITeacher, TeacherService>();
             //MainPage = new TemporaryIndexPage();
-            //DependencyService.Register<ITeacher, TeacherService>();
             //DependencyService.Register<IEmployeeService, EmployeeService>();
         }
 

@@ -7,10 +7,10 @@
              Title="Test Register">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Teacher Number" Text="{Binding TeacherDetail.TeacherNumber}" />
+            <Entry Placeholder="Teacher Number" Text="{Binding TeacherDetail.TeacherNumber}" Keyboard="Numeric" />
             <Entry Placeholder="Name" Text="{Binding TeacherDetail.Name}"  />
             <Entry Placeholder="Section" Text="{Binding TeacherDetail.Section}"  />
-            <Entry Placeholder="Username" Text="{Binding TeacherDetail.Username}"  Keyboard="Numeric" />
+            <Entry Placeholder="Username" Text="{Binding TeacherDetail.Username}" />
             <Entry Placeholder="Password" Text="{Binding TeacherDetail.Password}"   />
             <Entry Placeholder="UserRole" Text="{Binding TeacherDetail.UserRole}"  />
 

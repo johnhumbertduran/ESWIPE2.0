@@ -14,9 +14,5 @@ namespace ESWIPE.Models
         public string Password { get; set; }
         public string UserRole { get; set; }
 
-        public static implicit operator int(TeacherModel v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -31,6 +31,7 @@
         ItemsSource="{Binding Teachers}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
+        SelectedItem="{Binding SelectedTeacherCommand}"
         SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="models:TeacherModel">
@@ -79,6 +80,10 @@
                                         VerticalOptions="Center" />
 
                                 </StackLayout>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:AdminTeacherViewModel}}, Path=SelectedTeacherCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </Grid>
