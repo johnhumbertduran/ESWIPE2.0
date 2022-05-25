@@ -19,23 +19,23 @@ namespace ESWIPE.ViewModels
         {
             Title = "Modules";
             Module = new ObservableRangeCollection<Module>();
-            RefreshCommandModule = new AsyncCommand(Refresh);
-            _ = Task.Run(async () => await Refresh());
+            //RefreshCommandModule = new AsyncCommand(Refresh);
+            //_ = Task.Run(async () => await Refresh());
         }
 
-        async Task Refresh()
-        {
-            IsBusy = true;
+        //async Task Refresh()
+        //{
+        //    IsBusy = true;
 
-            await Task.Delay(2000);
+        //    await Task.Delay(2000);
 
-            Module.Clear();
+        //    Module.Clear();
 
-            var modules = await ModuleService.GetModule();
+        //    var modules = await ModuleService.GetModule();
 
-            Module.AddRange(modules);
+        //    Module.AddRange(modules);
 
-            IsBusy = false;
-        }
+        //    IsBusy = false;
+        //}
     }
 }

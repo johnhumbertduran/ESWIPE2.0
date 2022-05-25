@@ -7,13 +7,14 @@ using ESWIPE.Services.Implementations;
 using ESWIPE.Services.Interfaces;
 using System.Windows.Input;
 using Xamarin.Forms;
+using ESWIPE.Views;
 
 namespace ESWIPE.ViewModels
 {
     public class AdminRegisterTeacherViewModel : BaseViewModel
     {
         #region Properties
-        private readonly ITeacher _teacherService;
+        private readonly ITeacherService _teacherService;
 
         private TeacherModel _teacherDetail = new TeacherModel();
 
@@ -28,12 +29,12 @@ namespace ESWIPE.ViewModels
         public AdminRegisterTeacherViewModel()
         {
             //Title = "Register Teacher";
-            _teacherService = DependencyService.Resolve<ITeacher>();
+            _teacherService = DependencyService.Resolve<ITeacherService>();
         }
 
         public AdminRegisterTeacherViewModel(TeacherModel teacherResponse)
         {
-            _teacherService = DependencyService.Resolve<ITeacher>();
+            _teacherService = DependencyService.Resolve<ITeacherService>();
             TeacherDetail = new TeacherModel
             {
                 TeacherNumber = teacherResponse.TeacherNumber,
@@ -58,6 +59,9 @@ namespace ESWIPE.ViewModels
                 if (!string.IsNullOrWhiteSpace(TeacherDetail.Key))
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+                    //var route = $"//{nameof(AdminTeacherPage)}";
+                    await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
+                    //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
                 }
                 else
                 {

@@ -19,22 +19,6 @@ namespace ESWIPE.ViewModels
         {
             Title = "Student's Data";
             Student = new ObservableRangeCollection<Student>();
-            RefreshCommandStudent = new AsyncCommand(Refresh);
-            //_ = Task.Run(async () => await Refresh());
-        }
-        async Task Refresh()
-        {
-            IsBusy = true;
-
-            await Task.Delay(2000);
-
-            Student.Clear();
-
-            var students = await StudentService.GetStudent();
-
-            Student.AddRange(students);
-
-            IsBusy = false;
         }
     }
 }

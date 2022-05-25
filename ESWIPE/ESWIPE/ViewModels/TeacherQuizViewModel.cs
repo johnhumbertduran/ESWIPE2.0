@@ -20,7 +20,7 @@ namespace ESWIPE.ViewModels
             Title = "Quiz's Data";
             Quiz = new ObservableRangeCollection<Quiz>();
             RefreshCommandQuiz = new AsyncCommand(Refresh);
-            _ = Task.Run(async () => await Refresh());
+            //_ = Task.Run(async () => await Refresh());
         }
 
         async Task Refresh()

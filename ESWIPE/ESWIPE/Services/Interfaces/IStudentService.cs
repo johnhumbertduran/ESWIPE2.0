@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ESWIPE.Services.Interfaces
 {
-    public interface ITeacher
+    public interface IStudentService
     {
-        Task<bool> AddorUpdateTeacher(TeacherModel teacherModel);
-        Task<bool> DeleteTeacher(string key);
+        Task<bool> AddorUpdateStudent(StudentModel studentModel);
+        Task<bool> DeleteStudent(string key);
         //Task<TeacherModel> GetById(int teacherNumber);
-        Task<List<TeacherModel>> GetAllTeacher();
+        Task<List<StudentModel>> GetAllStudent();
     }
 }

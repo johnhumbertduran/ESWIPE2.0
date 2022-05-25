@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="{Binding Title}"
     x:DataType="viewmodels:TeacherStudentViewModel">
 
@@ -17,14 +18,14 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        ItemsSource="{Binding Student}"
-        RefreshCommand="{Binding RefreshCommandStudent}"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding Students}"
+        RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Student">
+            <DataTemplate x:DataType="models:StudentModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
@@ -57,7 +58,7 @@
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Small"
-                                        Text="{Binding Name}"
+                                        Text="{Binding StudentName}"
                                         VerticalOptions="Center" />
                                     <Label
                                         FontSize="Small"
@@ -68,6 +69,9 @@
                                         Text="{Binding Section}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:TeacherStudentViewModel}}, Path=SelectedStudentCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </Grid>

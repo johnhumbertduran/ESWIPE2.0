@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="ESWIPE.Views.AdminRegisterTeacherPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:ESWIPE.Models"
-    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     x:DataType="viewmodels:AdminRegisterTeacherViewModel"
-    x:Class="ESWIPE.Views.AdminRegisterTeacherPage"
+    xmlns:models="clr-namespace:ESWIPE.Models"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
     Title="Admin Register Teacher"
     xmlns:views="clr-namespace:ESWIPE.Views"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"

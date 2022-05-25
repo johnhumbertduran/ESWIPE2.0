@@ -2,141 +2,76 @@
 using System.Collections.Generic;
 using System.Text;
 
-using MvvmHelpers;
-using MvvmHelpers.Commands;
-using ESWIPE.Views;
 using ESWIPE.Models;
-using ESWIPE.Services;
-using ESWIPE.ViewModels;
-using System.Threading.Tasks;
+using ESWIPE.Services.Implementations;
+using ESWIPE.Services.Interfaces;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using ESWIPE.Views;
 
 namespace ESWIPE.ViewModels
 {
     class TeacherCreateModulesViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Module> Module { get; set; }
-        public AsyncCommand RefreshCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Module> RemoveCommand { get; }
+        #region Properties
+        private readonly IModuleService _moduleService;
+
+        private ModuleModel _moduleDetail = new ModuleModel();
+
+        public ModuleModel ModuleDetail
+        {
+            get => _moduleDetail;
+            set => SetProperty(ref _moduleDetail, value);
+        }
+        #endregion
+
+        #region Constructor
         public TeacherCreateModulesViewModel()
         {
-            Title = "Create Quiz";
-            Module = new ObservableRangeCollection<Module>();
-
-            RefreshCommand = new AsyncCommand(Refresh);
-            AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Module>(Remove);
+            //Title = "Register Teacher";
+            _moduleService = DependencyService.Resolve<IModuleService>();
         }
 
-        string emptyCreatedByString = "";
-        string emptySubjectCodeString = "";
-        string emptySubjectQuizCodeString = "";
-        string emptySubjectQuizQtyString = "";
-
-        public string CreatedBy
+        public TeacherCreateModulesViewModel(ModuleModel moduleResponse)
         {
-            get => emptyCreatedByString;
-            set
+            _moduleService = DependencyService.Resolve<IModuleService>();
+            ModuleDetail = new ModuleModel
             {
-                if (value == emptyCreatedByString)
-                    return;
-                emptyCreatedByString = value;
-                OnPropertyChanged();
-            }
+                DateCreated = moduleResponse.DateCreated,
+                CreatedBy = moduleResponse.CreatedBy,
+                SubjectCode = moduleResponse.SubjectCode,
+                SubjectQuizCode = moduleResponse.SubjectQuizCode,
+                SubjectQuizQty = moduleResponse.SubjectQuizQty,
+                Key = moduleResponse.Key
+            };
         }
+        #endregion
 
-        public string SubjectCode
+        #region Commands
+        public ICommand SaveModuleCommand => new Command(async () =>
         {
-            get => emptySubjectCodeString;
-            set
-            {
-                if (value == emptySubjectCodeString)
-                    return;
-                emptySubjectCodeString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string SubjectQuizCode
-        {
-            get => emptySubjectQuizCodeString;
-            set
-            {
-                if (value == emptySubjectQuizCodeString)
-                    return;
-                emptySubjectQuizCodeString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string SubjectQuizQty
-        {
-            get => emptySubjectQuizQtyString;
-            set
-            {
-                if (value == emptySubjectQuizQtyString)
-                    return;
-                emptySubjectQuizQtyString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        async Task Add()
-        {
-            var createdByText = CreatedBy;
-            var subjectCodeText = SubjectCode;
-            var subjectQuizCodeText = SubjectQuizCode;
-            var subjectQuizQtyText = SubjectQuizQty;
-
-            if (SubjectCode == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Code empty!", "Please input Subject Code", "OK");
-            }
-
-            if (SubjectQuizCode == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Code empty!", "Please input Subject Quiz Code", "OK");
-            }
-
-            if (SubjectQuizQty == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Qty empty!", "Please input Subject Quiz Qty", "OK");
-            }
-
-            if ((SubjectCode != "") && (SubjectQuizCode != "") && (SubjectQuizQty != ""))
-            {
-                await ModuleService.AddModule(createdByText, subjectCodeText, subjectQuizCodeText, subjectQuizQtyText);
-
-                await Application.Current.MainPage.DisplayAlert("Create Module Info", "Succesfully Created Module!", "OK");
-                SubjectCode = "";
-                SubjectQuizCode = "";
-                SubjectQuizQty = "";
-                await Refresh();
-            }
-        }
-
-        async Task Remove(Module module)
-        {
-            await ModuleService.RemoveModule(module.Id);
-            await Refresh();
-        }
-
-        async Task Refresh()
-        {
+            if (IsBusy) { return; }
             IsBusy = true;
-
-            await Task.Delay(2000);
-
-            Module.Clear();
-
-            var modules = await ModuleService.GetModule();
-
-            Module.AddRange(modules);
-
+            bool res = await _moduleService.AddorUpdateModule(ModuleDetail);
+            if (res)
+            {
+                if (!string.IsNullOrWhiteSpace(ModuleDetail.Key))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+                    //var route = $"//{nameof(AdminTeacherPage)}";
+                    await Shell.Current.GoToAsync($"//{nameof(TeacherModulesPage)}");
+                    //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
+                }
+                else
+                {
+                    ModuleDetail = new ModuleModel() { };
+                    await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+                }
+            }
             IsBusy = false;
-        }
+
+        });
+        #endregion
+
     }
 }

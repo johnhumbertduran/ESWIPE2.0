@@ -13,7 +13,7 @@ namespace ESWIPE
             InitializeComponent();
             //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute(nameof(Grade7Module1Heading1Page), typeof(Grade7Module1Heading1Page));
+            //Routing.RegisterRoute(nameof(AdminTeacherPage), typeof(AdminTeacherPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

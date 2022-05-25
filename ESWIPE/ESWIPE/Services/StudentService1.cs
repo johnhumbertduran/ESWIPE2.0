@@ -15,12 +15,12 @@ using ESWIPE.Views;
 
 namespace ESWIPE.Services
 {
-    class StudentService
+    class StudentService1
     {
         static string BaseUrl = "https://eswipewebapi-1-6arxi3ufdq-as.a.run.app";
         static HttpClient client;
 
-        static StudentService()
+        static StudentService1()
         {
             try
             {
@@ -68,7 +68,7 @@ namespace ESWIPE.Services
         static int nextId = 0;
         static int nextStudentNumber = 20220000;
 
-        public static async Task AddStudent(string studentName, string studentYear, string studentSection, string username, string password, string userRole)
+        public static async Task AddStudent(string studentName, string studentYear, string studentSection, string username, string userRole)
         {
             var student = new Student
             {

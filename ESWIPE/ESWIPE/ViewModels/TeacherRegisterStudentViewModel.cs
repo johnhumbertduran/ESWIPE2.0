@@ -2,131 +2,82 @@
 using System.Collections.Generic;
 using System.Text;
 
-using MvvmHelpers;
-using MvvmHelpers.Commands;
-using ESWIPE.Views;
 using ESWIPE.Models;
-using ESWIPE.Services;
-using ESWIPE.ViewModels;
-using System.Threading.Tasks;
+using ESWIPE.Services.Implementations;
+using ESWIPE.Services.Interfaces;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using ESWIPE.Views;
 
 namespace ESWIPE.ViewModels
 {
     class TeacherRegisterStudentViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Student> Student { get; set; }
-        public AsyncCommand RefreshCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Student> RemoveCommand { get; }
+        #region Properties
+        private readonly IStudentService _studentService;
+
+        private StudentModel _studentDetail = new StudentModel();
+
+        public StudentModel StudentDetail
+        {
+            get => _studentDetail;
+            set => SetProperty(ref _studentDetail, value);
+        }
+        #endregion
+
+        #region Constructor
         public TeacherRegisterStudentViewModel()
         {
-            Title = "Register Student";
-            Student = new ObservableRangeCollection<Student>();
-
-            RefreshCommand = new AsyncCommand(Refresh);
-            AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Student>(Remove);
+            //Title = "Register Teacher";
+            _studentService = DependencyService.Resolve<IStudentService>();
         }
 
-        string emptyNameString = "";
-        string emptyYearString = "";
-        string emptySectionString = "";
-
-        public string StudentName
+        public TeacherRegisterStudentViewModel(StudentModel studentResponse)
         {
-            get => emptyNameString;
-            set
+            _studentService = DependencyService.Resolve<IStudentService>();
+            StudentDetail = new StudentModel
             {
-                if (value == emptyNameString)
-                    return;
-                emptyNameString = value;
-                OnPropertyChanged();
-            }
+                StudentNumber = studentResponse.StudentNumber,
+                StudentName = studentResponse.StudentName,
+                Year = studentResponse.Year,
+                Section = studentResponse.Section,
+                Username = studentResponse.Username,
+                Password = studentResponse.Password,
+                UserRole = studentResponse.UserRole,
+                SubjectsCode = studentResponse.SubjectsCode,
+                QuizCode = studentResponse.QuizCode,
+                QuizScore = studentResponse.QuizScore,
+                Key = studentResponse.Key
+            };
         }
+        #endregion
 
-        public string StudentYear
+        #region Commands
+        public ICommand SaveStudentCommand => new Command(async () =>
         {
-            get => emptyYearString;
-            set
-            {
-                if (value == emptyYearString)
-                    return;
-                emptyYearString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string StudentSection
-        {
-            get => emptySectionString;
-            set
-            {
-                if (value == emptySectionString)
-                    return;
-                emptySectionString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        async Task Add()
-        {
-            var studentNameText = StudentName;
-            var studentYearText = StudentYear;
-            var studentSectionText = StudentSection;
-            var usernameText = StudentName;
-            var passwordText = "";
-            var userRoleText = "Teacher";
-
-            if (StudentName == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Name empty!", "Please input Name", "OK");
-            }
-            
-            if (StudentYear == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Year empty!", "Please input Year", "OK");
-            }
-             
-            if (StudentSection == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Section empty!", "Please input Section", "OK");
-            }
-            
-            if ((StudentName != "") && (StudentYear != "") && (StudentSection != ""))
-            {
-                await StudentService.AddStudent(studentNameText, studentYearText, studentSectionText, usernameText, passwordText, userRoleText);
-
-                await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
-                StudentName = "";
-                StudentYear = "";
-                StudentSection = "";
-                await Refresh();
-            }
-        }
-
-        async Task Remove(Student student)
-        {
-            await StudentService.RemoveStudent(student.Id);
-            await Refresh();
-        }
-
-        async Task Refresh()
-        {
+            if (IsBusy) { return; }
             IsBusy = true;
-
-            await Task.Delay(2000);
-
-            Student.Clear();
-
-            var students = await StudentService.GetStudent();
-
-            Student.AddRange(students);
-
+            bool res = await _studentService.AddorUpdateStudent(StudentDetail);
+            if (res)
+            {
+                if (!string.IsNullOrWhiteSpace(StudentDetail.Key))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+                    //var route = $"//{nameof(AdminTeacherPage)}";
+                    await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                    //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
+                }
+                else
+                {
+                    StudentDetail = new StudentModel() { };
+                    await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+                }
+            }
             IsBusy = false;
-        }
+
+        });
+        #endregion
+
 
     }
 }

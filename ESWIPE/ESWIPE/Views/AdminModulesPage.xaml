@@ -6,10 +6,10 @@
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}"
-    x:DataType="viewmodels:AdminModulesViewModel">
+    x:DataType="viewmodels:TeacherModulesViewModel">
 
     <ContentPage.BindingContext>
-        <viewmodels:AdminModulesViewModel />
+        <viewmodels:TeacherModulesViewModel />
     </ContentPage.BindingContext>
 
     <ListView
@@ -17,13 +17,13 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        ItemsSource="{Binding Module}"
-        RefreshCommand="{Binding RefreshCommandModule}"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding Modules}"
+        RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Module">
+            <DataTemplate x:DataType="models:ModuleModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="true" Text="Delete" />
@@ -59,6 +59,9 @@
                                         Text="{Binding SubjectCode}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:TeacherModulesViewModel}}, Path=SelectedModuleCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </Grid>

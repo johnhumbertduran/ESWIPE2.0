@@ -11,24 +11,21 @@ using System.Threading.Tasks;
 
 namespace ESWIPE.Services.Implementations
 {
-    public class TeacherService : ITeacherService
+    public class StudentService : IStudentService
     {
         FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
         {
             AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         });
 
-        static int nextTeacherNumber = 20220000;
-
-        public async Task<bool> AddorUpdateTeacher(TeacherModel teacherModel)
+        static int nextStudentNumber = 20220000;
+        public async Task<bool> AddorUpdateStudent(StudentModel studentModel)
         {
-
-
-            if (!string.IsNullOrWhiteSpace(teacherModel.Key))
+            if (!string.IsNullOrWhiteSpace(studentModel.Key))
             {
                 try
                 {
-                    await firebase.Child(nameof(TeacherModel)).Child(teacherModel.Key).PutAsync(teacherModel);
+                    await firebase.Child(nameof(StudentModel)).Child(studentModel.Key).PutAsync(studentModel);
                     return true;
                 }
                 catch (Exception ex)
@@ -38,15 +35,15 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
-                nextTeacherNumber++;
-                teacherModel.TeacherNumber = nextTeacherNumber;
-                teacherModel.Username = teacherModel.Name;
-                teacherModel.Password = teacherModel.TeacherNumber.ToString();
-                teacherModel.UserRole = "Teacher";
+                nextStudentNumber++;
+                studentModel.StudentNumber = nextStudentNumber;
+                studentModel.Username = studentModel.StudentName;
+                studentModel.Password = studentModel.StudentNumber.ToString();
+                studentModel.UserRole = "Student";
 
-                var response = await firebase.Child(nameof(TeacherModel)).PostAsync(teacherModel);
+                var response = await firebase.Child(nameof(StudentModel)).PostAsync(studentModel);
 
-                
+
                 if (response.Key != null)
                 {
                     return true;
@@ -56,14 +53,13 @@ namespace ESWIPE.Services.Implementations
                     return false;
                 }
             }
-
         }
 
-        public async Task<bool> DeleteTeacher(string key)
+        public async Task<bool> DeleteStudent(string key)
         {
             try
             {
-                await firebase.Child(nameof(TeacherModel)).Child(key).DeleteAsync();
+                await firebase.Child(nameof(StudentModel)).Child(key).DeleteAsync();
                 return true;
             }
             catch (Exception ex)
@@ -71,13 +67,14 @@ namespace ESWIPE.Services.Implementations
                 return false;
             }
         }
-                
-        public async Task<List<TeacherModel>> GetAllTeacher()
+
+        public async Task<List<StudentModel>> GetAllStudent()
         {
-            return (await firebase.Child(nameof(TeacherModel)).OnceAsync<TeacherModel>()).Select(f => new TeacherModel
+            return (await firebase.Child(nameof(StudentModel)).OnceAsync<StudentModel>()).Select(f => new StudentModel
             {
-                TeacherNumber = f.Object.TeacherNumber,
-                Name = f.Object.Name,
+                StudentNumber = f.Object.StudentNumber,
+                StudentName = f.Object.StudentName,
+                Year = f.Object.Year,
                 Section = f.Object.Section,
                 Username = f.Object.Username,
                 Password = f.Object.Password,
@@ -85,6 +82,5 @@ namespace ESWIPE.Services.Implementations
                 Key = f.Key
             }).ToList();
         }
-
     }
 }

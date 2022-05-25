@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using ESWIPE.Services;
-using ESWIPE.Interfaces;
 using Xamarin.Essentials;
 using ESWIPE.Services.Implementations;
 using ESWIPE.Services.Interfaces;
@@ -24,7 +23,9 @@ namespace ESWIPE
             //Barrel.ApplicationId = AppInfo.PackageName;
 
             MainPage = new AppShell();
-            DependencyService.Register<ITeacher, TeacherService>();
+            DependencyService.Register<ITeacherService, TeacherService>();
+            DependencyService.Register<IStudentService, StudentService>();
+            DependencyService.Register<IModuleService, ModuleService>();
             //MainPage = new TemporaryIndexPage();
             //DependencyService.Register<IEmployeeService, EmployeeService>();
         }

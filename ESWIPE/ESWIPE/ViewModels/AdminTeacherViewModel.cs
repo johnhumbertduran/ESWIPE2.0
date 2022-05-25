@@ -23,18 +23,15 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _isRefreshing, value);
         }
 
-        private readonly ITeacher _teacherService;
+        private readonly ITeacherService _teacherService;
         public ObservableCollection<TeacherModel> Teachers { get; set; } = new ObservableCollection<TeacherModel>();
-        //public AsyncCommand<Object> SelectedCommand { get; }
         #endregion
 
         #region Constructor
         public AdminTeacherViewModel()
         {
             //Title = "Teacher's Data";
-            //Teachers = new ObservableCollection<TeacherModel>();
-            //SelectedCommand = new AsyncCommand<Object>(Selected);
-            _teacherService = DependencyService.Resolve<ITeacher>();
+            _teacherService = DependencyService.Resolve<ITeacherService>();
             GetAllTeacher();
         }
         #endregion
@@ -73,25 +70,6 @@ namespace ESWIPE.ViewModels
             GetAllTeacher();
         });
 
-        TeacherModel previouslySelected;
-        TeacherModel selectedTeacher;
-
-        public TeacherModel SelectedTeacher
-        {
-            get => selectedTeacher;
-            set /*=> SetProperty(ref selectedTeacher, value);*/
-            {
-                if (value != null)
-                {
-                    Application.Current.MainPage.DisplayAlert("Selected", "Test", "OK");
-                    previouslySelected = value;
-                    value = null;
-                }
-
-                selectedTeacher = value;
-                OnPropertyChanged();
-            }
-        }
 
         public ICommand SelectedTeacherCommand => new Xamarin.Forms.Command<TeacherModel>(async (teacher) =>
         {
@@ -114,15 +92,6 @@ namespace ESWIPE.ViewModels
                 }
             }
         });
-
-        //async Task Selected(Object args)
-        //{
-        //    var teacher = args as TeacherModel;
-        //    if (teacher == null)
-        //        return;
-        //    SelectedTeacher = null;
-        //    await Application.Current.MainPage.DisplayAlert("Selected", teacher.Name, "OK");
-        //}
 
         #endregion
     }

@@ -19,22 +19,6 @@ namespace ESWIPE.ViewModels
         {
             Title = "Modules's Data";
             Module = new ObservableRangeCollection<Module>();
-            RefreshCommandModule = new AsyncCommand(Refresh);
-            //_ = Task.Run(async () => await Refresh());
-        }
-        async Task Refresh()
-        {
-            IsBusy = true;
-
-            await Task.Delay(2000);
-
-            Module.Clear();
-
-            var modules = await ModuleService.GetModule();
-
-            Module.AddRange(modules);
-
-            IsBusy = false;
         }
     }
 }

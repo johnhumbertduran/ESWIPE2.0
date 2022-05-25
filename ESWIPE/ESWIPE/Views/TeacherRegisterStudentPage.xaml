@@ -3,13 +3,16 @@
     x:Class="ESWIPE.Views.TeacherRegisterStudentPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:model="clr-namespace:ESWIPE.ViewModels">
+    xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+    x:DataType="viewmodels:TeacherRegisterStudentViewModel"
+    Title="Teacher Register Student"
+    x:Name="RegisterStudentPage">
 
     <ContentPage.BindingContext>
-        <model:TeacherRegisterStudentViewModel />
+        <viewmodels:TeacherRegisterStudentViewModel />
     </ContentPage.BindingContext>
 
-
+    <ContentPage.Content>
     <StackLayout Padding="0" BackgroundColor="LightGray">
         <Grid>
             <StackLayout Margin="0" Padding="0" />
@@ -44,7 +47,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Name"
-                                        Text="{Binding StudentName, Mode=TwoWay}"
+                                        Text="{Binding StudentDetail.StudentName, Mode=TwoWay}"
                                         TextColor="Black" />
                                 </StackLayout>
                             </Frame>
@@ -61,7 +64,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Year"
-                                        Text="{Binding StudentYear, Mode=TwoWay}"
+                                        Text="{Binding StudentDetail.Year, Mode=TwoWay}"
                                         TextColor="Black" />
                                 </StackLayout>
                             </Frame>
@@ -78,7 +81,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Section"
-                                        Text="{Binding StudentSection, Mode=TwoWay}"
+                                        Text="{Binding StudentDetail.Section, Mode=TwoWay}"
                                         TextColor="Black" />
                                 </StackLayout>
                             </Frame>
@@ -89,7 +92,7 @@
                             Margin="0,20,0,10"
                             Padding="30,15,30,15"
                             Background="purple"
-                            Command="{Binding AddCommand}"
+                            Command="{Binding SaveStudentCommand}"
                             CornerRadius="30"
                             FontAttributes="Bold"
                             FontSize="20"
@@ -103,6 +106,6 @@
             </StackLayout>
         </Grid>
     </StackLayout>
-
+    </ContentPage.Content>
 
 </ContentPage>
