@@ -52,7 +52,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Name"
-                                        Text="{Binding TeacherDetail.Name}"
+                                        Text="{Binding TeacherDetail.TeacherNumber}"
                                         TextColor="Black" />
                                 </StackLayout>
                             </Frame>

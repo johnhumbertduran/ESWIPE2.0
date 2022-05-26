@@ -153,12 +153,6 @@
         <ShellContent ContentTemplate="{DataTemplate local:AdminRegisterTeacherPage}" Route="AdminRegisterTeacherPage" />
     </FlyoutItem>
     <FlyoutItem
-        Title="Employee Model"
-        Icon="icon_feed.png"
-        IsVisible="{Binding IsAdmin}">
-        <ShellContent ContentTemplate="{DataTemplate local:AddUpdateEmployee}" Route="AddUpdateEmployee" />
-    </FlyoutItem>
-    <FlyoutItem
         Title="Teacher Menu"
         Appearing="Teacher_FlyoutItem_Appearing"
         Icon="icon_feed.png"
