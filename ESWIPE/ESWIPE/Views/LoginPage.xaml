@@ -4,9 +4,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.FlyoutBehavior="Disabled"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
-    <StackLayout Padding="0" BackgroundColor="LightGray">
+    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
         <Grid>
             <StackLayout Margin="0" Padding="0">
                 <Frame
@@ -35,7 +38,8 @@
 
             <StackLayout Margin="15,130,15,0">
                 <Frame
-                    BackgroundColor="White"
+                    BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                     HasShadow="True"
                     HeightRequest="400"
                     HorizontalOptions="FillAndExpand">
@@ -45,15 +49,15 @@
                                 FontAttributes="Bold"
                                 FontSize="30"
                                 Text="Sign In"
-                                TextColor="Black" />
+                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
 
                         <StackLayout Margin="0,10,0,0">
                             <Frame
                                 Margin="0,20,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
-                                BorderColor="DarkGray"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -71,15 +75,16 @@
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Username"
-                                        TextColor="Black" />
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
                                 </StackLayout>
                             </Frame>
 
                             <Frame
                                 Margin="0,20,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
-                                BorderColor="DarkGray"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -96,9 +101,10 @@
                                         x:Name="password"
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
                                         IsPassword="True"
                                         Placeholder="Password"
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
                                 </StackLayout>
                             </Frame>
 
@@ -118,6 +124,7 @@
                             <Label
                                 HorizontalTextAlignment="Start"
                                 Text="Remember Me"
+                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
                                 VerticalTextAlignment="Center" />
                             <Label
                                 FontAttributes="Bold"

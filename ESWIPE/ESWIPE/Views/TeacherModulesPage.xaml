@@ -6,14 +6,17 @@
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}"
-    x:DataType="viewmodels:TeacherModulesViewModel">
+    x:DataType="viewmodels:TeacherModulesViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TeacherModulesViewModel />
     </ContentPage.BindingContext>
 
     <ListView
-        BackgroundColor="Transparent"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
@@ -33,29 +36,29 @@
                         <Frame CornerRadius="20" HasShadow="True">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Date Created: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Created By: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Subject Code: "
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding DateCreated}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding CreatedBy}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding SubjectCode}"
                                         VerticalOptions="Center" />

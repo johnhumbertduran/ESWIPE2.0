@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESWIPE.Views.TemporaryIndexPage"
              Shell.FlyoutBehavior="Disabled">
-    <StackLayout Padding="0" BackgroundColor="LightGray">
+    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
         <Grid>
             <StackLayout Margin="0" Padding="0">
                 <Frame
@@ -32,7 +32,7 @@
 
             <StackLayout Margin="15,200,15,0">
                 <Frame
-                    BackgroundColor="White"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
                     HasShadow="True"
                     HeightRequest="300"
                     HorizontalOptions="FillAndExpand">
@@ -43,14 +43,14 @@
                                 FontSize="27"
                                 Margin="0,20,0,0"
                                 Text="Please Enter Module Code"
-                                TextColor="Black" />
+                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
 
                         <StackLayout Margin="0,10,0,0">
                             <Frame
                                 Margin="0,20,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -62,7 +62,7 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Module Code"
                                         Text=""
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
 

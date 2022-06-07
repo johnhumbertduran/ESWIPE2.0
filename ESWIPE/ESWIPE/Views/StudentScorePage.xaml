@@ -6,14 +6,17 @@
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}"
-    x:DataType="viewmodels:StudentScoreViewModel">
+    x:DataType="viewmodels:StudentScoreViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:StudentScoreViewModel />
     </ContentPage.BindingContext>
 
     <ListView
-        BackgroundColor="Transparent"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
@@ -33,22 +36,22 @@
                         <Frame CornerRadius="20" HasShadow="True">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Quiz Code: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Score: "
                                         VerticalOptions="Center" />
                                 </StackLayout>
 
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding QuizCode}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding QuizScore}"
                                         VerticalOptions="Center" />

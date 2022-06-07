@@ -9,7 +9,10 @@
     xmlns:views="clr-namespace:ESWIPE.Views"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="TeacherPage"
-    x:DataType="viewmodels:AdminTeacherViewModel">
+    x:DataType="viewmodels:AdminTeacherViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:AdminTeacherViewModel />
@@ -23,7 +26,7 @@
 
 
     <ListView
-        BackgroundColor="Transparent"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
@@ -48,33 +51,33 @@
                             Text="Delete" />-->
                     </ViewCell.ContextActions>
                     <Grid Padding="10">
-                        <Frame CornerRadius="20" HasShadow="True">
+                        <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Teacher Number: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Name: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Section: "
                                         VerticalOptions="Center" />
 
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding TeacherNumber}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Name}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Section}"
                                         VerticalOptions="Center" />

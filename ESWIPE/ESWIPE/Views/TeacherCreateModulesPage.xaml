@@ -4,18 +4,21 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-    x:DataType="viewmodels:TeacherCreateModulesViewModel">
+    x:DataType="viewmodels:TeacherCreateModulesViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TeacherCreateModulesViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="0" BackgroundColor="LightGray">
+    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
         <Grid>
             <StackLayout Margin="0" Padding="0" />
             <StackLayout Margin="15,20,15,0">
                 <Frame
-                    BackgroundColor="White"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
                     CornerRadius="30"
                     HasShadow="True"
                     HeightRequest="520"
@@ -26,7 +29,7 @@
                                 FontAttributes="Bold"
                                 FontSize="30"
                                 Text="Create Module"
-                                TextColor="Black" />
+                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
 
                         <StackLayout Margin="0,20,0,0">
@@ -35,7 +38,7 @@
                             <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -45,14 +48,14 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Created By"
                                         Text="{Binding ModuleDetail.CreatedBy, Mode=TwoWay}"
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
                             <!--  Subject Code  -->
                             <Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -62,14 +65,14 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Code"
                                         Text="{Binding ModuleDetail.SubjectCode, Mode=TwoWay}"
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
                             <!--  Subject Quiz Code  -->
                             <Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -79,14 +82,14 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Code"
                                         Text="{Binding ModuleDetail.SubjectQuizCode, Mode=TwoWay}"
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
                             <!--  Subject Quiz Qty  -->
                             <Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
-                                BackgroundColor="Transparent"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -96,7 +99,7 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Qty"
                                         Text="{Binding ModuleDetail.SubjectQuizQty, Mode=TwoWay}"
-                                        TextColor="Black" />
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
 

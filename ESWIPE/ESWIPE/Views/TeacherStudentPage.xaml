@@ -7,14 +7,17 @@
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="{Binding Title}"
-    x:DataType="viewmodels:TeacherStudentViewModel">
+    x:DataType="viewmodels:TeacherStudentViewModel"
+    BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TeacherStudentViewModel />
     </ContentPage.BindingContext>
 
     <ListView
-        BackgroundColor="Transparent"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
@@ -34,37 +37,37 @@
                         <Frame CornerRadius="20" HasShadow="True">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Student Number: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Name: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Year: "
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Section: "
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding StudentNumber}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding StudentName}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Year}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Section}"
                                         VerticalOptions="Center" />
