@@ -13,12 +13,12 @@ namespace ESWIPE.Services.Implementations
 {
     public class StudentService : IStudentService
     {
-        FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
+        readonly FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
         {
             AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         });
 
-        static int nextStudentNumber = 20220000;
+        //static int nextStudentNumber = 20220000;
         public async Task<bool> AddorUpdateStudent(StudentModel studentModel)
         {
             if (!string.IsNullOrWhiteSpace(studentModel.Key))
@@ -35,10 +35,10 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
-                nextStudentNumber++;
-                studentModel.StudentNumber = nextStudentNumber;
-                studentModel.Username = studentModel.StudentName;
-                studentModel.Password = studentModel.StudentNumber.ToString();
+                //nextStudentNumber++;
+                //studentModel.StudentNumber = nextStudentNumber;
+                //studentModel.Username = studentModel.StudentName;
+                //studentModel.Password = studentModel.StudentNumber.ToString();
                 studentModel.UserRole = "Student";
 
                 var response = await firebase.Child(nameof(StudentModel)).PostAsync(studentModel);
@@ -72,7 +72,7 @@ namespace ESWIPE.Services.Implementations
         {
             return (await firebase.Child(nameof(StudentModel)).OnceAsync<StudentModel>()).Select(f => new StudentModel
             {
-                StudentNumber = f.Object.StudentNumber,
+                //StudentNumber = f.Object.StudentNumber,
                 StudentName = f.Object.StudentName,
                 Year = f.Object.Year,
                 Section = f.Object.Section,

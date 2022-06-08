@@ -12,8 +12,8 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="RegisterTeacherPage"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
 
     <!--<ContentPage.BindingContext>
@@ -21,32 +21,33 @@
     </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
-    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
+        <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" VerticalOptions="Center">
         <Grid>
             <StackLayout Margin="0" Padding="0" />
             <StackLayout Margin="15,10,15,0">
                 <Frame
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                     CornerRadius="30"
                     HasShadow="True"
-                    HeightRequest="540"
+                    HeightRequest="440"
                     HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
                             <Label
                                 FontAttributes="Bold"
+                                x:Name="RegisterTeacherLabel"
                                 FontSize="35"
-                                Text="Register Teacher"
-                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                Text="Add/Update Teacher"
+                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}" />
                         </StackLayout>
 
-                            <StackLayout Margin="0,25,0,0">
+                            <StackLayout Margin="0,20,0,0">
 
                                 <!--  Name  -->
                             <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
-                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -55,12 +56,13 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Name"
-                                        Text="{Binding TeacherDetail.TeacherNumber}"
+                                        Text="{Binding TeacherDetail.Name}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
+
                             <!--  Section  -->
-                                <Frame
+                            <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
                                  BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
@@ -76,11 +78,51 @@
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                     </StackLayout>
                                 </Frame>
+                                
+                                
+                                
+                            <!--  Username  -->
+                            <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Username"
+                                        Text="{Binding TeacherDetail.Username}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                    </StackLayout>
+                                </Frame>
+                                
+                                
+                                
+                            <!--  Password  -->
+                            <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="DarkGray"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Password"
+                                        Text="{Binding TeacherDetail.Password}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                    </StackLayout>
+                                </Frame>
 
                             </StackLayout>
 
                         <Button
-                            Margin="0,0,0,10"
+                            Margin="0,20,0,10"
                             Padding="30,15,30,15"
                             Background="purple"
                             Command="{Binding SaveTeacherCommand}"
@@ -88,7 +130,7 @@
                             FontAttributes="Bold"
                             FontSize="20"
                             HorizontalOptions="Start"
-                            Text="Register"
+                            Text="Submit"
                             TextColor="White" />
 
 

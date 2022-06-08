@@ -28,16 +28,17 @@ namespace ESWIPE.ViewModels
         #region Constructor
         public TeacherRegisterStudentViewModel()
         {
-            //Title = "Register Teacher";
+            Title = "Register Student";
             _studentService = DependencyService.Resolve<IStudentService>();
         }
 
         public TeacherRegisterStudentViewModel(StudentModel studentResponse)
         {
+            Title = "Update Student";
             _studentService = DependencyService.Resolve<IStudentService>();
             StudentDetail = new StudentModel
             {
-                StudentNumber = studentResponse.StudentNumber,
+                //StudentNumber = studentResponse.StudentNumber,
                 StudentName = studentResponse.StudentName,
                 Year = studentResponse.Year,
                 Section = studentResponse.Section,

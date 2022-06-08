@@ -40,10 +40,10 @@
             <DataTemplate x:DataType="models:TeacherModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
-                        <MenuItem
+                        <!--<MenuItem
                             Command="{Binding Source={x:Reference TeacherPage}, Path=BindingContext.SelectedTeacherCommand}"
                             CommandParameter="{Binding}"
-                            Text="Favorite" />
+                            Text="Favorite" />-->
                         <!--<MenuItem
                             Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:AdminTeacherViewModel}}, Path=BindingContext.SelectedTeacherCommand}"
                             CommandParameter="{Binding .}"
@@ -54,10 +54,10 @@
                         <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Teacher Number: "
-                                        VerticalOptions="Center" />
+                                        VerticalOptions="Center" />-->
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Name: "
@@ -69,10 +69,10 @@
 
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
-                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding TeacherNumber}"
-                                        VerticalOptions="Center" />
+                                        VerticalOptions="Center" />-->
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Name}"

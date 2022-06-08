@@ -116,7 +116,7 @@
     <FlyoutItem
         Title="Admin Menu"
         Appearing="Admin_FlyoutItem_Appearing"
-        Icon="icon_feed.png"
+        Icon="icon_menu.png"
         IsVisible="{Binding IsAdmin}">
         <Tab>
             <ShellContent
@@ -142,20 +142,20 @@
     </FlyoutItem>
     <FlyoutItem
         Title="Admin Settings"
-        Icon="icon_feed.png"
+        Icon="icon_user_settings.png"
         IsVisible="{Binding IsAdmin}">
         <ShellContent ContentTemplate="{DataTemplate local:AdminSettingsPage}" Route="AdminSettingsPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Register Teacher"
-        Icon="icon_feed.png"
+        Icon="icon_register.png"
         IsVisible="{Binding IsAdmin}">
         <ShellContent ContentTemplate="{DataTemplate local:AdminRegisterTeacherPage}" Route="AdminRegisterTeacherPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Teacher Menu"
         Appearing="Teacher_FlyoutItem_Appearing"
-        Icon="icon_feed.png"
+        Icon="icon_menu.png"
         IsVisible="{Binding IsTeacher}">
         <Tab>
             <ShellContent
@@ -176,43 +176,43 @@
     </FlyoutItem>
     <FlyoutItem
         Title="Register Student"
-        Icon="icon_feed.png"
+        Icon="icon_register.png"
         IsVisible="{Binding IsTeacher}">
         <ShellContent ContentTemplate="{DataTemplate local:TeacherRegisterStudentPage}" Route="TeacherRegisterStudentPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Create Module"
-        Icon="icon_feed.png"
+        Icon="icon_modules.png"
         IsVisible="{Binding IsTeacher}">
         <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateModulesPage}" Route="TeacherCreateModulesPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Create Quiz"
-        Icon="icon_feed.png"
+        Icon="icon_quiz.png"
         IsVisible="{Binding IsTeacher}">
         <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateQuizPage}" Route="TeacherCreateQuizPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Student Menu"
-        Icon="icon_feed.png"
+        Icon="icon_menu.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentPage}" Route="StudentPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Modules"
-        Icon="icon_feed.png"
+        Icon="icon_modules.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentModulesPage}" Route="StudentModulesPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Quiz"
-        Icon="icon_feed.png"
+        Icon="icon_quiz.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentQuizPage}" Route="StudentQuizPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Score"
-        Icon="icon_feed.png"
+        Icon="icon_score.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentScorePage}" Route="StudentScorePage" />
     </FlyoutItem>
@@ -233,6 +233,7 @@
     <MenuItem
         Clicked="OnMenuItemClicked"
         StyleClass="MenuItemLayoutStyle"
+        IconImageSource="icon_logout.png"
         Text="Logout" />
 
     <!--

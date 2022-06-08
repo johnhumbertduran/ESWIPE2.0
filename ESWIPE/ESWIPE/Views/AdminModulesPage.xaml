@@ -32,7 +32,7 @@
                         <MenuItem IsDestructive="true" Text="Delete" />
                     </ViewCell.ContextActions>
                     <Grid Padding="10">
-                        <Frame CornerRadius="20" HasShadow="true">
+                        <Frame CornerRadius="20" HasShadow="true" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"

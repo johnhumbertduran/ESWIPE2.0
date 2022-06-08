@@ -17,11 +17,13 @@ namespace ESWIPE.Views
         public AdminRegisterTeacherPage()
         {
             InitializeComponent();
+            RegisterTeacherLabel.Text = "Register Teacher";
             BindingContext = new AdminRegisterTeacherViewModel();
         }
         public AdminRegisterTeacherPage(TeacherModel teacher)
         {
             InitializeComponent();
+            RegisterTeacherLabel.Text = "Update Teacher";
             BindingContext = new AdminRegisterTeacherViewModel(teacher);
         }
     }

@@ -6,19 +6,19 @@
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     x:DataType="viewmodels:TeacherCreateModulesViewModel"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TeacherCreateModulesViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
+    <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" VerticalOptions="Center">
         <Grid>
             <StackLayout Margin="0" Padding="0" />
             <StackLayout Margin="15,20,15,0">
                 <Frame
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                     CornerRadius="30"
                     HasShadow="True"
                     HeightRequest="520"
@@ -28,8 +28,9 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="30"
+                                x:Name="CreateModuleLabel"
                                 Text="Create Module"
-                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}" />
                         </StackLayout>
 
                         <StackLayout Margin="0,20,0,0">
@@ -114,7 +115,7 @@
                             FontAttributes="Bold"
                             FontSize="20"
                             HorizontalOptions="Start"
-                            Text="Create"
+                            Text="Submit"
                             TextColor="White" />
 
 

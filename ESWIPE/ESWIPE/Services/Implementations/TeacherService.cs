@@ -18,7 +18,7 @@ namespace ESWIPE.Services.Implementations
             AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         });
 
-        static int nextTeacherNumber = 20220000;
+        //static int nextTeacherNumber = 20220000;
 
         public async Task<bool> AddorUpdateTeacher(TeacherModel teacherModel)
         {
@@ -38,10 +38,10 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
-                nextTeacherNumber++;
-                teacherModel.TeacherNumber = nextTeacherNumber;
-                teacherModel.Username = teacherModel.Name;
-                teacherModel.Password = teacherModel.TeacherNumber.ToString();
+                //nextTeacherNumber++;
+                //teacherModel.TeacherNumber = nextTeacherNumber;
+                //teacherModel.Username = teacherModel.Name;
+                //teacherModel.Password = teacherModel.TeacherNumber.ToString();
                 teacherModel.UserRole = "Teacher";
 
                 var response = await firebase.Child(nameof(TeacherModel)).PostAsync(teacherModel);
@@ -76,7 +76,7 @@ namespace ESWIPE.Services.Implementations
         {
             return (await firebase.Child(nameof(TeacherModel)).OnceAsync<TeacherModel>()).Select(f => new TeacherModel
             {
-                TeacherNumber = f.Object.TeacherNumber,
+                //TeacherNumber = f.Object.TeacherNumber,
                 Name = f.Object.Name,
                 Section = f.Object.Section,
                 Username = f.Object.Username,

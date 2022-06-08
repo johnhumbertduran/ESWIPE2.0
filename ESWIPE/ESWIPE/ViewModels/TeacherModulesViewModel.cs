@@ -75,7 +75,7 @@ namespace ESWIPE.ViewModels
         {
             if (module != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("Options!", "Cancel", null, "Update Module", "Delete Module");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
 
                 if (response == "Update Module")
                 {

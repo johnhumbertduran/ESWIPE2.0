@@ -37,7 +37,7 @@ namespace ESWIPE.ViewModels
             _teacherService = DependencyService.Resolve<ITeacherService>();
             TeacherDetail = new TeacherModel
             {
-                TeacherNumber = teacherResponse.TeacherNumber,
+                //TeacherNumber = teacherResponse.TeacherNumber,
                 Name = teacherResponse.Name,
                 Section = teacherResponse.Section,
                 Username = teacherResponse.Username,
@@ -70,48 +70,9 @@ namespace ESWIPE.ViewModels
                 }
             }
             IsBusy = false;
-            //if (TeacherName == "")
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Name empty!", "Please input Name", "OK");
-            //}
-
-            //if (TeacherSection == "")
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Section empty!", "Please input Section", "OK");
-            //}
-
-            //if ((TeacherName != "") && (TeacherSection != ""))
-            //{
-
-            //    await TeacherService.AddTeacher(teacherNameText, teacherSectionText, usernameText, passwordText, userRoleText);
-            //    TeacherName = "";
-            //    TeacherSection = "";
-            //    await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
-            //    //await Refresh();
-            //}
 
         });
         #endregion
-
-        //async Task Remove(Teacher teacher)
-        //{
-        //    await TeacherService.RemoveTeacher(teacher.Id);
-        //    await Refresh();
-        //}
-
-        //async Task Refresh()
-        //{
-        //    IsBusy = true;
-
-        //    await Task.Delay(2000);
-
-        //    Teacher.Clear();
-
-        //    var teachersLocal = await TeacherService.GetTeacher();
-        //    Teacher.AddRange(teachersLocal);
-
-        //    IsBusy = false;
-        //}
 
     }
 }

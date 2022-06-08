@@ -197,4 +197,25 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_light_sun.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_user_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_create_module.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_modules.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_quiz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_score.png" />
+  </ItemGroup>
 </Project>

@@ -18,11 +18,13 @@ namespace ESWIPE.Views
         public TeacherRegisterStudentPage()
         {
             InitializeComponent();
+            RegisterStudentLabel.Text = "Register Student";
             BindingContext = new TeacherRegisterStudentViewModel();
         }
         public TeacherRegisterStudentPage(StudentModel student)
         {
             InitializeComponent();
+            RegisterStudentLabel.Text = "Update Student";
             BindingContext = new TeacherRegisterStudentViewModel(student);
         }
     }

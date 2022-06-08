@@ -18,11 +18,13 @@ namespace ESWIPE.Views
         public TeacherCreateModulesPage()
         {
             InitializeComponent();
+            CreateModuleLabel.Text = "Create Module";
             BindingContext = new TeacherCreateModulesViewModel();
         }
         public TeacherCreateModulesPage(ModuleModel module)
         {
             InitializeComponent();
+            CreateModuleLabel.Text = "Update Module";
             BindingContext = new TeacherCreateModulesViewModel(module);
         }
     }
