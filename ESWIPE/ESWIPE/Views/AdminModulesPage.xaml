@@ -73,13 +73,4 @@
         </ListView.ItemTemplate>
     </ListView>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                FontSize="Large"
-                HorizontalOptions="CenterAndExpand"
-                Text="Admin Modules"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

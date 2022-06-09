@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-    Title="{Binding Title}"
     x:DataType="viewmodels:TeacherQuizViewModel"
     BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
@@ -20,20 +19,20 @@
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
         ItemsSource="{Binding Quiz}"
-        RefreshCommand="{Binding RefreshCommandQuiz}"
+        RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Quiz">
+            <DataTemplate x:DataType="models:QuizModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
                     </ViewCell.ContextActions>
                     <Grid Padding="10">
-                        <Frame CornerRadius="20" HasShadow="True">
+                        <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
@@ -71,6 +70,9 @@
                                         Text="{Binding SubjectQuizQty}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:TeacherQuizViewModel}}, Path=SelectedQuizCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </Grid>

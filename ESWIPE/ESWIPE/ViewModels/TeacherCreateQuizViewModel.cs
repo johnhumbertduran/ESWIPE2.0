@@ -2,164 +2,76 @@
 using System.Collections.Generic;
 using System.Text;
 
-using MvvmHelpers;
-using MvvmHelpers.Commands;
-using ESWIPE.Views;
 using ESWIPE.Models;
-using ESWIPE.Services;
-using ESWIPE.ViewModels;
-using System.Threading.Tasks;
+using ESWIPE.Services.Implementations;
+using ESWIPE.Services.Interfaces;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using ESWIPE.Views;
 
 namespace ESWIPE.ViewModels
 {
     class TeacherCreateQuizViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Quiz> Quiz { get; set; }
-        public AsyncCommand RefreshCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Quiz> RemoveCommand { get; }
+        #region Properties
+        private readonly IQuizService _quizService;
+
+        private QuizModel _quizDetail = new QuizModel();
+
+        public QuizModel QuizDetail
+        {
+            get => _quizDetail;
+            set => SetProperty(ref _quizDetail, value);
+        }
+        #endregion
+
+        #region Constructor
         public TeacherCreateQuizViewModel()
         {
-            Title = "Register Student";
-            Quiz = new ObservableRangeCollection<Quiz>();
-
-            RefreshCommand = new AsyncCommand(Refresh);
-            AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Quiz>(Remove);
+            //Title = "Register Teacher";
+            _quizService = DependencyService.Resolve<IQuizService>();
         }
 
-        string emptyCreatedByString = "";
-        string emptySubjectQuizCodeString = "";
-        string emptySubjectQuizQtyString = "";
-        string emptySubjectQuizAnswerString = "";
-        string emptySubjectQuizCorrectAnswerString = "";
-
-        public string CreatedBy
+        public TeacherCreateQuizViewModel(QuizModel quizResponse)
         {
-            get => emptyCreatedByString;
-            set
+            _quizService = DependencyService.Resolve<IQuizService>();
+            QuizDetail = new QuizModel
             {
-                if (value == emptyCreatedByString)
-                    return;
-                emptyCreatedByString = value;
-                OnPropertyChanged();
-            }
+                DateCreated = quizResponse.DateCreated,
+                CreatedBy = quizResponse.CreatedBy,
+                SubjectQuizCode = quizResponse.SubjectQuizCode,
+                SubjectQuizQty = quizResponse.SubjectQuizQty,
+                SubjectQuizAnswer = quizResponse.SubjectQuizAnswer,
+                SubjectQuizCorrectAnswer = quizResponse.SubjectQuizCorrectAnswer,
+                Key = quizResponse.Key
+            };
         }
+        #endregion
 
-        public string SubjectQuizCode
+        #region Commands
+        public ICommand SaveQuizCommand => new Command(async () =>
         {
-            get => emptySubjectQuizCodeString;
-            set
-            {
-                if (value == emptySubjectQuizCodeString)
-                    return;
-                emptySubjectQuizCodeString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string SubjectQuizQty
-        {
-            get => emptySubjectQuizQtyString;
-            set
-            {
-                if (value == emptySubjectQuizQtyString)
-                    return;
-                emptySubjectQuizQtyString = value;
-                OnPropertyChanged();
-            }
-        }
-        
-        public string SubjectQuizAnswer
-        {
-            get => emptySubjectQuizAnswerString;
-            set
-            {
-                if (value == emptySubjectQuizAnswerString)
-                    return;
-                emptySubjectQuizAnswerString = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string SubjectQuizCorrectAnswer
-        {
-            get => emptySubjectQuizCorrectAnswerString;
-            set
-            {
-                if (value == emptySubjectQuizCorrectAnswerString)
-                    return;
-                emptySubjectQuizCorrectAnswerString = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        async Task Add()
-        {
-            var createdByText = CreatedBy;
-            var subjectQuizCodeText = SubjectQuizCode;
-            var subjectQuizQtyText = SubjectQuizQty;
-            var subjectQuizAnswerText = SubjectQuizAnswer;
-            var subjectQuizCorrectAnswerText = SubjectQuizCorrectAnswer;
-
-
-            if (SubjectQuizCode == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Code empty!", "Please input Subject Quiz Code", "OK");
-            }
-
-            if (SubjectQuizQty == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Qty empty!", "Please input Subject Quiz Qty", "OK");
-            }
-
-            if (SubjectQuizAnswer == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Answer empty!", "Please input Subject Quiz Answer", "OK");
-            }
-
-            if (SubjectQuizCorrectAnswer == "")
-            {
-                await Application.Current.MainPage.DisplayAlert("Subject Quiz Correct Answer empty!", "Please input Subject Quiz Correct Answer", "OK");
-            }
-
-            if ((SubjectQuizCode != "") && (SubjectQuizQty != "") && (SubjectQuizAnswer != "") && (SubjectQuizCorrectAnswer != ""))
-            {
-                await QuizService.AddQuiz(createdByText, subjectQuizCodeText, subjectQuizQtyText, subjectQuizAnswerText, subjectQuizCorrectAnswerText);
-
-                await Application.Current.MainPage.DisplayAlert("Create Quiz Info", "Succesfully Created Quiz!", "OK");
-
-                SubjectQuizCode = "";
-                SubjectQuizQty = "";
-                SubjectQuizAnswer = "";
-                SubjectQuizCorrectAnswer = "";
-                await Refresh();
-            }
-        }
-
-        async Task Remove(Quiz quiz)
-        {
-            await QuizService.RemoveQuiz(quiz.Id);
-            await Refresh();
-        }
-
-        async Task Refresh()
-        {
+            if (IsBusy) { return; }
             IsBusy = true;
-
-            await Task.Delay(2000);
-
-            Quiz.Clear();
-
-            var quizzes = await QuizService.GetQuiz();
-
-            Quiz.AddRange(quizzes);
-
+            bool res = await _quizService.AddorUpdateQuiz(QuizDetail);
+            if (res)
+            {
+                if (!string.IsNullOrWhiteSpace(QuizDetail.Key))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+                    //var route = $"//{nameof(AdminTeacherPage)}";
+                    await Shell.Current.GoToAsync("..");
+                    //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
+                }
+                else
+                {
+                    QuizDetail = new QuizModel() { };
+                    await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+                }
+            }
             IsBusy = false;
-        }
+
+        });
+        #endregion
     }
 }

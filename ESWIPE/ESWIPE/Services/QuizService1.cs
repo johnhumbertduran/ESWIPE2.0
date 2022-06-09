@@ -15,12 +15,12 @@ using ESWIPE.Views;
 
 namespace ESWIPE.Services
 {
-    class QuizService
+    class QuizService1
     {
         static string BaseUrl = "https://eswipewebapi-1-6arxi3ufdq-as.a.run.app";
         static HttpClient client;
 
-        static QuizService()
+        static QuizService1()
         {
             try
             {

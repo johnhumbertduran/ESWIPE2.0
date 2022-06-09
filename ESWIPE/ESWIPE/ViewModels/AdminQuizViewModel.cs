@@ -31,7 +31,7 @@ namespace ESWIPE.ViewModels
 
             Quiz.Clear();
 
-            var quizzes = await QuizService.GetQuiz();
+            var quizzes = await QuizService1.GetQuiz();
 
             Quiz.AddRange(quizzes);
 

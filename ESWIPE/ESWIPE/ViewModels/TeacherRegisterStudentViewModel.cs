@@ -65,7 +65,7 @@ namespace ESWIPE.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
                     //var route = $"//{nameof(AdminTeacherPage)}";
-                    await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                    await Shell.Current.GoToAsync("..");
                     //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
                 }
                 else

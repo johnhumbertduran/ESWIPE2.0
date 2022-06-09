@@ -26,6 +26,7 @@ namespace ESWIPE
             DependencyService.Register<ITeacherService, TeacherService>();
             DependencyService.Register<IStudentService, StudentService>();
             DependencyService.Register<IModuleService, ModuleService>();
+            DependencyService.Register<IQuizService, QuizService>();
             //MainPage = new TemporaryIndexPage();
             //DependencyService.Register<IEmployeeService, EmployeeService>();
         }

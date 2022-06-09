@@ -14,7 +14,6 @@ namespace ESWIPE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TeacherCreateModulesPage : ContentPage
     {
-
         public TeacherCreateModulesPage()
         {
             InitializeComponent();

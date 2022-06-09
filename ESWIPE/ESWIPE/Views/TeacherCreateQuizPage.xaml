@@ -30,6 +30,7 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="30"
+                                x:Name="CreateQuizLabel"
                                 Text="Create Quiz"
                                 TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}" />
                         </StackLayout>
@@ -49,7 +50,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Created By"
-                                        Text="{Binding CreatedBy, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.CreatedBy, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
@@ -66,7 +67,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Code"
-                                        Text="{Binding SubjectQuizCode, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.SubjectQuizCode, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
@@ -83,7 +84,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Qty"
-                                        Text="{Binding SubjectQuizQty, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.SubjectQuizQty, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
@@ -100,7 +101,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Answer"
-                                        Text="{Binding SubjectQuizAnswer, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.SubjectQuizAnswer, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
@@ -117,7 +118,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="subject Quiz Correct Answer"
-                                        Text="{Binding SubjectQuizCorrectAnswer, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.SubjectQuizCorrectAnswer, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </Frame>
@@ -128,12 +129,12 @@
                             Margin="0,10,0,10"
                             Padding="30,15,30,15"
                             Background="purple"
-                            Command="{Binding AddCommand}"
+                            Command="{Binding SaveQuizCommand}"
                             CornerRadius="30"
                             FontAttributes="Bold"
                             FontSize="20"
                             HorizontalOptions="Start"
-                            Text="Create"
+                            Text="Submit"
                             TextColor="White" />
 
 
