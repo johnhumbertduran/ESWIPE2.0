@@ -7,14 +7,7 @@
     xmlns:vm="clr-namespace:ESWIPE.ViewModels"
     Title="ESWIPE">
 
-    <Shell.BindingContext>
-        <vm:ViewModelBase />
-    </Shell.BindingContext>
-    <!--
-        The overall app visual hierarchy is defined here, along with navigation.
-        
-        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
-    -->
+
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -83,6 +76,22 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
+    
+    
+    
+
+    <Shell.BindingContext>
+        <vm:ViewModelBase />
+    </Shell.BindingContext>
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+        
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+
+
+    
 
     <!--
         When the Flyout is visible this defines the content to display in the flyout.
@@ -102,10 +111,10 @@
     </ShellItem>-->
 
 
-
-    <ShellItem FlyoutItemIsVisible="False" Route="SplashPage">
+    <ShellItem Route="SplashPage">
         <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" />
     </ShellItem>
+
 
     <!--<FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" Route="AboutPage" />

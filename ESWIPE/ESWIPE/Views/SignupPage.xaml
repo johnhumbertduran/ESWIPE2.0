@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="ESWIPE.Views.LoginPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.FlyoutBehavior="Disabled"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{AppThemeBinding 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESWIPE.Views.SignupPage"
+             Shell.FlyoutBehavior="Disabled"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
                         Light={StaticResource WindowBackgroundColorDark}}">
+
 
     <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
         <Grid>
@@ -71,10 +71,10 @@
                                         HorizontalOptions="Start"
                                         WidthRequest="40" />
                                     <Entry
-                                        x:Name="username"
+                                        x:Name="UserNewMail"
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
-                                        Placeholder="Username"
+                                        Placeholder="Email"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
                                         TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
                                 </StackLayout>
@@ -98,7 +98,7 @@
                                         HorizontalOptions="Start"
                                         WidthRequest="40" />
                                     <Entry
-                                        x:Name="password"
+                                        x:Name="UserNewPassword"
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
@@ -113,33 +113,13 @@
                         <Button
                             Margin="0,10,0,0"
                             Background="purple"
-                            Clicked="Button_Clicked"
+                            Clicked="Signup_Button"
                             CornerRadius="30"
                             FontAttributes="Bold"
                             Text="Login"
                             TextColor="White" />
 
-                        <StackLayout>
-
-
-                            <Label LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="No account yet? "/>
-                                        <Span Text="Signup"
-                                               FontAttributes="Bold"
-                                              TextColor="Purple"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OnSignUpCommand}" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            
-                            
-                        </StackLayout>
-                        
-                        <StackLayout Margin="30,0,30,0" Orientation="Horizontal">
+                        <StackLayout Margin="30,10,30,0" Orientation="Horizontal">
                             <CheckBox IsChecked="False" Color="Purple" />
                             <Label
                                 HorizontalTextAlignment="Start"
@@ -161,4 +141,6 @@
             </StackLayout>
         </Grid>
     </StackLayout>
+    
+    
 </ContentPage>

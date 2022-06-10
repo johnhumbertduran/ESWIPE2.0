@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ESWIPE.Views;
+using Firebase.Auth;
+using System.Windows.Input;
 
 namespace ESWIPE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
+
+        public ICommand OnSignUpCommand => new Command(OnSignUp);
+
         public LoginPage()
         {
             InitializeComponent();
@@ -46,7 +52,11 @@ namespace ESWIPE.Views
                 await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
             }
 
-            
+        }
+
+        private async void OnSignUp()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
         }
     }
 }

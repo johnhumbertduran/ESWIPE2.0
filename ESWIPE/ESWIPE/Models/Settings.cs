@@ -8,5 +8,6 @@ namespace ESWIPE.Models
     {
         internal const string FireBaseDatabaseUrl = "https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/";
         internal const string FireBaseSecret = "IqvYgbWiwScAbg5vnNNUkKlVeGc5NkzgZFYIDfnl";
+        internal const string FireBaseAPI = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
     }
 }
