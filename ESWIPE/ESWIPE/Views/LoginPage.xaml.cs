@@ -9,6 +9,8 @@ using Xamarin.Forms.Xaml;
 using ESWIPE.Views;
 using Firebase.Auth;
 using System.Windows.Input;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace ESWIPE.Views
 {
@@ -16,47 +18,42 @@ namespace ESWIPE.Views
     public partial class LoginPage : ContentPage
     {
         public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
-
-        public ICommand OnSignUpCommand => new Command(OnSignUp);
-
         public LoginPage()
         {
             InitializeComponent();
+            OnSignUpClickFunction();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
 
-            MessagingCenter.Send<LoginPage>(this,
-                (username.Text == "admin") ? "admin" : 
-                (username.Text == "teacher") ? "teacher" :
-                 (username.Text == "student") ? "student" : "Not found!"
-            );
+            var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIKey));
 
-            if (username.Text == "admin")
-            {
-                //await DisplayAlert("Login Info", "Admin", "ok");
-                username.Text = "";
-                await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
-            }
-            else if (username.Text == "teacher")
-            {
-                //await DisplayAlert("Login Info", "Teacher", "ok");
-                username.Text = "";
-                await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
-            }
-            else if (username.Text == "student")
-            {
-                //await DisplayAlert("Login Info", "Student", "ok");
-                username.Text = "";
+                var auth = await authProvider.SignInWithEmailAndPasswordAsync(useremail.Text, userpassword.Text);
+                var content = await auth.GetFreshAuthAsync();
+                var serializedcontent = JsonConvert.SerializeObject(content);
+                Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
+
+                await App.Current.MainPage.DisplayAlert("Login", "You have Logged in successfully!", "Ok");
+                useremail.Text = "";
+                userpassword.Text = "";
                 await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
-            }
+                //await Navigation.PushAsync(new StudentPage());
+                //await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
 
         }
 
-        private async void OnSignUp()
+        private void OnSignUpClickFunction()
         {
-            await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
+            signupclick.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(async () =>
+                {
+                    //DisplayAlert("Login Info", "Admin", "ok");
+                    await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
+                })
+            });
         }
+
     }
 }

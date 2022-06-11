@@ -17,6 +17,7 @@ namespace ESWIPE.Views
         public SignupPage()
         {
             InitializeComponent();
+            OnSignUpClickFunction();
         }
 
 
@@ -27,12 +28,27 @@ namespace ESWIPE.Views
                 var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIKey));
                 var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(UserNewMail.Text, UserNewPassword.Text);
                 string gettoken = auth.FirebaseToken;
-                await App.Current.MainPage.DisplayAlert("Alert", gettoken, "Ok");
+                await App.Current.MainPage.DisplayAlert("Signup", "You have signed up successfully! You can log in now", "Ok");
+                UserNewMail.Text = "";
+                UserNewPassword.Text = "";
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
             }
             catch (Exception ex)
             {
                 await App.Current.MainPage.DisplayAlert("Alert 2", ex.Message, "Ok");
             }
+        }
+
+        private void OnSignUpClickFunction()
+        {
+            Loginclick.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(async () =>
+                {
+                    //DisplayAlert("Login Info", "Admin", "ok");
+                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                })
+            });
         }
     }
 }

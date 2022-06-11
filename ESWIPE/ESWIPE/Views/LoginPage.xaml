@@ -9,6 +9,7 @@
                         Dark={StaticResource WindowBackgroundColor}, 
                         Light={StaticResource WindowBackgroundColorDark}}">
 
+
     <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
         <Grid>
             <StackLayout Margin="0" Padding="0">
@@ -48,7 +49,7 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="30"
-                                Text="Sign In"
+                                Text="Log In"
                                 TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
 
@@ -71,10 +72,10 @@
                                         HorizontalOptions="Start"
                                         WidthRequest="40" />
                                     <Entry
-                                        x:Name="username"
+                                        x:Name="useremail"
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
-                                        Placeholder="Username"
+                                        Placeholder="Email"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
                                         TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
                                 </StackLayout>
@@ -98,7 +99,7 @@
                                         HorizontalOptions="Start"
                                         WidthRequest="40" />
                                     <Entry
-                                        x:Name="password"
+                                        x:Name="userpassword"
                                         Margin="0,0,35,0"
                                         HorizontalOptions="FillAndExpand"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
@@ -127,13 +128,11 @@
                                     <FormattedString>
                                         <Span Text="No account yet? "/>
                                         <Span Text="Signup"
-                                               FontAttributes="Bold"
+                                              x:Name="signupclick"
+                                              FontAttributes="Bold"
                                               TextColor="Purple"/>
                                     </FormattedString>
                                 </Label.FormattedText>
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding OnSignUpCommand}" />
-                                </Label.GestureRecognizers>
                             </Label>
                             
                             

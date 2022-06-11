@@ -48,7 +48,7 @@
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="30"
-                                Text="Sign In"
+                                Text="Sign Up"
                                 TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
 
@@ -111,28 +111,30 @@
                         </StackLayout>
 
                         <Button
-                            Margin="0,10,0,0"
+                            Margin="0,20,0,0"
                             Background="purple"
                             Clicked="Signup_Button"
                             CornerRadius="30"
                             FontAttributes="Bold"
-                            Text="Login"
+                            Text="Signup"
                             TextColor="White" />
 
-                        <StackLayout Margin="30,10,30,0" Orientation="Horizontal">
-                            <CheckBox IsChecked="False" Color="Purple" />
-                            <Label
-                                HorizontalTextAlignment="Start"
-                                Text="Remember Me"
-                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
-                                VerticalTextAlignment="Center" />
-                            <Label
-                                FontAttributes="Bold"
-                                HorizontalOptions="EndAndExpand"
-                                HorizontalTextAlignment="End"
-                                Text="Forgot Password"
-                                TextColor="Purple"
-                                VerticalTextAlignment="Center" />
+                        <StackLayout Margin="0,20,0,0">
+
+
+                            <Label LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" TextColor="{AppThemeBinding Dark={StaticResource TextColorDark}, Light={StaticResource TextColor}}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Already have and account? "/>
+                                        <Span Text="Login"
+                                              x:Name="Loginclick"
+                                              FontAttributes="Bold"
+                                              TextColor="Purple"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
                         </StackLayout>
 
 

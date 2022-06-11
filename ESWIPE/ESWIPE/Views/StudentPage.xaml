@@ -14,8 +14,8 @@
         <StackLayout>
             <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                 FontSize="Large"
+                x:Name="MyUsername"
                 HorizontalOptions="CenterAndExpand"
-                Text="Student Page"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>

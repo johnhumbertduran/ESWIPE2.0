@@ -23,12 +23,23 @@ namespace ESWIPE
             //Barrel.ApplicationId = AppInfo.PackageName;
 
             MainPage = new AppShell();
+
             DependencyService.Register<ITeacherService, TeacherService>();
             DependencyService.Register<IStudentService, StudentService>();
             DependencyService.Register<IModuleService, ModuleService>();
             DependencyService.Register<IQuizService, QuizService>();
             //MainPage = new TemporaryIndexPage();
             //DependencyService.Register<IEmployeeService, EmployeeService>();
+
+            //if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
+            //{
+            //}
+            //else
+            //{
+            //    //Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+            //    MainPage = new AppShell();
+            //}
+
         }
 
         protected override void OnStart()
