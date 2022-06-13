@@ -61,27 +61,145 @@ namespace ESWIPE.ViewModels
             else
             {
                 //call GetUser function which we define in Firebase helper class
-                var user = await FirebaseHelper.GetTeacher(Username);
-                //firebase return null valuse if user data not found in database
-                if (user != null)
+                //var AdminUser = await FirebaseHelper.GetTeacher(Username);
+
+                
+
+                var StudentUser = await FirebaseHelper.GetStudent(Username);
+
+                if (StudentUser != null)
                 {
-                    if (Username == user.Username && Password == user.Password)
+                    if (Username == StudentUser.Username && Password == StudentUser.Password)
                     {
-                        await App.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
-                        //Navigate to Wellcom page after successfuly login
-                        //pass user email to welcom page
-                        //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
-                        await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                        if (StudentUser.UserRole == "Student")
+                        {
+                            await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
+                        }
                     }
                     else
-                    { 
+                    {
                         await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
                     }
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
+                    ////await App.Current.MainPage.DisplayAlert("Login Failed", "Not Found", "Ok");
+                    var TeacherUser = await FirebaseHelper.GetTeacher(Username);
+
+                    if (TeacherUser != null)
+                    {
+                        if (Username == TeacherUser.Username && Password == TeacherUser.Password)
+                        {
+                            if (TeacherUser.UserRole == "Teacher")
+                            {
+                                await App.Current.MainPage.DisplayAlert("Login Success", "Teacher", "Ok");
+                            }
+                        }
+                        else
+                        {
+                            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
+                        }
+                    }
+                    else
+                    {
+
+                    }
                 }
+
+                //else
+                //{
+
+
+                //if (StudentUser.UserRole == "Student")
+                //{
+                //    await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
+                //}
+                //}
+
+
+
+                //if (AdminUser.UserRole == "Admin")
+                //{
+                //    await App.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
+
+                //    //firebase return null valuse if user data not found in database
+                //    if (user != null)
+                //    {
+                //        if (Username == user.Username && Password == user.Password)
+                //        {
+                //            //await App.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
+                //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                //            //Navigate to Wellcom page after successfuly login
+                //            //pass user email to welcom page
+                //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
+                //        }
+                //        else
+                //        {
+                //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
+                //        }
+                //    }
+                //    else
+                //    {
+                //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
+                //    }
+
+                //}
+                //else 
+
+
+                //if (StudentUser.UserRole == "Student")
+                //{
+                //    //firebase return null valuse if user data not found in database
+                //    if (StudentUser != null)
+                //    {
+                //        if (Username == StudentUser.Username && Password == StudentUser.Password)
+                //        {
+                //            await App.Current.MainPage.DisplayAlert("Login Success", "This is Student", "Ok");
+                //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                //            //Navigate to Wellcom page after successfuly login
+                //            //pass user email to welcom page
+                //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
+                //        }
+                //        else
+                //        {
+                //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
+                //        }
+                //    }
+                //    else
+                //    {
+                //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
+                //    }
+
+                //}
+
+
+                //if (TeacherUser.UserRole == "Teacher")
+                //{
+                //    //firebase return null valuse if user data not found in database
+                //    if (TeacherUser != null)
+                //    {
+                //        if (Username == TeacherUser.Username && Password == TeacherUser.Password)
+                //        {
+                //            await App.Current.MainPage.DisplayAlert("Login Success", "This is Teacher", "Ok");
+                //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                //            //Navigate to Wellcom page after successfuly login
+                //            //pass user email to welcom page
+                //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
+                //        }
+                //        else
+                //        {
+                //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
+                //        }
+                //    }
+                //    else
+                //    {
+                //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
+                //    }
+
+                //}
+
+
+
             }
         }
     }

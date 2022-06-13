@@ -31,7 +31,8 @@ namespace ESWIPE.ViewModels
                 new TeacherModel
                 {
                     Username = item.Object.Username,
-                    Password = item.Object.Password
+                    Password = item.Object.Password,
+                    UserRole = item.Object.UserRole
                 }).ToList();
                 return teacherlist;
             }
@@ -50,6 +51,51 @@ namespace ESWIPE.ViewModels
                 var allTeachers = await GetAllTeachers();
                 await firebase.Child("TeacherModel").OnceAsync<TeacherModel>();
                 return allTeachers.Where(a => a.Username == username).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+
+
+
+
+
+
+        //Read All Student
+        public static async Task<List<StudentModel>> GetAllStudents()
+        {
+            try
+            {
+                var studentlist = (await firebase
+                .Child("StudentModel")
+                .OnceAsync<StudentModel>()).Select(item =>
+                new StudentModel
+                {
+                    Username = item.Object.Username,
+                    Password = item.Object.Password,
+                    UserRole = item.Object.UserRole
+                }).ToList();
+                return studentlist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read 
+        public static async Task<StudentModel> GetStudent(string username)
+        {
+            try
+            {
+                var allStudents = await GetAllStudents();
+                await firebase.Child("StudentModel").OnceAsync<StudentModel>();
+                return allStudents.Where(b => b.Username == username).FirstOrDefault();
             }
             catch (Exception e)
             {
