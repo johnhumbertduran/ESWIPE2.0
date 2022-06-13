@@ -13,5 +13,6 @@ namespace ESWIPE.Services.Interfaces
         Task<bool> DeleteTeacher(string key);
         //Task<TeacherModel> GetById(int teacherNumber);
         Task<List<TeacherModel>> GetAllTeacher();
+        Task<TeacherModel> GetTeacher(string username);
     }
 }

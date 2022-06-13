@@ -86,5 +86,9 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
+        public Task<TeacherModel> GetTeacher(string username)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
