@@ -19,9 +19,9 @@ namespace ESWIPE.ViewModels
         //}
         //#endregion
 
-        //private bool isAdmin;
-        //private bool isTeacher;
-        //private bool isStudent;
+        private bool isAdmin;
+        private bool isTeacher;
+        private bool isStudent;
         //private bool isGrade7;
         //private bool isGrade8;
         //private bool isGrade9;
@@ -29,9 +29,9 @@ namespace ESWIPE.ViewModels
         //private bool isGrade11;
         //private bool isGrade12;
 
-        //public bool IsAdmin { get => isAdmin; set => SetProperty(ref isAdmin, value); }
-        //public bool IsTeacher{ get => isTeacher; set => SetProperty(ref isTeacher, value); }
-        //public bool IsStudent{ get => isStudent; set => SetProperty(ref isStudent, value); }
+        public bool IsAdmin { get => isAdmin; set => SetProperty(ref isAdmin, value); }
+        public bool IsTeacher { get => isTeacher; set => SetProperty(ref isTeacher, value); }
+        public bool IsStudent { get => isStudent; set => SetProperty(ref isStudent, value); }
         //public bool IsGrade7 { get => isGrade7; set => SetProperty(ref isGrade7, value); }
         //public bool IsGrade8 { get => isGrade8; set => SetProperty(ref isGrade8, value); }
         //public bool IsGrade9 { get => isGrade9; set => SetProperty(ref isGrade9, value); }
@@ -48,19 +48,19 @@ namespace ESWIPE.ViewModels
             //    IsStudent = false;
             //});
 
-            //MessagingCenter.Subscribe<LoginPage>(this, "teacher", (sender) =>
-            //{
-            //    IsAdmin = false;
-            //    IsTeacher = true;
-            //    IsStudent = false;
-            //});
+            MessagingCenter.Subscribe<LoginViewModel>(this, "Teacher", (sender) =>
+            {
+                IsAdmin = false;
+                IsTeacher = true;
+                IsStudent = false;
+            });
 
-            //MessagingCenter.Subscribe<LoginPage>(this, "student", (sender) =>
-            //{
-            //    IsAdmin = false;
-            //    IsTeacher = false;
-            //    IsStudent = true;
-            //});
+            MessagingCenter.Subscribe<LoginViewModel>(this, "Student", (sender) =>
+            {
+                IsAdmin = false;
+                IsTeacher = false;
+                IsStudent = true;
+            });
         }
     }
 }

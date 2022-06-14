@@ -95,7 +95,7 @@ namespace ESWIPE.ViewModels
             {
                 var allStudents = await GetAllStudents();
                 await firebase.Child("StudentModel").OnceAsync<StudentModel>();
-                return allStudents.Where(b => b.Username == username).FirstOrDefault();
+                return allStudents.Where(a => a.Username == username).FirstOrDefault();
             }
             catch (Exception e)
             {

@@ -205,22 +205,26 @@
     
     <FlyoutItem
         Title="Student Menu"
-        Icon="icon_menu.png">
+        Icon="icon_menu.png"
+        IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentPage}" Route="StudentPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Modules"
-        Icon="icon_modules.png">
+        Icon="icon_modules.png"
+        IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentModulesPage}" Route="StudentModulesPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Quiz"
-        Icon="icon_quiz.png">
+        Icon="icon_quiz.png"
+        IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentQuizPage}" Route="StudentQuizPage" />
     </FlyoutItem>
     <FlyoutItem
         Title="Score"
-        Icon="icon_score.png">
+        Icon="icon_score.png"
+        IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentScorePage}" Route="StudentScorePage" />
     </FlyoutItem>
     <!--<FlyoutItem

@@ -11,6 +11,7 @@ using ESWIPE.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ESWIPE.ViewModels
 {
@@ -19,6 +20,24 @@ namespace ESWIPE.ViewModels
         public StudentViewModel()
         {
             Title = "Student";
+            CheckUserLoginDetails();
+        }
+
+        private async void CheckUserLoginDetails()
+        {
+            string userDetailsStr = Preferences.Get(nameof(App.UserDetails), "");
+
+            if (string.IsNullOrWhiteSpace(userDetailsStr))
+            {
+                await App.Current.MainPage.DisplayAlert("Check Deserialize", "Null", "OK");
+            }
+            else
+            {
+                var userInfo = JsonConvert.DeserializeObject<StudentModel>(userDetailsStr);
+                App.UserDetails = userInfo;
+                await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+                await App.Current.MainPage.DisplayAlert("Check Deserialize", "Not Null", "OK");
+            }
         }
     }
 }

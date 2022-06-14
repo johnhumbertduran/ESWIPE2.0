@@ -13,6 +13,7 @@ namespace ESWIPE
 {
     public partial class App : Application
     {
+        internal static object UserDetails;
 
         public App()
         {

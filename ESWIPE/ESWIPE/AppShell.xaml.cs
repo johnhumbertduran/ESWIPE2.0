@@ -14,7 +14,7 @@ namespace ESWIPE
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
-            Routing.RegisterRoute(nameof(StudentPage), typeof(StudentPage));
+            //Routing.RegisterRoute(nameof(StudentPage), typeof(StudentPage));
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             //Routing.RegisterRoute(nameof(AdminTeacherPage), typeof(AdminTeacherPage));
         }

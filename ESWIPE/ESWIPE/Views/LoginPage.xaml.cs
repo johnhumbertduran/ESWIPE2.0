@@ -19,7 +19,7 @@ namespace ESWIPE.Views
     public partial class LoginPage : ContentPage
     {
         //public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
-        LoginViewModel loginViewModel;
+        readonly LoginViewModel loginViewModel;
         public LoginPage()
         {
             loginViewModel = new LoginViewModel();

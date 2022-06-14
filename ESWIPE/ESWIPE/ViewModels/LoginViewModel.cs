@@ -10,6 +10,8 @@ using Xamarin.Forms;
 using ESWIPE.Views;
 using ESWIPE.ViewModels;
 using System.ComponentModel;
+using Xamarin.Essentials;
+using Newtonsoft.Json;
 
 namespace ESWIPE.ViewModels
 {
@@ -20,8 +22,10 @@ namespace ESWIPE.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public LoginViewModel()
         {
-
         }
+
+        
+
         private string username;
         public string Username
         {
@@ -67,14 +71,41 @@ namespace ESWIPE.ViewModels
 
                 var StudentUser = await FirebaseHelper.GetStudent(Username);
 
+                
+
                 if (StudentUser != null)
                 {
+
+                    if (StudentUser.UserRole == "Student")
+                    {
+                        MessagingCenter.Send(this, message: "Student"
+                        );
+                    }
+
                     if (Username == StudentUser.Username && Password == StudentUser.Password)
                     {
-                        if (StudentUser.UserRole == "Student")
+
+                        var userDetails = new StudentModel()
                         {
-                            await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
+                            Username = StudentUser.Username,
+                            Password = StudentUser.Password
+                        };
+
+                        if (Preferences.ContainsKey(nameof(App.UserDetails)))
+                        {
+                            Preferences.Remove(nameof(App.UserDetails));
                         }
+
+                        string UserDetailStr = JsonConvert.SerializeObject(userDetails);
+                        Preferences.Set(nameof(App.UserDetails), UserDetailStr);
+                        App.UserDetails = userDetails;
+
+                        //await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
+
+                        //AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
+                        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+                            //await App.Current.MainPage.Navigation.PushAsync(new StudentPage(Username));
+                        
                     }
                     else
                     {
@@ -86,14 +117,36 @@ namespace ESWIPE.ViewModels
                     ////await App.Current.MainPage.DisplayAlert("Login Failed", "Not Found", "Ok");
                     var TeacherUser = await FirebaseHelper.GetTeacher(Username);
 
+                    
+
                     if (TeacherUser != null)
                     {
+                        if (TeacherUser.UserRole == "Teacher")
+                        {
+                            MessagingCenter.Send(this, "Teacher"
+                            );
+                        }
                         if (Username == TeacherUser.Username && Password == TeacherUser.Password)
                         {
-                            if (TeacherUser.UserRole == "Teacher")
+
+                            var UserDetails = new TeacherModel()
                             {
-                                await App.Current.MainPage.DisplayAlert("Login Success", "Teacher", "Ok");
+                                Username = TeacherUser.Username,
+                                Password = TeacherUser.Password
+                            };
+
+                            if (Preferences.ContainsKey(nameof(App.UserDetails)))
+                            {
+                                Preferences.Remove(nameof(App.UserDetails));
                             }
+
+                            string UserDetailStr = JsonConvert.SerializeObject(UserDetails);
+                            Preferences.Set(nameof(App.UserDetails), UserDetailStr);
+                            App.UserDetails = UserDetails;
+
+                            //await App.Current.MainPage.DisplayAlert("Login Success", "Teacher", "Ok");
+                            await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+
                         }
                         else
                         {
