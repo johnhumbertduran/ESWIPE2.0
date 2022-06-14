@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using ESWIPE.ViewModels;
+using Firebase.Auth;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace ESWIPE.Views
         {
             InitializeComponent();
             //GetStudentInformation();
+            BindingContext = new StudentViewModel();
         }
 
         public StudentPage(string username)

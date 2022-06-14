@@ -15,6 +15,7 @@
             <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                 FontSize="Large"
                 x:Name="MyUsername"
+                Text="{Binding Username}"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>

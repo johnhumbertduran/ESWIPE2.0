@@ -97,13 +97,13 @@ namespace ESWIPE.ViewModels
                         }
 
                         string UserDetailStr = JsonConvert.SerializeObject(userDetails);
-                        Preferences.Set(nameof(App.UserDetails), UserDetailStr);
-                        App.UserDetails = userDetails;
+                        //Preferences.Set(nameof(App.UserDetails), UserDetailStr);
+                        //App.UserDetails = userDetails;
 
                         //await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
 
                         //AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
-                        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+                        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}?Creds={UserDetailStr}");
                             //await App.Current.MainPage.Navigation.PushAsync(new StudentPage(Username));
                         
                     }
