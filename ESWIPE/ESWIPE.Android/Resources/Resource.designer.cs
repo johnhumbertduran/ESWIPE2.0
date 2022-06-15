@@ -22302,7 +22302,10 @@ namespace ESWIPE.Droid
 			public const int tooltip_frame_light = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int xamarin_logo = 2131165350;
+			public const int user = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int xamarin_logo = 2131165351;
 			
 			static Drawable()
 			{

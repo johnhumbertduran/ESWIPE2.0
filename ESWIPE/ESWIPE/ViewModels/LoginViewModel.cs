@@ -109,7 +109,13 @@ namespace ESWIPE.ViewModels
                             var userDetails = new StudentModel()
                             {
                                 Username = StudentUser.Username,
-                                Password = StudentUser.Password
+                                Password = StudentUser.Password,
+                                StudentName = StudentUser.StudentName,
+                                Year = StudentUser.Year,
+                                Section = StudentUser.Section,
+                                SubjectsCode = StudentUser.SubjectsCode,
+                                QuizCode = StudentUser.QuizCode,
+                                QuizScore = StudentUser.QuizScore
                             };
 
                             if (Preferences.ContainsKey(nameof(App.UserDetails)))
@@ -156,7 +162,9 @@ namespace ESWIPE.ViewModels
                                 var UserDetails = new TeacherModel()
                                 {
                                     Username = TeacherUser.Username,
-                                    Password = TeacherUser.Password
+                                    Password = TeacherUser.Password,
+                                    Name = TeacherUser.Name,
+                                    Section = TeacherUser.Section
                                 };
 
                                 if (Preferences.ContainsKey(nameof(App.UserDetails)))

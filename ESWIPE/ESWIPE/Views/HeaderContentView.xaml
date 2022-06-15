@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             x:DataType="viewmodels:StudentViewModel"
+             HeightRequest="170"
+             x:Name="Header"
+             x:Class="ESWIPE.Views.HeaderContentView">
+
+
+    <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Aspect="AspectFill"
+                       Source="cover.png"
+                       Grid.ColumnSpan="5"
+                       Grid.RowSpan="4"
+                       Opacity="0.6"/>
+
+            <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="1" Margin="20,0,0,0"
+                         Grid.ColumnSpan="3" Orientation="Vertical">
+            
+                <Image Source="user.png" HeightRequest="80" WidthRequest="80"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"/>
+
+            
+                <Label HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Text="{Binding UserName}"/>
+
+                <Label HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"
+                       Text="Test"/>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+    
+</ContentView>

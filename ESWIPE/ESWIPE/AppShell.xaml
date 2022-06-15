@@ -109,9 +109,11 @@
     <!--<ShellItem FlyoutItemIsVisible="False" Route="LoginPage">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
     </ShellItem>-->
+    <Shell.FlyoutHeader>
+        <local:HeaderContentView/>
+    </Shell.FlyoutHeader>
 
-
-    <ShellItem Route="SplashPage">
+    <ShellItem FlyoutItemIsVisible="False" Route="SplashPage">
         <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" />
     </ShellItem>
 
@@ -122,6 +124,8 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" Route="ItemsPage" />
     </FlyoutItem>-->
+    
+    
     <FlyoutItem
         Title="Admin Menu"
         Appearing="Admin_FlyoutItem_Appearing"

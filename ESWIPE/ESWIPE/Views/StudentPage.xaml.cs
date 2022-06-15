@@ -15,18 +15,12 @@ namespace ESWIPE.Views
     public partial class StudentPage : ContentPage
     {
         public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
-        private string username;
 
         public StudentPage()
         {
             InitializeComponent();
             //GetStudentInformation();
             BindingContext = new StudentViewModel();
-        }
-
-        public StudentPage(string username)
-        {
-            this.username = username;
         }
 
         //async private void GetStudentInformation()

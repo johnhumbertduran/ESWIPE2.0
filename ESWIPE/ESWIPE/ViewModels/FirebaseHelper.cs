@@ -32,6 +32,8 @@ namespace ESWIPE.ViewModels
                 {
                     Username = item.Object.Username,
                     Password = item.Object.Password,
+                    Name = item.Object.Name,
+                    Section = item.Object.Section,
                     UserRole = item.Object.UserRole
                 }).ToList();
                 return teacherlist;
@@ -77,6 +79,12 @@ namespace ESWIPE.ViewModels
                 {
                     Username = item.Object.Username,
                     Password = item.Object.Password,
+                    StudentName = item.Object.StudentName,
+                    Year = item.Object.Year,
+                    Section = item.Object.Section,
+                    SubjectsCode = item.Object.SubjectsCode,
+                    QuizCode = item.Object.QuizCode,
+                    QuizScore = item.Object.QuizScore,
                     UserRole = item.Object.UserRole
                 }).ToList();
                 return studentlist;
