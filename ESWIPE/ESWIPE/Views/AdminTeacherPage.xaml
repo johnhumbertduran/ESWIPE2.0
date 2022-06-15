@@ -11,8 +11,8 @@
     x:Name="TeacherPage"
     x:DataType="viewmodels:AdminTeacherViewModel"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <viewmodels:AdminTeacherViewModel />

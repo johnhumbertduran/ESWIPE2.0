@@ -6,8 +6,8 @@
     xmlns:model="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <model:AdminSettingsViewModel />

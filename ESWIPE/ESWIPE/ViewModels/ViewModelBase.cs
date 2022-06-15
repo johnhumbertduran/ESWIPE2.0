@@ -41,12 +41,12 @@ namespace ESWIPE.ViewModels
 
         public ViewModelBase()
         {
-            //MessagingCenter.Subscribe<LoginPage>(this, "admin", (sender) =>
-            //{
-            //    IsAdmin = true;
-            //    IsTeacher = false;
-            //    IsStudent = false;
-            //});
+            MessagingCenter.Subscribe<LoginViewModel>(this, "Admin", (sender) =>
+            {
+                IsAdmin = true;
+                IsTeacher = false;
+                IsStudent = false;
+            });
 
             MessagingCenter.Subscribe<LoginViewModel>(this, "Teacher", (sender) =>
             {
