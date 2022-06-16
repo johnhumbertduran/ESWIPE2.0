@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             x:DataType="viewmodels:StudentViewModel"
+             x:DataType="viewmodels:HeaderContentViewModel"
              HeightRequest="170"
              x:Name="Header"
              x:Class="ESWIPE.Views.HeaderContentView">

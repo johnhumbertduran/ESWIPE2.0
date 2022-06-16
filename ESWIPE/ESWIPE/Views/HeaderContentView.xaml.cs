@@ -13,12 +13,10 @@ namespace ESWIPE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HeaderContentView : ContentView
     {
-        //readonly StudentViewModel studentViewModel;
         public HeaderContentView()
         {
-            //studentViewModel = new StudentViewModel();
             InitializeComponent();
-            BindingContext = new StudentViewModel();
+            BindingContext = new HeaderContentViewModel();
         }
     }
 }
