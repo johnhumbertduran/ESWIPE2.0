@@ -17,9 +17,13 @@ namespace ESWIPE.ViewModels
 {
     public class StudentViewModel : ViewModelBase
     {
+        private string key;
+        public string Key
+        {
+            get { return key; }
+            set { SetProperty(ref key, value); }
+        }
 
-
-        //private string UserDetailStr { get; set; }
         private string username;
         public string UserName
         {
@@ -27,29 +31,100 @@ namespace ESWIPE.ViewModels
             set { SetProperty(ref username, value); }
         }
 
+        private string studentname;
+        public string StudentName
+        {
+            get { return studentname; }
+            set { SetProperty(ref studentname, value); }
+        }
+
+        private string year;
+        public string Year
+        {
+            get { return year; }
+            set { SetProperty(ref year, value); }
+        }
+
+        private string section;
+        public string Section
+        {
+            get { return section; }
+            set { SetProperty(ref section, value); }
+        }
+
+        private string subjectsCode;
+        public string SubjectsCode
+        {
+            get { return subjectsCode; }
+            set { SetProperty(ref subjectsCode, value); }
+        }
+
+        private string quizCode;
+        public string QuizCode
+        {
+            get { return quizCode; }
+            set { SetProperty(ref quizCode, value); }
+        }
+
+        private string quizScore;
+        public string QuizScore
+        {
+            get { return quizScore; }
+            set { SetProperty(ref quizScore, value); }
+        }
+
+        private string teacherName;
+        public string TeacherName
+        {
+            get { return teacherName; }
+            set { SetProperty(ref teacherName, value); }
+        }
+
 
         public StudentViewModel()
         {
             Title = "Student";
             //CheckUserLoginDetails();
-            UserName = Preferences.Get("Username", "");
+            if (Preferences.ContainsKey("Key", ""))
+            {
+                Key = Preferences.Get("Key", "");
+            }
+
+            if (Preferences.ContainsKey("Username", ""))
+            {
+                UserName = Preferences.Get("Username", "");
+            }
+
+            if (Preferences.ContainsKey("StudentName", ""))
+            {
+                StudentName = Preferences.Get("StudentName", "");
+            }
+
+            if (Preferences.ContainsKey("Year", ""))
+            {
+                Year = Preferences.Get("Year", "");
+            }
+
+            if (Preferences.ContainsKey("Section", ""))
+            {
+                Section = Preferences.Get("Section", "");
+            }
+
+            if (Preferences.ContainsKey("SubjectsCode", ""))
+            {
+                SubjectsCode = Preferences.Get("SubjectsCode", "");
+            }
+
+            if (Preferences.ContainsKey("QuizCode", ""))
+            {
+                QuizCode = Preferences.Get("QuizCode", "");
+            }
+
+            if (Preferences.ContainsKey("QuizScore", ""))
+            {
+                QuizScore = Preferences.Get("QuizScore", "");
+            }
+
         }
-
-        //private async void CheckUserLoginDetails()
-        //{
-        //    string userDetailsStr = Preferences.Get(nameof(App.UserDetails), "");
-
-        //    if (string.IsNullOrWhiteSpace(userDetailsStr))
-        //    {
-        //        await App.Current.MainPage.DisplayAlert("Check Deserialize", "Null", "OK");
-        //    }
-        //    else
-        //    {
-        //        var userInfo = JsonConvert.DeserializeObject<StudentModel>(userDetailsStr);
-        //        App.UserDetails = userInfo;
-        //        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
-        //        await App.Current.MainPage.DisplayAlert("Check Deserialize", "Not Null", "OK");
-        //    }
-        //}
     }
 }

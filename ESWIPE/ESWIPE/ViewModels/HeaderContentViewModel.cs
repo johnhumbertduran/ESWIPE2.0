@@ -24,19 +24,25 @@ namespace ESWIPE.ViewModels
             set { SetProperty(ref username, value); }
         }
 
-        private string studentname;
-        public string StudentName
-        {
-            get { return studentname; }
-            set { SetProperty(ref studentname, value); }
-        }
 
         public HeaderContentViewModel()
         {
             //Title = "Student";
-            //CheckUserLoginDetails();
-            UserName = Preferences.Get("Username", "");
-            StudentName = Preferences.Get("StudentName", "");
+
+            // Check if the user is Student
+            if (Preferences.ContainsKey("StudentName", ""))
+            {
+                UserName = Preferences.Get("StudentName", "");
+            }
+
+            // Check if the user is Student
+            if (Preferences.ContainsKey("TeacherName", ""))
+            {
+                UserName = Preferences.Get("TeacherName", "");
+            }
+
+
+
         }
     }
 }

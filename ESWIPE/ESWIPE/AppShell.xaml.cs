@@ -21,8 +21,53 @@ namespace ESWIPE
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            Preferences.Remove("MyFirebaseRefreshToken");
-            await Shell.Current.GoToAsync("//LoginPage");
+            if (Preferences.ContainsKey("Key"))
+            {
+                Preferences.Remove("Key");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                Preferences.Remove("Username");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                Preferences.Remove("TeacherName");
+            }
+
+            if (Preferences.ContainsKey("StudentName"))
+            {
+                Preferences.Remove("StudentName");
+            }
+
+            if (Preferences.ContainsKey("Year"))
+            {
+                Preferences.Remove("Year");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Preferences.Remove("Section");
+            }
+
+            if (Preferences.ContainsKey("SubjectsCode"))
+            {
+                Preferences.Remove("SubjectsCode");
+            }
+
+            if (Preferences.ContainsKey("QuizCode"))
+            {
+                Preferences.Remove("QuizCode");
+            }
+
+            if (Preferences.ContainsKey("QuizScore"))
+            {
+                Preferences.Remove("QuizScore");
+            }
+
+                await Shell.Current.GoToAsync("//LoginPage");
+            //await Navigation.PushAsync(new LoginPage());
         }
 
         private async void Admin_FlyoutItem_Appearing(object sender, EventArgs e)

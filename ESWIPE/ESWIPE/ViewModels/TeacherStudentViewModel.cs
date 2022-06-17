@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using MvvmHelpers.Commands;
+using Xamarin.Essentials;
 
 namespace ESWIPE.ViewModels
 {
@@ -27,12 +28,63 @@ namespace ESWIPE.ViewModels
         public ObservableCollection<StudentModel> Students { get; set; } = new ObservableCollection<StudentModel>();
         #endregion
 
+        private string key;
+        public string Key
+        {
+            get { return key; }
+            set { SetProperty(ref key, value); }
+        }
+
+        private string username;
+        public string UserName
+        {
+            get { return username; }
+            set { SetProperty(ref username, value); }
+        }
+
+        private string teachername;
+        public string TeacherName
+        {
+            get { return teachername; }
+            set { SetProperty(ref teachername, value); }
+        }
+
+        private string section;
+        public string Section
+        {
+            get { return section; }
+            set { SetProperty(ref section, value); }
+        }
+
         #region Constructor
         public TeacherStudentViewModel()
         {
-            //Title = "Teacher's Data";
+            
             _studentService = DependencyService.Resolve<IStudentService>();
             GetAllStudent();
+
+            if (Preferences.ContainsKey("Key", ""))
+            {
+                Key = Preferences.Get("Key", "");
+            }
+
+            if (Preferences.ContainsKey("Username", ""))
+            {
+                UserName = Preferences.Get("Username", "");
+            }
+
+            if (Preferences.ContainsKey("TeacherName", ""))
+            {
+                TeacherName = Preferences.Get("TeacherName", "");
+            }
+
+            if (Preferences.ContainsKey("Section", ""))
+            {
+                Section = Preferences.Get("Section", "");
+            }
+
+            Title = TeacherName;
+
         }
         #endregion
 
@@ -94,5 +146,6 @@ namespace ESWIPE.ViewModels
         });
 
         #endregion
+
     }
 }

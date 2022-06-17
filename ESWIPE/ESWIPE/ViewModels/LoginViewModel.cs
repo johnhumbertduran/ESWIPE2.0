@@ -42,13 +42,6 @@ namespace ESWIPE.ViewModels
         }
         
 
-        private string studentname;
-        public string StudentName
-        {
-            get { return studentname; }
-            set { SetProperty(ref studentname, value); }
-        }
-
 
         public Command LoginCommand
         {
@@ -75,20 +68,9 @@ namespace ESWIPE.ViewModels
                 {
                         MessagingCenter.Send(this, message: "Admin");
 
-                    Username = "";
-                    Password = "";
-                        //var userDetails = new AdminInfo()
-                        //{
-                        //    Username = StudentUser.Username,
-                        //    Password = StudentUser.Password
-                        //};
+                        Username = "";
+                        Password = "";
 
-                        //if (Preferences.ContainsKey(nameof(App.UserDetails)))
-                        //{
-                        //    Preferences.Remove(nameof(App.UserDetails));
-                        //}
-
-                        //string UserDetailStr = JsonConvert.SerializeObject(userDetails);
                         await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
                 }
                 else
@@ -103,62 +85,79 @@ namespace ESWIPE.ViewModels
 
                         if (StudentUser.UserRole == "Student")
                         {
-                            MessagingCenter.Send(this, message: "Student"
-                            );
+                            MessagingCenter.Send(this, message: "Student");
                         }
 
                         if (Username == StudentUser.Username && Password == StudentUser.Password)
                         {
 
-                            //var userUserNameDetails = new StudentModel()
-                            //{
-                            //    Username = StudentUser.Username
-                            //};
 
-                            //var userPasswordDetails = new StudentModel()
-                            //{
-                            //    Password = StudentUser.Password
-                            //};
-
-                            var userNameDetails = new StudentModel()
+                            var userDetails = new StudentModel()
                             {
-                                StudentName = StudentUser.StudentName
+                                Key = StudentUser.Key,
+                                Username = StudentUser.Username,
+                                StudentName = StudentUser.StudentName,
+                                Year = StudentUser.Year,
+                                Section = StudentUser.Section,
+                                SubjectsCode = StudentUser.SubjectsCode,
+                                QuizCode = StudentUser.QuizCode,
+                                QuizScore = StudentUser.QuizScore
                             };
 
-                        //var userDetails = new StudentModel()
-                        //{
-                        //    Username = StudentUser.Username,
-                        //    Password = StudentUser.Password,
-                        //    StudentName = StudentUser.StudentName,
-                        //    Year = StudentUser.Year,
-                        //    Section = StudentUser.Section,
-                        //    SubjectsCode = StudentUser.SubjectsCode,
-                        //    QuizCode = StudentUser.QuizCode,
-                        //    QuizScore = StudentUser.QuizScore
-                        //};
+                            if (Preferences.ContainsKey("Key"))
+                            {
+                                Preferences.Remove("Key");
+                            }
 
-                        //if (Preferences.ContainsKey(nameof(App.UserDetails)))
-                        //{
-                        //    Preferences.Remove(nameof(App.UserDetails));
-                        //}
+                            if (Preferences.ContainsKey("Username"))
+                            {
+                                Preferences.Remove("Username");
+                            }
 
-                        //string UserUserNameDetailStr = JsonConvert.SerializeObject(userUserNameDetails);
-                        //string UserNameDetailStr = JsonConvert.SerializeObject(userPasswordDetails);
-                        //string UserPasswordDetailStr = JsonConvert.SerializeObject(userNameDetails);
-                        Preferences.Set("Username", Username);
-                        Preferences.Set("StudentName", userNameDetails.StudentName);
+                            if (Preferences.ContainsKey("StudentName"))
+                            {
+                                Preferences.Remove("StudentName");
+                            }
+
+                            if (Preferences.ContainsKey("Year"))
+                            {
+                                Preferences.Remove("Year");
+                            }
+
+                            if (Preferences.ContainsKey("Section"))
+                            {
+                                Preferences.Remove("Section");
+                            }
+                            
+                            if (Preferences.ContainsKey("SubjectsCode"))
+                            {
+                                Preferences.Remove("SubjectsCode");
+                            }
+
+                            if (Preferences.ContainsKey("QuizCode"))
+                            {
+                                Preferences.Remove("QuizCode");
+                            }
+
+                            if (Preferences.ContainsKey("QuizScore"))
+                            {
+                                Preferences.Remove("QuizScore");
+                            }
+
+                            Preferences.Set("Key", userDetails.Key);
+                            Preferences.Set("Username", userDetails.Username);
+                            Preferences.Set("StudentName", userDetails.StudentName);
+                            Preferences.Set("Year", userDetails.Year);
+                            Preferences.Set("Section", userDetails.Section);
+                            Preferences.Set("SubjectsCode", userDetails.SubjectsCode);
+                            Preferences.Set("QuizCode", userDetails.QuizCode);
+                            Preferences.Set("QuizScore", userDetails.QuizScore);
+
                             Password = "";
                             Username = "";
 
-                            //Preferences.Set(nameof(App.UserDetails), UserNameDetailStr);
-                            //Preferences.Set(nameof(App.UserDetails), UserPasswordDetailStr);
-                            //App.UserDetails = userDetails;
-
-                            //await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
-
-                            //AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
                             await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
-                            //await App.Current.MainPage.Navigation.PushAsync(new StudentPage(Username));
+
 
                         }
                         else
@@ -168,7 +167,6 @@ namespace ESWIPE.ViewModels
                     }
                     else
                     {
-                        ////await App.Current.MainPage.DisplayAlert("Login Failed", "Not Found", "Ok");
                         var TeacherUser = await FirebaseHelper.GetTeacher(Username);
 
 
@@ -177,28 +175,43 @@ namespace ESWIPE.ViewModels
                         {
                             if (TeacherUser.UserRole == "Teacher")
                             {
-                                MessagingCenter.Send(this, "Teacher"
-                                );
+                                MessagingCenter.Send(this, "Teacher");
                             }
                             if (Username == TeacherUser.Username && Password == TeacherUser.Password)
                             {
 
-                                var UserDetails = new TeacherModel()
+                                var userDetails = new TeacherModel()
                                 {
+                                    Key = TeacherUser.Key,
                                     Username = TeacherUser.Username,
-                                    Password = TeacherUser.Password,
                                     Name = TeacherUser.Name,
                                     Section = TeacherUser.Section
                                 };
 
-                                if (Preferences.ContainsKey(nameof(App.UserDetails)))
+                                if (Preferences.ContainsKey("Key"))
                                 {
-                                    Preferences.Remove(nameof(App.UserDetails));
+                                    Preferences.Remove("Key");
                                 }
 
-                                string UserDetailStr = JsonConvert.SerializeObject(UserDetails);
-                                Preferences.Set(nameof(App.UserDetails), UserDetailStr);
-                                App.UserDetails = UserDetails;
+                                if (Preferences.ContainsKey("Username"))
+                                {
+                                    Preferences.Remove("Username");
+                                }
+
+                                if (Preferences.ContainsKey("TeacherName"))
+                                {
+                                    Preferences.Remove("TeacherName");
+                                }
+
+                                if (Preferences.ContainsKey("Section"))
+                                {
+                                    Preferences.Remove("Section");
+                                }
+
+                                Preferences.Set("Key", userDetails.Key);
+                                Preferences.Set("Username", userDetails.Username);
+                                Preferences.Set("TeacherName", userDetails.Name);
+                                Preferences.Set("Section", userDetails.Section);
 
                                 Password = "";
                                 Username = "";
@@ -219,98 +232,6 @@ namespace ESWIPE.ViewModels
                             Username = "";
                         }
                     }
-
-                    //else
-                    //{
-
-
-                    //if (StudentUser.UserRole == "Student")
-                    //{
-                    //    await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
-                    //}
-                    //}
-
-
-
-                    //if (AdminUser.UserRole == "Admin")
-                    //{
-                    //    await App.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
-
-                    //    //firebase return null valuse if user data not found in database
-                    //    if (user != null)
-                    //    {
-                    //        if (Username == user.Username && Password == user.Password)
-                    //        {
-                    //            //await App.Current.MainPage.DisplayAlert("Login Success", "", "Ok");
-                    //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
-                    //            //Navigate to Wellcom page after successfuly login
-                    //            //pass user email to welcom page
-                    //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
-                    //        }
-                    //        else
-                    //        {
-                    //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
-                    //    }
-
-                    //}
-                    //else 
-
-
-                    //if (StudentUser.UserRole == "Student")
-                    //{
-                    //    //firebase return null valuse if user data not found in database
-                    //    if (StudentUser != null)
-                    //    {
-                    //        if (Username == StudentUser.Username && Password == StudentUser.Password)
-                    //        {
-                    //            await App.Current.MainPage.DisplayAlert("Login Success", "This is Student", "Ok");
-                    //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
-                    //            //Navigate to Wellcom page after successfuly login
-                    //            //pass user email to welcom page
-                    //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
-                    //        }
-                    //        else
-                    //        {
-                    //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
-                    //    }
-
-                    //}
-
-
-                    //if (TeacherUser.UserRole == "Teacher")
-                    //{
-                    //    //firebase return null valuse if user data not found in database
-                    //    if (TeacherUser != null)
-                    //    {
-                    //        if (Username == TeacherUser.Username && Password == TeacherUser.Password)
-                    //        {
-                    //            await App.Current.MainPage.DisplayAlert("Login Success", "This is Teacher", "Ok");
-                    //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
-                    //            //Navigate to Wellcom page after successfuly login
-                    //            //pass user email to welcom page
-                    //            //await App.Current.MainPage.Navigation.PushAsync(new WelcomPage(Email));
-                    //        }
-                    //        else
-                    //        {
-                    //            await App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        await App.Current.MainPage.DisplayAlert("Login Fail", "User not found", "OK");
-                    //    }
-
-                    //}
 
 
                 }

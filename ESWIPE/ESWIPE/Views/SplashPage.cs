@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ESWIPE.Views
@@ -47,7 +47,23 @@ namespace ESWIPE.Views
             await splashImage.ScaleTo(1, 2000); //Time-consuming processes such as initialization
             await splashImage.ScaleTo(0.7, 2000, Easing.Linear);
             await splashImage.ScaleTo(150, 2000, Easing.Linear);
-            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+
+            //if (Preferences.ContainsKey("Username"))
+            //{
+            //    if (Preferences.ContainsKey("TeacherName"))
+            //    {
+            //        await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+            //    }
+
+            //    if (Preferences.ContainsKey("StudentName"))
+            //    {
+            //        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+            //    }
+            //}
+            //else
+            //{
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            //}
             //Application.Current.MainPage = new NavigationPage(new TemporaryIndexPage());    //After loading  MainPage it gets Navigated to our new Page
         }
     }
