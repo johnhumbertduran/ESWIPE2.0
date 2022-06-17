@@ -15,11 +15,11 @@ using Newtonsoft.Json;
 
 namespace ESWIPE.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : ViewModelBase
     {
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         public LoginViewModel()
         {
         }
@@ -30,22 +30,26 @@ namespace ESWIPE.ViewModels
         public string Username
         {
             get { return username; }
-            set
-            {
-                username = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Username"));
-            }
+            set { SetProperty(ref username, value); }
         }
+
+
         private string password;
         public string Password
         {
             get { return password; }
-            set
-            {
-                password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
-            }
+            set { SetProperty(ref password, value); }
         }
+        
+
+        private string studentname;
+        public string StudentName
+        {
+            get { return studentname; }
+            set { SetProperty(ref studentname, value); }
+        }
+
+
         public Command LoginCommand
         {
             get
@@ -106,34 +110,54 @@ namespace ESWIPE.ViewModels
                         if (Username == StudentUser.Username && Password == StudentUser.Password)
                         {
 
-                            var userDetails = new StudentModel()
+                            //var userUserNameDetails = new StudentModel()
+                            //{
+                            //    Username = StudentUser.Username
+                            //};
+
+                            //var userPasswordDetails = new StudentModel()
+                            //{
+                            //    Password = StudentUser.Password
+                            //};
+
+                            var userNameDetails = new StudentModel()
                             {
-                                Username = StudentUser.Username,
-                                Password = StudentUser.Password,
-                                StudentName = StudentUser.StudentName,
-                                Year = StudentUser.Year,
-                                Section = StudentUser.Section,
-                                SubjectsCode = StudentUser.SubjectsCode,
-                                QuizCode = StudentUser.QuizCode,
-                                QuizScore = StudentUser.QuizScore
+                                StudentName = StudentUser.StudentName
                             };
 
-                            if (Preferences.ContainsKey(nameof(App.UserDetails)))
-                            {
-                                Preferences.Remove(nameof(App.UserDetails));
-                            }
+                        //var userDetails = new StudentModel()
+                        //{
+                        //    Username = StudentUser.Username,
+                        //    Password = StudentUser.Password,
+                        //    StudentName = StudentUser.StudentName,
+                        //    Year = StudentUser.Year,
+                        //    Section = StudentUser.Section,
+                        //    SubjectsCode = StudentUser.SubjectsCode,
+                        //    QuizCode = StudentUser.QuizCode,
+                        //    QuizScore = StudentUser.QuizScore
+                        //};
 
-                            string UserDetailStr = JsonConvert.SerializeObject(userDetails);
+                        //if (Preferences.ContainsKey(nameof(App.UserDetails)))
+                        //{
+                        //    Preferences.Remove(nameof(App.UserDetails));
+                        //}
+
+                        //string UserUserNameDetailStr = JsonConvert.SerializeObject(userUserNameDetails);
+                        //string UserNameDetailStr = JsonConvert.SerializeObject(userPasswordDetails);
+                        //string UserPasswordDetailStr = JsonConvert.SerializeObject(userNameDetails);
+                        Preferences.Set("Username", Username);
+                        Preferences.Set("StudentName", userNameDetails.StudentName);
                             Password = "";
                             Username = "";
 
-                            //Preferences.Set(nameof(App.UserDetails), UserDetailStr);
+                            //Preferences.Set(nameof(App.UserDetails), UserNameDetailStr);
+                            //Preferences.Set(nameof(App.UserDetails), UserPasswordDetailStr);
                             //App.UserDetails = userDetails;
 
                             //await App.Current.MainPage.DisplayAlert("Login Success", "Student", "Ok");
 
                             //AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
-                            await Shell.Current.GoToAsync($"//{nameof(StudentPage)}?Creds={UserDetailStr}");
+                            await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
                             //await App.Current.MainPage.Navigation.PushAsync(new StudentPage(Username));
 
                         }
