@@ -45,8 +45,9 @@ namespace ESWIPE.Services.Implementations
                 teacherModel.UserRole = "Teacher";
 
                 var response = await firebase.Child(nameof(TeacherModel)).PostAsync(teacherModel);
+                teacherModel.Key = response.Key;
+                await firebase.Child(nameof(TeacherModel)).Child(teacherModel.Key).PutAsync(teacherModel);
 
-                
                 if (response.Key != null)
                 {
                     return true;
@@ -84,11 +85,6 @@ namespace ESWIPE.Services.Implementations
                 UserRole = f.Object.UserRole,
                 Key = f.Key
             }).ToList();
-        }
-
-        public Task<TeacherModel> GetTeacher(string username)
-        {
-            throw new NotImplementedException();
         }
     }
 }

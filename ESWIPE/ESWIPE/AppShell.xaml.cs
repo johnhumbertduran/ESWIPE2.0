@@ -21,52 +21,52 @@ namespace ESWIPE
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            if (Preferences.ContainsKey("Key"))
-            {
-                Preferences.Remove("Key");
-            }
+            //if (Preferences.ContainsKey("Key"))
+            //{
+            //    Preferences.Remove("Key");
+            //}
 
-            if (Preferences.ContainsKey("Username"))
+            if (Preferences.ContainsKey("Username", ""))
             {
                 Preferences.Remove("Username");
             }
 
-            if (Preferences.ContainsKey("TeacherName"))
+            if (Preferences.ContainsKey("TeacherName", ""))
             {
-                Preferences.Remove("TeacherName");
+                Preferences.Remove("TeacherName", "");
             }
 
-            if (Preferences.ContainsKey("StudentName"))
+            if (Preferences.ContainsKey("StudentName", ""))
             {
                 Preferences.Remove("StudentName");
             }
 
-            if (Preferences.ContainsKey("Year"))
+            if (Preferences.ContainsKey("Year", ""))
             {
                 Preferences.Remove("Year");
             }
 
-            if (Preferences.ContainsKey("Section"))
+            if (Preferences.ContainsKey("Section", ""))
             {
                 Preferences.Remove("Section");
             }
 
-            if (Preferences.ContainsKey("SubjectsCode"))
+            if (Preferences.ContainsKey("SubjectsCode", ""))
             {
                 Preferences.Remove("SubjectsCode");
             }
 
-            if (Preferences.ContainsKey("QuizCode"))
+            if (Preferences.ContainsKey("QuizCode", ""))
             {
                 Preferences.Remove("QuizCode");
             }
 
-            if (Preferences.ContainsKey("QuizScore"))
+            if (Preferences.ContainsKey("QuizScore", ""))
             {
                 Preferences.Remove("QuizScore");
             }
-
-                await Shell.Current.GoToAsync("//LoginPage");
+            //Preferences.Clear();
+            await Shell.Current.GoToAsync("//LoginPage");
             //await Navigation.PushAsync(new LoginPage());
         }
 

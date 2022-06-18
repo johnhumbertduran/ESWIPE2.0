@@ -40,10 +40,10 @@ namespace ESWIPE.ViewModels
                 //TeacherNumber = teacherResponse.TeacherNumber,
                 Name = teacherResponse.Name,
                 Section = teacherResponse.Section,
+                Key = teacherResponse.Key,
                 Username = teacherResponse.Username,
                 Password = teacherResponse.Password,
-                UserRole = teacherResponse.UserRole,
-                Key = teacherResponse.Key
+                UserRole = teacherResponse.UserRole
             };
         }
         #endregion
@@ -51,7 +51,7 @@ namespace ESWIPE.ViewModels
         #region Commands
         public ICommand SaveTeacherCommand => new Command(async () =>
         {
-            if (IsBusy) { return; }
+            if (IsBusy) return;
             IsBusy = true;
             bool res = await _teacherService.AddorUpdateTeacher(TeacherDetail);
             if (res)
@@ -59,9 +59,8 @@ namespace ESWIPE.ViewModels
                 if (!string.IsNullOrWhiteSpace(TeacherDetail.Key))
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
-                    //var route = $"//{nameof(AdminTeacherPage)}";
+
                     await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
-                    //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
                 }
                 else
                 {

@@ -85,10 +85,10 @@ namespace ESWIPE.ViewModels
         {
             Title = "Student";
             //CheckUserLoginDetails();
-            if (Preferences.ContainsKey("Key", ""))
-            {
-                Key = Preferences.Get("Key", "");
-            }
+            //if (Preferences.ContainsKey("Key", ""))
+            //{
+            //    Key = Preferences.Get("Key", "");
+            //}
 
             if (Preferences.ContainsKey("Username", ""))
             {

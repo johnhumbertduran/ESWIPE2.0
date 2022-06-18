@@ -23,6 +23,11 @@ namespace ESWIPE.Views
             BindingContext = new StudentViewModel();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            //Preferences.Clear();
+        }
         //async private void GetStudentInformation()
         //{
         //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIKey));

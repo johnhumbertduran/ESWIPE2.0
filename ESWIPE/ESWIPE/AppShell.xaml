@@ -109,9 +109,9 @@
     <!--<ShellItem FlyoutItemIsVisible="False" Route="LoginPage">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
     </ShellItem>-->
-    <Shell.FlyoutHeader>
+    <!--<Shell.FlyoutHeader>
         <local:HeaderContentView/>
-    </Shell.FlyoutHeader>
+    </Shell.FlyoutHeader>-->
 
     <ShellItem FlyoutItemIsVisible="False" Route="SplashPage">
         <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" />

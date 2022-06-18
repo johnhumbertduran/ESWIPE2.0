@@ -13,7 +13,7 @@ namespace ESWIPE.Services.Implementations
 {
     public class EmployeeService : IEmployeeService
     {
-        FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
+        readonly FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
         {
             AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         });
