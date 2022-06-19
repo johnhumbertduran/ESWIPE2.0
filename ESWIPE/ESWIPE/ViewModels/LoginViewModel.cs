@@ -129,29 +129,11 @@ namespace ESWIPE.ViewModels
                                 Preferences.Remove("Section");
                             }
 
-                            if (Preferences.ContainsKey("SubjectsCode"))
-                            {
-                                Preferences.Remove("SubjectsCode");
-                            }
-
-                            if (Preferences.ContainsKey("QuizCode"))
-                            {
-                                Preferences.Remove("QuizCode");
-                            }
-
-                            if (Preferences.ContainsKey("QuizScore"))
-                            {
-                                Preferences.Remove("QuizScore");
-                            }
-
                             //Preferences.Set("Key", userDetails.Key);
                             Preferences.Set("Username", userDetails.Username);
                             Preferences.Set("StudentName", userDetails.StudentName);
                             Preferences.Set("Year", userDetails.Year);
                             Preferences.Set("Section", userDetails.Section);
-                            Preferences.Set("SubjectsCode", userDetails.SubjectsCode);
-                            Preferences.Set("QuizCode", userDetails.QuizCode);
-                            Preferences.Set("QuizScore", userDetails.QuizScore);
 
                             Password = "";
                             Username = "";
@@ -193,20 +175,20 @@ namespace ESWIPE.ViewModels
                                 //    Preferences.Remove("Key");
                                 //}
 
-                                if (Preferences.ContainsKey("Username", ""))
-                                {
-                                    Preferences.Remove("Username");
-                                }
+                                //if (Preferences.ContainsKey("Username", ""))
+                                //{
+                                //    Preferences.Remove("Username");
+                                //}
 
-                                if (Preferences.ContainsKey("TeacherName", ""))
-                                {
-                                    Preferences.Remove("TeacherName");
-                                }
+                                //if (Preferences.ContainsKey("TeacherName", ""))
+                                //{
+                                //    Preferences.Remove("TeacherName");
+                                //}
 
-                                if (Preferences.ContainsKey("Section", ""))
-                                {
-                                    Preferences.Remove("Section");
-                                }
+                                //if (Preferences.ContainsKey("Section", ""))
+                                //{
+                                //    Preferences.Remove("Section");
+                                //}
 
                                 //Preferences.Set("Key", userDetails.Key);
                                 Preferences.Set("Username", userDetails.Username);
@@ -217,7 +199,7 @@ namespace ESWIPE.ViewModels
                                 Username = "";
 
                                 //await App.Current.MainPage.DisplayAlert("Login Success", "Teacher", "Ok");
-                                await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+                                await Shell.Current.GoToAsync($"///{nameof(TeacherStudentPage)}");
 
                             }
                             else

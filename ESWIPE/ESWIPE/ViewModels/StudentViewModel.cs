@@ -110,21 +110,6 @@ namespace ESWIPE.ViewModels
                 Section = Preferences.Get("Section", "");
             }
 
-            if (Preferences.ContainsKey("SubjectsCode", ""))
-            {
-                SubjectsCode = Preferences.Get("SubjectsCode", "");
-            }
-
-            if (Preferences.ContainsKey("QuizCode", ""))
-            {
-                QuizCode = Preferences.Get("QuizCode", "");
-            }
-
-            if (Preferences.ContainsKey("QuizScore", ""))
-            {
-                QuizScore = Preferences.Get("QuizScore", "");
-            }
-
         }
     }
 }

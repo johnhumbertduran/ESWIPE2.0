@@ -28,43 +28,29 @@ namespace ESWIPE
 
             if (Preferences.ContainsKey("Username", ""))
             {
-                Preferences.Remove("Username");
+                Preferences.Remove("Username", "Username");
             }
 
             if (Preferences.ContainsKey("TeacherName", ""))
             {
-                Preferences.Remove("TeacherName", "");
+                Preferences.Remove("TeacherName", "TeacherName");
             }
 
             if (Preferences.ContainsKey("StudentName", ""))
             {
-                Preferences.Remove("StudentName");
+                Preferences.Remove("StudentName", "StudentName");
             }
 
             if (Preferences.ContainsKey("Year", ""))
             {
-                Preferences.Remove("Year");
+                Preferences.Remove("Year", "Year");
             }
 
             if (Preferences.ContainsKey("Section", ""))
             {
-                Preferences.Remove("Section");
+                Preferences.Remove("Section", "Section");
             }
 
-            if (Preferences.ContainsKey("SubjectsCode", ""))
-            {
-                Preferences.Remove("SubjectsCode");
-            }
-
-            if (Preferences.ContainsKey("QuizCode", ""))
-            {
-                Preferences.Remove("QuizCode");
-            }
-
-            if (Preferences.ContainsKey("QuizScore", ""))
-            {
-                Preferences.Remove("QuizScore");
-            }
             //Preferences.Clear();
             await Shell.Current.GoToAsync("//LoginPage");
             //await Navigation.PushAsync(new LoginPage());
