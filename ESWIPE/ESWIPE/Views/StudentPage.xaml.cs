@@ -23,30 +23,42 @@ namespace ESWIPE.Views
             BindingContext = new StudentViewModel();
         }
 
-        protected override void OnDisappearing()
+        public string Key;
+        public string UserName;
+        public string StudentName;
+        public string Year;
+        public string Section;
+
+        protected override void OnAppearing()
         {
             base.OnDisappearing();
-            //Preferences.Clear();
+
+            if (Preferences.ContainsKey("Key", ""))
+            {
+                Key = Preferences.Get("Key", "");
+            }
+
+            if (Preferences.ContainsKey("Username", ""))
+            {
+                UserName = Preferences.Get("Username", "");
+            }
+
+            if (Preferences.ContainsKey("StudentName", ""))
+            {
+                StudentName = Preferences.Get("StudentName", "");
+            }
+
+            if (Preferences.ContainsKey("Year", ""))
+            {
+                Year = Preferences.Get("Year", "");
+            }
+
+            if (Preferences.ContainsKey("Section", ""))
+            {
+                Section = Preferences.Get("Section", "");
+            }
+
+            Title = "Student";
         }
-        //async private void GetStudentInformation()
-        //{
-        //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIKey));
-        //    try
-        //    {
-        //        //This is the saved firebaseauthentication that was saved during the time of login
-        //        var UserDetailStr = JsonConvert.DeserializeObject<Firebase.Auth.FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
-
-        //        //Here we are Refreshin the token
-        //        var RefreshedContent = await authProvider.RefreshAuthAsync(UserDetailStr);
-        //        Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(RefreshedContent));
-
-        //        //Now lets gradb user information
-        //        MyUsername.Text = UserDetailStr.User.Email;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await App.Current.MainPage.DisplayAlert("Alert", "Token Expired!", "Ok");
-        //    }
-        //}
     }
 }

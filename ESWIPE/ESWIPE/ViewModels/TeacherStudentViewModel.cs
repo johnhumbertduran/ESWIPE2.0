@@ -37,12 +37,6 @@ namespace ESWIPE.ViewModels
             
             _studentService = DependencyService.Resolve<IStudentService>();
             GetAllStudent();
-
-            //if (Preferences.ContainsKey("Key", ""))
-            //{
-            //    Key = Preferences.Get("Key", "");
-            //}
-
             
 
             //Title = TeacherName;
