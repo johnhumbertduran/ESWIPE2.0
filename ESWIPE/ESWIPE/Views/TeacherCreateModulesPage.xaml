@@ -39,7 +39,7 @@
                             <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
-                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="DarkGray"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
@@ -47,6 +47,7 @@
                                     <Entry
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
+                                        x:Name="createdby"
                                         Placeholder="Created By"
                                         Text="{Binding ModuleDetail.CreatedBy, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
@@ -106,6 +107,7 @@
 
                         </StackLayout>
 
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <Button
                             Margin="0,20,0,10"
                             Padding="30,15,30,15"
@@ -117,7 +119,20 @@
                             HorizontalOptions="Start"
                             Text="Submit"
                             TextColor="White" />
-
+                        
+                        <Button
+                            Margin="0,20,0,10"
+                            Padding="30,15,30,15"
+                            Background="red"
+                            Clicked="Cancel_Button"
+                            CornerRadius="30"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="End"
+                            Text="Cancel"
+                            TextColor="White" />
+                        </StackLayout>
+                        
 
                     </StackLayout>
                 </Frame>

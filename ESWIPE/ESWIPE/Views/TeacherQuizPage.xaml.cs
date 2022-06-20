@@ -28,7 +28,7 @@ namespace ESWIPE.Views
 
             if (Preferences.ContainsKey("Key", ""))
             {
-                UserName = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "Key");
             }
 
             if (Preferences.ContainsKey("Username", ""))

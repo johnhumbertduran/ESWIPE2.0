@@ -15,10 +15,16 @@ namespace ESWIPE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TeacherCreateModulesPage : ContentPage
     {
+        public string Key;
+        public string UserName;
+        public string TeacherName;
+        public string Section;
+
         public TeacherCreateModulesPage()
         {
             InitializeComponent();
             CreateModuleLabel.Text = "Create Module";
+            createdby.Text = TeacherName;
             BindingContext = new TeacherCreateModulesViewModel();
         }
         public TeacherCreateModulesPage(ModuleModel module)
@@ -28,18 +34,16 @@ namespace ESWIPE.Views
             BindingContext = new TeacherCreateModulesViewModel(module);
         }
 
-        public string Key;
-        public string UserName;
-        public string TeacherName;
-        public string Section;
-
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
+            MessagingCenter.Send(this, message: "Teacher");
+
             if (Preferences.ContainsKey("Key", ""))
             {
-                UserName = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "Key");
             }
 
             if (Preferences.ContainsKey("Username", ""))
@@ -56,6 +60,11 @@ namespace ESWIPE.Views
             {
                 Section = Preferences.Get("Section", "Section");
             }
+        }
+
+        private async void Cancel_Button(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
         }
     }
 }

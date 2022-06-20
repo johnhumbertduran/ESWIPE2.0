@@ -11,8 +11,7 @@ namespace ESWIPE.Views
 {
     public class SplashPage : ContentPage
     {
-
-        Image splashImage;
+        readonly Image splashImage;
 
         public SplashPage()
         {

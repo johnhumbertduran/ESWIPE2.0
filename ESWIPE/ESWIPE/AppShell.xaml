@@ -137,6 +137,8 @@
         <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" Route="SplashPage" />
     </TabBar>
 
+    <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateModulesPage}" Route="TeacherCreateModulesPage" />
+    
     <FlyoutItem
         Title="Admin Menu"
         Appearing="Admin_FlyoutItem_Appearing"
@@ -184,7 +186,6 @@
         <Tab>
             <ShellContent
                 Title="Student"
-                 x:Name="TeacherStudentPageItem"
                 ContentTemplate="{DataTemplate local:TeacherStudentPage}"
                 Route="TeacherStudentPage" />
 
@@ -206,10 +207,31 @@
         <ShellContent ContentTemplate="{DataTemplate local:TeacherRegisterStudentPage}" Route="TeacherRegisterStudentPage" />
     </FlyoutItem>
     <FlyoutItem
-        Title="Create Module"
+        Title="Modules"
         Icon="icon_modules.png"
+        Appearing="Module_FlyoutItem_Appearing"
         IsVisible="{Binding IsTeacher}">
-        <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateModulesPage}" Route="TeacherCreateModulesPage" />
+        <Tab>
+            <ShellContent
+                Title="Quarter 1"
+                ContentTemplate="{DataTemplate local:Q1ModulePage}"
+                Route="Q1ModulePage" />
+
+            <ShellContent
+                Title="Quarter 2"
+                ContentTemplate="{DataTemplate local:Q2ModulePage}"
+                Route="Q2ModulePage" />
+
+            <ShellContent
+                Title="Quarter 3"
+                ContentTemplate="{DataTemplate local:Q3ModulePage}"
+                Route="Q3ModulePage" />
+            
+            <ShellContent
+                Title="Quarter 4"
+                ContentTemplate="{DataTemplate local:Q4ModulePage}"
+                Route="Q4ModulePage" />
+        </Tab>
     </FlyoutItem>
     <FlyoutItem
         Title="Create Quiz"

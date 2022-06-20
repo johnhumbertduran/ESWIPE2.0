@@ -68,6 +68,20 @@ namespace ESWIPE.ViewModels
                 IsTeacher = true;
                 IsStudent = false;
             });
+            
+            MessagingCenter.Subscribe<TeacherCreateModulesPage>(this, "Teacher", (sender) =>
+            {
+                IsAdmin = false;
+                IsTeacher = true;
+                IsStudent = false;
+            });
+
+            MessagingCenter.Subscribe<QuarterViewModel>(this, "Teacher", (sender) =>
+            {
+                IsAdmin = false;
+                IsTeacher = true;
+                IsStudent = false;
+            });
 
             MessagingCenter.Subscribe<SplashPage>(this, "Student", (sender) =>
             {

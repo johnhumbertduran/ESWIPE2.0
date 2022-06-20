@@ -9,11 +9,11 @@ namespace ESWIPE
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
-        public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
         public AppShell()
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
+            Routing.RegisterRoute(nameof(TeacherCreateModulesPage), typeof(TeacherCreateModulesPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
@@ -63,9 +63,9 @@ namespace ESWIPE
             await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
         }
 
-        private void FlyoutItem_Appearing(object sender, EventArgs e)
+        private async void Module_FlyoutItem_Appearing(object sender, EventArgs e)
         {
-
+            await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
         }
     }
 }
