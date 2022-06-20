@@ -14,9 +14,6 @@ namespace ESWIPE
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
-            //Routing.RegisterRoute(nameof(StudentPage), typeof(StudentPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            //Routing.RegisterRoute(nameof(AdminTeacherPage), typeof(AdminTeacherPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
@@ -51,7 +48,7 @@ namespace ESWIPE
                 Preferences.Remove("Section", "Section");
             }
 
-            //Preferences.Clear();
+            Preferences.Clear();
             await Shell.Current.GoToAsync("//LoginPage");
             //await Navigation.PushAsync(new LoginPage());
         }

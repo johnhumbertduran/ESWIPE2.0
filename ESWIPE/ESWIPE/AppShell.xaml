@@ -124,8 +124,19 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" Route="ItemsPage" />
     </FlyoutItem>-->
-    
-    
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+    </TabBar>
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:SignupPage}" Route="SignupPage" />
+    </TabBar>
+
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" Route="SplashPage" />
+    </TabBar>
+
     <FlyoutItem
         Title="Admin Menu"
         Appearing="Admin_FlyoutItem_Appearing"
@@ -173,6 +184,7 @@
         <Tab>
             <ShellContent
                 Title="Student"
+                 x:Name="TeacherStudentPageItem"
                 ContentTemplate="{DataTemplate local:TeacherStudentPage}"
                 Route="TeacherStudentPage" />
 
@@ -258,17 +270,7 @@
         content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
-    </TabBar>
     
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:SignupPage}" Route="SignupPage" />
-    </TabBar>
-    
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" Route="SplashPage" />
-    </TabBar>
 
     <!-- Optional Templates
     // These may be provided inline as below or as separate classes.

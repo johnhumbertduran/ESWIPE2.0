@@ -12,6 +12,7 @@ using ESWIPE.ViewModels;
 using System.ComponentModel;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace ESWIPE.ViewModels
 {
@@ -23,8 +24,6 @@ namespace ESWIPE.ViewModels
         public LoginViewModel()
         {
         }
-
-        
 
         private string username;
         public string Username
@@ -90,8 +89,6 @@ namespace ESWIPE.ViewModels
 
                         if (Username == StudentUser.Username && Password == StudentUser.Password)
                         {
-                            //Preferences.Clear();
-
                             var userDetails = new StudentModel()
                             {
                                 Key = StudentUser.Key,
@@ -104,32 +101,7 @@ namespace ESWIPE.ViewModels
                                 QuizScore = StudentUser.QuizScore
                             };
 
-                            //if (Preferences.ContainsKey("Key"))
-                            //{
-                            //    Preferences.Remove("Key");
-                            //}
-
-                            if (Preferences.ContainsKey("Username"))
-                            {
-                                Preferences.Remove("Username");
-                            }
-
-                            if (Preferences.ContainsKey("StudentName"))
-                            {
-                                Preferences.Remove("StudentName");
-                            }
-
-                            if (Preferences.ContainsKey("Year"))
-                            {
-                                Preferences.Remove("Year");
-                            }
-
-                            if (Preferences.ContainsKey("Section"))
-                            {
-                                Preferences.Remove("Section");
-                            }
-
-                            //Preferences.Set("Key", userDetails.Key);
+                            Preferences.Set("Key", userDetails.Key);
                             Preferences.Set("Username", userDetails.Username);
                             Preferences.Set("StudentName", userDetails.StudentName);
                             Preferences.Set("Year", userDetails.Year);
@@ -161,7 +133,6 @@ namespace ESWIPE.ViewModels
                             }
                             if (Username == TeacherUser.Username && Password == TeacherUser.Password)
                             {
-                                //Preferences.Clear();
                                 var userDetails = new TeacherModel()
                                 {
                                     Key = TeacherUser.Key,
@@ -170,27 +141,7 @@ namespace ESWIPE.ViewModels
                                     Section = TeacherUser.Section
                                 };
 
-                                //if (Preferences.ContainsKey("Key"))
-                                //{
-                                //    Preferences.Remove("Key");
-                                //}
-
-                                //if (Preferences.ContainsKey("Username", ""))
-                                //{
-                                //    Preferences.Remove("Username");
-                                //}
-
-                                //if (Preferences.ContainsKey("TeacherName", ""))
-                                //{
-                                //    Preferences.Remove("TeacherName");
-                                //}
-
-                                //if (Preferences.ContainsKey("Section", ""))
-                                //{
-                                //    Preferences.Remove("Section");
-                                //}
-
-                                //Preferences.Set("Key", userDetails.Key);
+                                Preferences.Set("Key", userDetails.Key);
                                 Preferences.Set("Username", userDetails.Username);
                                 Preferences.Set("TeacherName", userDetails.Name);
                                 Preferences.Set("Section", userDetails.Section);
@@ -198,8 +149,7 @@ namespace ESWIPE.ViewModels
                                 Password = "";
                                 Username = "";
 
-                                //await App.Current.MainPage.DisplayAlert("Login Success", "Teacher", "Ok");
-                                await Shell.Current.GoToAsync($"///{nameof(TeacherStudentPage)}");
+                                await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
 
                             }
                             else

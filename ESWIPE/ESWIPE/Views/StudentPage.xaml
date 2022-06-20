@@ -3,19 +3,14 @@
     x:Class="ESWIPE.Views.StudentPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:model="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <model:StudentViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>
             <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                 FontSize="Large"
                 x:Name="MyUsername"
-                Text="{Binding UserName}"
+                Text="{Binding Key}"
                 HorizontalOptions="Center" />
             <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                 FontSize="Large"

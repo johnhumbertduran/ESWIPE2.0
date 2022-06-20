@@ -13,15 +13,19 @@ namespace ESWIPE.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TeacherStudentPage : ContentPage
     {
+        
+
+        readonly TeacherStudentViewModel teacherStudentViewModel;
+        public TeacherStudentPage()
+        {
+            InitializeComponent();
+            teacherStudentViewModel = new TeacherStudentViewModel();
+            BindingContext = teacherStudentViewModel;
+        }
         public string Key;
         public string UserName;
         public string TeacherName;
         public string Section;
-
-        public TeacherStudentPage()
-        {
-            InitializeComponent();
-        }
 
         protected override void OnAppearing()
         {
@@ -47,7 +51,6 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "Section");
             }
             Title = TeacherName;
-
         }
     }
 }

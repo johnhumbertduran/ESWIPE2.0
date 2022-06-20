@@ -16,22 +16,19 @@ namespace ESWIPE.Views
     {
         public string WebAPIKey = "AIzaSyAZHeAFjNeVLmgTbIuu1SIfR07ZlJKBoR0";
 
-        public StudentPage()
-        {
-            InitializeComponent();
-            //GetStudentInformation();
-            BindingContext = new StudentViewModel();
-        }
-
         public string Key;
         public string UserName;
         public string StudentName;
         public string Year;
         public string Section;
+        public StudentPage()
+        {
+            InitializeComponent();
+        }
 
         protected override void OnAppearing()
         {
-            base.OnDisappearing();
+            base.OnAppearing();
 
             if (Preferences.ContainsKey("Key", ""))
             {
@@ -58,7 +55,9 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "");
             }
 
-            Title = "Student";
+            Title = StudentName;
+            MyUsername.Text = Key;
+            MyStudentName.Text = StudentName;
         }
     }
 }

@@ -25,8 +25,34 @@ namespace ESWIPE.Views
             loginViewModel = new LoginViewModel();
             InitializeComponent();
             OnSignUpClickFunction();
+            //CheckUser();
             BindingContext = loginViewModel;
         }
+
+        //private void CheckUser()
+        //{
+        //    Task.Run(async () =>
+        //    {
+        //        if (Preferences.ContainsKey("TeacherName", ""))
+        //        {
+        //            //await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+        //            await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+        //            //await App.Current.MainPage.Navigation.PushAsync(new TeacherStudentPage());
+        //            //await App.Current.MainPage.DisplayAlert("Testing", "checking user if Teacher", "Ok");
+        //        }
+        //        else
+        //        {
+        //            if (Preferences.ContainsKey("StudentName", ""))
+        //            {
+        //                await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+        //            }
+        //            else
+        //            {
+        //                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        //            }
+        //        }
+        //    });
+        //}
 
         //private async void Button_Clicked(object sender, EventArgs e)
         //{
@@ -57,6 +83,29 @@ namespace ESWIPE.Views
                     await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
                 })
             });
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //if (Preferences.ContainsKey("Username", ""))
+            //{
+            //    if (Preferences.ContainsKey("TeacherName", ""))
+            //    {
+            //        await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
+            //    }
+
+            //    if (Preferences.ContainsKey("StudentName", ""))
+            //    {
+            //        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+            //    }
+            //}
+            //else
+            //{
+            //    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            //}
+
         }
 
     }

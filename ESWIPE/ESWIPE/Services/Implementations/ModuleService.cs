@@ -39,7 +39,8 @@ namespace ESWIPE.Services.Implementations
 
                 moduleModel.DateCreated = date_now.ToString();
                 var response = await firebase.Child(nameof(ModuleModel)).PostAsync(moduleModel);
-
+                moduleModel.Key = response.Key;
+                await firebase.Child(nameof(ModuleModel)).Child(moduleModel.Key).PutAsync(moduleModel);
 
                 if (response.Key != null)
                 {

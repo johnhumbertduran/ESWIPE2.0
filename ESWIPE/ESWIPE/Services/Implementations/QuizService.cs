@@ -48,7 +48,8 @@ namespace ESWIPE.Services.Implementations
 
                 quizModel.DateCreated = date_now.ToString();
                 var response = await firebase.Child(nameof(QuizModel)).PostAsync(quizModel);
-
+                quizModel.Key = response.Key;
+                await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);
 
                 if (response.Key != null)
                 {
