@@ -32,6 +32,7 @@ namespace ESWIPE.ViewModels
         {
             //Title = "Teacher's Data";
             _moduleService = DependencyService.Resolve<IModuleService>();
+            IsRefreshing = true;
             GetAllModule();
         }
         #endregion

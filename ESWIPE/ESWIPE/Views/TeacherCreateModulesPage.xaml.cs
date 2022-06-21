@@ -24,7 +24,6 @@ namespace ESWIPE.Views
         {
             InitializeComponent();
             CreateModuleLabel.Text = "Create Module";
-            createdby.Text = TeacherName;
             BindingContext = new TeacherCreateModulesViewModel();
         }
         public TeacherCreateModulesPage(ModuleModel module)

@@ -18,6 +18,10 @@ namespace ESWIPE.Views
         {
             InitializeComponent();
             RegisterTeacherLabel.Text = "Register Teacher";
+            TeacherName.Text = "";
+            TeacherSection.Text = "";
+            TeacherUsername.Text = "";
+            TeacherPassword.Text = "";
             BindingContext = new AdminRegisterTeacherViewModel();
         }
         public AdminRegisterTeacherPage(TeacherModel teacher)

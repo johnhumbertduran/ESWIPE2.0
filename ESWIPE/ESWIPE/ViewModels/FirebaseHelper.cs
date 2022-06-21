@@ -19,6 +19,7 @@ namespace ESWIPE.ViewModels
         //    AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         //});
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        private static string quarters = "quarter1";
 
         //Read All
         public static async Task<List<TeacherModel>> GetAllTeachers()
@@ -104,6 +105,55 @@ namespace ESWIPE.ViewModels
                 var allStudents = await GetAllStudents();
                 await firebase.Child("StudentModel").OnceAsync<StudentModel>();
                 return allStudents.Where(a => a.Username == username).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+
+
+
+
+
+
+        //Read All Modules
+        public static async Task<List<ModuleModel>> GetAllModules()
+        {
+            try
+            {
+                var modulelist = (await firebase
+                .Child("ModuleModel")
+                .OnceAsync<ModuleModel>()).Select(item =>
+                new ModuleModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    SubjectQuizCode = item.Object.SubjectQuizCode,
+                    SubjectQuizQty = item.Object.SubjectQuizQty,
+                }).ToList();
+                return modulelist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read 
+        public static async Task<ModuleModel> GetModule(string createdby)
+        {
+            try
+            {
+                var allModule = await GetAllModules();
+                await firebase.Child("ModuleModel").OnceAsync<ModuleModel>();
+                return allModule.Where(a => a.CreatedBy == createdby).FirstOrDefault();
             }
             catch (Exception e)
             {

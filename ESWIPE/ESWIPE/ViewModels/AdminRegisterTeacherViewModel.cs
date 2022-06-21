@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using ESWIPE.Models;
+using ESWIPE.Views;
 using ESWIPE.Services.Implementations;
 using ESWIPE.Services.Interfaces;
 using System.Windows.Input;

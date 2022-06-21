@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ESWIPE.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,9 @@ namespace ESWIPE.Views
             {
                 Section = Preferences.Get("Section", "Section");
             }
+
+            Title = TeacherName;
+            BindingContext = new TeacherModulesViewModel();
         }
     }
 }

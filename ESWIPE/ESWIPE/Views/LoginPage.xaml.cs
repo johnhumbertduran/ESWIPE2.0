@@ -39,28 +39,6 @@ namespace ESWIPE.Views
             });
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            //if (Preferences.ContainsKey("Username", ""))
-            //{
-            //    if (Preferences.ContainsKey("TeacherName", ""))
-            //    {
-            //        await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
-            //    }
-
-            //    if (Preferences.ContainsKey("StudentName", ""))
-            //    {
-            //        await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
-            //    }
-            //}
-            //else
-            //{
-            //    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            //}
-
-        }
 
     }
 }

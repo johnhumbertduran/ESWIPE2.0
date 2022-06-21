@@ -55,6 +55,7 @@
                                     <Entry
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
+                                        x:Name="TeacherName"
                                         Placeholder="Name"
                                         Text="{Binding TeacherDetail.Name}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
@@ -73,6 +74,7 @@
                                         <Entry
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
+                                        x:Name="TeacherSection"
                                         Placeholder="Section"
                                         Text="{Binding TeacherDetail.Section}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
@@ -93,6 +95,7 @@
                                         <Entry
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
+                                        x:Name="TeacherUsername"
                                         Placeholder="Username"
                                         Text="{Binding TeacherDetail.Username}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
@@ -113,6 +116,7 @@
                                         <Entry
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
+                                        x:Name="TeacherPassword"
                                         Placeholder="Password"
                                         Text="{Binding TeacherDetail.Password}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />

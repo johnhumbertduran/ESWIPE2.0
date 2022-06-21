@@ -51,6 +51,7 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "Section");
             }
             Title = TeacherName;
+            BindingContext = new TeacherStudentViewModel();
         }
     }
 }
