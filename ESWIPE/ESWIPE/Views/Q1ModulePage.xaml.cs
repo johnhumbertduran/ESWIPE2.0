@@ -8,6 +8,9 @@ using Xamarin.Forms;
 using ESWIPE.ViewModels;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using ESWIPE.Models;
+using System.Diagnostics;
+using Firebase.Database;
 
 namespace ESWIPE.Views
 {
@@ -18,27 +21,43 @@ namespace ESWIPE.Views
         public string UserName;
         public string TeacherName;
         public string Section;
-        public string Quarter1;
-        public string Quarter2;
-        public string Quarter3;
-        public string Quarter4;
+        public string Quarter1 = "quarter1";
 
-        readonly QuarterViewModel quarterViewModel;
         public Q1ModulePage()
         {
-            quarterViewModel = new QuarterViewModel();
             InitializeComponent();
-            BindingContext = quarterViewModel;
         }
 
         private async void CreateModuleButton(object sender, EventArgs e)
         {
+            if (Preferences.ContainsKey("quarter1", ""))
+            {
+                Preferences.Remove("quarter1", "quarter1");
+            }
+
+            if (Preferences.ContainsKey("quarter2", ""))
+            {
+                Preferences.Remove("quarter2", "quarter2");
+            }
+
+            if (Preferences.ContainsKey("quarter3", ""))
+            {
+                Preferences.Remove("quarter3", "quarter3");
+            }
+
+            if (Preferences.ContainsKey("quarter4", ""))
+            {
+                Preferences.Remove("quarter4", "quarter4");
+            }
+
             Preferences.Set("quarter1", "quarter1");
             await Shell.Current.GoToAsync($"//{nameof(TeacherCreateModulesPage)}");
             //Application.Current.MainPage = new NavigationPage(new TeacherCreateModulesPage());
         }
 
-        protected override void OnAppearing()
+        public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -61,31 +80,76 @@ namespace ESWIPE.Views
             {
                 Section = Preferences.Get("Section", "Section");
             }
-            
+
+            var ModuleData1 = await GetModule(TeacherName);
+
+            if (ModuleData1 != null)
+            {
+                if (TeacherName == ModuleData1.CreatedBy)
+                {
+                    if(ModuleData1.Quarter == Quarter1)
+                    {
+                        Preferences.Set("Quarter1", Quarter1);
+                    }
+                }
+            }
+
             if (Preferences.ContainsKey("Quarter1", ""))
             {
-                Quarter1 = Preferences.Get("Quarter1", "Quarter1");
+                Q1CreateModule.IsVisible = false;
                 Q1ViewModule.IsVisible = true;
             }
             else
             {
                 Q1CreateModule.IsVisible = true;
+                Q1ViewModule.IsVisible = false;
             }
 
-            //if (Preferences.ContainsKey("Quarter2", ""))
-            //{
-            //    Quarter2 = Preferences.Get("Quarter2", "Quarter2");
-            //}
-
-            //if (Preferences.ContainsKey("Quarter3", ""))
-            //{
-            //    Quarter2 = Preferences.Get("Quarter3", "Quarter3");
-            //}
-
-            //if (Preferences.ContainsKey("Quarter4", ""))
-            //{
-            //    Quarter2 = Preferences.Get("Quarter4", "Quarter4");
-            //}
         }
+
+        //Read All Modules
+
+        public static async Task<List<ModuleModel>> GetAllModules()
+        {
+            try
+            {
+                var modulelist = (await firebase
+                .Child("ModuleModel")
+                .OnceAsync<ModuleModel>()).Select(item =>
+                new ModuleModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    SubjectQuizCode = item.Object.SubjectQuizCode,
+                    SubjectQuizQty = item.Object.SubjectQuizQty,
+                }).ToList();
+                return modulelist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read 
+        public static async Task<ModuleModel> GetModule(string createdby)
+        {
+            try
+            {
+                var allModule = await GetAllModules();
+                await firebase.Child("ModuleModel").OnceAsync<ModuleModel>();
+                return allModule.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == "quarter1").FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
     }
 }

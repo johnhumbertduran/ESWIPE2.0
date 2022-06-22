@@ -19,7 +19,6 @@ namespace ESWIPE.ViewModels
         //    AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         //});
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        private static string quarters = "quarter1";
 
         //Read All
         public static async Task<List<TeacherModel>> GetAllTeachers()
@@ -147,13 +146,13 @@ namespace ESWIPE.ViewModels
         }
 
         //Read 
-        public static async Task<ModuleModel> GetModule(string createdby)
+        public static async Task<ModuleModel> GetModule(string createdby, string quarters)
         {
             try
             {
                 var allModule = await GetAllModules();
                 await firebase.Child("ModuleModel").OnceAsync<ModuleModel>();
-                return allModule.Where(a => a.CreatedBy == createdby).FirstOrDefault();
+                return allModule.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == quarters).FirstOrDefault();
             }
             catch (Exception e)
             {

@@ -148,7 +148,6 @@ namespace ESWIPE.Services.Implementations
                     {
                         Preferences.Remove("quarter4", "quarter4");
                     }
-
                     return true;
                 }
                 else
@@ -172,7 +171,6 @@ namespace ESWIPE.Services.Implementations
                     {
                         Preferences.Remove("quarter4", "quarter4");
                     }
-
                     return false;
                 }
             }
@@ -182,6 +180,26 @@ namespace ESWIPE.Services.Implementations
         {
             try
             {
+                if (Preferences.ContainsKey("Quarter1", ""))
+                {
+                    Preferences.Remove("Quarter1", "Quarter1");
+                }
+
+                if (Preferences.ContainsKey("Quarter2", ""))
+                {
+                    Preferences.Remove("Quarter2", "Quarter2");
+                }
+
+                if (Preferences.ContainsKey("Quarter3", ""))
+                {
+                    Preferences.Remove("Quarter3", "Quarter3");
+                }
+
+                if (Preferences.ContainsKey("Quarter4", ""))
+                {
+                    Preferences.Remove("Quarter4", "Quarter4");
+                }
+
                 await firebase.Child(nameof(ModuleModel)).Child(key).DeleteAsync();
                 return true;
             }

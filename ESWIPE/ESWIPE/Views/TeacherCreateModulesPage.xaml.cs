@@ -59,11 +59,55 @@ namespace ESWIPE.Views
             {
                 Section = Preferences.Get("Section", "Section");
             }
+
+            if (Preferences.ContainsKey("quarter1", ""))
+            {
+                Title = "Quarter 1";
+            }
+
+            if (Preferences.ContainsKey("quarter2", ""))
+            {
+                Title = "Quarter 2";
+            }
+
+            if (Preferences.ContainsKey("quarter3", ""))
+            {
+                Title = "Quarter 3";
+            }
+
+            if (Preferences.ContainsKey("quarter4", ""))
+            {
+                Title = "Quarter 4";
+            }
+
+
         }
 
         private async void Cancel_Button(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
+            if (Preferences.ContainsKey("quarter1", ""))
+            {
+                Preferences.Remove("quarter1", "quarter1");
+                await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
+            }
+            
+            if (Preferences.ContainsKey("quarter2", ""))
+            {
+                Preferences.Remove("quarter2", "quarter2");
+                await Shell.Current.GoToAsync($"//{nameof(Q2ModulePage)}");
+            }
+            
+            if (Preferences.ContainsKey("quarter3", ""))
+            {
+                Preferences.Remove("quarter3", "quarter3");
+                await Shell.Current.GoToAsync($"//{nameof(Q3ModulePage)}");
+            }
+            
+            if (Preferences.ContainsKey("quarter4", ""))
+            {
+                Preferences.Remove("quarter4", "quarter4");
+                await Shell.Current.GoToAsync($"//{nameof(Q4ModulePage)}");
+            }
         }
     }
 }
