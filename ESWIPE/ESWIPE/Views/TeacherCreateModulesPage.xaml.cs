@@ -40,42 +40,42 @@ namespace ESWIPE.Views
 
             MessagingCenter.Send(this, message: "Teacher");
 
-            if (Preferences.ContainsKey("Key", ""))
+            if (Preferences.ContainsKey("Key"))
             {
-                Key = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "KeyValue");
             }
 
-            if (Preferences.ContainsKey("Username", ""))
+            if (Preferences.ContainsKey("Username"))
             {
-                UserName = Preferences.Get("Username", "Username");
+                UserName = Preferences.Get("Username", "UsernameValue");
             }
 
-            if (Preferences.ContainsKey("TeacherName", ""))
+            if (Preferences.ContainsKey("TeacherName"))
             {
-                TeacherName = Preferences.Get("TeacherName", "TeacherName");
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
             }
 
-            if (Preferences.ContainsKey("Section", ""))
+            if (Preferences.ContainsKey("Section"))
             {
-                Section = Preferences.Get("Section", "Section");
+                Section = Preferences.Get("Section", "SectionValue");
             }
 
-            if (Preferences.ContainsKey("quarter1", ""))
+            if (Preferences.ContainsKey("quarter1pass"))
             {
                 Title = "Quarter 1";
             }
 
-            if (Preferences.ContainsKey("quarter2", ""))
+            if (Preferences.ContainsKey("quarter2pass"))
             {
                 Title = "Quarter 2";
             }
 
-            if (Preferences.ContainsKey("quarter3", ""))
+            if (Preferences.ContainsKey("quarter3pass"))
             {
                 Title = "Quarter 3";
             }
 
-            if (Preferences.ContainsKey("quarter4", ""))
+            if (Preferences.ContainsKey("quarter4pass"))
             {
                 Title = "Quarter 4";
             }
@@ -85,27 +85,27 @@ namespace ESWIPE.Views
 
         private async void Cancel_Button(object sender, EventArgs e)
         {
-            if (Preferences.ContainsKey("quarter1", ""))
+            if (Preferences.ContainsKey("quarter1pass"))
             {
-                Preferences.Remove("quarter1", "quarter1");
+                Preferences.Remove("quarter1pass");
                 await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
             }
             
-            if (Preferences.ContainsKey("quarter2", ""))
+            if (Preferences.ContainsKey("quarter2pass"))
             {
-                Preferences.Remove("quarter2", "quarter2");
+                Preferences.Remove("quarter2pass");
                 await Shell.Current.GoToAsync($"//{nameof(Q2ModulePage)}");
             }
             
-            if (Preferences.ContainsKey("quarter3", ""))
+            if (Preferences.ContainsKey("quarter3pass"))
             {
-                Preferences.Remove("quarter3", "quarter3");
+                Preferences.Remove("quarter3pass");
                 await Shell.Current.GoToAsync($"//{nameof(Q3ModulePage)}");
             }
             
-            if (Preferences.ContainsKey("quarter4", ""))
+            if (Preferences.ContainsKey("quarter4pass"))
             {
-                Preferences.Remove("quarter4", "quarter4");
+                Preferences.Remove("quarter4pass");
                 await Shell.Current.GoToAsync($"//{nameof(Q4ModulePage)}");
             }
         }

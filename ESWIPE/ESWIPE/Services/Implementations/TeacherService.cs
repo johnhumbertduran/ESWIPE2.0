@@ -38,10 +38,6 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
-                //nextTeacherNumber++;
-                //teacherModel.TeacherNumber = nextTeacherNumber;
-                //teacherModel.Username = teacherModel.Name;
-                //teacherModel.Password = teacherModel.TeacherNumber.ToString();
                 teacherModel.UserRole = "Teacher";
 
                 var response = await firebase.Child(nameof(TeacherModel)).PostAsync(teacherModel);

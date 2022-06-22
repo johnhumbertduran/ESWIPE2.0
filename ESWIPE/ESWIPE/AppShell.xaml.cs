@@ -14,6 +14,10 @@ namespace ESWIPE
             InitializeComponent();
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
             Routing.RegisterRoute(nameof(TeacherCreateModulesPage), typeof(TeacherCreateModulesPage));
+            //Routing.RegisterRoute(nameof(Q1ModulePage), typeof(Q1ModulePage));
+            //Routing.RegisterRoute(nameof(Q2ModulePage), typeof(Q2ModulePage));
+            //Routing.RegisterRoute(nameof(Q3ModulePage), typeof(Q3ModulePage));
+            //Routing.RegisterRoute(nameof(Q4ModulePage), typeof(Q4ModulePage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

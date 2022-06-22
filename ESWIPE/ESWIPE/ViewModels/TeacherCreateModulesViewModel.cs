@@ -37,24 +37,24 @@ namespace ESWIPE.ViewModels
         {
             //Title = "Register Teacher";
 
-            if (Preferences.ContainsKey("Key", ""))
+            if (Preferences.ContainsKey("Key"))
             {
-                Key = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "KeyValue");
             }
 
-            if (Preferences.ContainsKey("Username", ""))
+            if (Preferences.ContainsKey("Username"))
             {
-                UserName = Preferences.Get("Username", "Username");
+                UserName = Preferences.Get("Username", "UsernameValue");
             }
 
-            if (Preferences.ContainsKey("TeacherName", ""))
+            if (Preferences.ContainsKey("TeacherName"))
             {
-                TeacherName = Preferences.Get("TeacherName", "TeacherName");
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
             }
 
-            if (Preferences.ContainsKey("Section", ""))
+            if (Preferences.ContainsKey("Section"))
             {
-                Section = Preferences.Get("Section", "Section");
+                Section = Preferences.Get("Section", "SectionValue");
             }
 
             _moduleService = DependencyService.Resolve<IModuleService>();
@@ -86,7 +86,6 @@ namespace ESWIPE.ViewModels
                 if (!string.IsNullOrWhiteSpace(ModuleDetail.Key))
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
-                    //var route = $"//{nameof(AdminTeacherPage)}";
                     await Shell.Current.GoToAsync("..");
                     //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
                 }

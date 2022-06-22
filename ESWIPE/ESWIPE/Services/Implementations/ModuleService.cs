@@ -31,51 +31,51 @@ namespace ESWIPE.Services.Implementations
         public async Task<bool> AddorUpdateModule(ModuleModel moduleModel)
         {
 
-            if (Preferences.ContainsKey("Key", ""))
+            if (Preferences.ContainsKey("Key"))
             {
-                Key = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "KeyValue");
             }
 
-            if (Preferences.ContainsKey("Username", ""))
+            if (Preferences.ContainsKey("Username"))
             {
-                UserName = Preferences.Get("Username", "Username");
+                UserName = Preferences.Get("Username", "UsernameValue");
             }
 
-            if (Preferences.ContainsKey("TeacherName", ""))
+            if (Preferences.ContainsKey("TeacherName"))
             {
-                TeacherName = Preferences.Get("TeacherName", "TeacherName");
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
             }
 
-            if (Preferences.ContainsKey("Section", ""))
+            if (Preferences.ContainsKey("Section"))
             {
-                Section = Preferences.Get("Section", "Section");
+                Section = Preferences.Get("Section", "SectionValue");
             }
 
             if (!string.IsNullOrWhiteSpace(moduleModel.Key))
             {
                 try
                 {
-                    if (Preferences.ContainsKey("quarter1", ""))
+                    if (Preferences.ContainsKey("quarter1pass"))
                     {
-                        Q1 = Preferences.Get("quarter1", "quarter1");
+                        Q1 = "quarter1";
                         moduleModel.Quarter = Q1;
                     }
                     
-                    if (Preferences.ContainsKey("quarter2", ""))
+                    if (Preferences.ContainsKey("quarter2pass"))
                     {
-                        Q2 = Preferences.Get("quarter2", "quarter2");
+                        Q2 = "quarter2";
                         moduleModel.Quarter = Q2;
                     }
 
-                    if (Preferences.ContainsKey("quarter3", ""))
+                    if (Preferences.ContainsKey("quarter3pass"))
                     {
-                        Q3 = Preferences.Get("quarter3", "quarter3");
+                        Q3 = "quarter3";
                         moduleModel.Quarter = Q3;
                     }
 
-                    if (Preferences.ContainsKey("quarter4", ""))
+                    if (Preferences.ContainsKey("quarter4pass"))
                     {
-                        Q4 = Preferences.Get("quarter4", "quarter4");
+                        Q4 = "quarter4";
                         moduleModel.Quarter = Q4;
                     }
 
@@ -95,32 +95,28 @@ namespace ESWIPE.Services.Implementations
                 moduleModel.DateCreated = date_now.ToString();
                 moduleModel.CreatedBy = TeacherName;
 
-                if (Preferences.ContainsKey("quarter1", ""))
+                if (Preferences.ContainsKey("quarter1pass"))
                 {
-                    Q1 = Preferences.Get("quarter1", "quarter1");
+                    Q1 = "quarter1";
                     moduleModel.Quarter = Q1;
-                    //moduleModel.ActiveQuarter = "Q1";
                 }
                 
-                if (Preferences.ContainsKey("quarter2", ""))
+                if (Preferences.ContainsKey("quarter2pass"))
                 {
-                    Q2 = Preferences.Get("quarter2", "quarter2");
+                    Q2 = "quarter2";
                     moduleModel.Quarter = Q2;
-                    //moduleModel.ActiveQuarter = "Q2";
                 }
                 
-                if (Preferences.ContainsKey("quarter3", ""))
+                if (Preferences.ContainsKey("quarter3pass"))
                 {
-                    Q3 = Preferences.Get("quarter3", "quarter3");
+                    Q3 = "quarter3";
                     moduleModel.Quarter = Q3;
-                    //moduleModel.ActiveQuarter = "Q3";
                 }
                 
-                if (Preferences.ContainsKey("quarter4", ""))
+                if (Preferences.ContainsKey("quarter4pass"))
                 {
-                    Q4 = Preferences.Get("quarter4", "quarter4");
+                    Q4 = "quarter4";
                     moduleModel.Quarter = Q4;
-                    //moduleModel.ActiveQuarter = "Q4";
                 }
 
                 var response = await firebase.Child(nameof(ModuleModel)).PostAsync(moduleModel);
@@ -129,48 +125,10 @@ namespace ESWIPE.Services.Implementations
 
                 if (response.Key != null)
                 {
-                    if (Preferences.ContainsKey("quarter1", ""))
-                    {
-                        Preferences.Remove("quarter1", "quarter1");
-                    }
-
-                    if (Preferences.ContainsKey("quarter2", ""))
-                    {
-                        Preferences.Remove("quarter2", "quarter2");
-                    }
-
-                    if (Preferences.ContainsKey("quarter3", ""))
-                    {
-                        Preferences.Remove("quarter3", "quarter3");
-                    }
-
-                    if (Preferences.ContainsKey("quarter4", ""))
-                    {
-                        Preferences.Remove("quarter4", "quarter4");
-                    }
                     return true;
                 }
                 else
                 {
-                    if (Preferences.ContainsKey("quarter1", ""))
-                    {
-                        Preferences.Remove("quarter1", "quarter1");
-                    }
-
-                    if (Preferences.ContainsKey("quarter2", ""))
-                    {
-                        Preferences.Remove("quarter2", "quarter2");
-                    }
-
-                    if (Preferences.ContainsKey("quarter3", ""))
-                    {
-                        Preferences.Remove("quarter3", "quarter3");
-                    }
-
-                    if (Preferences.ContainsKey("quarter4", ""))
-                    {
-                        Preferences.Remove("quarter4", "quarter4");
-                    }
                     return false;
                 }
             }
@@ -180,26 +138,6 @@ namespace ESWIPE.Services.Implementations
         {
             try
             {
-                if (Preferences.ContainsKey("Quarter1", ""))
-                {
-                    Preferences.Remove("Quarter1", "Quarter1");
-                }
-
-                if (Preferences.ContainsKey("Quarter2", ""))
-                {
-                    Preferences.Remove("Quarter2", "Quarter2");
-                }
-
-                if (Preferences.ContainsKey("Quarter3", ""))
-                {
-                    Preferences.Remove("Quarter3", "Quarter3");
-                }
-
-                if (Preferences.ContainsKey("Quarter4", ""))
-                {
-                    Preferences.Remove("Quarter4", "Quarter4");
-                }
-
                 await firebase.Child(nameof(ModuleModel)).Child(key).DeleteAsync();
                 return true;
             }
@@ -211,24 +149,24 @@ namespace ESWIPE.Services.Implementations
 
         public async Task<List<ModuleModel>> GetAllModule()
         {
-            if (Preferences.ContainsKey("Key", ""))
+            if (Preferences.ContainsKey("Key"))
             {
-                Key = Preferences.Get("Key", "Key");
+                Key = Preferences.Get("Key", "KeyValue");
             }
 
-            if (Preferences.ContainsKey("Username", ""))
+            if (Preferences.ContainsKey("Username"))
             {
-                UserName = Preferences.Get("Username", "Username");
+                UserName = Preferences.Get("Username", "UsernameValue");
             }
 
-            if (Preferences.ContainsKey("TeacherName", ""))
+            if (Preferences.ContainsKey("TeacherName"))
             {
-                TeacherName = Preferences.Get("TeacherName", "TeacherName");
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
             }
 
-            if (Preferences.ContainsKey("Section", ""))
+            if (Preferences.ContainsKey("Section"))
             {
-                Section = Preferences.Get("Section", "Section");
+                Section = Preferences.Get("Section", "SectionValue");
             }
 
             return (await firebase.Child(nameof(ModuleModel)).OnceAsync<ModuleModel>()).Where(a => a.Object.CreatedBy == TeacherName).Select(f => new ModuleModel
