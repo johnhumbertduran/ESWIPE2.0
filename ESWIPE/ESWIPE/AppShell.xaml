@@ -208,6 +208,7 @@
     </FlyoutItem>
     <FlyoutItem
         Title="Modules"
+        Route ="TeacherModule"
         Icon="icon_modules.png"
         Appearing="Module_FlyoutItem_Appearing"
         IsVisible="{Binding IsTeacher}">

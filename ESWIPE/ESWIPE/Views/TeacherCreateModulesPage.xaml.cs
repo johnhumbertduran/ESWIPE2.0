@@ -88,25 +88,25 @@ namespace ESWIPE.Views
             if (Preferences.ContainsKey("quarter1pass"))
             {
                 Preferences.Remove("quarter1pass");
-                await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
+                await Shell.Current.GoToAsync($"///{nameof(Q1ModulePage)}", false);
             }
             
             if (Preferences.ContainsKey("quarter2pass"))
             {
                 Preferences.Remove("quarter2pass");
-                await Shell.Current.GoToAsync($"//{nameof(Q2ModulePage)}");
+                await Shell.Current.GoToAsync($"///{nameof(Q2ModulePage)}", false);
             }
             
             if (Preferences.ContainsKey("quarter3pass"))
             {
                 Preferences.Remove("quarter3pass");
-                await Shell.Current.GoToAsync($"//{nameof(Q3ModulePage)}");
+                await Shell.Current.GoToAsync($"///{nameof(Q3ModulePage)}", false);
             }
             
             if (Preferences.ContainsKey("quarter4pass"))
             {
                 Preferences.Remove("quarter4pass");
-                await Shell.Current.GoToAsync($"//{nameof(Q4ModulePage)}");
+                await Shell.Current.GoToAsync($"///{nameof(Q4ModulePage)}", false);
             }
         }
     }

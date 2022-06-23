@@ -93,6 +93,7 @@ namespace ESWIPE.ViewModels
                 {
                     ModuleDetail = new ModuleModel() { };
                     await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+                    await Shell.Current.GoToAsync($"///{nameof(Q4ModulePage)}", false);
                 }
             }
             IsBusy = false;
