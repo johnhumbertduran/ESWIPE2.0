@@ -5,6 +5,10 @@
              xmlns:models="clr-namespace:ESWIPE.Models">
 
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ListView
         BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
@@ -28,11 +32,11 @@
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
-                                        Text="{Binding StudentName}"
+                                        Text="Binding StudentName}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <!--<StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:ModuleViewViewModel}}, Path=SelectedStudentCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:ModuleViewViewModel}}, Path=AddCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>-->
                             </StackLayout>
                         </Frame>

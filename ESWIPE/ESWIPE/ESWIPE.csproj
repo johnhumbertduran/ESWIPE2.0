@@ -21,6 +21,9 @@
     <Compile Update="Views\AdminSettingsPage.xaml.cs">
       <DependentUpon>AdminSettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\TeacherCreateTitlePage.xaml.cs">
+      <DependentUpon>TeacherCreateTitlePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -88,6 +91,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TeacherCreateQuizPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TeacherCreateTitlePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\TeacherModulesPage.xaml">

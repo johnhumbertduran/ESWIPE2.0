@@ -131,5 +131,11 @@ namespace ESWIPE.Views
             }
         }
 
+        private void ViewModuleButton(object sender, EventArgs e)
+        {
+            //Preferences.Set("quarter1pass", "quarter1value");
+            //await Shell.Current.GoToAsync("//ModuleViewPage");
+            Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
+        }
     }
 }
