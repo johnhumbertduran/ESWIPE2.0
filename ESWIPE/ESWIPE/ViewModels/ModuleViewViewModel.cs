@@ -12,14 +12,8 @@ namespace ESWIPE.ViewModels
 {
     public class ModuleViewViewModel : ViewModelBase
     {
-
-        #region Commands
-        public ICommand AddCommand => new Command(async () =>
+        public ModuleViewViewModel()
         {
-                    //await Shell.Current.GoToAsync($"//{nameof(TeacherCreateTitlePage)}");
-            //Application.Current.MainPage = new NavigationPage(new TeacherCreateTitlePage());
-            Application.Current.MainPage.Navigation.PopAsync(new TeacherCreateTitlePage());
-        });
-        #endregion
+        }
     }
 }

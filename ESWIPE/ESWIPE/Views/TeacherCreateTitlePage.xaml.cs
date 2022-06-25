@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace ESWIPE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TeacherCreateTitlePage : ContentView
+    public partial class TeacherCreateTitlePage : ContentPage
     {
         public TeacherCreateTitlePage()
         {

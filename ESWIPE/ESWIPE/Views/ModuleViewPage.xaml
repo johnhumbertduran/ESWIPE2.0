@@ -2,22 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESWIPE.Views.ModuleViewPage"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             x:DataType="viewmodels:ModuleViewViewModel"
              xmlns:models="clr-namespace:ESWIPE.Models">
 
+    <ContentPage.BindingContext>
+        <viewmodels:ModuleViewViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+        <ToolbarItem Text="Add" Clicked="Add_Title"/>
     </ContentPage.ToolbarItems>
 
     <ListView
         BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Students}"
-        RefreshCommand="{Binding RefreshCommand}"
-        RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>

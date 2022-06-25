@@ -16,7 +16,12 @@ namespace ESWIPE.Views
         public ModuleViewPage()
         {
             InitializeComponent();
-            BindingContext = new ModuleViewViewModel();
+        }
+
+        private void Add_Title(object sender, EventArgs e)
+        {
+            //await Shell.Current.GoToAsync($"//{nameof(TeacherCreateTitlePage)}");
+            Navigation.PushAsync(new TeacherCreateTitlePage());
         }
     }
 }
