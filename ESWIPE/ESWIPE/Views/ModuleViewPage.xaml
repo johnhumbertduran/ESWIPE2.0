@@ -4,7 +4,10 @@
              x:Class="ESWIPE.Views.ModuleViewPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:ModuleViewViewModel"
-             xmlns:models="clr-namespace:ESWIPE.Models">
+             xmlns:models="clr-namespace:ESWIPE.Models"
+             BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColor}, 
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:ModuleViewViewModel />
@@ -12,16 +15,22 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="Add_Title"/>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
 
     <ListView
         BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding ModuleList}"
+        RefreshCommand="{Binding RefreshCommand}"
+        RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:ModuleModel">
+            <DataTemplate x:DataType="models:ModuleListModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
@@ -32,7 +41,7 @@
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
-                                        Text="Binding StudentName}"
+                                        Text="{Binding Title}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <!--<StackLayout.GestureRecognizers>

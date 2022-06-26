@@ -30,6 +30,26 @@ namespace ESWIPE.Views
 
         private async void CreateModuleButton(object sender, EventArgs e)
         {
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
+            }
+
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(TeacherCreateModulesPage)}");
             //Application.Current.MainPage = new NavigationPage(new TeacherCreateModulesPage());
@@ -70,6 +90,7 @@ namespace ESWIPE.Views
                     if(ModuleData1.Quarter == Quarter1)
                     {
                         Preferences.Set("Quarter1", Quarter1);
+                        Preferences.Set("SubjectCode", ModuleData1.SubjectCode);
                     }
                 }
             }
@@ -131,11 +152,11 @@ namespace ESWIPE.Views
             }
         }
 
-        private void ViewModuleButton(object sender, EventArgs e)
+        private async void ViewModuleButton(object sender, EventArgs e)
         {
-            //Preferences.Set("quarter1pass", "quarter1value");
-            //await Shell.Current.GoToAsync("//ModuleViewPage");
-            Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
+            Preferences.Set("quarter1pass", "quarter1value");
+            await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }
 }

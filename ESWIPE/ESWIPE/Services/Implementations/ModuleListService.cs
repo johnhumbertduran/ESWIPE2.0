@@ -27,6 +27,8 @@ namespace ESWIPE.Services.Implementations
         public string Q2;
         public string Q3;
         public string Q4;
+        public string QuarterSelect;
+        public string SCode;
 
         public async Task<bool> AddorUpdateModuleList(ModuleListModel moduleListModel)
         {
@@ -117,8 +119,14 @@ namespace ESWIPE.Services.Implementations
                     Q4 = "quarter4";
                     moduleListModel.Quarter = Q4;
                 }
+                
+                if (Preferences.ContainsKey("SubjectCode"))
+                {
+                    var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                    moduleListModel.SubjectCode = SubjectCodePrep;
+                }
 
-                var response = await firebase.Child(nameof(ModuleModel)).PostAsync(moduleListModel);
+                var response = await firebase.Child(nameof(ModuleListModel)).PostAsync(moduleListModel);
                 //moduleModel.Key = response.Key;
                 //await firebase.Child(nameof(ModuleModel)).Child(moduleModel.Key).PutAsync(moduleModel);
 
@@ -168,7 +176,37 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).Where(a => a.Object.CreatedBy == TeacherName).Select(f => new ModuleListModel
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                QuarterSelect = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                QuarterSelect = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                QuarterSelect = "quarter4";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ModuleListModel
             {
                 DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,

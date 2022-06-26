@@ -137,8 +137,14 @@
         <ShellContent ContentTemplate="{DataTemplate local:SplashPage}" Route="SplashPage" />
     </TabBar>
 
+    <TabBar>
     <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateModulesPage}" Route="TeacherCreateModulesPage" />
-    
+    </TabBar>
+
+    <TabBar>
+    <ShellContent ContentTemplate="{DataTemplate local:ModuleViewPage}" Route="ModuleViewPage" />
+    </TabBar>
+
     <FlyoutItem
         Title="Admin Menu"
         Appearing="Admin_FlyoutItem_Appearing"

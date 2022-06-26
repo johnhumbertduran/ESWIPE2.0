@@ -29,6 +29,26 @@ namespace ESWIPE.Views
 
         private async void CreateModuleButton(object sender, EventArgs e)
         {
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
+            }
+
             Preferences.Set("quarter2pass", "quarter2value");
             await Shell.Current.GoToAsync($"//{nameof(TeacherCreateModulesPage)}");
             //Application.Current.MainPage = new NavigationPage(new TeacherCreateModulesPage());
@@ -130,5 +150,10 @@ namespace ESWIPE.Views
             }
         }
 
+        private async void ViewModuleButton(object sender, EventArgs e)
+        {
+            Preferences.Set("quarter2pass", "quarter2value");
+            await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
+        }
     }
 }
