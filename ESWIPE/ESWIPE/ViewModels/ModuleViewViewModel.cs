@@ -14,7 +14,7 @@ namespace ESWIPE.ViewModels
 {
     class ModuleViewViewModel : ViewModelBase
     {
-        #region Properties
+        //#region Properties
         private bool _isRefreshing;
         public bool IsRefreshing
         {
@@ -22,77 +22,159 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _isRefreshing, value);
         }
 
-        private readonly IModuleListService _moduleListService;
-        public ObservableCollection<ModuleListModel> ModuleList { get; set; } = new ObservableCollection<ModuleListModel>();
-        #endregion
+        //private readonly IModuleListService _moduleListService;
+        //public ObservableCollection<ModuleListModel> ModuleList { get; set; } = new ObservableCollection<ModuleListModel>();
+        //#endregion
 
         #region Constructor
         public ModuleViewViewModel()
         {
             //Title = "Teacher's Data";
-            _moduleListService = DependencyService.Resolve<IModuleListService>();
+            //_moduleListService = DependencyService.Resolve<IModuleListService>();
             IsRefreshing = true;
-            GetAllModuleList();
+            //GetAllModuleList();
         }
         #endregion
 
-        #region Methods
-        private void GetAllModuleList()
-        {
-            IsBusy = true;
-            Task.Run(async () =>
-            {
-                var moduleLists = await _moduleListService.GetAllModuleList();
+        //#region Methods
+        //private void GetAllModuleList()
+        //{
+        //    IsBusy = true;
 
-                Device.BeginInvokeOnMainThread(() =>
-                {
+        //    if (Preferences.ContainsKey("quarter1pass"))
+        //    {
+                
+        //        Task.Run(async () =>
+        //        {
+        //            var moduleLists = await _moduleListService.GetAllModuleListQ1();
 
-                    ModuleList.Clear();
-                    if (moduleLists?.Count > 0)
-                    {
-                        foreach (var moduleList in moduleLists)
-                        {
-                            ModuleList.Add(moduleList);
-                        }
-                    }
-                    IsBusy = IsRefreshing = false;
-                });
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
 
-            });
-        }
-        #endregion
+        //                ModuleList.Clear();
+        //                if (moduleLists?.Count > 0)
+        //                {
+        //                    foreach (var moduleList in moduleLists)
+        //                    {
+        //                        ModuleList.Add(moduleList);
+        //                    }
+        //                }
+        //                IsBusy = IsRefreshing = false;
+        //            });
 
-        #region Commands
-
-        public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
-        {
-            IsRefreshing = true;
-            GetAllModuleList();
-        });
+        //        });
+        //    }
 
 
-        public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
-        {
-            if (moduleList != null)
-            {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
+        //    if (Preferences.ContainsKey("quarter2pass"))
+        //    {
+                
+        //        Task.Run(async () =>
+        //        {
+        //            var moduleLists = await _moduleListService.GetAllModuleListQ2();
 
-                if (response == "Update Module")
-                {
-                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateTitlePage(moduleList));
-                }
-                else if (response == "Delete Module")
-                {
-                    IsBusy = true;
-                    bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
-                    if (deleteResponse)
-                    {
-                        GetAllModuleList();
-                    }
-                }
-            }
-        });
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
 
-        #endregion
+        //                ModuleList.Clear();
+        //                if (moduleLists?.Count > 0)
+        //                {
+        //                    foreach (var moduleList in moduleLists)
+        //                    {
+        //                        ModuleList.Add(moduleList);
+        //                    }
+        //                }
+        //                IsBusy = IsRefreshing = false;
+        //            });
+
+        //        });
+        //    }
+
+
+        //    if (Preferences.ContainsKey("quarter3pass"))
+        //    {
+                
+        //        Task.Run(async () =>
+        //        {
+        //            var moduleLists = await _moduleListService.GetAllModuleListQ3();
+
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
+
+        //                ModuleList.Clear();
+        //                if (moduleLists?.Count > 0)
+        //                {
+        //                    foreach (var moduleList in moduleLists)
+        //                    {
+        //                        ModuleList.Add(moduleList);
+        //                    }
+        //                }
+        //                IsBusy = IsRefreshing = false;
+        //            });
+
+        //        });
+        //    }
+
+
+        //     if (Preferences.ContainsKey("quarter4pass"))
+        //    {
+                
+        //        Task.Run(async () =>
+        //        {
+        //            var moduleLists = await _moduleListService.GetAllModuleListQ4();
+
+        //            Device.BeginInvokeOnMainThread(() =>
+        //            {
+
+        //                ModuleList.Clear();
+        //                if (moduleLists?.Count > 0)
+        //                {
+        //                    foreach (var moduleList in moduleLists)
+        //                    {
+        //                        ModuleList.Add(moduleList);
+        //                    }
+        //                }
+        //                IsBusy = IsRefreshing = false;
+        //            });
+
+        //        });
+        //    }
+
+            
+        //}
+        //#endregion
+
+        //#region Commands
+
+        //public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
+        //{
+        //    IsRefreshing = true;
+        //    GetAllModuleList();
+        //});
+
+
+        //public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
+        //{
+        //    if (moduleList != null)
+        //    {
+        //        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
+
+        //        if (response == "Update Module")
+        //        {
+        //            await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateTitlePage(moduleList));
+        //        }
+        //        else if (response == "Delete Module")
+        //        {
+        //            IsBusy = true;
+        //            bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
+        //            if (deleteResponse)
+        //            {
+        //                GetAllModuleList();
+        //            }
+        //        }
+        //    }
+        //});
+
+        //#endregion
     }
 }

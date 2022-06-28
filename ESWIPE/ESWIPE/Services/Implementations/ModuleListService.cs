@@ -216,5 +216,206 @@ namespace ESWIPE.Services.Implementations
                 Key = f.Key
             }).ToList();
         }
+
+
+        public async Task<List<ModuleListModel>> GetAllModuleListQ1()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ModuleListModel
+            {
+                DateCreated = f.Object.DateCreated,
+                CreatedBy = f.Object.CreatedBy,
+                Quarter = f.Object.Quarter,
+                Title = f.Object.Title,
+                SubjectCode = f.Object.SubjectCode,
+                Key = f.Key
+            }).ToList();
+        }
+
+        
+
+        public async Task<List<ModuleListModel>> GetAllModuleListQ2()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ModuleListModel
+            {
+                DateCreated = f.Object.DateCreated,
+                CreatedBy = f.Object.CreatedBy,
+                Quarter = f.Object.Quarter,
+                Title = f.Object.Title,
+                SubjectCode = f.Object.SubjectCode,
+                Key = f.Key
+            }).ToList();
+        }
+
+        
+
+        public async Task<List<ModuleListModel>> GetAllModuleListQ3()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ModuleListModel
+            {
+                DateCreated = f.Object.DateCreated,
+                CreatedBy = f.Object.CreatedBy,
+                Quarter = f.Object.Quarter,
+                Title = f.Object.Title,
+                SubjectCode = f.Object.SubjectCode,
+                Key = f.Key
+            }).ToList();
+        }
+
+        
+
+        public async Task<List<ModuleListModel>> GetAllModuleListQ4()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter4";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ModuleListModel)).OnceAsync<ModuleListModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ModuleListModel
+            {
+                DateCreated = f.Object.DateCreated,
+                CreatedBy = f.Object.CreatedBy,
+                Quarter = f.Object.Quarter,
+                Title = f.Object.Title,
+                SubjectCode = f.Object.SubjectCode,
+                Key = f.Key
+            }).ToList();
+        }
+
+
     }
 }
