@@ -14,7 +14,7 @@ namespace ESWIPE.ViewModels
 {
     class ModuleViewViewModel : ViewModelBase
     {
-        //#region Properties
+        #region Properties
         private bool _isRefreshing;
         public bool IsRefreshing
         {
@@ -22,135 +22,178 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _isRefreshing, value);
         }
 
-        //private readonly IModuleListService _moduleListService;
-        //public ObservableCollection<ModuleListModel> ModuleList { get; set; } = new ObservableCollection<ModuleListModel>();
-        //#endregion
+        private readonly IModuleListService _moduleListService;
+        public ObservableCollection<ModuleListModel> ModuleList { get; set; } = new ObservableCollection<ModuleListModel>();
+        #endregion
 
         #region Constructor
         public ModuleViewViewModel()
         {
-            //Title = "Teacher's Data";
-            //_moduleListService = DependencyService.Resolve<IModuleListService>();
+            Title = "Teacher's Data";
+            _moduleListService = DependencyService.Resolve<IModuleListService>();
             IsRefreshing = true;
-            //GetAllModuleList();
+            
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                GetAllModuleList1();
+                IsBusy = false;
+                IsRefreshing = false;
+            }
+            
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                GetAllModuleList2();
+                IsBusy = false;
+                IsRefreshing = false;
+            }
+            
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                GetAllModuleList3();
+                IsBusy = false;
+                IsRefreshing = false;
+            }
+            
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                GetAllModuleList4();
+                IsBusy = false;
+                IsRefreshing = false;
+            }
+
         }
         #endregion
 
-        //#region Methods
-        //private void GetAllModuleList()
-        //{
-        //    IsBusy = true;
+        #region Methods
+        private void GetAllModuleList1()
+        {
+            IsBusy = true;
 
-        //    if (Preferences.ContainsKey("quarter1pass"))
-        //    {
-                
-        //        Task.Run(async () =>
-        //        {
-        //            var moduleLists = await _moduleListService.GetAllModuleListQ1();
+                Task.Run(async () =>
+                {
+                    var moduleList1 = await _moduleListService.GetAllModuleListQ1();
 
-        //            Device.BeginInvokeOnMainThread(() =>
-        //            {
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
 
-        //                ModuleList.Clear();
-        //                if (moduleLists?.Count > 0)
-        //                {
-        //                    foreach (var moduleList in moduleLists)
-        //                    {
-        //                        ModuleList.Add(moduleList);
-        //                    }
-        //                }
-        //                IsBusy = IsRefreshing = false;
-        //            });
+                        ModuleList.Clear();
+                        if (moduleList1?.Count > 0)
+                        {
+                            foreach (var moduleList in moduleList1)
+                            {
+                                ModuleList.Add(moduleList);
+                            }
+                        }
+                        IsBusy = false;
+                        IsRefreshing = false;
+                    });
+                });
+        }
 
-        //        });
-        //    }
+        private void GetAllModuleList2()
+        {
+            IsBusy = true;
+
+                Task.Run(async () =>
+                {
+                    var moduleList2 = await _moduleListService.GetAllModuleListQ2();
+
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+
+                        ModuleList.Clear();
+                        if (moduleList2?.Count > 0)
+                        {
+                            foreach (var moduleList in moduleList2)
+                            {
+                                ModuleList.Add(moduleList);
+                            }
+                        }
+                        IsBusy = false;
+                        IsRefreshing = false;
+                    });
+                });
+        }
+
+        private void GetAllModuleList3()
+        {
+            IsBusy = true;
+
+                Task.Run(async () =>
+                {
+                    var moduleList3 = await _moduleListService.GetAllModuleListQ3();
+
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+
+                        ModuleList.Clear();
+                        if (moduleList3?.Count > 0)
+                        {
+                            foreach (var moduleList in moduleList3)
+                            {
+                                ModuleList.Add(moduleList);
+                            }
+                        }
+                        IsBusy = false;
+                        IsRefreshing = false;
+                    });
+                  });
+        }
+
+        private void GetAllModuleList4()
+        {
+            IsBusy = true;
+
+                Task.Run(async () =>
+                {
+                    var moduleLists = await _moduleListService.GetAllModuleListQ4();
+
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+
+                        ModuleList.Clear();
+                        if (moduleLists?.Count > 0)
+                        {
+                            foreach (var moduleList in moduleLists)
+                            {
+                                ModuleList.Add(moduleList);
+                            }
+                        }
+                        IsBusy = false;
+                        IsRefreshing = false;
+                    });
+                });
+        }
 
 
-        //    if (Preferences.ContainsKey("quarter2pass"))
-        //    {
-                
-        //        Task.Run(async () =>
-        //        {
-        //            var moduleLists = await _moduleListService.GetAllModuleListQ2();
+        #endregion
 
-        //            Device.BeginInvokeOnMainThread(() =>
-        //            {
+        #region Commands
 
-        //                ModuleList.Clear();
-        //                if (moduleLists?.Count > 0)
-        //                {
-        //                    foreach (var moduleList in moduleLists)
-        //                    {
-        //                        ModuleList.Add(moduleList);
-        //                    }
-        //                }
-        //                IsBusy = IsRefreshing = false;
-        //            });
+        public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
+        {
+            IsRefreshing = true;
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                GetAllModuleList1();
+            }
 
-        //        });
-        //    }
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                GetAllModuleList2();
+            }
 
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                GetAllModuleList3();
+            }
 
-        //    if (Preferences.ContainsKey("quarter3pass"))
-        //    {
-                
-        //        Task.Run(async () =>
-        //        {
-        //            var moduleLists = await _moduleListService.GetAllModuleListQ3();
-
-        //            Device.BeginInvokeOnMainThread(() =>
-        //            {
-
-        //                ModuleList.Clear();
-        //                if (moduleLists?.Count > 0)
-        //                {
-        //                    foreach (var moduleList in moduleLists)
-        //                    {
-        //                        ModuleList.Add(moduleList);
-        //                    }
-        //                }
-        //                IsBusy = IsRefreshing = false;
-        //            });
-
-        //        });
-        //    }
-
-
-        //     if (Preferences.ContainsKey("quarter4pass"))
-        //    {
-                
-        //        Task.Run(async () =>
-        //        {
-        //            var moduleLists = await _moduleListService.GetAllModuleListQ4();
-
-        //            Device.BeginInvokeOnMainThread(() =>
-        //            {
-
-        //                ModuleList.Clear();
-        //                if (moduleLists?.Count > 0)
-        //                {
-        //                    foreach (var moduleList in moduleLists)
-        //                    {
-        //                        ModuleList.Add(moduleList);
-        //                    }
-        //                }
-        //                IsBusy = IsRefreshing = false;
-        //            });
-
-        //        });
-        //    }
-
-            
-        //}
-        //#endregion
-
-        //#region Commands
-
-        //public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
-        //{
-        //    IsRefreshing = true;
-        //    GetAllModuleList();
-        //});
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                GetAllModuleList4();
+            }
+        });
 
 
         //public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
@@ -169,12 +212,30 @@ namespace ESWIPE.ViewModels
         //            bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
         //            if (deleteResponse)
         //            {
-        //                GetAllModuleList();
+        //                if (Preferences.ContainsKey("quarter1pass"))
+        //                {
+        //                    GetAllModuleList1();
+        //                }
+
+        //                if (Preferences.ContainsKey("quarter2pass"))
+        //                {
+        //                    GetAllModuleList2();
+        //                }
+
+        //                if (Preferences.ContainsKey("quarter3pass"))
+        //                {
+        //                    GetAllModuleList3();
+        //                }
+
+        //                if (Preferences.ContainsKey("quarter4pass"))
+        //                {
+        //                    GetAllModuleList4();
+        //                }
         //            }
         //        }
         //    }
         //});
 
-        //#endregion
+        #endregion
     }
 }

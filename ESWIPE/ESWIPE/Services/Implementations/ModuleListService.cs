@@ -290,7 +290,7 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            if (Preferences.ContainsKey("quarter1pass"))
+            if (Preferences.ContainsKey("quarter2pass"))
             {
                 QuarterSelect = "quarter2";
             }
@@ -340,7 +340,7 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            if (Preferences.ContainsKey("quarter1pass"))
+            if (Preferences.ContainsKey("quarter3pass"))
             {
                 QuarterSelect = "quarter3";
             }
@@ -390,7 +390,7 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            if (Preferences.ContainsKey("quarter1pass"))
+            if (Preferences.ContainsKey("quarter4pass"))
             {
                 QuarterSelect = "quarter4";
             }
