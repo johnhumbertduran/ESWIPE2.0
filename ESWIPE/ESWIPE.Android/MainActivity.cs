@@ -12,11 +12,20 @@ namespace ESWIPE.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            //Start Rich Text Editor
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+            //End Rich Text Editor
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+
+            //Start Rich Text Editor
+            Window.SetSoftInputMode(Android.Views.SoftInput.AdjustResize);
+            //End Rich Text Editor
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

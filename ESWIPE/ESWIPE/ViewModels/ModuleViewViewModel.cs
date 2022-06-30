@@ -196,45 +196,49 @@ namespace ESWIPE.ViewModels
         });
 
 
-        //public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
-        //{
-        //    if (moduleList != null)
-        //    {
-        //        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
+        public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
+        {
+            if (moduleList != null)
+            {
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Title", "Delete Title", "View Content");
 
-        //        if (response == "Update Module")
-        //        {
-        //            await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateTitlePage(moduleList));
-        //        }
-        //        else if (response == "Delete Module")
-        //        {
-        //            IsBusy = true;
-        //            bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
-        //            if (deleteResponse)
-        //            {
-        //                if (Preferences.ContainsKey("quarter1pass"))
-        //                {
-        //                    GetAllModuleList1();
-        //                }
+                if (response == "Update Title")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateTitlePage(moduleList));
+                }
+                else if (response == "Delete Title")
+                {
+                    IsBusy = true;
+                    bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
+                    if (deleteResponse)
+                    {
+                        if (Preferences.ContainsKey("quarter1pass"))
+                        {
+                            GetAllModuleList1();
+                        }
 
-        //                if (Preferences.ContainsKey("quarter2pass"))
-        //                {
-        //                    GetAllModuleList2();
-        //                }
+                        if (Preferences.ContainsKey("quarter2pass"))
+                        {
+                            GetAllModuleList2();
+                        }
 
-        //                if (Preferences.ContainsKey("quarter3pass"))
-        //                {
-        //                    GetAllModuleList3();
-        //                }
+                        if (Preferences.ContainsKey("quarter3pass"))
+                        {
+                            GetAllModuleList3();
+                        }
 
-        //                if (Preferences.ContainsKey("quarter4pass"))
-        //                {
-        //                    GetAllModuleList4();
-        //                }
-        //            }
-        //        }
-        //    }
-        //});
+                        if (Preferences.ContainsKey("quarter4pass"))
+                        {
+                            GetAllModuleList4();
+                        }
+                    }
+                }
+                else if (response == "View Content")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new TitleContentViewPage());
+                }
+            }
+        });
 
         #endregion
     }

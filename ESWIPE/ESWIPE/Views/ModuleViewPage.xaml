@@ -44,9 +44,9 @@
                                         Text="{Binding Title}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
-                                <!--<StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:ModuleViewViewModel}}, Path=AddCommand}" CommandParameter="{Binding .}"/>
-                                </StackLayout.GestureRecognizers>-->
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:ModuleViewViewModel}}, Path=SelectedModuleListCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
                     </Grid>

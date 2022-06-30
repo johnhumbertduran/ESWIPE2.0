@@ -63,7 +63,11 @@ namespace ESWIPE.ViewModels
             _moduleListService = DependencyService.Resolve<IModuleListService>();
             ModuleListDetail = new ModuleListModel
             {
+                DateCreated = moduleListResponse.DateCreated,
+                CreatedBy = moduleListResponse.CreatedBy,
+                Quarter = moduleListResponse.Quarter,
                 Title = moduleListResponse.Title,
+                SubjectCode = moduleListResponse.SubjectCode,
                 Key = moduleListResponse.Key
             };
         }

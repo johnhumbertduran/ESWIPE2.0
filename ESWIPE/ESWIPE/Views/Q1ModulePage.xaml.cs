@@ -106,6 +106,26 @@ namespace ESWIPE.Views
                 Q1ViewModule.IsVisible = false;
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
+            }
+
         }
 
         //Read All Modules

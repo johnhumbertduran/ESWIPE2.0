@@ -15,6 +15,9 @@ namespace ESWIPE
     {
         public App()
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjY1MDg2QDMyMzAyZTMyMmUzMGppMmljVlY1cEVwdEtXRGtNSkM2M0dFVlhJOGVMTVhISllON09RWVcvNDg9");
+
             InitializeComponent();
 
             //DependencyService.Register<MockDataStore>();
