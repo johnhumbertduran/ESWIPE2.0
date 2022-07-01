@@ -9,7 +9,9 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <richtexteditor:SfRichTextEditor VerticalOptions="FillAndExpand" Text= "The rich text editor component is WYSIWYG editor that provides the best user experience to create and update the content" />
+            <richtexteditor:SfRichTextEditor VerticalOptions="FillAndExpand" x:Name="RTE" HeightRequest="200" />
+            <Button Text="Generate Document" Clicked="OnButtonClicked" HorizontalOptions="Center"/>
+            <Editor x:Name="editor" HeightRequest="100"></Editor>
         </StackLayout>
     </ContentPage.Content>
     
