@@ -80,15 +80,16 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            var ModuleData1 = await GetModule(TeacherName);
+            var ModuleData4 = await GetModule(TeacherName);
 
-            if (ModuleData1 != null)
+            if (ModuleData4 != null)
             {
-                if (TeacherName == ModuleData1.CreatedBy)
+                if (TeacherName == ModuleData4.CreatedBy)
                 {
-                    if (ModuleData1.Quarter == Quarter4)
+                    if (ModuleData4.Quarter == Quarter4)
                     {
                         Preferences.Set("Quarter4", Quarter4);
+                        Preferences.Set("SubjectCode", ModuleData4.SubjectCode);
                     }
                 }
             }

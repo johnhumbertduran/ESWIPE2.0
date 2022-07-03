@@ -89,6 +89,7 @@ namespace ESWIPE.Views
                     if (ModuleData2.Quarter == Quarter2)
                     {
                         Preferences.Set("Quarter2", Quarter2);
+                        Preferences.Set("SubjectCode", ModuleData2.SubjectCode);
                     }
                 }
             }

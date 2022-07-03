@@ -12,6 +12,8 @@ using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
+using Firebase.Database;
 
 namespace ESWIPE.Views
 {
@@ -22,6 +24,7 @@ namespace ESWIPE.Views
         public string UserName;
         public string TeacherName;
         public string Section;
+        public string quarters;
         
 
         public ModuleViewPage()
@@ -35,7 +38,9 @@ namespace ESWIPE.Views
             Navigation.PushAsync(new TeacherCreateTitlePage());
         }
 
-        protected override void OnAppearing()
+        public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -61,9 +66,23 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            var ModuleData1 = await GetTitle(Title);
+
             if (Preferences.ContainsKey("quarter1pass"))
             {
                 Title = "Quarter 1";
+                
+
+                if (ModuleData1 != null)
+                {
+                    if (TeacherName == ModuleData1.CreatedBy)
+                    {
+                        if (ModuleData1.Quarter == Quarter1)
+                        {
+                            Preferences.Set("SubjectCode", ModuleData1.SubjectCode);
+                        }
+                    }
+                }
             }
 
             if (Preferences.ContainsKey("quarter2pass"))
@@ -112,6 +131,48 @@ namespace ESWIPE.Views
         }
 
 
+        //Read All Title
+        public static async Task<List<ModuleListModel>> GetAllTitles()
+        {
+            try
+            {
+                var modulelist = (await firebase
+                .Child("ModuleListModel")
+                .OnceAsync<ModuleListModel>()).Select(item =>
+                new ModuleListModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    Title = item.Object.Title,
+                }).ToList();
+                return modulelist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read title
+        public static async Task<ModuleListModel> GetTitle(string createdby)
+        {
+            quarters = "quarter1";
+            try
+            {
+                var allTitle = await GetAllTitles();
+                await firebase.Child("ModuleListModel").OnceAsync<ModuleListModel>();
+                return allTitle.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == quarters).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
 
     }
 }
