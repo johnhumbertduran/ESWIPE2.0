@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ESWIPE.Views;
 
 namespace ESWIPE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TemporaryIndexPage : ContentPage
+    public partial class CheckContent : ContentPage
     {
-        public TemporaryIndexPage()
+        public CheckContent()
         {
             InitializeComponent();
         }

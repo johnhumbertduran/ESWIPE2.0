@@ -8,7 +8,6 @@ using ESWIPE.Services.Implementations;
 using ESWIPE.Services.Interfaces;
 using System.Windows.Input;
 using Xamarin.Forms;
-using ESWIPE.Views;
 
 namespace ESWIPE.ViewModels
 {

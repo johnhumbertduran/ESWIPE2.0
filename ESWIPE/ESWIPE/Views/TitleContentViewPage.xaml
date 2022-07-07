@@ -2,19 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESWIPE.Views.TitleContentViewPage"
+             xmlns:models="clr-namespace:ESWIPE.Models"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             x:DataType="viewmodels:TitleContentViewViewModel"
              xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
                         Light={StaticResource WindowBackgroundColorDark}}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:TitleContentViewViewModel />
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout>
-            <richtexteditor:SfRichTextEditor VerticalOptions="FillAndExpand" x:Name="RTE" HeightRequest="200" />
-            <Button Text="Generate Document" Clicked="OnButtonClicked" HorizontalOptions="Center"/>
-            <Editor x:Name="editor" HeightRequest="100"></Editor>
+            <richtexteditor:SfRichTextEditor x:Name="rte" 
+                                             HeightRequest="200" 
+                                             Text="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
+                                             DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                             HorizontalOptions="FillAndExpand"></richtexteditor:SfRichTextEditor>
+            <!--<Entry
+                                        Margin="30,10,35,5"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Test Sample"
+                                        Text="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColor},Light={StaticResource TextColorDark}}" />-->
+            <Button Text="Store" Command="{Binding SaveContentCommand}"/>
+            <Button Text="check" Clicked="CheckContent"/>
+
+            
         </StackLayout>
     </ContentPage.Content>
-    
-    
-    
+
+
+    <!--<ScrollView
+        Grid.Column="1"
+        Content="{Binding ContentDetail.TitleContent}"
+        HorizontalScrollBarVisibility="Never"
+        IsEnabled="False"
+        Orientation="Horizontal">
+        
+    </ScrollView>-->
+
+
 </ContentPage>

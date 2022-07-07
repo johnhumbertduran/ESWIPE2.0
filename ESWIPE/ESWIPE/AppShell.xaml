@@ -144,6 +144,10 @@
     <TabBar>
     <ShellContent ContentTemplate="{DataTemplate local:ModuleViewPage}" Route="ModuleViewPage" />
     </TabBar>
+    
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:CheckContent}" Route="CheckContent" />
+    </TabBar>
 
     <FlyoutItem
         Title="Admin Menu"

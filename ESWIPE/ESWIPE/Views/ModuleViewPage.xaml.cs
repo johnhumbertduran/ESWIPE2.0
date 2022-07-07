@@ -24,8 +24,8 @@ namespace ESWIPE.Views
         public string UserName;
         public string TeacherName;
         public string Section;
-        public string quarters;
-        
+        public string Quarters;
+
 
         public ModuleViewPage()
         {
@@ -66,18 +66,37 @@ namespace ESWIPE.Views
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            var ModuleData1 = await GetTitle(Title);
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+            
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+            
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+            
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
+            var ModuleData1 = await GetTitle(TeacherName, Quarters);
 
             if (Preferences.ContainsKey("quarter1pass"))
             {
                 Title = "Quarter 1";
-                
 
                 if (ModuleData1 != null)
                 {
                     if (TeacherName == ModuleData1.CreatedBy)
                     {
-                        if (ModuleData1.Quarter == Quarter1)
+                        if (ModuleData1.Quarter == Quarters)
                         {
                             Preferences.Set("SubjectCode", ModuleData1.SubjectCode);
                         }
@@ -158,14 +177,13 @@ namespace ESWIPE.Views
         }
 
         //Read title
-        public static async Task<ModuleListModel> GetTitle(string createdby)
+        public static async Task<ModuleListModel> GetTitle(string createdby, string quarter)
         {
-            quarters = "quarter1";
             try
             {
                 var allTitle = await GetAllTitles();
                 await firebase.Child("ModuleListModel").OnceAsync<ModuleListModel>();
-                return allTitle.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == quarters).FirstOrDefault();
+                return allTitle.Where(a => a.CreatedBy == createdby).Where(a => a.Quarter == quarter).FirstOrDefault();
             }
             catch (Exception e)
             {

@@ -20,6 +20,7 @@ namespace ESWIPE
             Routing.RegisterRoute(nameof(Q3ModulePage), typeof(Q3ModulePage));
             Routing.RegisterRoute(nameof(Q4ModulePage), typeof(Q4ModulePage));
             Routing.RegisterRoute(nameof(ModuleViewPage), typeof(ModuleViewPage));
+            Routing.RegisterRoute(nameof(CheckContent), typeof(CheckContent));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

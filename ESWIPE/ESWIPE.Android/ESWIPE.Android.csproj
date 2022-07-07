@@ -74,6 +74,9 @@
     <PackageReference Include="FirebaseDatabase.net">
       <Version>4.0.7</Version>
     </PackageReference>
+    <PackageReference Include="FirebaseStorage.net">
+      <Version>1.0.3</Version>
+    </PackageReference>
     <PackageReference Include="MonkeyCache.FileStore">
       <Version>1.6.2</Version>
     </PackageReference>
@@ -88,6 +91,9 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor">
       <Version>20.2.0.36</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.2</Version>
