@@ -11,14 +11,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using System.IO;
+using Syncfusion.DocIO.DLS;
 
 namespace ESWIPE.Services.Implementations
 {
     public class ContentService : IContentService
     {
-        readonly FirebaseClient firebase = new FirebaseClient(Settings.FireBaseDatabaseUrl, new FirebaseOptions
+        readonly FirebaseClient firebase = new FirebaseClient(Models.Settings.FireBaseDatabaseUrl, new FirebaseOptions
         {
-            AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
+            AuthTokenAsyncFactory = () => Task.FromResult(Models.Settings.FireBaseSecret)
         });
 
         public string Key;
@@ -32,7 +33,11 @@ namespace ESWIPE.Services.Implementations
         public string QuarterSelect;
         public string SCode;
         public string MTitle;
+
         public string RTE;
+
+
+
 
         public async Task<bool> AddorUpdateContent(ContentModel contentModel)
         {
@@ -123,6 +128,12 @@ namespace ESWIPE.Services.Implementations
                     Q4 = "quarter4";
                     contentModel.Quarter = Q4;
                 }
+
+
+                if (Preferences.ContainsKey("RTEContent"))
+                {
+                    RTE = Preferences.Get("RTEContent", "RTEValue");
+                }
                 //contentModel.Quarter = "test";
                 //if (Preferences.ContainsKey("SubjectCode"))
                 //{
@@ -130,8 +141,34 @@ namespace ESWIPE.Services.Implementations
                 //    contentModel.SubjectCode = SubjectCodePrep;
                 //}
 
+                //byte[] data = Encoding.ASCII.GetBytes(RTE);
+                //MemoryStream outputStream = new MemoryStream(data, 0, data.Length);
+                ////await StoreRTEToTextFormat(outputStream);
+
+                //StreamReader reader = new StreamReader(outputStream);
+                //string outputStreamText = reader.ReadToEnd();
+
+                var htmlStream = new MemoryStream();
+                var writer = new StreamWriter(htmlStream, Encoding.UTF8);
+                writer.Write(RTE);
+                writer.Flush();
+                htmlStream.Position = 0;
+                // Creates a Word document using the RTE HTML
+                WordDocument document = new WordDocument(htmlStream, Syncfusion.DocIO.FormatType.Html, XHTMLValidationType.None);
+                MemoryStream rtfStream = new MemoryStream();
+                document.SaveOptions.OptimizeRtfFileSize = true;
+                // Save the Word document as RTF
+                document.Save(rtfStream, Syncfusion.DocIO.FormatType.Rtf);
+                rtfStream.Position = 0;
+                // Retrieving RTF stream as string
+                string rtfString = System.Text.Encoding.UTF8.GetString(rtfStream.ToArray());
+                rtfStream.Dispose();
+                document.Close();
+
+                contentModel.TitleContent = rtfString;
                 var response = await firebase.Child(nameof(ContentModel)).PostAsync(contentModel);
 
+                Preferences.Remove("RTEContent");
                 //Preferences.Remove("RTEContent");
                 if (response.Key != null)
                 {
@@ -208,12 +245,13 @@ namespace ESWIPE.Services.Implementations
             return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
                 Select(f => new ContentModel
                 {
-                    DateCreated = f.Object.DateCreated,
-                    CreatedBy = f.Object.CreatedBy,
-                    Quarter = f.Object.Quarter,
-                    Title = f.Object.Title,
-                    SubjectCode = f.Object.SubjectCode,
-                    Key = f.Key
+                    //DateCreated = f.Object.DateCreated,
+                    //CreatedBy = f.Object.CreatedBy,
+                    //Quarter = f.Object.Quarter,
+                    //Title = f.Object.Title,
+                    TitleContent = f.Object.TitleContent
+                    //SubjectCode = f.Object.SubjectCode,
+                    //Key = f.Key
                 }).ToList();
         }
 

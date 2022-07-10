@@ -16,7 +16,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <richtexteditor:SfRichTextEditor x:Name="rte" 
+            <richtexteditor:SfRichTextEditor x:Name="Rte" 
                                              HeightRequest="200" 
                                              Text="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"

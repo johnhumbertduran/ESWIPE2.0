@@ -4,30 +4,48 @@
              x:Class="ESWIPE.Views.CheckContent"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Checking"
-             BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColorDark}, 
-                        Light={StaticResource WindowBackgroundColor}}">
+             x:DataType="viewmodels:CheckContentViewModel"
+             Title="Checking">
 
+
+    <ContentPage.BindingContext>
+        <viewmodels:CheckContentViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Button"/>
+    </ContentPage.ToolbarItems>
 
     <ListView
-                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+        BackgroundColor="Transparent"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
+        x:Name="myListView"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Content}"
+        ItemsSource="{Binding Contents}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
+
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="models:ContentModel">
                 <ViewCell>
-                    <Grid>
-                    <StackLayout>
-                        <Label Text="{Binding TitleContent}"
-                                       TextColor="Black"/>
-                    </StackLayout>
+                    <!--<ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>-->
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center" x:Name="stack">
+                                    <Label
+                                        FontSize="Small"
+                                        x:Name="rte"
+                                        Text="{Binding TitleContent}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
                     </Grid>
                 </ViewCell>
             </DataTemplate>
