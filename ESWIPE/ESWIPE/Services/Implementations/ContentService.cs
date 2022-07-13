@@ -129,11 +129,18 @@ namespace ESWIPE.Services.Implementations
                     contentModel.Quarter = Q4;
                 }
 
-
-                if (Preferences.ContainsKey("RTEContent"))
+                if (Preferences.ContainsKey("SubjectCode"))
                 {
-                    RTE = Preferences.Get("RTEContent", "RTEValue");
+                    var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                    contentModel.SubjectCode = SubjectCodePrep;
                 }
+                
+                //contentModel.SubjectCode = "Test Code";
+
+                //if (Preferences.ContainsKey("RTEContent"))
+                //{
+                //    RTE = Preferences.Get("RTEContent", "RTEValue");
+                //}
                 //contentModel.Quarter = "test";
                 //if (Preferences.ContainsKey("SubjectCode"))
                 //{
@@ -148,27 +155,27 @@ namespace ESWIPE.Services.Implementations
                 //StreamReader reader = new StreamReader(outputStream);
                 //string outputStreamText = reader.ReadToEnd();
 
-                var htmlStream = new MemoryStream();
-                var writer = new StreamWriter(htmlStream, Encoding.UTF8);
-                writer.Write(RTE);
-                writer.Flush();
-                htmlStream.Position = 0;
-                // Creates a Word document using the RTE HTML
-                WordDocument document = new WordDocument(htmlStream, Syncfusion.DocIO.FormatType.Html, XHTMLValidationType.None);
-                MemoryStream rtfStream = new MemoryStream();
-                document.SaveOptions.OptimizeRtfFileSize = true;
-                // Save the Word document as RTF
-                document.Save(rtfStream, Syncfusion.DocIO.FormatType.Rtf);
-                rtfStream.Position = 0;
-                // Retrieving RTF stream as string
-                string rtfString = System.Text.Encoding.UTF8.GetString(rtfStream.ToArray());
-                rtfStream.Dispose();
-                document.Close();
+                //var htmlStream = new MemoryStream();
+                //var writer = new StreamWriter(htmlStream, Encoding.UTF8);
+                //writer.Write(RTE);
+                //writer.Flush();
+                //htmlStream.Position = 0;
+                //// Creates a Word document using the RTE HTML
+                //WordDocument document = new WordDocument(htmlStream, Syncfusion.DocIO.FormatType.Html, XHTMLValidationType.None);
+                //MemoryStream rtfStream = new MemoryStream();
+                //document.SaveOptions.OptimizeRtfFileSize = true;
+                //// Save the Word document as RTF
+                //document.Save(rtfStream, Syncfusion.DocIO.FormatType.Rtf);
+                //rtfStream.Position = 0;
+                //// Retrieving RTF stream as string
+                //string rtfString = System.Text.Encoding.UTF8.GetString(rtfStream.ToArray());
+                //rtfStream.Dispose();
+                //document.Close();
 
-                contentModel.TitleContent = rtfString;
+                //contentModel.TitleContent = RTE;
                 var response = await firebase.Child(nameof(ContentModel)).PostAsync(contentModel);
 
-                Preferences.Remove("RTEContent");
+                
                 //Preferences.Remove("RTEContent");
                 if (response.Key != null)
                 {
@@ -178,6 +185,7 @@ namespace ESWIPE.Services.Implementations
                 {
                     return false;
                 }
+                //Preferences.Remove("RTEContent");
             }
         }
 
@@ -245,214 +253,207 @@ namespace ESWIPE.Services.Implementations
             return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
                 Select(f => new ContentModel
                 {
-                    //DateCreated = f.Object.DateCreated,
-                    //CreatedBy = f.Object.CreatedBy,
-                    //Quarter = f.Object.Quarter,
+                    DateCreated = f.Object.DateCreated,
+                    CreatedBy = f.Object.CreatedBy,
+                    Quarter = f.Object.Quarter,
                     //Title = f.Object.Title,
-                    TitleContent = f.Object.TitleContent
-                    //SubjectCode = f.Object.SubjectCode,
-                    //Key = f.Key
+                    TitleContent = f.Object.TitleContent,
+                    SubjectCode = f.Object.SubjectCode,
+                    Key = f.Key
+                }).ToList();
+
+        }
+
+        public async Task<List<ContentModel>> GetAllContentQ1()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                QuarterSelect = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
+
+            return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ContentModel
+                {
+                    DateCreated = f.Object.DateCreated,
+                    CreatedBy = f.Object.CreatedBy,
+                    Quarter = f.Object.Quarter,
+                    //Title = f.Object.Title,
+                    SubjectCode = f.Object.SubjectCode,
+                    Key = f.Key
                 }).ToList();
         }
 
-        //public async Task<List<ContentModel>> GetAllContentQ1()
-        //{
-        //    if (Preferences.ContainsKey("Key"))
-        //    {
-        //        Key = Preferences.Get("Key", "KeyValue");
-        //    }
+        public async Task<List<ContentModel>> GetAllContentQ2()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
 
-        //    if (Preferences.ContainsKey("Username"))
-        //    {
-        //        UserName = Preferences.Get("Username", "UsernameValue");
-        //    }
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
 
-        //    if (Preferences.ContainsKey("TeacherName"))
-        //    {
-        //        TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
-        //    }
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
 
-        //    if (Preferences.ContainsKey("Section"))
-        //    {
-        //        Section = Preferences.Get("Section", "SectionValue");
-        //    }
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
 
-        //    if (Preferences.ContainsKey("quarter1pass"))
-        //    {
-        //        QuarterSelect = "quarter1";
-        //    }
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                QuarterSelect = "quarter2";
+            }
 
-        //    if (Preferences.ContainsKey("SubjectCode"))
-        //    {
-        //        var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
-        //        SCode = SubjectCodePrep;
-        //    }
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
 
-        //    return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
-        //        Where(a => a.Object.CreatedBy == TeacherName).
-        //        Where(b => b.Object.Quarter == QuarterSelect).
-        //        Where(c => c.Object.SubjectCode == SCode).
-        //        Where(d => d.Object.Title == MTitle).
-        //        Select(f => new ContentModel
-        //        {
-        //            DateCreated = f.Object.DateCreated,
-        //            CreatedBy = f.Object.CreatedBy,
-        //            Quarter = f.Object.Quarter,
-        //            Title = f.Object.Title,
-        //            TitleContent = f.Object.TitleContent,
-        //            SubjectCode = f.Object.SubjectCode,
-        //            Key = f.Key
-        //        }).ToList();
-        //}
+            return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ContentModel
+                {
+                    DateCreated = f.Object.DateCreated,
+                    CreatedBy = f.Object.CreatedBy,
+                    Quarter = f.Object.Quarter,
+                    //Title = f.Object.Title,
+                    SubjectCode = f.Object.SubjectCode,
+                    Key = f.Key
+                }).ToList();
+        }
 
-        //public async Task<List<ContentModel>> GetAllContentQ2()
-        //{
-        //    if (Preferences.ContainsKey("Key"))
-        //    {
-        //        Key = Preferences.Get("Key", "KeyValue");
-        //    }
+        public async Task<List<ContentModel>> GetAllContentQ3()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
 
-        //    if (Preferences.ContainsKey("Username"))
-        //    {
-        //        UserName = Preferences.Get("Username", "UsernameValue");
-        //    }
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
 
-        //    if (Preferences.ContainsKey("TeacherName"))
-        //    {
-        //        TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
-        //    }
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
 
-        //    if (Preferences.ContainsKey("Section"))
-        //    {
-        //        Section = Preferences.Get("Section", "SectionValue");
-        //    }
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
 
-        //    if (Preferences.ContainsKey("quarter1pass"))
-        //    {
-        //        QuarterSelect = "quarter2";
-        //    }
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                QuarterSelect = "quarter3";
+            }
 
-        //    if (Preferences.ContainsKey("SubjectCode"))
-        //    {
-        //        var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
-        //        SCode = SubjectCodePrep;
-        //    }
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
 
-        //    return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
-        //        Where(a => a.Object.CreatedBy == TeacherName).
-        //        Where(b => b.Object.Quarter == QuarterSelect).
-        //        Where(c => c.Object.SubjectCode == SCode).
-        //        Where(d => d.Object.Title == MTitle).
-        //        Select(f => new ContentModel
-        //        {
-        //            DateCreated = f.Object.DateCreated,
-        //            CreatedBy = f.Object.CreatedBy,
-        //            Quarter = f.Object.Quarter,
-        //            Title = f.Object.Title,
-        //            TitleContent = f.Object.TitleContent,
-        //            SubjectCode = f.Object.SubjectCode,
-        //            Key = f.Key
-        //        }).ToList();
-        //}
+            return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ContentModel
+                {
+                    DateCreated = f.Object.DateCreated,
+                    CreatedBy = f.Object.CreatedBy,
+                    Quarter = f.Object.Quarter,
+                    //Title = f.Object.Title,
+                    SubjectCode = f.Object.SubjectCode,
+                    Key = f.Key
+                }).ToList();
+        }
 
-        //public async Task<List<ContentModel>> GetAllContentQ3()
-        //{
-        //    if (Preferences.ContainsKey("Key"))
-        //    {
-        //        Key = Preferences.Get("Key", "KeyValue");
-        //    }
+        public async Task<List<ContentModel>> GetAllContentQ4()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
 
-        //    if (Preferences.ContainsKey("Username"))
-        //    {
-        //        UserName = Preferences.Get("Username", "UsernameValue");
-        //    }
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
 
-        //    if (Preferences.ContainsKey("TeacherName"))
-        //    {
-        //        TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
-        //    }
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
 
-        //    if (Preferences.ContainsKey("Section"))
-        //    {
-        //        Section = Preferences.Get("Section", "SectionValue");
-        //    }
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
 
-        //    if (Preferences.ContainsKey("quarter1pass"))
-        //    {
-        //        QuarterSelect = "quarter3";
-        //    }
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                QuarterSelect = "quarter4";
+            }
 
-        //    if (Preferences.ContainsKey("SubjectCode"))
-        //    {
-        //        var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
-        //        SCode = SubjectCodePrep;
-        //    }
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+                SCode = SubjectCodePrep;
+            }
 
-        //    return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
-        //        Where(a => a.Object.CreatedBy == TeacherName).
-        //        Where(b => b.Object.Quarter == QuarterSelect).
-        //        Where(c => c.Object.SubjectCode == SCode).
-        //        Where(d => d.Object.Title == MTitle).
-        //        Select(f => new ContentModel
-        //        {
-        //            DateCreated = f.Object.DateCreated,
-        //            CreatedBy = f.Object.CreatedBy,
-        //            Quarter = f.Object.Quarter,
-        //            Title = f.Object.Title,
-        //            TitleContent = f.Object.TitleContent,
-        //            SubjectCode = f.Object.SubjectCode,
-        //            Key = f.Key
-        //        }).ToList();
-        //}
-
-        //public async Task<List<ContentModel>> GetAllContentQ4()
-        //{
-        //    if (Preferences.ContainsKey("Key"))
-        //    {
-        //        Key = Preferences.Get("Key", "KeyValue");
-        //    }
-
-        //    if (Preferences.ContainsKey("Username"))
-        //    {
-        //        UserName = Preferences.Get("Username", "UsernameValue");
-        //    }
-
-        //    if (Preferences.ContainsKey("TeacherName"))
-        //    {
-        //        TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
-        //    }
-
-        //    if (Preferences.ContainsKey("Section"))
-        //    {
-        //        Section = Preferences.Get("Section", "SectionValue");
-        //    }
-
-        //    if (Preferences.ContainsKey("quarter1pass"))
-        //    {
-        //        QuarterSelect = "quarter4";
-        //    }
-
-        //    if (Preferences.ContainsKey("SubjectCode"))
-        //    {
-        //        var SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
-        //        SCode = SubjectCodePrep;
-        //    }
-
-        //    return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
-        //        Where(a => a.Object.CreatedBy == TeacherName).
-        //        Where(b => b.Object.Quarter == QuarterSelect).
-        //        Where(c => c.Object.SubjectCode == SCode).
-        //        Where(d => d.Object.Title == MTitle).
-        //        Select(f => new ContentModel
-        //        {
-        //            DateCreated = f.Object.DateCreated,
-        //            CreatedBy = f.Object.CreatedBy,
-        //            Quarter = f.Object.Quarter,
-        //            Title = f.Object.Title,
-        //            TitleContent = f.Object.TitleContent,
-        //            SubjectCode = f.Object.SubjectCode,
-        //            Key = f.Key
-        //        }).ToList();
-        //}
+            return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
+                Where(a => a.Object.CreatedBy == TeacherName).
+                Where(b => b.Object.Quarter == QuarterSelect).
+                Where(c => c.Object.SubjectCode == SCode).
+                Select(f => new ContentModel
+                {
+                    DateCreated = f.Object.DateCreated,
+                    CreatedBy = f.Object.CreatedBy,
+                    Quarter = f.Object.Quarter,
+                    //Title = f.Object.Title,
+                    SubjectCode = f.Object.SubjectCode,
+                    Key = f.Key
+                }).ToList();
+        }
     }
 }

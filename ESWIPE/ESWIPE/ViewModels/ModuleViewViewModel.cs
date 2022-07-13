@@ -22,67 +22,97 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _isRefreshing, value);
         }
 
-        private readonly IModuleListService _moduleListService;
-        public ObservableCollection<ModuleListModel> ModuleList { get; set; } = new ObservableCollection<ModuleListModel>();
+        private readonly IContentService _contentService;
+        public ObservableCollection<ContentModel> Content { get; set; } = new ObservableCollection<ContentModel>();
+
+        private ContentModel _contentDetail = new ContentModel();
+        public ContentModel ContentDetail
+        {
+            get => _contentDetail;
+            set => SetProperty(ref _contentDetail, value);
+        }
+
         #endregion
 
         #region Constructor
+
+        //public string Key;
+        //public string UserName;
+        //public string TeacherName;
+        //public string Section;
+
         public ModuleViewViewModel()
         {
             Title = "Teacher's Data";
-            _moduleListService = DependencyService.Resolve<IModuleListService>();
+            _contentService = DependencyService.Resolve<IContentService>();
             IsRefreshing = true;
             
 
             if (Preferences.ContainsKey("quarter1pass"))
             {
-                GetAllModuleList1();
+                GetAllContent1();
                 IsBusy = false;
                 IsRefreshing = false;
             }
             
             if (Preferences.ContainsKey("quarter2pass"))
             {
-                GetAllModuleList2();
+                GetAllContent2();
                 IsBusy = false;
                 IsRefreshing = false;
             }
             
             if (Preferences.ContainsKey("quarter3pass"))
             {
-                GetAllModuleList3();
+                GetAllContent3();
                 IsBusy = false;
                 IsRefreshing = false;
             }
             
             if (Preferences.ContainsKey("quarter4pass"))
             {
-                GetAllModuleList4();
+                GetAllContent4();
                 IsBusy = false;
                 IsRefreshing = false;
             }
 
         }
+
+        public ModuleViewViewModel(ContentModel contentResponse)
+        {
+            //Title = "Update Content";
+            _contentService = DependencyService.Resolve<IContentService>();
+            ContentDetail = new ContentModel
+            {
+                DateCreated = contentResponse.DateCreated,
+                CreatedBy = contentResponse.CreatedBy,
+                Quarter = contentResponse.Quarter,
+                Title = contentResponse.Title,
+                TitleContent = contentResponse.TitleContent,
+                SubjectCode = contentResponse.SubjectCode,
+                Key = contentResponse.Key
+            };
+        }
         #endregion
 
         #region Methods
-        private void GetAllModuleList1()
+        private void GetAllContent1()
         {
             IsBusy = true;
 
                 Task.Run(async () =>
                 {
-                    var moduleList1 = await _moduleListService.GetAllModuleListQ1();
+                    var content1 = await _contentService.GetAllContentQ1();
 
                     Device.BeginInvokeOnMainThread(() =>
                     {
 
-                        ModuleList.Clear();
-                        if (moduleList1?.Count > 0)
+                        Content.Clear();
+                        if (content1?.Count > 0)
                         {
-                            foreach (var moduleList in moduleList1)
+                            foreach (var contents in content1)
                             {
-                                ModuleList.Add(moduleList);
+                                Content.Add(contents);
                             }
                         }
                         IsBusy = false;
@@ -91,23 +121,23 @@ namespace ESWIPE.ViewModels
                 });
         }
 
-        private void GetAllModuleList2()
+        private void GetAllContent2()
         {
             IsBusy = true;
 
                 Task.Run(async () =>
                 {
-                    var moduleList2 = await _moduleListService.GetAllModuleListQ2();
+                    var content2 = await _contentService.GetAllContentQ2();
 
                     Device.BeginInvokeOnMainThread(() =>
                     {
 
-                        ModuleList.Clear();
-                        if (moduleList2?.Count > 0)
+                        Content.Clear();
+                        if (content2?.Count > 0)
                         {
-                            foreach (var moduleList in moduleList2)
+                            foreach (var contents in content2)
                             {
-                                ModuleList.Add(moduleList);
+                                Content.Add(contents);
                             }
                         }
                         IsBusy = false;
@@ -116,23 +146,23 @@ namespace ESWIPE.ViewModels
                 });
         }
 
-        private void GetAllModuleList3()
+        private void GetAllContent3()
         {
             IsBusy = true;
 
                 Task.Run(async () =>
                 {
-                    var moduleList3 = await _moduleListService.GetAllModuleListQ3();
+                    var content3 = await _contentService.GetAllContentQ3();
 
                     Device.BeginInvokeOnMainThread(() =>
                     {
 
-                        ModuleList.Clear();
-                        if (moduleList3?.Count > 0)
+                        Content.Clear();
+                        if (content3?.Count > 0)
                         {
-                            foreach (var moduleList in moduleList3)
+                            foreach (var contents in content3)
                             {
-                                ModuleList.Add(moduleList);
+                                Content.Add(contents);
                             }
                         }
                         IsBusy = false;
@@ -141,23 +171,23 @@ namespace ESWIPE.ViewModels
                   });
         }
 
-        private void GetAllModuleList4()
+        private void GetAllContent4()
         {
             IsBusy = true;
 
                 Task.Run(async () =>
                 {
-                    var moduleLists = await _moduleListService.GetAllModuleListQ4();
+                    var content4 = await _contentService.GetAllContentQ4();
 
                     Device.BeginInvokeOnMainThread(() =>
                     {
 
-                        ModuleList.Clear();
-                        if (moduleLists?.Count > 0)
+                        Content.Clear();
+                        if (content4?.Count > 0)
                         {
-                            foreach (var moduleList in moduleLists)
+                            foreach (var contents in content4)
                             {
-                                ModuleList.Add(moduleList);
+                                Content.Add(contents);
                             }
                         }
                         IsBusy = false;
@@ -176,68 +206,44 @@ namespace ESWIPE.ViewModels
             IsRefreshing = true;
             if (Preferences.ContainsKey("quarter1pass"))
             {
-                GetAllModuleList1();
+                GetAllContent1();
             }
 
             if (Preferences.ContainsKey("quarter2pass"))
             {
-                GetAllModuleList2();
+                GetAllContent2();
             }
 
             if (Preferences.ContainsKey("quarter3pass"))
             {
-                GetAllModuleList3();
+                GetAllContent3();
             }
 
             if (Preferences.ContainsKey("quarter4pass"))
             {
-                GetAllModuleList4();
+                GetAllContent4();
             }
         });
 
 
-        public ICommand SelectedModuleListCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
+        public ICommand SaveContentCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
         {
-            if (moduleList != null)
+            if (IsBusy) { return; }
+            IsBusy = true;
+            bool res = await _contentService.AddorUpdateContent(ContentDetail);
+            if (res)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Title", "Delete Title", "View Content");
-
-                if (response == "Update Title")
+                if (!string.IsNullOrWhiteSpace(ContentDetail.Key))
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateTitlePage(moduleList));
+                    await Application.Current.MainPage.DisplayAlert("Update Info", "Content Updated Succesfully!", "OK");
                 }
-                else if (response == "Delete Title")
+                else
                 {
-                    IsBusy = true;
-                    bool deleteResponse = await _moduleListService.DeleteModuleList(moduleList.Key);
-                    if (deleteResponse)
-                    {
-                        if (Preferences.ContainsKey("quarter1pass"))
-                        {
-                            GetAllModuleList1();
-                        }
-
-                        if (Preferences.ContainsKey("quarter2pass"))
-                        {
-                            GetAllModuleList2();
-                        }
-
-                        if (Preferences.ContainsKey("quarter3pass"))
-                        {
-                            GetAllModuleList3();
-                        }
-
-                        if (Preferences.ContainsKey("quarter4pass"))
-                        {
-                            GetAllModuleList4();
-                        }
-                    }
-                }
-                else if (response == "View Content")
-                {
-                    await Application.Current.MainPage.Navigation.PushAsync(new TitleContentViewPage());
+                    ContentDetail = new ContentModel() { };
+                    await Application.Current.MainPage.DisplayAlert("Content Info", "Succesfully added!", "OK");
                 }
             }
+            IsBusy = false;
         });
 
         #endregion

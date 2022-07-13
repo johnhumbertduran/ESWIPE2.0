@@ -12,9 +12,9 @@ namespace ESWIPE.Services.Interfaces
         Task<bool> AddorUpdateContent(ContentModel contentModel);
         Task<bool> DeleteContent(string key);
         Task<List<ContentModel>> GetAllContent();
-        //Task<List<ContentModel>> GetAllContentQ1();
-        //Task<List<ContentModel>> GetAllContentQ2();
-        //Task<List<ContentModel>> GetAllContentQ3();
-        //Task<List<ContentModel>> GetAllContentQ4();
+        Task<List<ContentModel>> GetAllContentQ1();
+        Task<List<ContentModel>> GetAllContentQ2();
+        Task<List<ContentModel>> GetAllContentQ3();
+        Task<List<ContentModel>> GetAllContentQ4();
     }
 }

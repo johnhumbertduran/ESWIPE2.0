@@ -192,5 +192,11 @@ namespace ESWIPE.Views
             }
         }
 
+
+        private async void CheckContent(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
+        }
+
     }
 }

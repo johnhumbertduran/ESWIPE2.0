@@ -172,10 +172,16 @@ namespace ESWIPE.Views
             }
         }
 
-        private async void ViewModuleButton(object sender, EventArgs e)
+        private async void CreateModuleContentButton(object sender, EventArgs e)
         {
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
+        }
+        private async void ViewModuleContentButton(object sender, EventArgs e)
+        {
+            Preferences.Set("quarter1pass", "quarter1value");
+            await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
             //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }

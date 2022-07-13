@@ -4,56 +4,34 @@
              x:Class="ESWIPE.Views.ModuleViewPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:ModuleViewViewModel"
+             xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:models="clr-namespace:ESWIPE.Models"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
                         Light={StaticResource WindowBackgroundColorDark}}">
 
     <ContentPage.BindingContext>
-        <viewmodels:ModuleViewViewModel />
+        <viewmodels:TitleContentViewViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="Add_Title"/>
         <ToolbarItem Text="Cancel" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
 
-    <ListView
-        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-        CachingStrategy="RecycleElement"
-        HasUnevenRows="True"
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding ModuleList}"
-        RefreshCommand="{Binding RefreshCommand}"
-        RefreshControlColor="blue"
-        SelectionMode="None">
+    <ContentPage.Content>
+        <StackLayout>
+            <richtexteditor:SfRichTextEditor x:Name="Rte" 
+                                             HeightRequest="200" 
+                                             HtmlText="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
+                                             DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                             HorizontalOptions="FillAndExpand"></richtexteditor:SfRichTextEditor>
+            
+            <Button Text="Store" Command="{Binding SaveContentCommand}"/>
+            <Button Text="check" Clicked="CheckContent"/>
 
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:ModuleListModel">
-                <ViewCell>
-                    <ViewCell.ContextActions>
-                        <MenuItem IsDestructive="True" Text="Delete" />
-                    </ViewCell.ContextActions>
-                    <Grid>
-                        <Frame HasShadow="False" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center">
-                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="{Binding Title}"
-                                        VerticalOptions="Center" />
-                                </StackLayout>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:ModuleViewViewModel}}, Path=SelectedModuleListCommand}" CommandParameter="{Binding .}"/>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
 
 
 </ContentPage>

@@ -22,6 +22,7 @@ namespace ESWIPE.ViewModels
     {
         #region Properties
         private bool _isRefreshing;
+
         public bool IsRefreshing
         {
             get => _isRefreshing;
@@ -58,15 +59,17 @@ namespace ESWIPE.ViewModels
             {
                 var contentsList = await _contentService.GetAllContent();
 
+                
+
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Contents.Clear();
 
                     if (contentsList?.Count > 0)
                     {
+
                         foreach (var content in contentsList)
                         {
-
                             Contents.Add(content);
                         }
                     }
