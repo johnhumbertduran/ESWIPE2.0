@@ -19,6 +19,7 @@ using Syncfusion.DocIO;
 using System.Collections;
 using Firebase.Database;
 using ESWIPE.Models;
+using Xamarin.Essentials;
 
 namespace ESWIPE.Views
 {
@@ -26,7 +27,15 @@ namespace ESWIPE.Views
     public partial class CheckContent : ContentPage
     {
         //public string TitleContent { set; get; }
-        FirebaseHelper firebaseHelper = new FirebaseHelper();
+        //FirebaseHelper firebaseHelper = new FirebaseHelper();
+
+        public string Key;
+        public string UserName;
+        public string TeacherName;
+        public string Section;
+        public string Quarters;
+        public string SubjectCodePrep;
+
         public CheckContent()
         {
             InitializeComponent();
@@ -36,35 +45,195 @@ namespace ESWIPE.Views
 
         private async void Cancel_Button(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}", false);
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+                await Shell.Current.GoToAsync($"///{nameof(Q1ModulePage)}", false);
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+                await Shell.Current.GoToAsync($"///{nameof(Q2ModulePage)}", false);
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+                await Shell.Current.GoToAsync($"///{nameof(Q3ModulePage)}", false);
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
+                await Shell.Current.GoToAsync($"///{nameof(Q4ModulePage)}", false);
+            }
         }
+
+        public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var myContents = await firebaseHelper.GetAllContent();
+
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
+
+            var ModuleData = await GetModule(TeacherName,Quarters);
+
+            if (ModuleData != null)
+            {
+                if (TeacherName == ModuleData.CreatedBy)
+                {
+                    if (ModuleData.Quarter == Quarters)
+                    {
+                        Preferences.Set("SubjectCode", ModuleData.SubjectCode);
+                    }
+                }
+            }
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+            }
+
+            //var myContents = await GetAllContents();
+            //var ContentData = await GetContent(TeacherName, Quarters, SubjectCodePrep);
+
+            //if (Preferences.ContainsKey("quarter1pass"))
+            //{
+
+            //    if (ContentData != null)
+            //    {
+            //        if (TeacherName == ContentData.CreatedBy)
+            //        {
+            //            if (ContentData.Quarter == Quarters)
+            //            {
+            //                //myListView.ItemsSource = ContentData.TitleContent;
+            //            }
+            //        }
+            //    }
+            //}
+
+            //myListView.ItemsSource = ContentData.TitleContent;
+
+            var myContents = await GetAllContents(TeacherName, Quarters, SubjectCodePrep);
             myListView.ItemsSource = myContents;
+
+
         }
 
 
-        public class FirebaseHelper
+
+        //Read All Modules
+
+        public static async Task<List<ModuleModel>> GetAllModules()
         {
-
-
-            public static string FirebaseClient = "https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/";
-            public static string FrebaseSecret = "IqvYgbWiwScAbg5vnNNUkKlVeGc5NkzgZFYIDfnl";
-            public FirebaseClient firebase = new FirebaseClient(FirebaseClient,
-                           new FirebaseOptions { AuthTokenAsyncFactory = () => Task.FromResult(FrebaseSecret) });
-
-            public async Task<List<ContentModel>> GetAllContent()
+            try
             {
-
-                return (await firebase.Child(nameof(ContentModel)).OnceAsync<ContentModel>()).
-                Select(f => new ContentModel
+                var modulelist = (await firebase
+                .Child("ModuleModel")
+                .OnceAsync<ModuleModel>()).Select(item =>
+                new ModuleModel
                 {
-                    TitleContent = f.Object.TitleContent
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    SubjectQuizCode = item.Object.SubjectQuizCode,
+                    SubjectQuizQty = item.Object.SubjectQuizQty,
                 }).ToList();
+                return modulelist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
             }
         }
+
+        //Read 
+        public static async Task<ModuleModel> GetModule(string createdby, string quarters)
+        {
+            try
+            {
+                var allModule = await GetAllModules();
+                await firebase.Child("ModuleModel").OnceAsync<ModuleModel>();
+                return allModule.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == quarters).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+
+        //Read All Contents
+
+        public static async Task<List<ContentModel>> GetAllContents(string createdby, string quarters, string subjectcode)
+        {
+            try
+            {
+                var contentlist = (await firebase
+                .Child(nameof(ContentModel))
+                .OnceAsync<ContentModel>()).Where(a => a.Object.CreatedBy == createdby).Where(b => b.Object.Quarter == quarters).Where(b => b.Object.SubjectCode == subjectcode).Select(item =>
+                new ContentModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    TitleContent = item.Object.TitleContent
+                }).ToList();
+                return contentlist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
     }
 }

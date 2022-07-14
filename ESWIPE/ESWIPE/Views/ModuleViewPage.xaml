@@ -10,12 +10,12 @@
                         Dark={StaticResource WindowBackgroundColor}, 
                         Light={StaticResource WindowBackgroundColorDark}}">
 
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewmodels:TitleContentViewViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Button"/>
+        <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -27,7 +27,7 @@
                                              HorizontalOptions="FillAndExpand"></richtexteditor:SfRichTextEditor>
             
             <Button Text="Store" Command="{Binding SaveContentCommand}"/>
-            <Button Text="check" Clicked="CheckContent"/>
+            <!--<Button Text="check" Clicked="CheckContent"/>-->
 
 
         </StackLayout>

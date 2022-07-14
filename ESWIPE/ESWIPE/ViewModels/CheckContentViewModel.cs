@@ -42,8 +42,6 @@ namespace ESWIPE.ViewModels
 
             _contentService = DependencyService.Resolve<IContentService>();
             GetAllContent();
-
-
             //Title = TeacherName;
 
         }
@@ -73,7 +71,8 @@ namespace ESWIPE.ViewModels
                             Contents.Add(content);
                         }
                     }
-                    IsBusy = IsRefreshing = false;
+                    IsBusy = false;
+                    IsRefreshing = false;
                 });
 
             });
@@ -86,6 +85,8 @@ namespace ESWIPE.ViewModels
         {
             IsRefreshing = true;
             GetAllContent();
+            IsBusy = false;
+            IsRefreshing = false;
         });
 
 

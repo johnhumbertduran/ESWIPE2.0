@@ -89,6 +89,9 @@
     <PackageReference Include="Syncfusion.Xamarin.DocIO">
       <Version>20.2.0.36</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>20.2.0.38</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor">
       <Version>20.2.0.36</Version>
     </PackageReference>

@@ -86,7 +86,7 @@ namespace ESWIPE.ViewModels
                 DateCreated = contentResponse.DateCreated,
                 CreatedBy = contentResponse.CreatedBy,
                 Quarter = contentResponse.Quarter,
-                Title = contentResponse.Title,
+                //Title = contentResponse.Title,
                 TitleContent = contentResponse.TitleContent,
                 SubjectCode = contentResponse.SubjectCode,
                 Key = contentResponse.Key

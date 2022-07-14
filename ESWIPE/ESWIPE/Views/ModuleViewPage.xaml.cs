@@ -26,10 +26,12 @@ namespace ESWIPE.Views
         public string Section;
         public string Quarters;
 
-
+        readonly ModuleViewViewModel moduleViewViewModel;
         public ModuleViewPage()
         {
+            moduleViewViewModel = new ModuleViewViewModel();
             InitializeComponent();
+            BindingContext = moduleViewViewModel;
         }
 
         private void Add_Title(object sender, EventArgs e)

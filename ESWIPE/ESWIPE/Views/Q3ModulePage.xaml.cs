@@ -21,6 +21,7 @@ namespace ESWIPE.Views
         public string TeacherName;
         public string Section;
         public string Quarter3 = "quarter3";
+        public string SubjectCodePrep;
 
         public Q3ModulePage()
         {
@@ -94,15 +95,61 @@ namespace ESWIPE.Views
                 }
             }
 
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+            }
+
             if (Preferences.ContainsKey("Quarter3"))
             {
-                Q3ViewModule.IsVisible = true;
-                Q3CreateModule.IsVisible = false;
+                var ContentData3 = await GetContent(TeacherName, SubjectCodePrep);
+
+                if (ContentData3 != null)
+                {
+                    if (TeacherName == ContentData3.CreatedBy)
+                    {
+                        if (SubjectCodePrep == ModuleData3.SubjectCode)
+                        {
+                            Q3ViewModuleContent.IsVisible = true;
+                            Q3CreateModule.IsVisible = false;
+                            Q3ViewModule.IsVisible = false;
+                        }
+                    }
+                }
+                else
+                {
+                    Q3ViewModuleContent.IsVisible = false;
+                    Q3CreateModule.IsVisible = false;
+                    Q3ViewModule.IsVisible = true;
+                }
             }
             else
             {
-                Q3ViewModule.IsVisible = false;
+                Q3ViewModuleContent.IsVisible = false;
                 Q3CreateModule.IsVisible = true;
+                Q3ViewModule.IsVisible = false;
+            }
+
+
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
             }
 
         }
@@ -150,10 +197,63 @@ namespace ESWIPE.Views
             }
         }
 
-        private async void ViewModuleButton(object sender, EventArgs e)
+
+        //Read All Contents
+
+        public static async Task<List<ContentModel>> GetAllContents()
+        {
+            try
+            {
+                var contentlist = (await firebase
+                .Child("ContentModel")
+                .OnceAsync<ContentModel>()).Select(item =>
+                new ContentModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    TitleContent = item.Object.TitleContent
+                    //SubjectQuizCode = item.Object.SubjectQuizCode,
+                    //SubjectQuizQty = item.Object.SubjectQuizQty,
+                }).ToList();
+                return contentlist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read Contents
+        public static async Task<ContentModel> GetContent(string createdby, string subjectcode)
+        {
+            try
+            {
+                var allContent = await GetAllContents();
+                await firebase.Child("ContentModel").OnceAsync<ContentModel>();
+                return allContent.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == "quarter3").Where(b => b.SubjectCode == subjectcode).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        private async void CreateModuleContentButton(object sender, EventArgs e)
         {
             Preferences.Set("quarter3pass", "quarter3value");
             await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
+        }
+        private async void ViewModuleContentButton(object sender, EventArgs e)
+        {
+            Preferences.Set("quarter3pass", "quarter3value");
+            await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }
 }

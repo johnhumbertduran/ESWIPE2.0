@@ -32,6 +32,8 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _contentDetail, value);
         }
 
+       
+
         #endregion
 
         #region Constructor
@@ -87,7 +89,7 @@ namespace ESWIPE.ViewModels
                 DateCreated = contentResponse.DateCreated,
                 CreatedBy = contentResponse.CreatedBy,
                 Quarter = contentResponse.Quarter,
-                Title = contentResponse.Title,
+                //Title = contentResponse.Title,
                 TitleContent = contentResponse.TitleContent,
                 SubjectCode = contentResponse.SubjectCode,
                 Key = contentResponse.Key
@@ -228,22 +230,53 @@ namespace ESWIPE.ViewModels
 
         public ICommand SaveContentCommand => new Xamarin.Forms.Command<ModuleListModel>(async (moduleList) =>
         {
-            if (IsBusy) { return; }
-            IsBusy = true;
-            bool res = await _contentService.AddorUpdateContent(ContentDetail);
-            if (res)
+            if (!string.IsNullOrWhiteSpace(ContentDetail.TitleContent))
             {
-                if (!string.IsNullOrWhiteSpace(ContentDetail.Key))
+                if (IsBusy) { return; }
+                IsBusy = true;
+                bool res = await _contentService.AddorUpdateContent(ContentDetail);
+                if (res)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Update Info", "Content Updated Succesfully!", "OK");
+                    if (!string.IsNullOrWhiteSpace(ContentDetail.Key))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Update Info", "Content Updated Succesfully!", "OK");
+                        await Shell.Current.GoToAsync("..");
+                    }
+                    else
+                    {
+                        ContentDetail = new ContentModel() { };
+                        await Application.Current.MainPage.DisplayAlert("Content Info", "Succesfully added!", "OK");
+                        if (Preferences.ContainsKey("quarter1pass"))
+                        {
+                            Preferences.Remove("quarter1pass");
+                            await Shell.Current.GoToAsync($"///{nameof(Q1ModulePage)}", false);
+                        }
+
+                        if (Preferences.ContainsKey("quarter2pass"))
+                        {
+                            Preferences.Remove("quarter2pass");
+                            await Shell.Current.GoToAsync($"///{nameof(Q2ModulePage)}", false);
+                        }
+
+                        if (Preferences.ContainsKey("quarter3pass"))
+                        {
+                            Preferences.Remove("quarter3pass");
+                            await Shell.Current.GoToAsync($"///{nameof(Q3ModulePage)}", false);
+                        }
+
+                        if (Preferences.ContainsKey("quarter4pass"))
+                        {
+                            Preferences.Remove("quarter4pass");
+                            await Shell.Current.GoToAsync($"///{nameof(Q4ModulePage)}", false);
+                        }
+                    }
                 }
-                else
-                {
-                    ContentDetail = new ContentModel() { };
-                    await Application.Current.MainPage.DisplayAlert("Content Info", "Succesfully added!", "OK");
-                }
+                IsBusy = false;
             }
-            IsBusy = false;
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Content Info", "Content is empty!", "OK");
+            }
         });
 
         #endregion

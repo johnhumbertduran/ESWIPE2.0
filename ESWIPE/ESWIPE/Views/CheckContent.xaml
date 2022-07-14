@@ -4,6 +4,7 @@
              x:Class="ESWIPE.Views.CheckContent"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:rte="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="Checking">
 
 
@@ -12,45 +13,45 @@
     </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Button"/>
+        <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
+
 
     <ListView
         BackgroundColor="Transparent"
         CachingStrategy="RecycleElement"
         HasUnevenRows="True"
         x:Name="myListView"
-        IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
         ItemsSource="{Binding Contents}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
+        SeparatorVisibility="None"
+        VerticalOptions="FillAndExpand"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
+
                     <!--<ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
                     </ViewCell.ContextActions>-->
-                    <Grid Padding="10">
-                        <Frame CornerRadius="20" HasShadow="True">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center" x:Name="stack">
-                                    <!--<Label
+                    <StackLayout>
+                        <StackLayout>
+                            <!--<Label
                                         FontSize="Small"
                                         x:Name="rte"
                                         Text="{Binding TitleContent}"
                                         VerticalOptions="Center" />-->
-                                    <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" HeightRequest="200" ShowToolbar="False" HorizontalOptions="FillAndExpand"></rte:SfRichTextEditor>
-                                </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
+                            <!--<rte:SfRichTextEditor HtmlText="{Binding TitleContent}" ScrollOrientation="None" HeightRequest="500" ShowToolbar="False"></rte:SfRichTextEditor>-->
+                            <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" AutoSize="TextChanges" HeightRequest="700" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
+                        </StackLayout>
+                    </StackLayout>
+
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
 
 </ContentPage>

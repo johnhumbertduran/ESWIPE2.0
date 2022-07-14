@@ -22,6 +22,7 @@ namespace ESWIPE.Views
         public string TeacherName;
         public string Section;
         public string Quarter1 = "quarter1";
+        public string SubjectCodePrep;
 
         public Q1ModulePage()
         {
@@ -95,16 +96,43 @@ namespace ESWIPE.Views
                 }
             }
 
+
+            if (Preferences.ContainsKey("SubjectCode"))
+            {
+                SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
+            }
+
             if (Preferences.ContainsKey("Quarter1"))
             {
-                Q1CreateModule.IsVisible = false;
-                Q1ViewModule.IsVisible = true;
+                var ContentData = await GetContent(TeacherName, SubjectCodePrep);
+
+                if (ModuleData1 != null)
+                {
+                    if (TeacherName == ContentData.CreatedBy)
+                    {
+                        if (SubjectCodePrep == ModuleData1.SubjectCode)
+                        {
+                            Q1ViewModuleContent.IsVisible = true;
+                            Q1CreateModule.IsVisible = false;
+                            Q1ViewModule.IsVisible = false;
+                        }
+                        else
+                        {
+                            Q1ViewModuleContent.IsVisible = false;
+                            Q1CreateModule.IsVisible = false;
+                            Q1ViewModule.IsVisible = true;
+                        }
+                    }
+                }
             }
             else
             {
+                Q1ViewModuleContent.IsVisible = false;
                 Q1CreateModule.IsVisible = true;
                 Q1ViewModule.IsVisible = false;
             }
+
+
 
             if (Preferences.ContainsKey("quarter1pass"))
             {
@@ -164,6 +192,54 @@ namespace ESWIPE.Views
                 var allModule = await GetAllModules();
                 await firebase.Child("ModuleModel").OnceAsync<ModuleModel>();
                 return allModule.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == "quarter1").FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+        
+        
+        
+        
+        //Read All Contents
+
+        public static async Task<List<ContentModel>> GetAllContents()
+        {
+            try
+            {
+                var contentlist = (await firebase
+                .Child("ContentModel")
+                .OnceAsync<ContentModel>()).Select(item =>
+                new ContentModel
+                {
+                    Key = item.Object.Key,
+                    DateCreated = item.Object.DateCreated,
+                    CreatedBy = item.Object.CreatedBy,
+                    Quarter = item.Object.Quarter,
+                    SubjectCode = item.Object.SubjectCode,
+                    TitleContent = item.Object.TitleContent
+                    //SubjectQuizCode = item.Object.SubjectQuizCode,
+                    //SubjectQuizQty = item.Object.SubjectQuizQty,
+                }).ToList();
+                return contentlist;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Error:{e}");
+                return null;
+            }
+        }
+
+        //Read Contents
+        public static async Task<ContentModel> GetContent(string createdby, string subjectcode)
+        {
+            try
+            {
+                var allContent= await GetAllContents();
+                await firebase.Child("ContentModel").OnceAsync<ContentModel>();
+                return allContent.Where(a => a.CreatedBy == createdby).Where(b => b.Quarter == "quarter1").Where(b => b.SubjectCode == subjectcode).FirstOrDefault();
             }
             catch (Exception e)
             {
