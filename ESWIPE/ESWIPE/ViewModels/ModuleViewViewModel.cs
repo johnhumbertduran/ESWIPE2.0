@@ -32,7 +32,7 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _contentDetail, value);
         }
 
-       
+
 
         #endregion
 
@@ -43,12 +43,15 @@ namespace ESWIPE.ViewModels
         //public string TeacherName;
         //public string Section;
 
+        //public PhotoPickerViewModel PickPhoto { get; }
+
         public ModuleViewViewModel()
         {
             Title = "Teacher's Data";
             _contentService = DependencyService.Resolve<IContentService>();
             IsRefreshing = true;
-            
+
+            //PickPhoto = new PhotoPickerViewModel();
 
             if (Preferences.ContainsKey("quarter1pass"))
             {

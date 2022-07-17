@@ -1,17 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ESWIPE.Views.ModuleViewPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:ModuleViewViewModel"
              xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:models="clr-namespace:ESWIPE.Models"
+             x:Class="ESWIPE.Views.ModuleViewPage"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Light={StaticResource WindowBackgroundColorDark}}"
+             x:Name="ModuleViewName">
 
     <!--<ContentPage.BindingContext>
         <viewmodels:TitleContentViewViewModel />
+    </ContentPage.BindingContext>-->
+
+    <!--<ContentPage.BindingContext>
+        <local:ViewModel/>
     </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
@@ -24,7 +32,8 @@
                                              HeightRequest="200" 
                                              HtmlText="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                             HorizontalOptions="FillAndExpand"></richtexteditor:SfRichTextEditor>
+                                             HorizontalOptions="FillAndExpand"
+                                             ImageInsertCommand="{Binding PickPhoto.ImageInsertCommand,Source={x:Reference ModuleViewName}}"></richtexteditor:SfRichTextEditor>
             
             <Button Text="Store" Command="{Binding SaveContentCommand}"/>
             <!--<Button Text="check" Clicked="CheckContent"/>-->
