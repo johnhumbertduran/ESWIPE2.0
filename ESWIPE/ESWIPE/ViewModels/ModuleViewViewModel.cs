@@ -1,9 +1,13 @@
 ﻿using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
 using ESWIPE.Views;
+using Syncfusion.XForms.RichTextEditor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,7 +16,7 @@ using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
 {
-    class ModuleViewViewModel : ViewModelBase
+    class ModuleViewViewModel : ViewModelBase, INotifyPropertyChanged
     {
         #region Properties
         private bool _isRefreshing;
@@ -44,6 +48,7 @@ namespace ESWIPE.ViewModels
         //public string Section;
 
         //public PhotoPickerViewModel PickPhoto { get; }
+        public ICommand ImageInsertCommand { get; set; }
 
         public ModuleViewViewModel()
         {
@@ -52,6 +57,7 @@ namespace ESWIPE.ViewModels
             IsRefreshing = true;
 
             //PickPhoto = new PhotoPickerViewModel();
+            ImageInsertCommand = new Command<object>(Load);
 
             if (Preferences.ContainsKey("quarter1pass"))
             {
@@ -101,6 +107,40 @@ namespace ESWIPE.ViewModels
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Creates a event args for Image Insert
+        /// </summary>
+        void Load(object obj)
+        {
+            ImageInsertedEventArgs imageInsertedEventArgs = (obj as ImageInsertedEventArgs);
+            this.GetImage(imageInsertedEventArgs);
+        }
+        /// <summary>
+        /// Gets image stream from picker using dependency service.
+        /// </summary>
+        /// <param name="imageInsertedEventArgs">Event args to be passed for dependency service</param>
+        async void GetImage(ImageInsertedEventArgs imageInsertedEventArgs)
+        {
+            Stream imageStream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            Syncfusion.XForms.RichTextEditor.ImageSource imageSource = new Syncfusion.XForms.RichTextEditor.ImageSource();
+            imageSource.ImageStream = imageStream;
+            imageInsertedEventArgs.ImageSourceCollection.Add(imageSource);
+        }
+        /// <summary>
+        /// Property changed event of NotifyPropertyChanged interface
+        /// </summary>
+        new public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        ///  Property changed raise method of NotifyPropertyChanged interface
+        /// </summary>
+        /// <param name="propertyname">Property which has been changed</param>
+        public void RaisePropertyChange([CallerMemberName] string propertyname = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+
         private void GetAllContent1()
         {
             IsBusy = true;

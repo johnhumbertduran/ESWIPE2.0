@@ -11,29 +11,31 @@
              x:Class="ESWIPE.Views.ModuleViewPage"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}"
-             x:Name="ModuleViewName">
+                        Light={StaticResource WindowBackgroundColorDark}}">
 
     <!--<ContentPage.BindingContext>
         <viewmodels:TitleContentViewViewModel />
     </ContentPage.BindingContext>-->
 
-    <!--<ContentPage.BindingContext>
-        <local:ViewModel/>
-    </ContentPage.BindingContext>-->
+    
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
-
+    <ContentPage.BindingContext>
+        <viewmodels:ModuleViewViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
-            <richtexteditor:SfRichTextEditor x:Name="Rte" 
-                                             HeightRequest="200" 
-                                             HtmlText="{Binding ContentDetail.TitleContent, Mode=TwoWay}"
+            <richtexteditor:SfRichTextEditor x:Name="Rte"
+                                             HtmlText="{Binding ContentDetail.TitleContent, Mode=OneWayToSource}"
+                                             HeightRequest="350" 
+                                             ImageInsertCommand="{Binding ImageInsertCommand}"
+                                             ImageInserted="RTE_ImageInserted"
                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                              HorizontalOptions="FillAndExpand"
-                                             ImageInsertCommand="{Binding PickPhoto.ImageInsertCommand,Source={x:Reference ModuleViewName}}"></richtexteditor:SfRichTextEditor>
+                                             ></richtexteditor:SfRichTextEditor>
             
             <Button Text="Store" Command="{Binding SaveContentCommand}"/>
             <!--<Button Text="check" Clicked="CheckContent"/>-->

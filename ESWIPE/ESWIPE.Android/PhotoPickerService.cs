@@ -1,24 +1,21 @@
-﻿using Android.Content;
-using ESWIPE.Droid;
-using ESWIPE.Services.Implementations;
-using ESWIPE.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using System.Linq;
-using Android.App;
+﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using ESWIPE.Droid;
+using ESWIPE.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(PhotoPickerService))]
-namespace ESWIPE.Services.Implementations
+namespace ESWIPE.Droid
 {
     public class PhotoPickerService : IPhotoPickerService
     {

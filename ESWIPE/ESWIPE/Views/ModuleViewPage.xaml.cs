@@ -18,6 +18,7 @@ using System.Runtime.CompilerServices;
 using ESWIPE.Services.Interfaces;
 using Syncfusion.XForms.RichTextEditor;
 using System.IO;
+using System.Reflection;
 
 namespace ESWIPE.Views
 {
@@ -30,14 +31,14 @@ namespace ESWIPE.Views
         public string Section;
         public string Quarters;
 
-        readonly ModuleViewViewModel moduleViewViewModel;
-        public ViewModel PickPhoto { get; }
+        //readonly ModuleViewViewModel moduleViewViewModel;
+        //public ViewModel PickPhoto { get; }
         public ModuleViewPage()
         {
-            moduleViewViewModel = new ModuleViewViewModel();
-            PickPhoto = new ViewModel();
+            //moduleViewViewModel = new ModuleViewViewModel();
+            //PickPhoto = new ViewModel();
             InitializeComponent();
-            BindingContext = moduleViewViewModel;
+            //BindingContext = moduleViewViewModel;
         }
 
         private void Add_Title(object sender, EventArgs e)
@@ -127,7 +128,9 @@ namespace ESWIPE.Views
                 Title = "Quarter 4";
             }
 
-            BindingContext = new ModuleViewViewModel();
+            //BindingContext = new ModuleViewViewModel();
+
+            
         }
 
         private async void Cancel_Button(object sender, EventArgs e)
@@ -206,56 +209,15 @@ namespace ESWIPE.Views
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
         }
 
-    }
+        private void RTE_ImageInserted(object sender, ImageInsertedEventArgs e)
+        {
+            Syncfusion.XForms.RichTextEditor.ImageSource imgSrc = new Syncfusion.XForms.RichTextEditor.ImageSource();
+            Assembly assembly = typeof(ModuleViewPage).GetTypeInfo().Assembly;
+            Stream image = assembly.GetManifestResourceStream("ESWIPE..png");
 
-    /// <summary>
-    /// Represents a view model class of the application
-    /// </summary>
-    public class ViewModel : INotifyPropertyChanged
-    {
-        /// <summary>
-        /// Insert image command property
-        /// </summary>
-        public ICommand ImageInsertCommand { get; set; }
-
-        public ViewModel()
-        {
-            ImageInsertCommand = new Command<object>(Load);
-        }
-        /// <summary>
-        /// Creates a event args for Image Insert
-        /// </summary>
-        void Load(object obj)
-        {
-            ImageInsertedEventArgs imageInsertedEventArgs = (obj as ImageInsertedEventArgs);
-            this.GetImage(imageInsertedEventArgs);
-        }
-        /// <summary>
-        /// Gets image stream from picker using dependency service.
-        /// </summary>
-        /// <param name="imageInsertedEventArgs">Event args to be passed for dependency service</param>
-        async void GetImage(ImageInsertedEventArgs imageInsertedEventArgs)
-        {
-            Stream imageStream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
-            Syncfusion.XForms.RichTextEditor.ImageSource imageSource = new Syncfusion.XForms.RichTextEditor.ImageSource();
-            imageSource.ImageStream = imageStream;
-            imageInsertedEventArgs.ImageSourceCollection.Add(imageSource);
-        }
-        /// <summary>
-        /// Property changed event of NotifyPropertyChanged interface
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        ///  Property changed raise method of NotifyPropertyChanged interface
-        /// </summary>
-        /// <param name="propertyname">Property which has been changed</param>
-        public void RaisePropertyChange([CallerMemberName] string propertyname = null)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
+            imgSrc.ImageStream = image;
+            imgSrc.SaveOption = ImageSaveOption.Base64;
+            Rte.InsertImage(imgSrc);
         }
     }
 
