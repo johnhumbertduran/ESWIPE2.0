@@ -53,7 +53,6 @@ namespace ESWIPE.Views
 
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(TeacherCreateModulesPage)}");
-            //Application.Current.MainPage = new NavigationPage(new TeacherCreateModulesPage());
         }
 
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
@@ -220,8 +219,6 @@ namespace ESWIPE.Views
                     Quarter = item.Object.Quarter,
                     SubjectCode = item.Object.SubjectCode,
                     TitleContent = item.Object.TitleContent
-                    //SubjectQuizCode = item.Object.SubjectQuizCode,
-                    //SubjectQuizQty = item.Object.SubjectQuizQty,
                 }).ToList();
                 return contentlist;
             }
@@ -252,13 +249,11 @@ namespace ESWIPE.Views
         {
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
-            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
         private async void ViewModuleContentButton(object sender, EventArgs e)
         {
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
-            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }
 }

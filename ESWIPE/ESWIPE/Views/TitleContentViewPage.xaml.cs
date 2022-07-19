@@ -32,11 +32,6 @@ namespace ESWIPE.Views
         public TitleContentViewPage()
         {
             InitializeComponent();
-            //if (!string.IsNullOrEmpty(Rte.Text))
-            //{
-            //    Preferences.Set("RTEContent", Rte.HtmlText);
-            //}
-
             BindingContext = new TitleContentViewViewModel();
         }
         

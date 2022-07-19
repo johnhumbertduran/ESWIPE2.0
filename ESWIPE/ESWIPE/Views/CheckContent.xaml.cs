@@ -135,29 +135,8 @@ namespace ESWIPE.Views
                 SubjectCodePrep = Preferences.Get("SubjectCode", "SubjectCodeValue");
             }
 
-            //var myContents = await GetAllContents();
-            //var ContentData = await GetContent(TeacherName, Quarters, SubjectCodePrep);
-
-            //if (Preferences.ContainsKey("quarter1pass"))
-            //{
-
-            //    if (ContentData != null)
-            //    {
-            //        if (TeacherName == ContentData.CreatedBy)
-            //        {
-            //            if (ContentData.Quarter == Quarters)
-            //            {
-            //                //myListView.ItemsSource = ContentData.TitleContent;
-            //            }
-            //        }
-            //    }
-            //}
-
-            //myListView.ItemsSource = ContentData.TitleContent;
-
             var myContents = await GetAllContents(TeacherName, Quarters, SubjectCodePrep);
             myListView.ItemsSource = myContents;
-
 
         }
 

@@ -32,7 +32,6 @@
                                              HtmlText="{Binding ContentDetail.TitleContent, Mode=OneWayToSource}"
                                              HeightRequest="350" 
                                              ImageInsertCommand="{Binding ImageInsertCommand}"
-                                             ImageInserted="RTE_ImageInserted"
                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                              HorizontalOptions="FillAndExpand"
                                              ></richtexteditor:SfRichTextEditor>

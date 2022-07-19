@@ -38,11 +38,7 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
-                //nextTeacherNumber++;
-                //teacherModel.TeacherNumber = nextTeacherNumber;
-                //teacherModel.Username = teacherModel.Name;
-                //teacherModel.Password = teacherModel.TeacherNumber.ToString();
-                //quizModel.UserRole = "Teacher";
+
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
 
@@ -80,7 +76,7 @@ namespace ESWIPE.Services.Implementations
         {
             return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Select(f => new QuizModel
             {
-                //TeacherNumber = f.Object.TeacherNumber,
+
                 DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,
                 SubjectQuizCode = f.Object.SubjectQuizCode,

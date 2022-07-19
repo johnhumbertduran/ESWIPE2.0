@@ -31,9 +31,9 @@ namespace ESWIPE.ViewModels
 
             Student.Clear();
 
-            var students = await StudentService1.GetStudent();
+            //var students = await StudentService1.GetStudent();
 
-            Student.AddRange(students);
+            //Student.AddRange(students);
 
             IsBusy = false;
         }

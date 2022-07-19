@@ -217,8 +217,6 @@ namespace ESWIPE.Views
                     Quarter = item.Object.Quarter,
                     SubjectCode = item.Object.SubjectCode,
                     TitleContent = item.Object.TitleContent
-                    //SubjectQuizCode = item.Object.SubjectQuizCode,
-                    //SubjectQuizQty = item.Object.SubjectQuizQty,
                 }).ToList();
                 return contentlist;
             }
@@ -249,13 +247,11 @@ namespace ESWIPE.Views
         {
             Preferences.Set("quarter2pass", "quarter2value");
             await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
-            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
         private async void ViewModuleContentButton(object sender, EventArgs e)
         {
             Preferences.Set("quarter2pass", "quarter2value");
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
-            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }
 }

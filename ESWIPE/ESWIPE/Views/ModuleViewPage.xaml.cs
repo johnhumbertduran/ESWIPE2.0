@@ -32,11 +32,9 @@ namespace ESWIPE.Views
         public string Quarters;
 
         //readonly ModuleViewViewModel moduleViewViewModel;
-        //public ViewModel PickPhoto { get; }
         public ModuleViewPage()
         {
             //moduleViewViewModel = new ModuleViewViewModel();
-            //PickPhoto = new ViewModel();
             InitializeComponent();
             //BindingContext = moduleViewViewModel;
         }
@@ -126,11 +124,7 @@ namespace ESWIPE.Views
             if (Preferences.ContainsKey("quarter4pass"))
             {
                 Title = "Quarter 4";
-            }
-
-            //BindingContext = new ModuleViewViewModel();
-
-            
+            }            
         }
 
         private async void Cancel_Button(object sender, EventArgs e)
@@ -207,17 +201,6 @@ namespace ESWIPE.Views
         private async void CheckContent(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
-        }
-
-        private void RTE_ImageInserted(object sender, ImageInsertedEventArgs e)
-        {
-            Syncfusion.XForms.RichTextEditor.ImageSource imgSrc = new Syncfusion.XForms.RichTextEditor.ImageSource();
-            Assembly assembly = typeof(ModuleViewPage).GetTypeInfo().Assembly;
-            Stream image = assembly.GetManifestResourceStream("ESWIPE..png");
-
-            imgSrc.ImageStream = image;
-            imgSrc.SaveOption = ImageSaveOption.Base64;
-            Rte.InsertImage(imgSrc);
         }
     }
 

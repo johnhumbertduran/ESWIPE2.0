@@ -13,12 +13,12 @@ namespace ESWIPE.ViewModels
 {
     class StudentQuizViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Quiz> Quiz { get; set; }
+        //public ObservableRangeCollection<Quiz> Quiz { get; set; }
         public AsyncCommand RefreshCommandQuiz { get; }
         public StudentQuizViewModel()
         {
             Title = "Quiz";
-            Quiz = new ObservableRangeCollection<Quiz>();
+            //Quiz = new ObservableRangeCollection<Quiz>();
             RefreshCommandQuiz = new AsyncCommand(Refresh);
             _ = Task.Run(async () => await Refresh());
         }
@@ -29,11 +29,11 @@ namespace ESWIPE.ViewModels
 
             await Task.Delay(2000);
 
-            Quiz.Clear();
+            //Quiz.Clear();
 
-            var quizzes = await QuizService1.GetQuiz();
+            //var quizzes = await QuizService1.GetQuiz();
 
-            Quiz.AddRange(quizzes);
+            //Quiz.AddRange(quizzes);
 
             IsBusy = false;
         }

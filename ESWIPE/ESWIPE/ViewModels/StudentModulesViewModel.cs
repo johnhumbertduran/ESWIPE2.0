@@ -13,12 +13,12 @@ namespace ESWIPE.ViewModels
 {
     class StudentModulesViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<Module> Module { get; set; }
+        //public ObservableRangeCollection<Module> Module { get; set; }
         public AsyncCommand RefreshCommandModule { get; }
         public StudentModulesViewModel()
         {
             Title = "Modules";
-            Module = new ObservableRangeCollection<Module>();
+            //Module = new ObservableRangeCollection<Module>();
             //RefreshCommandModule = new AsyncCommand(Refresh);
             //_ = Task.Run(async () => await Refresh());
         }

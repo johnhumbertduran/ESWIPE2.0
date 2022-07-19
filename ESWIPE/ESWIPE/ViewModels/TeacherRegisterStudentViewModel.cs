@@ -64,7 +64,7 @@ namespace ESWIPE.ViewModels
                 if (!string.IsNullOrWhiteSpace(StudentDetail.Key))
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
-                    //var route = $"//{nameof(AdminTeacherPage)}";
+
                     await Shell.Current.GoToAsync("..");
                     //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
                 }

@@ -21,13 +21,13 @@
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        ItemsSource="{Binding Quiz}"
         RefreshCommand="{Binding RefreshCommandQuiz}"
         RefreshControlColor="blue"
         SelectionMode="None">
+        <!--ItemsSource="{Binding Quiz}"-->
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Quiz">
+            <DataTemplate>
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
@@ -50,12 +50,12 @@
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
-                                        Text="{Binding DateCreated}"
                                         VerticalOptions="Center" />
+                                        <!--Text="{Binding DateCreated}"-->
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
-                                        Text="{Binding SubjectQuizCode}"
                                         VerticalOptions="Center" />
+                                        <!--Text="{Binding SubjectQuizCode}"-->
                                 </StackLayout>
 
                             </StackLayout>

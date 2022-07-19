@@ -7,7 +7,6 @@ namespace ESWIPE.Models
     public class StudentModel
     {
         public string Key { get; set; }
-        //public int StudentNumber { get; set; }
         public string StudentName { get; set; }
         public string Year { get; set; }
         public string Section { get; set; }

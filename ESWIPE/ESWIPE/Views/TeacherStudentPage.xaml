@@ -36,10 +36,7 @@
                         <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout VerticalOptions="Center">
-                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="Student Number: "
-                                        VerticalOptions="Center" />-->
+                                    
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="Name: "
@@ -54,10 +51,7 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
-                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="{Binding StudentNumber}"
-                                        VerticalOptions="Center" />-->
+                                    
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding StudentName}"

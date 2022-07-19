@@ -50,11 +50,6 @@ namespace ESWIPE.ViewModels
             }
         }
 
-
-        //public string Quarter1 = "Quarter1";
-        //public string Quarter2 = "Quarter2";
-        //public string Quarter3 = "Quarter3";
-        //public string Quarter4 = "Quarter4";
         private async void Login()
         {
             //null or empty field validation, check weather email and password is null or empty
@@ -146,34 +141,6 @@ namespace ESWIPE.ViewModels
                                     Name = TeacherUser.Name,
                                     Section = TeacherUser.Section
                                 };
-
-
-
-                                //var moduleDetails = new ModuleModel()
-                                //{
-                                //    Quarter = ModuleData.Quarter
-                                //};
-
-
-                                //if (TeacherUser.Name == ModuleData.CreatedBy && Quarter1 == ModuleData.Quarter)
-                                //{
-                                //    Preferences.Set("Quarter1", Quarter1);
-                                //}
-                                
-                                //if (TeacherUser.Name == ModuleData.CreatedBy && Quarter2 == ModuleData.Quarter)
-                                //{
-                                //    Preferences.Set("Quarter2", Quarter2);
-                                //}
-                                
-                                //if (TeacherUser.Name == ModuleData.CreatedBy && Quarter3 == ModuleData.Quarter)
-                                //{
-                                //    Preferences.Set("Quarter3", Quarter3);
-                                //}
-                                
-                                //if (TeacherUser.Name == ModuleData.CreatedBy && Quarter4 == ModuleData.Quarter)
-                                //{
-                                //    Preferences.Set("Quarter4", Quarter4);
-                                //}
 
                                 Preferences.Set("Key", userDetails.Key);
                                 Preferences.Set("Username", userDetails.Username);

@@ -34,12 +34,6 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _contentDetail, value);
         }
 
-        //private string rte;
-        //public string Rte
-        //{
-        //    get { return rte; }
-        //    set { SetProperty(ref rte, value); }
-        //}
 
         #endregion
 
@@ -141,18 +135,10 @@ namespace ESWIPE.ViewModels
                 if (!string.IsNullOrWhiteSpace(ContentDetail.Key))
                 {
                     await Application.Current.MainPage.DisplayAlert("Update Info", "Content Updated Succesfully!", "OK");
-
                     //await Shell.Current.GoToAsync("..");
-
                 }
                 else
                 {
-                    //byte[] data = Encoding.ASCII.GetBytes(ContentDetail.TitleContent);
-                    //MemoryStream outputStream = new MemoryStream(data, 0, data.Length);
-                    //await StoreRTEToTextFormat(outputStream);
-
-                    //Preferences.Set("ContentData", data);
-                    //ContentDetail.TitleContent = "";
                     ContentDetail = new ContentModel() { };
                     await Application.Current.MainPage.DisplayAlert("Content Info", "Succesfully added!", "OK");
                 }

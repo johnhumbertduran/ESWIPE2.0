@@ -45,7 +45,6 @@ namespace ESWIPE.Views
             {
                 Command = new Command(async () =>
                 {
-                    //DisplayAlert("Login Info", "Admin", "ok");
                     await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                 })
             });

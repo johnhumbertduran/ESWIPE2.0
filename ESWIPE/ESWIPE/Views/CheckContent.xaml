@@ -33,18 +33,11 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-
                     <!--<ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
                     </ViewCell.ContextActions>-->
                     <StackLayout>
                         <StackLayout>
-                            <!--<Label
-                                        FontSize="Small"
-                                        x:Name="rte"
-                                        Text="{Binding TitleContent}"
-                                        VerticalOptions="Center" />-->
-                            <!--<rte:SfRichTextEditor HtmlText="{Binding TitleContent}" ScrollOrientation="None" HeightRequest="500" ShowToolbar="False"></rte:SfRichTextEditor>-->
                             <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" AutoSize="TextChanges" HeightRequest="700" VerticalOptions="Start" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
                         </StackLayout>
                     </StackLayout>
