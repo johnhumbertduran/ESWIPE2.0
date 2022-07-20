@@ -24,6 +24,7 @@ using Xamarin.Essentials;
 namespace ESWIPE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [DesignTimeVisible(false)]
     public partial class CheckContent : ContentPage
     {
         //public string TitleContent { set; get; }
@@ -137,7 +138,7 @@ namespace ESWIPE.Views
 
             var myContents = await GetAllContents(TeacherName, Quarters, SubjectCodePrep);
             myListView.ItemsSource = myContents;
-
+            //myListView.ScrollTo(myContents[0], ScrollToPosition.Start, false);
         }
 
 
@@ -213,6 +214,5 @@ namespace ESWIPE.Views
                 return null;
             }
         }
-
     }
 }

@@ -204,10 +204,10 @@
                 ContentTemplate="{DataTemplate local:TeacherModulesPage}"
                 Route="TeacherModulesPage" />
 
-            <ShellContent
+            <!--<ShellContent
                 Title="Quizzes"
                 ContentTemplate="{DataTemplate local:TeacherQuizPage}"
-                Route="TeacherQuizPage" />
+                Route="TeacherQuizPage" />-->
         </Tab>
     </FlyoutItem>
     <FlyoutItem

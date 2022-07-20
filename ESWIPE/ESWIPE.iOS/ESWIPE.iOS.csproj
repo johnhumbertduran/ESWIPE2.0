@@ -152,13 +152,13 @@
       <Version>1.8.116</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.DocIO">
-      <Version>20.2.0.36</Version>
+      <Version>20.2.0.39</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
       <Version>20.2.0.38</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRichTextEditor">
-      <Version>20.2.0.36</Version>
+      <Version>20.2.0.39</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>

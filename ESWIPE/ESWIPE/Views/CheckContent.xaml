@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:rte="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             Title="Checking">
+             Title="Module Content">
 
 
     <!--<ContentPage.BindingContext>
@@ -36,10 +36,8 @@
                     <!--<ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
                     </ViewCell.ContextActions>-->
-                    <StackLayout>
-                        <StackLayout>
-                            <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" AutoSize="TextChanges" HeightRequest="700" VerticalOptions="Start" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
-                        </StackLayout>
+                    <StackLayout Margin="0,20,0,0">
+                        <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" VerticalOptions="FillAndExpand" HeightRequest="700" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
                     </StackLayout>
 
                 </ViewCell>

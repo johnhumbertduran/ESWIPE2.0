@@ -53,6 +53,7 @@ namespace ESWIPE.Views
 
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(TeacherCreateModulesPage)}");
+            //Application.Current.MainPage = new NavigationPage(new TeacherCreateModulesPage());
         }
 
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
@@ -105,23 +106,23 @@ namespace ESWIPE.Views
             {
                 var ContentData = await GetContent(TeacherName, SubjectCodePrep);
 
-                if (ModuleData1 != null)
+                if (ContentData != null)
                 {
                     if (TeacherName == ContentData.CreatedBy)
                     {
-                        if (SubjectCodePrep == ModuleData1.SubjectCode)
+                        if (SubjectCodePrep == ContentData.SubjectCode)
                         {
                             Q1ViewModuleContent.IsVisible = true;
                             Q1CreateModule.IsVisible = false;
                             Q1ViewModule.IsVisible = false;
                         }
-                        else
-                        {
-                            Q1ViewModuleContent.IsVisible = false;
-                            Q1CreateModule.IsVisible = false;
-                            Q1ViewModule.IsVisible = true;
-                        }
                     }
+                }
+                else
+                {
+                    Q1ViewModuleContent.IsVisible = false;
+                    Q1CreateModule.IsVisible = false;
+                    Q1ViewModule.IsVisible = true;
                 }
             }
             else
@@ -219,6 +220,8 @@ namespace ESWIPE.Views
                     Quarter = item.Object.Quarter,
                     SubjectCode = item.Object.SubjectCode,
                     TitleContent = item.Object.TitleContent
+                    //SubjectQuizCode = item.Object.SubjectQuizCode,
+                    //SubjectQuizQty = item.Object.SubjectQuizQty,
                 }).ToList();
                 return contentlist;
             }
@@ -249,11 +252,13 @@ namespace ESWIPE.Views
         {
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(ModuleViewPage)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
         private async void ViewModuleContentButton(object sender, EventArgs e)
         {
             Preferences.Set("quarter1pass", "quarter1value");
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
+            //Application.Current.MainPage = new NavigationPage(new ModuleViewPage());
         }
     }
 }

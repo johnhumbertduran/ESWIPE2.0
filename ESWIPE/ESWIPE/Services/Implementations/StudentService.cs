@@ -8,6 +8,7 @@ using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ESWIPE.Services.Implementations
 {
@@ -17,6 +18,11 @@ namespace ESWIPE.Services.Implementations
         {
             AuthTokenAsyncFactory = () => Task.FromResult(Settings.FireBaseSecret)
         });
+
+        public string Key;
+        public string UserName;
+        public string TeacherName;
+        public string Section;
 
         //static int nextStudentNumber = 20220000;
         public async Task<bool> AddorUpdateStudent(StudentModel studentModel)
@@ -67,7 +73,27 @@ namespace ESWIPE.Services.Implementations
 
         public async Task<List<StudentModel>> GetAllStudent()
         {
-            return (await firebase.Child(nameof(StudentModel)).OnceAsync<StudentModel>()).Select(f => new StudentModel
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(StudentModel)).OnceAsync<StudentModel>()).Where(a => a.Object.Section == Section).Select(f => new StudentModel
             {
                 //StudentNumber = f.Object.StudentNumber,
                 StudentName = f.Object.StudentName,
