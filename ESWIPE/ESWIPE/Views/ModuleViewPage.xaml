@@ -10,8 +10,8 @@
              xmlns:models="clr-namespace:ESWIPE.Models"
              x:Class="ESWIPE.Views.ModuleViewPage"
              BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <!--<ContentPage.BindingContext>
         <viewmodels:TitleContentViewViewModel />
@@ -32,6 +32,7 @@
                                              HtmlText="{Binding ContentDetail.TitleContent, Mode=OneWayToSource}"
                                              HeightRequest="350" 
                                              ImageInsertCommand="{Binding ImageInsertCommand}"
+                                             BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}"
                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                              HorizontalOptions="FillAndExpand"
                                              ></richtexteditor:SfRichTextEditor>

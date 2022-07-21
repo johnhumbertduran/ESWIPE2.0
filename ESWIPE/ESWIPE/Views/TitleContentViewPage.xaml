@@ -7,8 +7,8 @@
              x:DataType="viewmodels:TitleContentViewViewModel"
              xmlns:richtexteditor="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TitleContentViewViewModel />

@@ -5,7 +5,10 @@
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:rte="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             Title="Module Content">
+             Title="Module Content"
+             BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
 
     <!--<ContentPage.BindingContext>
@@ -37,7 +40,13 @@
                         <MenuItem IsDestructive="True" Text="Delete" />
                     </ViewCell.ContextActions>-->
                     <StackLayout Margin="0,20,0,0">
-                        <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" VerticalOptions="FillAndExpand" HeightRequest="700" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
+                        <rte:SfRichTextEditor HtmlText="{Binding TitleContent}"
+                                              VerticalOptions="FillAndExpand"
+                                              HeightRequest="700"
+                                              ReadOnly="True"
+                                              ShowToolbar="False"
+                                              BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}"
+                                              DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"></rte:SfRichTextEditor>
                     </StackLayout>
 
                 </ViewCell>

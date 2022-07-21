@@ -8,8 +8,8 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Title="{Binding Title}"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <!--<ContentPage.BindingContext>
         <viewmodels:TeacherStudentViewModel />

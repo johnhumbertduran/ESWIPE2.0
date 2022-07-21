@@ -7,8 +7,8 @@
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     x:DataType="viewmodels:TeacherQuizViewModel"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <viewmodels:TeacherQuizViewModel />

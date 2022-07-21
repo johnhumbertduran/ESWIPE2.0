@@ -23,21 +23,21 @@ namespace ESWIPE.Views
         {
             loginViewModel = new LoginViewModel();
             InitializeComponent();
-            OnSignUpClickFunction();
+            //OnSignUpClickFunction();
             BindingContext = loginViewModel;
         }
 
-        private void OnSignUpClickFunction()
-        {
-            signupclick.GestureRecognizers.Add(new TapGestureRecognizer()
-            {
-                Command = new Command(async () =>
-                {
-                    //DisplayAlert("Login Info", "Admin", "ok");
-                    await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
-                })
-            });
-        }
+        //private void OnSignUpClickFunction()
+        //{
+        //    signupclick.GestureRecognizers.Add(new TapGestureRecognizer()
+        //    {
+        //        Command = new Command(async () =>
+        //        {
+        //            //DisplayAlert("Login Info", "Admin", "ok");
+        //            await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
+        //        })
+        //    });
+        //}
 
 
     }

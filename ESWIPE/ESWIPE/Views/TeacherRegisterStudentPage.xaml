@@ -19,11 +19,12 @@
         <Grid>
             <StackLayout Margin="0" Padding="0" />
             <StackLayout Margin="15,10,15,0">
-                    <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                    CornerRadius="30"
-                    HasShadow="True"
-                    HeightRequest="550"
-                    HorizontalOptions="FillAndExpand">
+                    <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                           BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                           CornerRadius="30"
+                           HasShadow="True"
+                           HeightRequest="550"
+                           HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
                             <Label
@@ -31,7 +32,7 @@
                                 x:Name="RegisterStudentLabel"
                                 FontSize="35"
                                 Text="Add/Update Student"
-                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}" />
+                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
                         </StackLayout>
 
                         <StackLayout Margin="0,20,0,0">
@@ -40,7 +41,8 @@
                             <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -48,6 +50,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Name"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.StudentName, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -58,7 +61,7 @@
                                 Margin="0,0,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -66,6 +69,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Year"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.Year, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -76,7 +80,7 @@
                                 Margin="0,0,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -84,6 +88,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Section"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.Section, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -95,7 +100,7 @@
                                 Margin="0,0,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -103,6 +108,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Username"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.Username, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -114,7 +120,7 @@
                                 Margin="0,0,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -122,6 +128,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Password"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.Password, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>

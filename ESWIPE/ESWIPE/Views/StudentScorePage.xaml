@@ -8,8 +8,8 @@
     Title="{Binding Title}"
     x:DataType="viewmodels:StudentScoreViewModel"
     BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColor}, 
-                        Light={StaticResource WindowBackgroundColorDark}}">
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
         <viewmodels:StudentScoreViewModel />

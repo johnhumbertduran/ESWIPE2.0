@@ -244,12 +244,14 @@
                 Route="Q4ModulePage" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem
+    <!--<FlyoutItem
         Title="Create Quiz"
         Icon="icon_quiz.png"
         IsVisible="{Binding IsTeacher}">
         <ShellContent ContentTemplate="{DataTemplate local:TeacherCreateQuizPage}" Route="TeacherCreateQuizPage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
+    
+    
     
     
     <FlyoutItem
@@ -289,7 +291,9 @@
         </Tab>
         
     </FlyoutItem>
-    <FlyoutItem
+    
+    
+    <!--<FlyoutItem
         Title="Quiz"
         Icon="icon_quiz.png"
         IsVisible="{Binding IsStudent}">
@@ -300,7 +304,9 @@
         Icon="icon_score.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentScorePage}" Route="StudentScorePage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
+    
+    
     <!--<FlyoutItem
         Title="Score"
         Icon="icon_feed.png"

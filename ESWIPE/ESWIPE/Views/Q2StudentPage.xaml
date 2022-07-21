@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rte="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
-             x:Class="ESWIPE.Views.Q2StudentPage">
+             x:Class="ESWIPE.Views.Q2StudentPage"
+             BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
     <ContentPage.Content>
         <StackLayout>
             <ListView
@@ -22,7 +25,13 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Margin="0,20,0,0">
-                                <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" VerticalOptions="FillAndExpand" HeightRequest="700" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
+                                <rte:SfRichTextEditor HtmlText="{Binding TitleContent}"
+                                                      VerticalOptions="FillAndExpand"
+                                                      HeightRequest="700"
+                                                      ReadOnly="True"
+                                                      ShowToolbar="False"
+                                                      BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}"
+                                                      DefaultFontColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"></rte:SfRichTextEditor>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -37,6 +46,7 @@
                    FontAttributes="Bold"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"
+                   TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                    IsVisible="False"/>
 
         </StackLayout>
