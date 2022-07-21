@@ -260,9 +260,34 @@
     </FlyoutItem>
     <FlyoutItem
         Title="Modules"
+        Route ="StudentModule"
         Icon="icon_modules.png"
-        IsVisible="{Binding IsStudent}">
-        <ShellContent ContentTemplate="{DataTemplate local:StudentModulesPage}" Route="StudentModulesPage" />
+        Appearing="Student_Module_FlyoutItem_Appearing"
+        IsVisible="{Binding IsStudent}"
+        >
+        <!--<ShellContent ContentTemplate="{DataTemplate local:StudentModulesPage}" Route="StudentModulesPage" />-->
+        <Tab>
+            <ShellContent
+                Title="Quarter 1"
+                ContentTemplate="{DataTemplate local:Q1StudentPage}"
+                Route="Q1StudentPage" />
+
+            <ShellContent
+                Title="Quarter 2"
+                ContentTemplate="{DataTemplate local:Q2StudentPage}"
+                Route="Q2StudentPage" />
+
+            <ShellContent
+                Title="Quarter 3"
+                ContentTemplate="{DataTemplate local:Q3StudentPage}"
+                Route="Q3StudentPage" />
+
+            <ShellContent
+                Title="Quarter 4"
+                ContentTemplate="{DataTemplate local:Q4StudentPage}"
+                Route="Q4StudentPage" />
+        </Tab>
+        
     </FlyoutItem>
     <FlyoutItem
         Title="Quiz"

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rte="clr-namespace:Syncfusion.XForms.RichTextEditor;assembly=Syncfusion.SfRichTextEditor.XForms"
+             x:Class="ESWIPE.Views.Q2StudentPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                    BackgroundColor="Transparent"
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    x:Name="myListView"
+                    IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                    ItemsSource="{Binding Contents}"
+                    RefreshCommand="{Binding RefreshCommand}"
+                    RefreshControlColor="blue"
+                    SeparatorVisibility="None"
+                    VerticalOptions="FillAndExpand"
+                    SelectionMode="None"
+                    IsVisible="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="0,20,0,0">
+                                <rte:SfRichTextEditor HtmlText="{Binding TitleContent}" VerticalOptions="FillAndExpand" HeightRequest="700" ReadOnly="True" ShowToolbar="False"></rte:SfRichTextEditor>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+            <Label x:Name="Q2Label"
+                   Text="No modules posted"
+                   FontSize="25"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   IsVisible="False"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

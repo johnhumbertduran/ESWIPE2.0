@@ -74,5 +74,10 @@ namespace ESWIPE
         {
             await Shell.Current.GoToAsync($"//{nameof(Q1ModulePage)}");
         }
+
+        private async void Student_Module_FlyoutItem_Appearing(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(Q1StudentPage)}");
+        }
     }
 }
