@@ -77,6 +77,13 @@ namespace ESWIPE.ViewModels
                 IsTeacher = false;
                 IsStudent = true;
             });
+            //For retaining the user who removed the app from active apps
+            MessagingCenter.Subscribe<SplashPage>(this, "Admin", (sender) =>
+            {
+                IsAdmin = true;
+                IsTeacher = false;
+                IsStudent = false;
+            });
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ESWIPE.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                var modulesList = await _moduleService.GetAllModule();
+                var modulesList = await _moduleService.GetAllModuleForAdmin();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -70,6 +70,27 @@ namespace ESWIPE.ViewModels
             GetAllModule();
         });
 
+        public ICommand SelectedModuleCommand => new Xamarin.Forms.Command<ModuleModel>(async (module) =>
+        {
+            if (module != null)
+            {
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
+
+                if (response == "Update Module")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateModulesPage(module));
+                }
+                else if (response == "Delete Module")
+                {
+                    IsBusy = true;
+                    bool deleteResponse = await _moduleService.DeleteModule(module.Key);
+                    if (deleteResponse)
+                    {
+                        GetAllModule();
+                    }
+                }
+            }
+        });
 
         #endregion
     }

@@ -12,5 +12,6 @@ namespace ESWIPE.Services.Interfaces
         Task<bool> AddorUpdateModule(ModuleModel moduleModel);
         Task<bool> DeleteModule(string key);
         Task<List<ModuleModel>> GetAllModule();
+        Task<List<ModuleModel>> GetAllModuleForAdmin();
     }
 }

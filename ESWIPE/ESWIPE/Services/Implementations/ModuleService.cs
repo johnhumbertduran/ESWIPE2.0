@@ -179,5 +179,18 @@ namespace ESWIPE.Services.Implementations
                 Key = f.Key
             }).ToList();
         }
+
+        public async Task<List<ModuleModel>> GetAllModuleForAdmin()
+        {
+            return (await firebase.Child(nameof(ModuleModel)).OnceAsync<ModuleModel>()).Select(f => new ModuleModel
+            {
+                DateCreated = f.Object.DateCreated,
+                CreatedBy = f.Object.CreatedBy,
+                SubjectCode = f.Object.SubjectCode,
+                SubjectQuizCode = f.Object.SubjectQuizCode,
+                SubjectQuizQty = f.Object.SubjectQuizQty,
+                Key = f.Key
+            }).ToList();
+        }
     }
 }

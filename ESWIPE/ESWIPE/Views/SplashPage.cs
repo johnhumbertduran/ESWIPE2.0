@@ -48,19 +48,26 @@ namespace ESWIPE.Views
             await splashImage.ScaleTo(0.7, 2000, Easing.Linear);
             await splashImage.ScaleTo(150, 2000, Easing.Linear);
 
-            if (Preferences.ContainsKey("Username", ""))
+            if (Preferences.ContainsKey("Username"))
             {
-                if (Preferences.ContainsKey("TeacherName", ""))
+                if (Preferences.ContainsKey("TeacherName"))
                 {
                     MessagingCenter.Send(this, message: "Teacher");
                     await Shell.Current.GoToAsync($"//{nameof(TeacherStudentPage)}");
                     //await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                 }
 
-                if (Preferences.ContainsKey("StudentName", ""))
+                if (Preferences.ContainsKey("StudentName"))
                 {
                     MessagingCenter.Send(this, message: "Student");
                     await Shell.Current.GoToAsync($"//{nameof(StudentPage)}");
+                    //await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                }
+
+                if (Preferences.ContainsKey("AdminName"))
+                {
+                    MessagingCenter.Send(this, message: "Admin");
+                    await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
                     //await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                 }
             }

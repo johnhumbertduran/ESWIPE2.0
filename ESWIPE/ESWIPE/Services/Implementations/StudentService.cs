@@ -105,5 +105,20 @@ namespace ESWIPE.Services.Implementations
                 Key = f.Key
             }).ToList();
         }
+
+        public async Task<List<StudentModel>> GetAllStudentForAdmin()
+        {
+            return (await firebase.Child(nameof(StudentModel)).OnceAsync<StudentModel>()).Select(f => new StudentModel
+            {
+                //StudentNumber = f.Object.StudentNumber,
+                StudentName = f.Object.StudentName,
+                Year = f.Object.Year,
+                Section = f.Object.Section,
+                Username = f.Object.Username,
+                Password = f.Object.Password,
+                UserRole = f.Object.UserRole,
+                Key = f.Key
+            }).ToList();
+        }
     }
 }

@@ -20,6 +20,8 @@
                     SeparatorVisibility="None"
                     VerticalOptions="FillAndExpand"
                     SelectionMode="None"
+                    VerticalScrollBarVisibility="Never"
+                    HorizontalScrollBarVisibility="Never"
                     IsVisible="False">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -27,7 +29,7 @@
                             <StackLayout Margin="0,20,0,0">
                                 <rte:SfRichTextEditor HtmlText="{Binding TitleContent}"
                                                       VerticalOptions="FillAndExpand"
-                                                      HeightRequest="700"
+                                                      HeightRequest="600"
                                                       ReadOnly="True"
                                                       ShowToolbar="False"
                                                       BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},Light={StaticResource WindowBackgroundColor}}"

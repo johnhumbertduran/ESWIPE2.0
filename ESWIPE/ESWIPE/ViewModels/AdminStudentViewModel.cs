@@ -42,7 +42,7 @@ namespace ESWIPE.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                var studentsList = await _studentService.GetAllStudent();
+                var studentsList = await _studentService.GetAllStudentForAdmin();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -70,6 +70,27 @@ namespace ESWIPE.ViewModels
             GetAllStudent();
         });
 
+        public ICommand SelectedStudentCommand => new Xamarin.Forms.Command<StudentModel>(async (student) =>
+        {
+            if (student != null)
+            {
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Student", "Delete Student");
+
+                if (response == "Update Student")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherRegisterStudentPage(student));
+                }
+                else if (response == "Delete Student")
+                {
+                    IsBusy = true;
+                    bool deleteResponse = await _studentService.DeleteStudent(student.Key);
+                    if (deleteResponse)
+                    {
+                        GetAllStudent();
+                    }
+                }
+            }
+        });
 
         #endregion
     }

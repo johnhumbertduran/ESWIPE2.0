@@ -65,8 +65,11 @@ namespace ESWIPE.ViewModels
 
                 if (Username == "adswipen2206" && Password == "pasadipe0622")
                 {
+                    string AUName = "AdminUserName";
+                    string AName = "AdminLoggedIn";
                         MessagingCenter.Send(this, message: "Admin");
-
+                        Preferences.Set("Username", AUName);
+                        Preferences.Set("AdminName", AName);
                         Username = "";
                         Password = "";
 

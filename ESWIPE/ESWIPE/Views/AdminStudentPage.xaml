@@ -6,7 +6,7 @@
     xmlns:models="clr-namespace:ESWIPE.Models"
     xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
     Title="{Binding Title}"
-    x:DataType="viewmodels:TeacherStudentViewModel"
+    x:DataType="viewmodels:AdminStudentViewModel"
     BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
@@ -16,7 +16,7 @@
     </ContentPage.BindingContext>-->
 
     <ContentPage.BindingContext>
-        <viewmodels:TeacherStudentViewModel />
+        <viewmodels:AdminStudentViewModel />
     </ContentPage.BindingContext>
 
     <ListView
@@ -70,7 +70,7 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:TeacherStudentViewModel}}, Path=SelectedStudentCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:AdminStudentViewModel}}, Path=SelectedStudentCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
