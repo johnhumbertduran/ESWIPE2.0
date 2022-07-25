@@ -16,39 +16,49 @@
                 <Frame
                     Padding="0"
                     BackgroundColor="MediumPurple"
-                    HeightRequest="250"
+                    HeightRequest="1500"
                     HorizontalOptions="FillAndExpand">
                     <Image
                         Margin="0"
-                        Aspect="Fill"
-                        Source="cover.png" />
+                        Aspect="AspectFill"
+                        Source="ncover.png" />
 
                 </Frame>
             </StackLayout>
 
             <StackLayout>
-                <Label
+                <!--<Label
                     Margin="0,20,0,0"
                     FontAttributes="Bold"
                     FontSize="70"
                     HorizontalOptions="CenterAndExpand"
                     Text="E-SWIPE"
                     TextColor="Beige"
-                    VerticalOptions="Start" />
+                    VerticalOptions="Start" />-->
+                <Frame
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    Margin="0,-100,0,0"
+                    Scale=".2"
+                    HorizontalOptions="FillAndExpand">
+                    <Image
+                        Margin="0"
+                        Aspect="AspectFill"
+                        Source="logocircle.png" />
+
+                </Frame>
             </StackLayout>
 
-            <StackLayout Margin="15,130,15,0">
-                <Frame
-                    BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                    HasShadow="True"
-                    HeightRequest="400"
-                    HorizontalOptions="FillAndExpand">
+            <StackLayout Margin="15,160,15,0">
+                <Frame BackgroundColor="Transparent"
+                       HasShadow="True"
+                       HeightRequest="400"
+                       HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <StackLayout HorizontalOptions="CenterAndExpand">
                             <Label
                                 FontAttributes="Bold"
-                                FontSize="30"
+                                FontSize="50"
                                 Text="Log In"
                                 TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                         </StackLayout>
@@ -57,8 +67,6 @@
                             <Frame
                                 Margin="0,20,0,0"
                                 Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -77,16 +85,14 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Username"
                                         Text="{Binding Username}"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGray3Dark},Light={StaticResource SystemGray3Dark}}"
+                                        TextColor="Black" />
                                 </StackLayout>
                             </Frame>
 
                             <Frame
                                 Margin="0,20,0,0"
                                 Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -103,11 +109,11 @@
                                         x:Name="Password"
                                         Margin="20,10,35,10"
                                         HorizontalOptions="FillAndExpand"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark},Light={StaticResource SystemGray3Dark}}"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGray3Dark},Light={StaticResource SystemGray3Dark}}"
                                         IsPassword="True"
                                         Placeholder="Password"
                                         Text="{Binding Password}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
+                                        TextColor="Black" />
                                 </StackLayout>
                             </Frame>
 
@@ -115,7 +121,7 @@
 
                         <Button
                             Margin="0,30,0,0"
-                            Background="Purple"
+                            Background="#7591E6"
                             Command="{Binding LoginCommand}"
                             CornerRadius="30"
                             FontAttributes="Bold"

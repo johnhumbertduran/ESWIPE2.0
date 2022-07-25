@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ESWIPE.Views.Q2ModulePage"
+             x:Class="ESWIPE.Views.QuizTypePage"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
+
 
     <ContentPage.Content>
         <StackLayout Margin="40"
@@ -12,33 +13,43 @@
                      HorizontalOptions="Center">
 
             <StackLayout>
-                
-                <Button Text="Create Module"
-                        x:Name="Q2CreateModule"
-                        IsVisible="False"
+
+                <Button Text="Multiple choice"
+                        x:Name="mc"
                         BackgroundColor="#CD79E7"
                         TextColor="White"
-                        Clicked="CreateModuleButton"
                         FontAttributes="Bold"
                         CornerRadius="30"
                         Margin="0,10,0,0"/>
 
-                <Button Text="Create Module Content"
-                        x:Name="Q2ViewModule"
-                        IsVisible="False"
+                <Button Text="True or False"
+                        x:Name="tf"
+                        BackgroundColor="#E58FFE"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="30"
+                        Margin="0,10,0,0"/>
+
+                <Button Text="Identification"
+                        x:Name="id"
                         BackgroundColor="#9B89EB"
                         TextColor="White"
-                        Clicked="CreateModuleContentButton"
                         FontAttributes="Bold"
                         CornerRadius="30"
                         Margin="0,10,0,0"/>
 
-                <Button Text="View Module Content"
-                        x:Name="Q2ViewModuleContent"
-                        IsVisible="False"
+                <Button Text="Essay"
+                        x:Name="essay"
+                        BackgroundColor="#85A6FE"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="30"
+                        Margin="0,10,0,0"/>
+
+                <Button Text="Set A Set B"
+                        x:Name="sasb"
                         BackgroundColor="#7591E6"
                         TextColor="White"
-                        Clicked="ViewModuleContentButton"
                         FontAttributes="Bold"
                         CornerRadius="30"
                         Margin="0,10,0,0"/>

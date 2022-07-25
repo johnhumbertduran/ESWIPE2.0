@@ -41,7 +41,7 @@
                                 Margin="0,30,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -49,6 +49,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Module Code"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding ModuleDetail.SubjectCode, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -57,8 +58,8 @@
                             <Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
-                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -66,6 +67,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Code"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding ModuleDetail.SubjectQuizCode, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
@@ -74,8 +76,8 @@
                             <Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
-                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="DarkGray"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
                                 CornerRadius="50"
                                 HorizontalOptions="FillAndExpand">
                                 <StackLayout Orientation="Horizontal">
@@ -83,6 +85,7 @@
                                         Margin="30,10,35,5"
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Subject Quiz Qty"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding ModuleDetail.SubjectQuizQty, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>

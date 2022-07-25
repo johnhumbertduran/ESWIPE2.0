@@ -236,4 +236,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\user.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logocircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ncover.png" />
+  </ItemGroup>
 </Project>
