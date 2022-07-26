@@ -148,6 +148,27 @@
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:CheckContent}" Route="CheckContent" />
     </TabBar>
+    
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:MultipleChoicePage}" Route="MultipleChoicePage" />
+    </TabBar>
+     
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalsePage}" Route="TrueOrFalsePage" />
+    </TabBar>
+     
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:IdentificationPage}" Route="IdentificationPage" />
+    </TabBar>
+     
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:EssayPage}" Route="EssayPage" />
+    </TabBar>
+     
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:SetASetBPage}" Route="SetASetBPage" />
+    </TabBar>
+    
 
     <FlyoutItem
         Title="Admin Menu"

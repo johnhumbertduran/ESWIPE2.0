@@ -2,20 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ESWIPE.Views.QuizTypePage"
+             Title="Create Quiz"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
 
     <ContentPage.Content>
-        <StackLayout Margin="40"
-                     VerticalOptions="Center"
-                     HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Fill"
+                     HorizontalOptions="Fill">
 
-            <StackLayout>
+            <Label Text="Select Quiz Type"
+                   FontSize="35"
+                   FontAttributes="Bold"
+                   TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+                   <!--TextColor="#FDA968"-->
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="300" Margin="0,-250,0,0">
+
 
                 <Button Text="Multiple choice"
                         x:Name="mc"
+                        Clicked="mc_Clicked"
                         BackgroundColor="#CD79E7"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -24,6 +34,7 @@
 
                 <Button Text="True or False"
                         x:Name="tf"
+                        Clicked="tf_Clicked"
                         BackgroundColor="#E58FFE"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -32,6 +43,7 @@
 
                 <Button Text="Identification"
                         x:Name="id"
+                        Clicked="id_Clicked"
                         BackgroundColor="#9B89EB"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -40,6 +52,7 @@
 
                 <Button Text="Essay"
                         x:Name="essay"
+                        Clicked="essay_Clicked"
                         BackgroundColor="#85A6FE"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -48,6 +61,7 @@
 
                 <Button Text="Set A Set B"
                         x:Name="sasb"
+                        Clicked="sasb_Clicked"
                         BackgroundColor="#7591E6"
                         TextColor="White"
                         FontAttributes="Bold"

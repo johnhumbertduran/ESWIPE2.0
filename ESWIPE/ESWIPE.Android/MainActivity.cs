@@ -44,7 +44,7 @@ namespace ESWIPE.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public static readonly int PickImageId = 1000;
+        public static readonly int PickImageId = 10;
         public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; }
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
         {
@@ -60,10 +60,10 @@ namespace ESWIPE.Droid
                     // Set the Stream as the completion of the Task
                     PickImageTaskCompletionSource.SetResult(stream);
                 }
-                else
-                {
-                    PickImageTaskCompletionSource.SetResult(null);
-                }
+                //else
+                //{
+                //    PickImageTaskCompletionSource.SetResult(null);
+                //}
             }
         }
 
