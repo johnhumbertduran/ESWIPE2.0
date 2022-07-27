@@ -26,11 +26,12 @@ namespace ESWIPE
 
             MainPage = new AppShell();
 
+            DependencyService.Register<IModuleListService, ModuleListService>();
             DependencyService.Register<ITeacherService, TeacherService>();
             DependencyService.Register<IStudentService, StudentService>();
-            DependencyService.Register<IModuleService, ModuleService>();
-            DependencyService.Register<IModuleListService, ModuleListService>();
             DependencyService.Register<IContentService, ContentService>();
+            DependencyService.Register<IModuleService, ModuleService>();
+            DependencyService.Register<IAnswerService, AnswerService>();
             DependencyService.Register<IQuizService, QuizService>();
             //MainPage = new TemporaryIndexPage();
             //DependencyService.Register<IEmployeeService, EmployeeService>();

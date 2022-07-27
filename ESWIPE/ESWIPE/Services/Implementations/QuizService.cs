@@ -79,10 +79,10 @@ namespace ESWIPE.Services.Implementations
 
                 DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,
-                SubjectQuizCode = f.Object.SubjectQuizCode,
-                SubjectQuizQty = f.Object.SubjectQuizQty,
-                SubjectQuizAnswer = f.Object.SubjectQuizAnswer,
-                SubjectQuizCorrectAnswer = f.Object.SubjectQuizCorrectAnswer,
+                QuizCode = f.Object.QuizCode,
+                //QuizQty = f.Object.QuizQty,
+                //QuizAnswer = f.Object.QuizAnswer,
+                //QuizCorrectAnswer = f.Object.QuizCorrectAnswer,
                 Key = f.Key
             }).ToList();
         }

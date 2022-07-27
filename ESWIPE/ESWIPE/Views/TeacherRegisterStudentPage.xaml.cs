@@ -27,5 +27,15 @@ namespace ESWIPE.Views
             RegisterStudentLabel.Text = "Update Student";
             BindingContext = new TeacherRegisterStudentViewModel(student);
         }
+
+        private void Clear_Clicked(object sender, EventArgs e)
+        {
+            StudentName.Text = "";
+            Year.Text = "";
+            Section.Text = "";
+            Username.Text = "";
+            Password.Text = "";
+            StudentName.Focus();
+        }
     }
 }

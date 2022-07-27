@@ -39,10 +39,10 @@ namespace ESWIPE.ViewModels
             {
                 DateCreated = quizResponse.DateCreated,
                 CreatedBy = quizResponse.CreatedBy,
-                SubjectQuizCode = quizResponse.SubjectQuizCode,
-                SubjectQuizQty = quizResponse.SubjectQuizQty,
-                SubjectQuizAnswer = quizResponse.SubjectQuizAnswer,
-                SubjectQuizCorrectAnswer = quizResponse.SubjectQuizCorrectAnswer,
+                QuizCode = quizResponse.QuizCode,
+                //QuizQty = quizResponse.QuizQty,
+                //QuizAnswer = quizResponse.QuizAnswer,
+                //QuizCorrectAnswer = quizResponse.QuizCorrectAnswer,
                 Key = quizResponse.Key
             };
         }
