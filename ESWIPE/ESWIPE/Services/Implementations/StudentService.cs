@@ -44,8 +44,8 @@ namespace ESWIPE.Services.Implementations
                 studentModel.UserRole = "Student";
 
                 var response = await firebase.Child(nameof(StudentModel)).PostAsync(studentModel);
-                studentModel.Key = response.Key;
-                await firebase.Child(nameof(StudentModel)).Child(studentModel.Key).PutAsync(studentModel);
+                //studentModel.Key = response.Key;
+                //await firebase.Child(nameof(StudentModel)).Child(studentModel.Key).PutAsync(studentModel);
 
                 if (response.Key != null)
                 {

@@ -49,28 +49,77 @@ namespace ESWIPE.ViewModels
         #endregion
 
         #region Commands
-        public ICommand SaveTeacherCommand => new Command(async () =>
+
+        public Command SaveTeacherCommand
         {
-            if (IsBusy) return;
-            IsBusy = true;
-            bool res = await _teacherService.AddorUpdateTeacher(TeacherDetail);
-            if (res)
+            get
             {
-                if (!string.IsNullOrWhiteSpace(TeacherDetail.Key))
-                {
-                    await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
-
-                    await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
-                }
-                else
-                {
-                    TeacherDetail = new TeacherModel() { };
-                    await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
-                }
+                return new Command(SaveTeacher);
             }
-            IsBusy = false;
+        }
 
-        });
+        private async void SaveTeacher()
+        {
+            if (string.IsNullOrEmpty(_teacherDetail.Name))
+            {
+                await App.Current.MainPage.DisplayAlert("Empty Name Value", "Please enter Name", "OK");
+            }
+            else if (string.IsNullOrEmpty(_teacherDetail.Section))
+            {
+                await App.Current.MainPage.DisplayAlert("Empty Section Value", "Please enter Section", "OK");
+            }
+            else if (string.IsNullOrEmpty(_teacherDetail.Username))
+            {
+                await App.Current.MainPage.DisplayAlert("Empty Username Value", "Please enter Username", "OK");
+            }
+            else if (string.IsNullOrEmpty(_teacherDetail.Password))
+            {
+                await App.Current.MainPage.DisplayAlert("Empty Password Value", "Please enter Password", "OK");
+            }
+            else
+            {
+                if (IsBusy) return;
+                IsBusy = true;
+                bool res = await _teacherService.AddorUpdateTeacher(TeacherDetail);
+                if (res)
+                {
+                    if (!string.IsNullOrWhiteSpace(TeacherDetail.Key))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+
+                        await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
+                    }
+                    else
+                    {
+                        TeacherDetail = new TeacherModel() { };
+                        await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+                    }
+                }
+                IsBusy = false;
+            }
+        }
+        //public ICommand SaveTeacherCommand => new Command(async () =>
+        //{
+        //    if (IsBusy) return;
+        //    IsBusy = true;
+        //    bool res = await _teacherService.AddorUpdateTeacher(TeacherDetail);
+        //    if (res)
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(TeacherDetail.Key))
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Update Info", "Records Updated Succesfully!", "OK");
+
+        //            await Shell.Current.GoToAsync($"//{nameof(AdminTeacherPage)}");
+        //        }
+        //        else
+        //        {
+        //            TeacherDetail = new TeacherModel() { };
+        //            await Application.Current.MainPage.DisplayAlert("Registration Info", "Succesfully Registered!", "OK");
+        //        }
+        //    }
+        //    IsBusy = false;
+
+        //});
         #endregion
 
     }

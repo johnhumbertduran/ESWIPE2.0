@@ -30,5 +30,13 @@ namespace ESWIPE.Views
             RegisterTeacherLabel.Text = "Update Teacher";
             BindingContext = new AdminRegisterTeacherViewModel(teacher);
         }
+        private void Clear_Clicked(object sender, EventArgs e)
+        {
+            TeacherName.Text = "";
+            TeacherSection.Text = "";
+            TeacherUsername.Text = "";
+            TeacherPassword.Text = "";
+            TeacherName.Focus();
+        }
     }
 }

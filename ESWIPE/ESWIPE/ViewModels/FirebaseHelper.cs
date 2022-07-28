@@ -133,8 +133,8 @@ namespace ESWIPE.ViewModels
                     CreatedBy = item.Object.CreatedBy,
                     Quarter = item.Object.Quarter,
                     SubjectCode = item.Object.SubjectCode,
-                    SubjectQuizCode = item.Object.SubjectQuizCode,
-                    SubjectQuizQty = item.Object.SubjectQuizQty,
+                    //SubjectQuizCode = item.Object.SubjectQuizCode,
+                    //SubjectQuizQty = item.Object.SubjectQuizQty,
                 }).ToList();
                 return modulelist;
             }

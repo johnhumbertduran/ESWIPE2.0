@@ -55,7 +55,7 @@
                                 </StackLayout>
                             </Frame>
                             <!--  Subject Quiz Code  -->
-                            <Frame
+                            <!--<Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
@@ -71,9 +71,9 @@
                                         Text="{Binding ModuleDetail.SubjectQuizCode, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
-                            </Frame>
+                            </Frame>-->
                             <!--  Subject Quiz Qty  -->
-                            <Frame
+                            <!--<Frame
                                 Margin="0,30,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
@@ -89,7 +89,7 @@
                                         Text="{Binding ModuleDetail.SubjectQuizQty, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
-                            </Frame>
+                            </Frame>-->
 
                         </StackLayout>
 

@@ -68,8 +68,8 @@ namespace ESWIPE.ViewModels
                 DateCreated = moduleResponse.DateCreated,
                 CreatedBy = moduleResponse.CreatedBy,
                 SubjectCode = moduleResponse.SubjectCode,
-                SubjectQuizCode = moduleResponse.SubjectQuizCode,
-                SubjectQuizQty = moduleResponse.SubjectQuizQty,
+                //SubjectQuizCode = moduleResponse.SubjectQuizCode,
+                //SubjectQuizQty = moduleResponse.SubjectQuizQty,
                 Key = moduleResponse.Key
             };
         }

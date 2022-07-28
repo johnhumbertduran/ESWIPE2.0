@@ -11,5 +11,6 @@ namespace ESWIPE.Models
         public string CreatedBy { get; set; }
         public string QuizCode { get; set; }
         public string QuizQuestionCode { get; set; }
+        public string Question { get; set; }
     }
 }

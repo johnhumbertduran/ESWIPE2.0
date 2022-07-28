@@ -18,8 +18,8 @@
             <ControlTemplate x:Key="ThemeRadioTemplate">
                 <Frame
                     Padding="0"
-                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkRadioButtonColor},
-                                                      Light={StaticResource LightRadioButtonColor}}"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark},
+                                                      Light={StaticResource WindowBackgroundColor}}"
                     BorderColor="{AppThemeBinding Dark={StaticResource DarkRadioButtonColor},
                                                   Light={StaticResource LightRadioButtonColor}}"
                     CornerRadius="8"
@@ -122,7 +122,7 @@
                                            FontSize="Subtitle"
                                            FontAttributes="Bold"
                                            HorizontalTextAlignment="Center"
-                                           TextColor="#323130" />
+                                           TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </RadioButton.Content>
                         </RadioButton>
@@ -138,7 +138,7 @@
                                            FontSize="Subtitle"
                                            FontAttributes="Bold"
                                            HorizontalTextAlignment="Center"
-                                           TextColor="#323130" />
+                                           TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </RadioButton.Content>
                         </RadioButton>
@@ -154,7 +154,7 @@
                                            FontSize="Subtitle"
                                            FontAttributes="Bold"
                                            HorizontalTextAlignment="Center"
-                                           TextColor="#323130" />
+                                           TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                 </StackLayout>
                             </RadioButton.Content>
                         </RadioButton>

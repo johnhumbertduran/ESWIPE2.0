@@ -174,8 +174,8 @@ namespace ESWIPE.Services.Implementations
                 DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,
                 SubjectCode = f.Object.SubjectCode,
-                SubjectQuizCode = f.Object.SubjectQuizCode,
-                SubjectQuizQty = f.Object.SubjectQuizQty,
+                //SubjectQuizCode = f.Object.SubjectQuizCode,
+                //SubjectQuizQty = f.Object.SubjectQuizQty,
                 Key = f.Key
             }).ToList();
         }
@@ -187,8 +187,8 @@ namespace ESWIPE.Services.Implementations
                 DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,
                 SubjectCode = f.Object.SubjectCode,
-                SubjectQuizCode = f.Object.SubjectQuizCode,
-                SubjectQuizQty = f.Object.SubjectQuizQty,
+                //SubjectQuizCode = f.Object.SubjectQuizCode,
+                //SubjectQuizQty = f.Object.SubjectQuizQty,
                 Key = f.Key
             }).ToList();
         }

@@ -12,7 +12,7 @@ namespace ESWIPE.Models
         public string Quarter { get; set; }
         public string ActiveQuarter { get; set; }
         public string SubjectCode { get; set; }
-        public string SubjectQuizCode { get; set; }
-        public string SubjectQuizQty { get; set; }
+        //public string SubjectQuizCode { get; set; }
+        //public string SubjectQuizQty { get; set; }
     }
 }

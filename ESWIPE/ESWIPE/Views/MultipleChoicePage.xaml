@@ -10,12 +10,167 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" VerticalOptions="Center">
+            <Grid>
+                <StackLayout Margin="0" Padding="0" />
+                <StackLayout Margin="15,10,15,0">
+                    <ScrollView>
+                        <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                               BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                               CornerRadius="30"
+                               HasShadow="True"
+                               HeightRequest="550"
+                               HorizontalOptions="FillAndExpand">
+
+                            <StackLayout>
+                                <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
+                                    <Label
+                                FontAttributes="Bold"
+                                x:Name="RegisterStudentLabel"
+                                FontSize="35"
+                                Text="Create Question"
+                                TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />
+                                </StackLayout>
+
+                                <StackLayout Margin="0,20,0,0">
+
+                                    <!--  Name  -->
+                                    <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry
+                                        Margin="30,10,35,5"
+                                        x:Name="StudentName"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Name"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                        Text="{Binding StudentDetail.StudentName, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <!--  Year  -->
+                                    <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry
+                                        Margin="30,10,35,5"
+                                        x:Name="Year"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Year"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                        Text="{Binding StudentDetail.Year, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <!--  Section  -->
+                                    <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry
+                                        Margin="30,10,35,5"
+                                        x:Name="Section"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Section"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                        Text="{Binding StudentDetail.Section, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                    <!--  Username  -->
+                                    <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry
+                                        Margin="30,10,35,5"
+                                        x:Name="Username"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Username"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                        Text="{Binding StudentDetail.Username, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                    <!--  Password  -->
+                                    <Frame
+                                Margin="0,0,0,0"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                                CornerRadius="50"
+                                HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Entry
+                                        Margin="30,10,35,5"
+                                        x:Name="Password"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder="Password"
+                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                        Text="{Binding StudentDetail.Password, Mode=TwoWay}"
+                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        </StackLayout>
+                                    </Frame>
+
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Button
+                                        Margin="0,20,0,10"
+                                        Padding="30,15,30,15"
+                                        Background="#CD79E7"
+                                        Command="{Binding SaveStudentCommand}"
+                                        CornerRadius="30"
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        HorizontalOptions="Start"
+                                        Text="Submit"
+                                        TextColor="White" />
+                                    <Button
+                                        Margin="0,20,0,10"
+                                        Padding="30,15,30,15"
+                                        Clicked="Clear_Clicked"
+                                        Background="#7591E6"
+                                        CornerRadius="30"
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        HorizontalOptions="Start"
+                                        Text="Clear"
+                                        TextColor="White" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+                    </ScrollView>
+                </StackLayout>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

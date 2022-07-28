@@ -19,13 +19,13 @@
         <Grid>
             <StackLayout Margin="0" Padding="0" />
             <StackLayout Margin="15,10,15,0">
-                        <ScrollView>
-                    <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                           BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                           CornerRadius="30"
-                           HasShadow="True"
-                           HeightRequest="550"
-                           HorizontalOptions="FillAndExpand">
+                    <ScrollView>
+                        <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+                               BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
+                               CornerRadius="30"
+                               HasShadow="True"
+                               HeightRequest="550"
+                               HorizontalOptions="FillAndExpand">
 
                             <StackLayout>
                                 <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
@@ -169,8 +169,8 @@
                                 </StackLayout>
 
                             </StackLayout>
-                    </Frame>
-                        </ScrollView>
+                        </Frame>
+                    </ScrollView>
             </StackLayout>
         </Grid>
     </StackLayout>
