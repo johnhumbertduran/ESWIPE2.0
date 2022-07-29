@@ -19,17 +19,18 @@ namespace ESWIPE.Views
 
         private async void Cancel_Button(object sender, EventArgs e)
         {
+            QuizCode.Text = "";
+            QuestionCode.Text = "";
+            Question.Text = "";
             await Shell.Current.GoToAsync($"///{nameof(QuizTypePage)}", false);
         }
 
         private void Clear_Clicked(object sender, EventArgs e)
         {
-            StudentName.Text = "";
-            Year.Text = "";
-            Section.Text = "";
-            Username.Text = "";
-            Password.Text = "";
-            StudentName.Focus();
+            QuizCode.Text = "";
+            QuestionCode.Text = "";
+            Question.Text = "";
+            QuizCode.Focus();
         }
     }
 }

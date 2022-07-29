@@ -21,5 +21,14 @@ namespace ESWIPE.Views
         {
             await Shell.Current.GoToAsync($"///{nameof(QuizTypePage)}", false);
         }
+
+        private void Clear_Clicked(object sender, EventArgs e)
+        {
+            QuizCode.Text = "";
+            QuestionCode.Text = "";
+            Question.Text = "";
+            QuizCode.Focus();
+        }
+
     }
 }

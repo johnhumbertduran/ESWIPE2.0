@@ -36,7 +36,7 @@
 
                                 <StackLayout Margin="0,20,0,0">
 
-                                    <!--  Name  -->
+                                    <!--  Quiz Code  -->
                                     <Frame
                                 Margin="0,0,0,0"
                                 Padding="0"
@@ -47,18 +47,18 @@
                                         <StackLayout Orientation="Horizontal">
                                             <Entry
                                         Margin="30,10,35,5"
-                                        x:Name="StudentName"
+                                        x:Name="QuizCode"
                                         HorizontalOptions="FillAndExpand"
-                                        Placeholder="Name"
+                                        Placeholder="Quiz Code"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.StudentName, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
 
-                                    <!--  Year  -->
+                                    <!--  Question Code  -->
                                     <Frame
-                                Margin="0,0,0,0"
+                                Margin="0,10,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
@@ -67,74 +67,37 @@
                                         <StackLayout Orientation="Horizontal">
                                             <Entry
                                         Margin="30,10,35,5"
-                                        x:Name="Year"
+                                        x:Name="QuestionCode"
                                         HorizontalOptions="FillAndExpand"
-                                        Placeholder="Year"
+                                        Placeholder="Question Code"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
                                         Text="{Binding StudentDetail.Year, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
 
-                                    <!--  Section  -->
+                                    <!--  Question  -->
                                     <Frame
-                                Margin="0,0,0,0"
+                                Margin="0,30,0,0"
                                 Padding="0"
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
                                 BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                                CornerRadius="50"
+                                CornerRadius="5"
                                 HorizontalOptions="FillAndExpand">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Entry
-                                        Margin="30,10,35,5"
-                                        x:Name="Section"
-                                        HorizontalOptions="FillAndExpand"
-                                        Placeholder="Section"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding StudentDetail.Section, Mode=TwoWay}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
-                                        </StackLayout>
-                                    </Frame>
-
-
-                                    <!--  Username  -->
-                                    <Frame
-                                Margin="0,0,0,0"
-                                Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                                CornerRadius="50"
-                                HorizontalOptions="FillAndExpand">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Entry
-                                        Margin="30,10,35,5"
-                                        x:Name="Username"
-                                        HorizontalOptions="FillAndExpand"
-                                        Placeholder="Username"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding StudentDetail.Username, Mode=TwoWay}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
-                                        </StackLayout>
-                                    </Frame>
-
-
-                                    <!--  Password  -->
-                                    <Frame
-                                Margin="0,0,0,0"
-                                Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                                CornerRadius="50"
-                                HorizontalOptions="FillAndExpand">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Entry
-                                        Margin="30,10,35,5"
-                                        x:Name="Password"
-                                        HorizontalOptions="FillAndExpand"
-                                        Placeholder="Password"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding StudentDetail.Password, Mode=TwoWay}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                        <StackLayout>
+                                            <Label FontAttributes="Bold"
+                                                   Margin="30,10,0,0"
+                                                   x:Name="EditorLabel"
+                                                   Text="Create Question"
+                                                   TextColor="{AppThemeBinding Dark={StaticResource SystemGray2Dark},Light={StaticResource SystemGray5}}"/>
+                                            <Editor Margin="30,5,35,5"
+                                                    x:Name="Question"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    AutoSize="TextChanges"
+                                                    Placeholder="Question"
+                                                    PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
+                                                    Text="{Binding StudentDetail.Section, Mode=TwoWay}"
+                                                    TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
 

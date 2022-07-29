@@ -160,7 +160,5 @@ namespace ESWIPE.ViewModels
 
         //});
         #endregion
-
-
     }
 }
