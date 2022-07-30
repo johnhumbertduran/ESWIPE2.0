@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESWIPE.Views.TrueOrFalseSelectionPage"
+             Title="True or False"
+             BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="300" Margin="0,-250,0,0">
+
+
+                <Button Text="Create Question"
+                        x:Name="cq"
+                        Clicked="cq_Clicked"
+                        BackgroundColor="#CD79E7"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="30"
+                        Margin="0,10,0,0"/>
+
+                <Button Text="View Questions"
+                        x:Name="vq"
+                        Clicked="vq_Clicked"
+                        BackgroundColor="#7591E6"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="30"
+                        Margin="0,10,0,0"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

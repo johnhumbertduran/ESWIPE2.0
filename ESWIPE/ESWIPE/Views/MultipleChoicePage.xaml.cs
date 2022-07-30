@@ -22,7 +22,7 @@ namespace ESWIPE.Views
             QuizCode.Text = "";
             QuestionCode.Text = "";
             Question.Text = "";
-            await Shell.Current.GoToAsync($"///{nameof(QuizTypePage)}", false);
+            await Shell.Current.GoToAsync($"///{nameof(MultipleChoiceSelectionPage)}", false);
         }
 
         private void Clear_Clicked(object sender, EventArgs e)

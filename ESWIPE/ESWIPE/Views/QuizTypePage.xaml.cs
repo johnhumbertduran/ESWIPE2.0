@@ -19,27 +19,27 @@ namespace ESWIPE.Views
 
         private async void mc_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(MultipleChoicePage)}");
+            await Shell.Current.GoToAsync($"//{nameof(MultipleChoiceSelectionPage)}");
         }
 
         private async void tf_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(TrueOrFalsePage)}");
+            await Shell.Current.GoToAsync($"//{nameof(TrueOrFalseSelectionPage)}");
         }
 
         private async void id_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(IdentificationPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(IdentificationSelectionPage)}");
         }
 
         private async void essay_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(EssayPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(EssaySelectionPage)}");
         }
 
         private async void sasb_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(SetASetBPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(SetASetBSelectionPage)}");
         }
     }
 }
