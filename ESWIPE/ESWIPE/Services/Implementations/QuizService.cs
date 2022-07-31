@@ -8,6 +8,7 @@ using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace ESWIPE.Services.Implementations
 {
@@ -19,6 +20,11 @@ namespace ESWIPE.Services.Implementations
         });
 
         //static int nextTeacherNumber = 20220000;
+        public string Key;
+        public string UserName;
+        public string TeacherName;
+        public string Section;
+        public string Quarters;
 
         public async Task<bool> AddorUpdateQuiz(QuizModel quizModel)
         {
@@ -38,14 +44,55 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
+                if (Preferences.ContainsKey("Key"))
+                {
+                    Key = Preferences.Get("Key", "KeyValue");
+                }
+
+                if (Preferences.ContainsKey("Username"))
+                {
+                    UserName = Preferences.Get("Username", "UsernameValue");
+                }
+
+                if (Preferences.ContainsKey("TeacherName"))
+                {
+                    TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+                }
+
+                if (Preferences.ContainsKey("Section"))
+                {
+                    Section = Preferences.Get("Section", "SectionValue");
+                }
+
+                if (Preferences.ContainsKey("quarter1pass"))
+                {
+                    Quarters = "quarter1";
+                }
+
+                if (Preferences.ContainsKey("quarter2pass"))
+                {
+                    Quarters = "quarter2";
+                }
+
+                if (Preferences.ContainsKey("quarter3pass"))
+                {
+                    Quarters = "quarter3";
+                }
+
+                if (Preferences.ContainsKey("quarter4pass"))
+                {
+                    Quarters = "quarter4";
+                }
 
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
 
                 quizModel.DateCreated = date_now.ToString();
+                quizModel.CreatedBy = TeacherName;
+                quizModel.Quarters = Quarters;
                 var response = await firebase.Child(nameof(QuizModel)).PostAsync(quizModel);
-                quizModel.Key = response.Key;
-                await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);
+                //quizModel.Key = response.Key;
+                //await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);
 
                 if (response.Key != null)
                 {

@@ -110,6 +110,7 @@ namespace ESWIPE.Views
                         if (SubjectCodePrep == ModuleData4.SubjectCode)
                         {
                             Q4ViewModuleContent.IsVisible = true;
+                            Q4CreateQuiz.IsVisible = true;
                             Q4CreateModule.IsVisible = false;
                             Q4ViewModule.IsVisible = false;
                         }
@@ -250,6 +251,11 @@ namespace ESWIPE.Views
         {
             Preferences.Set("quarter4pass", "quarter4value");
             await Shell.Current.GoToAsync($"//{nameof(CheckContent)}");
+        }
+
+        private async void Q4CreateQuiz_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//QuizTypePage", true);
         }
     }
 }

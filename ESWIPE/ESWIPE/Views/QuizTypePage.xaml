@@ -7,7 +7,10 @@
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout VerticalOptions="Fill"
                      HorizontalOptions="Fill">

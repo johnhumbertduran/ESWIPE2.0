@@ -188,6 +188,10 @@
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:SetASetBPage}" Route="SetASetBPage" />
     </TabBar>
+             
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:QuizTypePage}" Route="QuizTypePage" />
+    </TabBar>
     
 
     <FlyoutItem
@@ -263,7 +267,8 @@
         Icon="icon_modules.png"
         Appearing="Module_FlyoutItem_Appearing"
         IsVisible="{Binding IsTeacher}">
-        <Tab>
+        <Tab
+            Route="Modules">
             <ShellContent
                 Title="Quarter 1"
                 ContentTemplate="{DataTemplate local:Q1ModulePage}"
@@ -285,12 +290,12 @@
                 Route="Q4ModulePage" />
         </Tab>
     </FlyoutItem>
-    <FlyoutItem
+    <!--<FlyoutItem
         Title="Create Quiz"
         Icon="icon_quiz.png"
         IsVisible="{Binding IsTeacher}">
         <ShellContent ContentTemplate="{DataTemplate local:QuizTypePage}" Route="QuizTypePage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
     
     
     

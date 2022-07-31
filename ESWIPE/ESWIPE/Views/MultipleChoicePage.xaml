@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             x:DataType="viewmodels:MultipleChoiceViewModel"
              x:Class="ESWIPE.Views.MultipleChoicePage"
              Title="Multiple Choice"
              BackgroundColor="{AppThemeBinding 
@@ -11,6 +13,10 @@
         <ToolbarItem Text="Back" Clicked="Cancel_Button"/>
     </ContentPage.ToolbarItems>-->
 
+    <ContentPage.BindingContext>
+        <viewmodels:MultipleChoiceViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout Padding="0" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" VerticalOptions="Center">
             <Grid>
@@ -51,7 +57,7 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Quiz Code"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding StudentDetail.StudentName, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.QuizCode, Mode=TwoWay}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
@@ -71,7 +77,7 @@
                                         HorizontalOptions="FillAndExpand"
                                         Placeholder="Question Code"
                                         PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding StudentDetail.Year, Mode=TwoWay}"
+                                        Text="{Binding QuizDetail.QuizQuestionCode}"
                                         TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
@@ -96,7 +102,7 @@
                                                     AutoSize="TextChanges"
                                                     Placeholder="Question"
                                                     PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                                    Text="{Binding StudentDetail.Section, Mode=TwoWay}"
+                                                    Text="{Binding QuizDetail.Question}"
                                                     TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
@@ -108,7 +114,7 @@
                                         Margin="0,20,0,10"
                                         Padding="30,15,30,15"
                                         Background="#CD79E7"
-                                        Command="{Binding SaveStudentCommand}"
+                                        Command="{Binding SaveQuizCommand}"
                                         CornerRadius="30"
                                         FontAttributes="Bold"
                                         FontSize="20"

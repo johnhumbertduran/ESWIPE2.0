@@ -30,7 +30,7 @@ namespace ESWIPE.Views
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"///{nameof(QuizTypePage)}", false);
+            await Shell.Current.GoToAsync("///QuizTypePage");
         }
 
     }
