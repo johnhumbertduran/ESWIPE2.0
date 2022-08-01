@@ -62,26 +62,6 @@
                                         </StackLayout>
                                     </Frame>
 
-                                    <!--  Question Code  -->
-                                    <Frame
-                                Margin="0,10,0,0"
-                                Padding="0"
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
-                                BorderColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor}, Light={StaticResource WindowBackgroundColorDark}}"
-                                CornerRadius="50"
-                                HorizontalOptions="FillAndExpand">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Entry
-                                        Margin="30,10,35,5"
-                                        x:Name="QuestionCode"
-                                        HorizontalOptions="FillAndExpand"
-                                        Placeholder="Question Code"
-                                        PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                        Text="{Binding QuizDetail.QuizQuestionCode}"
-                                        TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
-                                        </StackLayout>
-                                    </Frame>
-
                                     <!--  Question  -->
                                     <Frame
                                 Margin="0,30,0,0"
@@ -94,8 +74,8 @@
                                             <Label FontAttributes="Bold"
                                                    Margin="30,10,0,0"
                                                    x:Name="EditorLabel"
-                                                   Text="Create Question"
-                                                   TextColor="{AppThemeBinding Dark={StaticResource SystemGray2Dark},Light={StaticResource SystemGray5}}"/>
+                                                   Text="Question here"
+                                                   TextColor="{AppThemeBinding Dark={StaticResource SystemGray2Dark},Light={StaticResource SystemGray}}"/>
                                             <Editor Margin="30,5,35,5"
                                                     x:Name="Question"
                                                     HorizontalOptions="FillAndExpand"

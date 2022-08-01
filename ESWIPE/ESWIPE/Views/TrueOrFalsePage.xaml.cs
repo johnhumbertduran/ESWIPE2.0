@@ -25,7 +25,7 @@ namespace ESWIPE.Views
         private void Clear_Clicked(object sender, EventArgs e)
         {
             QuizCode.Text = "";
-            QuestionCode.Text = "";
+            //QuestionCode.Text = "";
             Question.Text = "";
             QuizCode.Focus();
         }

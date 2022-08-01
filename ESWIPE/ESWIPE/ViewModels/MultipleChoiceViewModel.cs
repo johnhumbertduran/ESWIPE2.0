@@ -25,8 +25,8 @@ namespace ESWIPE.ViewModels
                 //StudentNumber = studentResponse.StudentNumber,
                 DateCreated = quizResponse.Key,
                 CreatedBy = quizResponse.Key,
-                QuizCode = quizResponse.Key,
-                QuizQuestionCode = quizResponse.Key,
+                //QuizCode = quizResponse.Key,
+                //QuizQuestionCode = quizResponse.Key,
                 Question = quizResponse.Key,
                 Key = quizResponse.Key
 
@@ -63,15 +63,7 @@ namespace ESWIPE.ViewModels
 
         private async void SaveQuiz()
         {
-            if (string.IsNullOrEmpty(_quizDetail.QuizCode))
-            {
-                await App.Current.MainPage.DisplayAlert("Empty Name Value", "Please enter Name", "OK");
-            }
-            else if (string.IsNullOrEmpty(_quizDetail.QuizQuestionCode))
-            {
-                await App.Current.MainPage.DisplayAlert("Empty Year Value", "Please enter Year", "OK");
-            }
-            else if (string.IsNullOrEmpty(_quizDetail.Question))
+            if (string.IsNullOrEmpty(_quizDetail.Question))
             {
                 await App.Current.MainPage.DisplayAlert("Empty Section Value", "Please enter Section", "OK");
             }

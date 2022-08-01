@@ -25,6 +25,7 @@ namespace ESWIPE.Services.Implementations
         public string TeacherName;
         public string Section;
         public string Quarters;
+        public string QuizTypes;
 
         public async Task<bool> AddorUpdateQuiz(QuizModel quizModel)
         {
@@ -84,12 +85,39 @@ namespace ESWIPE.Services.Implementations
                     Quarters = "quarter4";
                 }
 
+                if (Preferences.ContainsKey("multiplechoice"))
+                {
+                    QuizTypes = "multiplechoice";
+                }
+
+                if (Preferences.ContainsKey("trueorfalse"))
+                {
+                    QuizTypes = "trueorfalse";
+                }
+
+                if (Preferences.ContainsKey("identification"))
+                {
+                    QuizTypes = "identification";
+                }
+
+                if (Preferences.ContainsKey("essay"))
+                {
+                    QuizTypes = "essay";
+                }
+
+                if (Preferences.ContainsKey("setasetb"))
+                {
+                    QuizTypes = "setasetb";
+                }
+
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
 
                 quizModel.DateCreated = date_now.ToString();
                 quizModel.CreatedBy = TeacherName;
                 quizModel.Quarters = Quarters;
+                quizModel.Section = Section;
+                quizModel.QuizType = QuizTypes;
                 var response = await firebase.Child(nameof(QuizModel)).PostAsync(quizModel);
                 //quizModel.Key = response.Key;
                 //await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);

@@ -255,6 +255,27 @@ namespace ESWIPE.Views
 
         private async void Q4CreateQuiz_Clicked(object sender, EventArgs e)
         {
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Preferences.Remove("quarter1pass");
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Preferences.Remove("quarter2pass");
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Preferences.Remove("quarter3pass");
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Preferences.Remove("quarter4pass");
+            }
+
+            Preferences.Set("quarter4pass", "quarter4value");
             await Shell.Current.GoToAsync("//QuizTypePage", true);
         }
     }
