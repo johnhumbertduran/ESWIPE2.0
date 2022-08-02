@@ -149,46 +149,78 @@
         <ShellContent ContentTemplate="{DataTemplate local:CheckContent}" Route="CheckContent" />
     </TabBar>
     
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:MultipleChoiceSelectionPage}" Route="MultipleChoiceSelectionPage" />
+    </TabBar>
+              
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:MultipleChoiceViewQuestionsPage}" Route="MultipleChoiceViewQuestionsPage" />
     </TabBar>
          
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:MultipleChoiceSelectionPage}" Route="MultipleChoicePage" />
     </TabBar>
-     
+
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalseSelectionPage}" Route="TrueOrFalseSelectionPage" />
     </TabBar>
-          
+               
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalseViewQuestionsPage}" Route="TrueOrFalseViewQuestionsPage" />
+    </TabBar>
+     
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalsePage}" Route="TrueOrFalsePage" />
     </TabBar>
-     
+
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:IdentificationSelectionPage}" Route="IdentificationSelectionPage" />
     </TabBar>
           
     <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:IdentificationViewQuestionsPage}" Route="IdentificationViewQuestionsPage" />
+    </TabBar>
+               
+    <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:IdentificationPage}" Route="IdentificationPage" />
     </TabBar>
-     
+
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:EssaySelectionPage}" Route="EssaySelectionPage" />
     </TabBar>
           
     <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:EssayViewQuestionsPage}" Route="EssayViewQuestionsPage" />
+    </TabBar>
+               
+    <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:EssayPage}" Route="EssayPage" />
     </TabBar>
-     
+
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:SetASetBSelectionPage}" Route="SetASetBSelectionPage" />
     </TabBar>
          
     <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:SetASetBViewQuestionsPage}" Route="SetASetBViewQuestionsPage" />
+    </TabBar>
+               
+    <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:SetASetBPage}" Route="SetASetBPage" />
     </TabBar>
-             
+
+    <!--S E P A R A T O R-->
+    
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:QuizTypePage}" Route="QuizTypePage" />
     </TabBar>

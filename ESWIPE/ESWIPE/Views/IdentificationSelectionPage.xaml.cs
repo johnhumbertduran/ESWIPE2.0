@@ -52,7 +52,34 @@ namespace ESWIPE.Views
         private async void vq_Clicked(object sender, EventArgs e)
         {
             //await Shell.Current.GoToAsync($"//{nameof(SetASetBPage)}");
-            await App.Current.MainPage.DisplayAlert("View Questions Check", "It's Okay", "OK");
+            //await App.Current.MainPage.DisplayAlert("View Questions Check", "It's Okay", "OK");
+            if (Preferences.ContainsKey("multiplechoice"))
+            {
+                Preferences.Remove("multiplechoice");
+            }
+
+            if (Preferences.ContainsKey("trueorfalse"))
+            {
+                Preferences.Remove("trueorfalse");
+            }
+
+            if (Preferences.ContainsKey("identification"))
+            {
+                Preferences.Remove("identification");
+            }
+
+            if (Preferences.ContainsKey("essay"))
+            {
+                Preferences.Remove("essay");
+            }
+
+            if (Preferences.ContainsKey("setasetb"))
+            {
+                Preferences.Remove("setasetb");
+            }
+
+            Preferences.Set("identification", "identificationvalue");
+            await Navigation.PushAsync(new IdentificationViewQuestionsPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

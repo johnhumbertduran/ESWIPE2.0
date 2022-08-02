@@ -65,7 +65,7 @@ namespace ESWIPE.ViewModels
         {
             if (string.IsNullOrEmpty(_quizDetail.Question))
             {
-                await App.Current.MainPage.DisplayAlert("Empty Section Value", "Please enter Section", "OK");
+                await App.Current.MainPage.DisplayAlert("Empty Values", "Please input the empty values", "OK");
             }
             else
             {
