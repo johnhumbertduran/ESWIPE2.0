@@ -16,22 +16,21 @@ namespace ESWIPE.ViewModels
             _quizService = DependencyService.Resolve<IQuizService>();
         }
 
-        public MultipleChoiceViewModel(StudentModel quizResponse)
+        public MultipleChoiceViewModel(QuizModel quizResponse)
         {
             Title = "Update Student";
             _quizService = DependencyService.Resolve<IQuizService>();
             QuizDetail = new QuizModel
             {
-                //StudentNumber = studentResponse.StudentNumber,
-                DateCreated = quizResponse.Key,
-                CreatedBy = quizResponse.Key,
-                //QuizCode = quizResponse.Key,
-                //QuizQuestionCode = quizResponse.Key,
-                Question = quizResponse.Key,
+                CreatedBy = quizResponse.CreatedBy,
+                DateCreated = quizResponse.DateCreated,
+                Quarters = quizResponse.Quarters,
+                Question = quizResponse.Question,
+                QuizCode = quizResponse.QuizCode,
+                QuizType = quizResponse.QuizType,
+                Section = quizResponse.Section,
                 Key = quizResponse.Key
-
-                
-    };
+            };
         }
         #endregion
 

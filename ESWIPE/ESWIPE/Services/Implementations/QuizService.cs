@@ -152,12 +152,194 @@ namespace ESWIPE.Services.Implementations
             return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Select(f => new QuizModel
             {
 
-                DateCreated = f.Object.DateCreated,
                 CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
                 QuizCode = f.Object.QuizCode,
-                //QuizQty = f.Object.QuizQty,
-                //QuizAnswer = f.Object.QuizAnswer,
-                //QuizCorrectAnswer = f.Object.QuizCorrectAnswer,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
+                Key = f.Key
+            }).ToList();
+        }
+
+        public async Task<List<QuizModel>> GetEssayQuestions()
+        {
+            //throw new NotImplementedException();
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "essay").Select(f => new QuizModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
+                QuizCode = f.Object.QuizCode,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
+                Key = f.Key
+            }).ToList();
+        }
+
+        public async Task<List<QuizModel>> GetIdentificationQuestions()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "identification").Select(f => new QuizModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
+                QuizCode = f.Object.QuizCode,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
+                Key = f.Key
+            }).ToList();
+        }
+
+        public async Task<List<QuizModel>> GetMultipleChoiceQuestions()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "multiplechoice").Select(f => new QuizModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
+                QuizCode = f.Object.QuizCode,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
+                Key = f.Key
+            }).ToList();
+        }
+
+        public async Task<List<QuizModel>> GetSetASetBQuestions()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "setasetb").Select(f => new QuizModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
+                QuizCode = f.Object.QuizCode,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
+                Key = f.Key
+            }).ToList();
+        }
+
+        public async Task<List<QuizModel>> GetTrueOrFalseQuestions()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            return (await firebase.Child(nameof(QuizModel)).OnceAsync<QuizModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "trueorfalse").Select(f => new QuizModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                Question = f.Object.Question,
+                QuizCode = f.Object.QuizCode,
+                QuizType = f.Object.QuizType,
+                Section = f.Object.Section,
                 Key = f.Key
             }).ToList();
         }

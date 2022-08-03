@@ -4,16 +4,73 @@
              x:Class="ESWIPE.Views.SetASetBViewQuestionsPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title=""
-             x:DataType="viewmodels:TeacherModulesViewModel"
+             Title="Set A Set B"
+             x:DataType="viewmodels:SetASetBQuestionsViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ContentPage.BindingContext>
+        <viewmodels:SetASetBQuestionsViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding Quizzes}"
+        RefreshCommand="{Binding RefreshCommand}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:QuizModel">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Date Created: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Created By: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Quiz Code: "
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center">
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding DateCreated}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding CreatedBy}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding QuizCode}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:SetASetBQuestionsViewModel}}, Path=SelectedQuizCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
 </ContentPage>

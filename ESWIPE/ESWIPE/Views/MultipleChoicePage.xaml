@@ -34,7 +34,7 @@
                                 <StackLayout Margin="0,20,0,0" HorizontalOptions="CenterAndExpand">
                                     <Label
                                 FontAttributes="Bold"
-                                x:Name="RegisterStudentLabel"
+                                x:Name="CreateQuestionLabel"
                                 FontSize="35"
                                 Text="Create Question"
                                 TextColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColor},Light={StaticResource WindowBackgroundColorDark}}" />

@@ -21,37 +21,37 @@ namespace ESWIPE.ViewModels
             set => SetProperty(ref _isRefreshing, value);
         }
 
-        private readonly IModuleService _moduleService;
-        public ObservableCollection<ModuleModel> Modules { get; set; } = new ObservableCollection<ModuleModel>();
+        private readonly IQuizService _quizService;
+        public ObservableCollection<QuizModel> Quizzes { get; set; } = new ObservableCollection<QuizModel>();
         #endregion
 
         #region Constructor
         public IdentificationQuestionsViewModel()
         {
             //Title = "Teacher's Data";
-            _moduleService = DependencyService.Resolve<IModuleService>();
+            _quizService = DependencyService.Resolve<IQuizService>();
             IsRefreshing = true;
-            GetAllModule();
+            GetAllIdentificationQuiz();
         }
         #endregion
 
         #region Methods
-        private void GetAllModule()
+        private void GetAllIdentificationQuiz()
         {
             IsBusy = true;
             Task.Run(async () =>
             {
-                var modulesList = await _moduleService.GetAllModule();
+                var quizsList = await _quizService.GetIdentificationQuestions();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
 
-                    Modules.Clear();
-                    if (modulesList?.Count > 0)
+                    Quizzes.Clear();
+                    if (quizsList?.Count > 0)
                     {
-                        foreach (var module in modulesList)
+                        foreach (var quiz in quizsList)
                         {
-                            Modules.Add(module);
+                            Quizzes.Add(quiz);
                         }
                     }
                     IsBusy = IsRefreshing = false;
@@ -66,27 +66,27 @@ namespace ESWIPE.ViewModels
         public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
         {
             IsRefreshing = true;
-            GetAllModule();
+            GetAllIdentificationQuiz();
         });
 
 
-        public ICommand SelectedModuleCommand => new Xamarin.Forms.Command<ModuleModel>(async (module) =>
+        public ICommand SelectedQuizCommand => new Xamarin.Forms.Command<QuizModel>(async (quiz) =>
         {
-            if (module != null)
+            if (quiz != null)
             {
                 var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
 
                 if (response == "Update Module")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new TeacherCreateModulesPage(module));
+                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(quiz));
                 }
                 else if (response == "Delete Module")
                 {
                     IsBusy = true;
-                    bool deleteResponse = await _moduleService.DeleteModule(module.Key);
+                    bool deleteResponse = await _quizService.DeleteQuiz(quiz.Key);
                     if (deleteResponse)
                     {
-                        GetAllModule();
+                        GetAllIdentificationQuiz();
                     }
                 }
             }

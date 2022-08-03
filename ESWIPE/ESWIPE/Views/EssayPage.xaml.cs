@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ESWIPE.Models;
+using ESWIPE.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,15 @@ namespace ESWIPE.Views
         public EssayPage()
         {
             InitializeComponent();
+            CreateQuestionLabel.Text = "Create Module";
+            BindingContext = new MultipleChoiceViewModel();
+        }
+
+        public EssayPage(QuizModel quiz)
+        {
+            InitializeComponent();
+            CreateQuestionLabel.Text = "Update Module";
+            BindingContext = new MultipleChoiceViewModel(quiz);
         }
 
         private async void Cancel_Button(object sender, EventArgs e)
