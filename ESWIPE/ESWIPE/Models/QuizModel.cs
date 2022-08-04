@@ -13,7 +13,6 @@ namespace ESWIPE.Models
         public string QuizType { get; set; }
         public string QuizCode { get; set; }
         public string Section { get; set; }
-        public string Question { get; set; }
         public string Instructions { get; set; }
     }
 }

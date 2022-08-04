@@ -45,7 +45,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("identification", "identificationvalue");
-            await Navigation.PushAsync(new IdentificationPage());
+            await Navigation.PushAsync(new IdentificationQuizPage());
             //await App.Current.MainPage.DisplayAlert("Create Question Check", "It's Okay", "OK");
         }
 
@@ -79,7 +79,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("identification", "identificationvalue");
-            await Navigation.PushAsync(new IdentificationViewQuestionsPage());
+            await Navigation.PushAsync(new IdentificationViewQuizPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

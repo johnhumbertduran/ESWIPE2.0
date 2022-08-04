@@ -155,7 +155,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions = f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
@@ -163,7 +163,7 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
-        public async Task<List<QuizModel>> GetEssayQuestions()
+        public async Task<List<QuizModel>> GetEssayQuizzes()
         {
             //throw new NotImplementedException();
             if (Preferences.ContainsKey("Key"))
@@ -192,7 +192,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions = f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
@@ -200,7 +200,7 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
-        public async Task<List<QuizModel>> GetIdentificationQuestions()
+        public async Task<List<QuizModel>> GetIdentificationQuizzes()
         {
             if (Preferences.ContainsKey("Key"))
             {
@@ -228,7 +228,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions = f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
@@ -236,7 +236,7 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
-        public async Task<List<QuizModel>> GetMultipleChoiceQuestions()
+        public async Task<List<QuizModel>> GetMultipleChoiceQuizzes()
         {
             if (Preferences.ContainsKey("Key"))
             {
@@ -264,7 +264,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions= f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
@@ -272,7 +272,7 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
-        public async Task<List<QuizModel>> GetSetASetBQuestions()
+        public async Task<List<QuizModel>> GetSetASetBQuizzes()
         {
             if (Preferences.ContainsKey("Key"))
             {
@@ -300,7 +300,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions= f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
@@ -308,7 +308,7 @@ namespace ESWIPE.Services.Implementations
             }).ToList();
         }
 
-        public async Task<List<QuizModel>> GetTrueOrFalseQuestions()
+        public async Task<List<QuizModel>> GetTrueOrFalseQuizzes()
         {
             if (Preferences.ContainsKey("Key"))
             {
@@ -336,7 +336,7 @@ namespace ESWIPE.Services.Implementations
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
-                Question = f.Object.Question,
+                Instructions= f.Object.Instructions,
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,

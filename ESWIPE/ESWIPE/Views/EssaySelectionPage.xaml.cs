@@ -45,7 +45,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("essay", "essayvalue");
-            await Navigation.PushAsync(new EssayPage());
+            await Navigation.PushAsync(new EssayQuizPage());
             //await App.Current.MainPage.DisplayAlert("Create Question Check", "It's Okay", "OK");
         }
 
@@ -79,7 +79,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("essay", "essayvalue");
-            await Navigation.PushAsync(new EssayViewQuestionsPage());
+            await Navigation.PushAsync(new EssayViewQuizPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

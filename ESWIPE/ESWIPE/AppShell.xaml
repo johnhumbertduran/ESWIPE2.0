@@ -160,7 +160,11 @@
     </TabBar>
          
     <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:MultipleChoiceSelectionPage}" Route="MultipleChoicePage" />
+        <ShellContent ContentTemplate="{DataTemplate local:MultipleChoiceQuizPage}" Route="MultipleChoiceQuizPage" />
+    </TabBar>
+         
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:MultipleChoicePage}" Route="MultipleChoicePage" />
     </TabBar>
 
     <!--S E P A R A T O R-->
@@ -171,6 +175,10 @@
                
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalseViewQuestionsPage}" Route="TrueOrFalseViewQuestionsPage" />
+    </TabBar>
+     
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:TrueOrFalseQuizPage}" Route="TrueOrFalseQuizPage" />
     </TabBar>
      
     <TabBar>
@@ -188,6 +196,10 @@
     </TabBar>
                
     <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:IdentificationQuizPage}" Route="IdentificationQuizPage" />
+    </TabBar>
+               
+    <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:IdentificationPage}" Route="IdentificationPage" />
     </TabBar>
 
@@ -202,6 +214,10 @@
     </TabBar>
                
     <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:EssayQuizPage}" Route="EssayQuizPage" />
+    </TabBar>
+               
+    <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:EssayPage}" Route="EssayPage" />
     </TabBar>
 
@@ -213,6 +229,10 @@
          
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:SetASetBViewQuestionsPage}" Route="SetASetBViewQuestionsPage" />
+    </TabBar>
+               
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:SetASetBQuizPage}" Route="SetASetBQuizPage" />
     </TabBar>
                
     <TabBar>

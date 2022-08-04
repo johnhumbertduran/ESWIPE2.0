@@ -33,6 +33,7 @@ namespace ESWIPE
             DependencyService.Register<IModuleService, ModuleService>();
             DependencyService.Register<IAnswerService, AnswerService>();
             DependencyService.Register<IQuizService, QuizService>();
+            DependencyService.Register<IQuestionService, QuestionService>();
             //MainPage = new TemporaryIndexPage();
             //DependencyService.Register<IEmployeeService, EmployeeService>();
 

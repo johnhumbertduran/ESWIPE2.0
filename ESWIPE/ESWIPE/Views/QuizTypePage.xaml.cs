@@ -30,7 +30,7 @@ namespace ESWIPE.Views
 
         private async void mc_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"//{nameof(MultipleChoiceSelectionPage)}", true);
+            await Shell.Current.GoToAsync($"//{nameof(MultipleChoiceSelectionPage)}");
         }
 
         private async void tf_Clicked(object sender, EventArgs e)

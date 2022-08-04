@@ -45,7 +45,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("trueorfalse", "trueorfalsevalue");
-            await Navigation.PushAsync(new TrueOrFalsePage());
+            await Navigation.PushAsync(new TrueOrFalseQuizPage());
             //await App.Current.MainPage.DisplayAlert("Create Question Check", "It's Okay", "OK");
         }
 
@@ -79,7 +79,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("trueorfalse", "trueorfalsevalue");
-            await Navigation.PushAsync(new TrueOrFalseViewQuestionsPage());
+            await Navigation.PushAsync(new TrueOrFalseViewQuizPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

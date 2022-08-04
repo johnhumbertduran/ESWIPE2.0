@@ -60,7 +60,7 @@
                                 FontAttributes="Bold"
                                 FontSize="50"
                                 Text="Log In"
-                                TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
+                                TextColor="White" />
                         </StackLayout>
 
                         <StackLayout Margin="0,30,0,0">

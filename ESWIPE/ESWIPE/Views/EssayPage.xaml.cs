@@ -18,14 +18,14 @@ namespace ESWIPE.Views
         {
             InitializeComponent();
             CreateQuestionLabel.Text = "Create Module";
-            BindingContext = new MultipleChoiceViewModel();
+            BindingContext = new QuestionsViewModel();
         }
 
-        public EssayPage(QuizModel quiz)
+        public EssayPage(QuestionModel question)
         {
             InitializeComponent();
             CreateQuestionLabel.Text = "Update Module";
-            BindingContext = new MultipleChoiceViewModel(quiz);
+            BindingContext = new QuestionsViewModel(question);
         }
 
         private async void Cancel_Button(object sender, EventArgs e)
@@ -40,6 +40,5 @@ namespace ESWIPE.Views
             Question.Text = "";
             QuizCode.Focus();
         }
-
     }
 }

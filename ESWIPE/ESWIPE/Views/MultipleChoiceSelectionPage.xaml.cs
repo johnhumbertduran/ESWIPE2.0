@@ -45,7 +45,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("multiplechoice", "multiplechoicevalue");
-            await Navigation.PushAsync(new MultipleChoicePage());
+            await Navigation.PushAsync(new MultipleChoiceQuizPage());
             //await App.Current.MainPage.DisplayAlert("Create Question Check", "It's Okay", "OK");
         }
 
@@ -79,7 +79,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("multiplechoice", "multiplechoicevalue");
-            await Navigation.PushAsync(new MultipleChoiceViewQuestionsPage());
+            await Navigation.PushAsync(new MultipleChoiceViewQuizPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

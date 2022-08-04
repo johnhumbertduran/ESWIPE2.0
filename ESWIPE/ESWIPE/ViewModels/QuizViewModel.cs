@@ -7,25 +7,25 @@ using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
 {
-    public class MultipleChoiceViewModel : ViewModelBase
+    public class QuizViewModel : ViewModelBase
     {
         #region Constructor
-        public MultipleChoiceViewModel()
+        public QuizViewModel()
         {
             //Title = "Register Student";
             _quizService = DependencyService.Resolve<IQuizService>();
         }
 
-        public MultipleChoiceViewModel(QuizModel quizResponse)
+        public QuizViewModel(QuizModel quizResponse)
         {
-            Title = "Update Student";
+            //Title = "Update Student";
             _quizService = DependencyService.Resolve<IQuizService>();
             QuizDetail = new QuizModel
             {
                 CreatedBy = quizResponse.CreatedBy,
                 DateCreated = quizResponse.DateCreated,
                 Quarters = quizResponse.Quarters,
-                Question = quizResponse.Question,
+                Instructions = quizResponse.Instructions,
                 QuizCode = quizResponse.QuizCode,
                 QuizType = quizResponse.QuizType,
                 Section = quizResponse.Section,
@@ -62,7 +62,7 @@ namespace ESWIPE.ViewModels
 
         private async void SaveQuiz()
         {
-            if (string.IsNullOrEmpty(_quizDetail.Question))
+            if (string.IsNullOrEmpty(_quizDetail.Instructions))
             {
                 await App.Current.MainPage.DisplayAlert("Empty Values", "Please input the empty values", "OK");
             }

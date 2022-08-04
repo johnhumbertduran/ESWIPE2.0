@@ -45,7 +45,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("setasetb", "setasetbvalue");
-            await Navigation.PushAsync(new SetASetBPage());
+            await Navigation.PushAsync(new SetASetBQuizPage());
             //await App.Current.MainPage.DisplayAlert("Create Question Check", "It's Okay", "OK");
         }
 
@@ -79,7 +79,7 @@ namespace ESWIPE.Views
             }
 
             Preferences.Set("setasetb", "setasetbvalue");
-            await Navigation.PushAsync(new SetASetBViewQuestionsPage());
+            await Navigation.PushAsync(new SetASetBViewQuizPage());
         }
         private async void Cancel_Button(object sender, EventArgs e)
         {

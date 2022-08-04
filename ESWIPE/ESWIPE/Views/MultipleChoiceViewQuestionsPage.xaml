@@ -20,7 +20,7 @@
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Quizzes}"
+        ItemsSource="{Binding Questions}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
@@ -63,7 +63,7 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:MultipleChoiceQuestionsViewModel}}, Path=SelectedQuizCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:MultipleChoiceQuestionsViewModel}}, Path=SelectedQuestionCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
