@@ -25,6 +25,7 @@ namespace ESWIPE.Services.Implementations
         public string Section;
         public string Quarters;
         public string QuizTypes;
+        public string QuizCode;
 
         public async Task<bool> AddorUpdateQuestion(QuestionModel questionModel)
         {
@@ -108,6 +109,31 @@ namespace ESWIPE.Services.Implementations
                 {
                     QuizTypes = "setasetb";
                 }
+                
+                if (Preferences.ContainsKey("essayCode"))
+                {
+                    QuizCode = Preferences.Get("essayCode", "essayCodeValue");
+                }
+
+                if (Preferences.ContainsKey("identificationCode"))
+                {
+                    QuizCode = Preferences.Get("identificationCode", "identificationCodeValue");
+                }
+                
+                if (Preferences.ContainsKey("multipleChoiceCode"))
+                {
+                    QuizCode = Preferences.Get("multipleChoiceCode", "multipleChoiceCodeValue");
+                }
+
+                if (Preferences.ContainsKey("setASetBCode"))
+                {
+                    QuizCode = Preferences.Get("setASetBCode", "setASetBCodeValue");
+                }
+                
+                if (Preferences.ContainsKey("trueOrFalseCode"))
+                {
+                    QuizCode = Preferences.Get("trueOrFalseCode", "trueOrFalseCodeValue");
+                }
 
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
@@ -117,9 +143,35 @@ namespace ESWIPE.Services.Implementations
                 questionModel.Quarters = Quarters;
                 questionModel.Section = Section;
                 questionModel.QuizType = QuizTypes;
+                questionModel.QuizCode = QuizCode;
                 var response = await firebase.Child(nameof(QuestionModel)).PostAsync(questionModel);
                 //quizModel.Key = response.Key;
                 //await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);
+
+                //if (Preferences.ContainsKey("essayCode"))
+                //{
+                //    Preferences.Remove("essayCode");
+                //}
+
+                //if (Preferences.ContainsKey("identificationCode"))
+                //{
+                //    Preferences.Remove("identificationCode");
+                //}
+                
+                //if (Preferences.ContainsKey("multipleChoiceCode"))
+                //{
+                //    Preferences.Remove("multipleChoiceCode");
+                //}
+                
+                //if (Preferences.ContainsKey("setASetBCode"))
+                //{
+                //    Preferences.Remove("setASetBCode");
+                //}
+                
+                //if (Preferences.ContainsKey("trueOrFalseCode"))
+                //{
+                //    Preferences.Remove("trueOrFalseCode");
+                //}
 
                 if (response.Key != null)
                 {
@@ -185,7 +237,12 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
-            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "essay").Select(f => new QuestionModel
+            if (Preferences.ContainsKey("essayCode"))
+            {
+                QuizCode = Preferences.Get("essayCode", "essayCodeValue");
+            }
+
+            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "essay").Where(b => b.Object.QuizCode == QuizCode).Select(f => new QuestionModel
             {
 
                 CreatedBy = f.Object.CreatedBy,

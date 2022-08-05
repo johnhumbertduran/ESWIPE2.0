@@ -35,10 +35,10 @@ namespace ESWIPE.Views
 
         private void Clear_Clicked(object sender, EventArgs e)
         {
-            QuizCode.Text = "";
+            //QuizCode.Text = "";
             //QuestionCode.Text = "";
             Question.Text = "";
-            QuizCode.Focus();
+            Question.Focus();
         }
     }
 }

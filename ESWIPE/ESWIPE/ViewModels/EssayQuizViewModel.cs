@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
@@ -74,7 +75,7 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Question", "Delete Quiz");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Question", "View Question", "Delete Quiz");
 
                 if (response == "Update Quiz")
                 {
@@ -82,7 +83,18 @@ namespace ESWIPE.ViewModels
                 }
                 else if (response == "Add Question")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Adding Question", "Yes Please", "OK");
+                    if (Preferences.ContainsKey("essayCode"))
+                    {
+                        Preferences.Remove("essayCode");
+                    }
+
+                    Preferences.Set("essayCode", quiz.QuizCode);
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new EssayPage());
+                }
+                else if (response == "View Question")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new EssayViewQuestionsPage());
                 }
                 else if (response == "Delete Quiz")
                 {

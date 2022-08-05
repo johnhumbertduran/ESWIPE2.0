@@ -30,7 +30,7 @@ namespace ESWIPE.Views
 
         private async void Cancel_Button(object sender, EventArgs e)
         {
-            QuizCode.Text = "";
+            //QuizCode.Text = "";
             //QuestionCode.Text = "";
             Question.Text = "";
             await Shell.Current.GoToAsync($"///{nameof(MultipleChoiceSelectionPage)}");
@@ -38,10 +38,10 @@ namespace ESWIPE.Views
 
         private void Clear_Clicked(object sender, EventArgs e)
         {
-            QuizCode.Text = "";
+            //QuizCode.Text = "";
             //QuestionCode.Text = "";
             Question.Text = "";
-            QuizCode.Focus();
+            Question.Focus();
         }
     }
 }
