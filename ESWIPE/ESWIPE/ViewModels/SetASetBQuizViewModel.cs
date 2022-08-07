@@ -75,13 +75,13 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Question", "View Question", "Delete Quiz");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Set", "View Set", "Delete Quiz");
 
                 if (response == "Update Quiz")
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new SetASetBQuizPage(quiz));
                 }
-                else if (response == "Add Question")
+                else if (response == "Add Set")
                 {
                     if (Preferences.ContainsKey("setASetBCode"))
                     {
@@ -92,9 +92,16 @@ namespace ESWIPE.ViewModels
 
                     await Application.Current.MainPage.Navigation.PushAsync(new SetASetBPage());
                 }
-                else if (response == "View Question")
+                else if (response == "View Set")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Adding Question", "Yes Please", "OK");
+                    if (Preferences.ContainsKey("setASetBCode"))
+                    {
+                        Preferences.Remove("setASetBCode");
+                    }
+
+                    Preferences.Set("setASetBCode", quiz.QuizCode);
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new SetASetBViewQuestionsPage());
                 }
                 else if (response == "Delete Quiz")
                 {

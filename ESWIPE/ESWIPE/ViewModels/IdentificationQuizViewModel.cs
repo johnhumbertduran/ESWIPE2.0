@@ -94,7 +94,14 @@ namespace ESWIPE.ViewModels
                 }
                 else if (response == "View Question")
                 {
-                    await Application.Current.MainPage.DisplayAlert("Adding Question", "Yes Please", "OK");
+                    if (Preferences.ContainsKey("identificationCode"))
+                    {
+                        Preferences.Remove("identificationCode");
+                    }
+
+                    Preferences.Set("identificationCode", quiz.QuizCode);
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationViewQuestionsPage());
                 }
                 else if (response == "Delete Quiz")
                 {

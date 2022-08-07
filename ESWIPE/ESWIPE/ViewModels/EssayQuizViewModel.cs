@@ -94,6 +94,13 @@ namespace ESWIPE.ViewModels
                 }
                 else if (response == "View Question")
                 {
+                    if (Preferences.ContainsKey("essayCode"))
+                    {
+                        Preferences.Remove("essayCode");
+                    }
+
+                    Preferences.Set("essayCode", quiz.QuizCode);
+
                     await Application.Current.MainPage.Navigation.PushAsync(new EssayViewQuestionsPage());
                 }
                 else if (response == "Delete Quiz")
