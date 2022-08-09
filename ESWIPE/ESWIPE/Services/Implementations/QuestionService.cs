@@ -26,6 +26,7 @@ namespace ESWIPE.Services.Implementations
         public string Quarters;
         public string QuizTypes;
         public string QuizCode;
+        public string Sets;
 
         public async Task<bool> AddorUpdateQuestion(QuestionModel questionModel)
         {
@@ -135,6 +136,16 @@ namespace ESWIPE.Services.Implementations
                     QuizCode = Preferences.Get("trueOrFalseCode", "trueOrFalseCodeValue");
                 }
 
+                if (Preferences.ContainsKey("setACode"))
+                {
+                    Sets = "SetA";
+                }
+                
+                if (Preferences.ContainsKey("setBCode"))
+                {
+                    Sets = "SetB";
+                }
+
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
 
@@ -144,6 +155,7 @@ namespace ESWIPE.Services.Implementations
                 questionModel.Section = Section;
                 questionModel.QuizType = QuizTypes;
                 questionModel.QuizCode = QuizCode;
+                questionModel.Set = Sets;
                 var response = await firebase.Child(nameof(QuestionModel)).PostAsync(questionModel);
                 //quizModel.Key = response.Key;
                 //await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);

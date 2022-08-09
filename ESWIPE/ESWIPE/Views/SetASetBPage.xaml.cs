@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -39,6 +39,22 @@ namespace ESWIPE.Views
             //QuestionCode.Text = "";
             Question.Text = "";
             Question.Focus();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (Preferences.ContainsKey("setACode"))
+            {
+                EditorLabel.Text = "Set A";
+            }
+            
+            if (Preferences.ContainsKey("setBCode"))
+            {
+                EditorLabel.Text = "Set B";
+            }
+
         }
     }
 }

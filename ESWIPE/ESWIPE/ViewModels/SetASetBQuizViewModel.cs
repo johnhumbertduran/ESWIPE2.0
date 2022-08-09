@@ -75,20 +75,43 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Set", "View Set", "Delete Quiz");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Set A", "Add Set B", "View Set", "Delete Quiz");
 
                 if (response == "Update Quiz")
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new SetASetBQuizPage(quiz));
                 }
-                else if (response == "Add Set")
+                else if (response == "Add Set A")
                 {
                     if (Preferences.ContainsKey("setASetBCode"))
                     {
                         Preferences.Remove("setASetBCode");
                     }
+                    
+                    if (Preferences.ContainsKey("setACode"))
+                    {
+                        Preferences.Remove("setACode");
+                    }
 
                     Preferences.Set("setASetBCode", quiz.QuizCode);
+                    Preferences.Set("setACode", "setA");
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new SetASetBPage());
+                }
+                else if (response == "Add Set B")
+                {
+                    if (Preferences.ContainsKey("setASetBCode"))
+                    {
+                        Preferences.Remove("setASetBCode");
+                    }
+                    
+                    if (Preferences.ContainsKey("setBCode"))
+                    {
+                        Preferences.Remove("setBCode");
+                    }
+
+                    Preferences.Set("setASetBCode", quiz.QuizCode);
+                    Preferences.Set("setBCode", "setB");
 
                     await Application.Current.MainPage.Navigation.PushAsync(new SetASetBPage());
                 }
