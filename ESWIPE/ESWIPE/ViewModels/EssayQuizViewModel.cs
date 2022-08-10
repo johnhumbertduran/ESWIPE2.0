@@ -88,6 +88,36 @@ namespace ESWIPE.ViewModels
                         Preferences.Remove("essayCode");
                     }
 
+                    if (Preferences.ContainsKey("identificationCode"))
+                    {
+                        Preferences.Remove("identificationCode");
+                    }
+
+                    if (Preferences.ContainsKey("multipleChoiceCode"))
+                    {
+                        Preferences.Remove("multipleChoiceCode");
+                    }
+
+                    if (Preferences.ContainsKey("setASetBCode"))
+                    {
+                        Preferences.Remove("setASetBCode");
+                    }
+
+                    if (Preferences.ContainsKey("setACode"))
+                    {
+                        Preferences.Remove("setACode");
+                    }
+
+                    if (Preferences.ContainsKey("setBCode"))
+                    {
+                        Preferences.Remove("setBCode");
+                    }
+
+                    if (Preferences.ContainsKey("trueOrFalseCode"))
+                    {
+                        Preferences.Remove("trueOrFalseCode");
+                    }
+
                     Preferences.Set("essayCode", quiz.QuizCode);
 
                     await Application.Current.MainPage.Navigation.PushAsync(new EssayPage());
@@ -97,6 +127,36 @@ namespace ESWIPE.ViewModels
                     if (Preferences.ContainsKey("essayCode"))
                     {
                         Preferences.Remove("essayCode");
+                    }
+
+                    if (Preferences.ContainsKey("identificationCode"))
+                    {
+                        Preferences.Remove("identificationCode");
+                    }
+
+                    if (Preferences.ContainsKey("multipleChoiceCode"))
+                    {
+                        Preferences.Remove("multipleChoiceCode");
+                    }
+
+                    if (Preferences.ContainsKey("setASetBCode"))
+                    {
+                        Preferences.Remove("setASetBCode");
+                    }
+
+                    if (Preferences.ContainsKey("setACode"))
+                    {
+                        Preferences.Remove("setACode");
+                    }
+
+                    if (Preferences.ContainsKey("setBCode"))
+                    {
+                        Preferences.Remove("setBCode");
+                    }
+
+                    if (Preferences.ContainsKey("trueOrFalseCode"))
+                    {
+                        Preferences.Remove("trueOrFalseCode");
                     }
 
                     Preferences.Set("essayCode", quiz.QuizCode);

@@ -129,6 +129,19 @@ namespace ESWIPE.Services.Implementations
                 if (Preferences.ContainsKey("setASetBCode"))
                 {
                     QuizCode = Preferences.Get("setASetBCode", "setASetBCodeValue");
+
+                    if (Preferences.ContainsKey("setACode"))
+                    {
+                        Sets = "SetA";
+                    }
+
+                    if (Preferences.ContainsKey("setBCode"))
+                    {
+                        Sets = "SetB";
+                    }
+
+                    questionModel.Set = Sets;
+
                 }
                 
                 if (Preferences.ContainsKey("trueOrFalseCode"))
@@ -136,15 +149,7 @@ namespace ESWIPE.Services.Implementations
                     QuizCode = Preferences.Get("trueOrFalseCode", "trueOrFalseCodeValue");
                 }
 
-                if (Preferences.ContainsKey("setACode"))
-                {
-                    Sets = "SetA";
-                }
                 
-                if (Preferences.ContainsKey("setBCode"))
-                {
-                    Sets = "SetB";
-                }
 
                 var delay = TimeSpan.FromMinutes(480);
                 var date_now = DateTime.UtcNow + delay;
@@ -155,7 +160,7 @@ namespace ESWIPE.Services.Implementations
                 questionModel.Section = Section;
                 questionModel.QuizType = QuizTypes;
                 questionModel.QuizCode = QuizCode;
-                questionModel.Set = Sets;
+                
                 var response = await firebase.Child(nameof(QuestionModel)).PostAsync(questionModel);
                 //quizModel.Key = response.Key;
                 //await firebase.Child(nameof(QuizModel)).Child(quizModel.Key).PutAsync(quizModel);
@@ -387,6 +392,7 @@ namespace ESWIPE.Services.Implementations
                 QuizCode = f.Object.QuizCode,
                 QuizType = f.Object.QuizType,
                 Section = f.Object.Section,
+                Set = f.Object.Set,
                 Key = f.Key
             }).ToList();
         }
