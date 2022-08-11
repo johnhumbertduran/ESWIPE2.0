@@ -9,10 +9,12 @@ namespace ESWIPE.Models
         public string Key { get; set; }
         public string DateCreated { get; set; }
         public string CreatedBy { get; set; }
-        public string QuizQuestionCode { get; set; }
-        public string QuizAnswer1 { get; set; }
-        public string QuizAnswer2 { get; set; }
-        public string QuizAnswer3 { get; set; }
-        public string QuizCorrectAnswer { get; set; }
+        public string Quarters { get; set; }
+        public string QuizType { get; set; }
+        public string QuizCode { get; set; }
+        public string Section { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
+        public string CorrectAnswer { get; set; }
     }
 }

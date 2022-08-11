@@ -33,6 +33,7 @@ namespace ESWIPE.ViewModels
             _quizService = DependencyService.Resolve<IQuizService>();
             IsRefreshing = true;
             GetAllEssayQuiz();
+            IsBusy = IsRefreshing = false;
         }
         #endregion
 
@@ -57,7 +58,6 @@ namespace ESWIPE.ViewModels
                     }
                     IsBusy = IsRefreshing = false;
                 });
-
             });
         }
         #endregion

@@ -32,6 +32,7 @@ namespace ESWIPE.ViewModels
             _questionService = DependencyService.Resolve<IQuestionService>();
             IsRefreshing = true;
             GetAllSetASetBQuestion();
+            IsBusy = IsRefreshing = false;
         }
         #endregion
 
@@ -56,7 +57,6 @@ namespace ESWIPE.ViewModels
                     }
                     IsBusy = IsRefreshing = false;
                 });
-
             });
         }
         #endregion
@@ -74,13 +74,17 @@ namespace ESWIPE.ViewModels
         {
             if (question != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Module", "Delete Module");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Delete Question");
 
-                if (response == "Update Module")
+                if (response == "Update Question")
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
                 }
-                else if (response == "Delete Module")
+                else if (response == "Add Answer")
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                }
+                else if (response == "Delete Question")
                 {
                     IsBusy = true;
                     bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
