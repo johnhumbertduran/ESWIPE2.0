@@ -78,11 +78,11 @@ namespace ESWIPE.ViewModels
 
                 if (response == "Update Question")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationPage(question));
                 }
                 else if (response == "Add Answer")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationAddAnswerPage());
                 }
                 else if (response == "Delete Question")
                 {

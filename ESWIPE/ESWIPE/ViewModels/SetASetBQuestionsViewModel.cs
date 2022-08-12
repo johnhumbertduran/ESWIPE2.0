@@ -78,7 +78,7 @@ namespace ESWIPE.ViewModels
 
                 if (response == "Update Question")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    await Application.Current.MainPage.Navigation.PushAsync(new SetASetBPage(question));
                 }
                 else if (response == "Add Answer")
                 {
