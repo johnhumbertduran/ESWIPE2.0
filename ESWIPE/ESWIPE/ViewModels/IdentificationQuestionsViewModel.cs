@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
@@ -74,7 +75,7 @@ namespace ESWIPE.ViewModels
         {
             if (question != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Delete Question");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "View Answer", "Delete Question");
 
                 if (response == "Update Question")
                 {
@@ -82,6 +83,64 @@ namespace ESWIPE.ViewModels
                 }
                 else if (response == "Add Answer")
                 {
+                    if (Preferences.ContainsKey("essayQuestion"))
+                    {
+                        Preferences.Remove("essayQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("identificationQuestion"))
+                    {
+                        Preferences.Remove("identificationQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    {
+                        Preferences.Remove("multipleChoiceQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("setASetBQuestion"))
+                    {
+                        Preferences.Remove("setASetBQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    {
+                        Preferences.Remove("trueOrFalseQuestion");
+                    }
+
+                    Preferences.Set("identificationQuestion", question.Question);
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationAddAnswerPage());
+                }
+                else if (response == "View Answer")
+                {
+                    if (Preferences.ContainsKey("essayQuestion"))
+                    {
+                        Preferences.Remove("essayQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("identificationQuestion"))
+                    {
+                        Preferences.Remove("identificationQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    {
+                        Preferences.Remove("multipleChoiceQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("setASetBQuestion"))
+                    {
+                        Preferences.Remove("setASetBQuestion");
+                    }
+
+                    if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    {
+                        Preferences.Remove("trueOrFalseQuestion");
+                    }
+
+                    Preferences.Set("identificationQuestion", question.Question);
+
                     await Application.Current.MainPage.Navigation.PushAsync(new IdentificationAddAnswerPage());
                 }
                 else if (response == "Delete Question")
