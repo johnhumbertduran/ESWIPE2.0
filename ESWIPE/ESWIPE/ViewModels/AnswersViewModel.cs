@@ -53,17 +53,17 @@ namespace ESWIPE.ViewModels
 
         #region Commands
 
-        public Command SaveAnswerCommand
+        public Command SaveCorrectAnswerCommand
         {
             get
             {
-                return new Command(SaveAnswer);
+                return new Command(SaveCorrectAnswer);
             }
         }
 
-        private async void SaveAnswer()
+        private async void SaveCorrectAnswer()
         {
-            if (string.IsNullOrEmpty(_answerDetail.Answer))
+            if (string.IsNullOrEmpty(_answerDetail.CorrectAnswer))
             {
                 await App.Current.MainPage.DisplayAlert("Empty Values", "Please input the empty values", "OK");
             }
@@ -85,6 +85,7 @@ namespace ESWIPE.ViewModels
                     {
                         AnswerDetail = new AnswerModel() { };
                         await Application.Current.MainPage.DisplayAlert("Adding Answer Info", "Answer succesfully saved!", "OK");
+                        await Shell.Current.GoToAsync("..");
                     }
                 }
                 IsBusy = false;

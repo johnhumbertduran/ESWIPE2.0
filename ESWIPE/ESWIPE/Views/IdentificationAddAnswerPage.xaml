@@ -58,7 +58,7 @@
                                                     HorizontalOptions="FillAndExpand"
                                                     Placeholder="Answer"
                                                     PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                                    Text="{Binding AnswerDetail.Answer, Mode=TwoWay}"
+                                                    Text="{Binding AnswerDetail.CorrectAnswer, Mode=TwoWay}"
                                                     TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
@@ -70,7 +70,7 @@
                                         Margin="0,20,0,10"
                                         Padding="30,15,30,15"
                                         Background="#CD79E7"
-                                        Command="{Binding SaveAnswerCommand}"
+                                        Command="{Binding SaveCorrectAnswerCommand}"
                                         CornerRadius="30"
                                         FontAttributes="Bold"
                                         FontSize="20"

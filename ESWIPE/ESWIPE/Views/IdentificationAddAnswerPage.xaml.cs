@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ESWIPE.Models;
+using ESWIPE.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,17 @@ namespace ESWIPE.Views
         public IdentificationAddAnswerPage()
         {
             InitializeComponent();
+            CreateAnswerLabel.Text = "Create Answer";
+            BindingContext = new AnswersViewModel();
         }
+
+        public IdentificationAddAnswerPage(AnswerModel question)
+        {
+            InitializeComponent();
+            CreateAnswerLabel.Text = "Update Answer";
+            BindingContext = new AnswersViewModel(question);
+        }
+
         private void Clear_Clicked(object sender, EventArgs e)
         {
             //QuizCode.Text = "";

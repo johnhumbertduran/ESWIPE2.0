@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ESWIPE.Views.IdentificationViewAnswerPage"
+             xmlns:models="clr-namespace:ESWIPE.Models"
+             xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
+             Title="Identification"
+             x:DataType="viewmodels:IdentificationAnswersViewModel"
+             BackgroundColor="{AppThemeBinding 
+                        Dark={StaticResource WindowBackgroundColorDark}, 
+                        Light={StaticResource WindowBackgroundColor}}">
+
+    <ContentPage.BindingContext>
+        <viewmodels:IdentificationAnswersViewModel />
+    </ContentPage.BindingContext>
+
+    <ListView
+        BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+        ItemsSource="{Binding Answers}"
+        RefreshCommand="{Binding RefreshCommand}"
+        RefreshControlColor="blue"
+        SelectionMode="None">
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:AnswerModel">
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem IsDestructive="True" Text="Delete" />
+                    </ViewCell.ContextActions>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="20" HasShadow="True" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" BorderColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout VerticalOptions="Center">
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Date Created: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Created By: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Quiz Code: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Question: "
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Answer: "
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center">
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding DateCreated}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding CreatedBy}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding QuizCode}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding Question}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding CorrectAnswer}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:IdentificationAnswersViewModel}}, Path=SelectedAnswerCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
