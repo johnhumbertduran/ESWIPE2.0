@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.EssayViewQuizPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Essay"
+             Title="Essay View Quiz"
              x:DataType="viewmodels:EssayQuizViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 

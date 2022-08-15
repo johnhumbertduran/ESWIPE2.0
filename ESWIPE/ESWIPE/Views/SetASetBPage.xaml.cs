@@ -17,14 +17,36 @@ namespace ESWIPE.Views
         public SetASetBPage()
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Create Module";
+            //CreateQuestionLabel.Text = "Create Set";
+
+            if (Preferences.ContainsKey("setACode"))
+            {
+                CreateQuestionLabel.Text = "Create Set A";
+            }
+
+            if (Preferences.ContainsKey("setBCode"))
+            {
+                CreateQuestionLabel.Text = "Create Set B";
+            }
+
             BindingContext = new QuestionsViewModel();
         }
 
         public SetASetBPage(QuestionModel question)
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Update Module";
+            //CreateQuestionLabel.Text = "Update Set";
+
+            if (Preferences.ContainsKey("setACode"))
+            {
+                CreateQuestionLabel.Text = "Update Set A";
+            }
+
+            if (Preferences.ContainsKey("setBCode"))
+            {
+                CreateQuestionLabel.Text = "Update Set B";
+            }
+
             BindingContext = new QuestionsViewModel(question);
         }
 

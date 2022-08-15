@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.SetASetBViewQuizPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Set A Set B"
+             Title="Set A Set B View Quiz"
              x:DataType="viewmodels:SetASetBQuizViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 

@@ -26,10 +26,12 @@ namespace ESWIPE.ViewModels
                 CreatedBy = answerResponse.CreatedBy,
                 DateCreated = answerResponse.DateCreated,
                 Quarters = answerResponse.Quarters,
-                Question = answerResponse.Question,
-                QuizCode = answerResponse.QuizCode,
                 QuizType = answerResponse.QuizType,
+                QuizCode = answerResponse.QuizCode,
                 Section = answerResponse.Section,
+                Question = answerResponse.Question,
+                Answer = answerResponse.Answer,
+                CorrectAnswer = answerResponse.CorrectAnswer,
                 Key = answerResponse.Key
             };
         }

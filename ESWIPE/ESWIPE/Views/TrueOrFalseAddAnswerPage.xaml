@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.TrueOrFalseAddAnswerPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:AnswersViewModel"
-             Title="True Or False"
+             Title="True Or False Add Answer"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">

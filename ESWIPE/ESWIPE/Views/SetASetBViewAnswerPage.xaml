@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ESWIPE.Views.EssayViewQuestionsPage"
+             x:Class="ESWIPE.Views.SetASetBViewAnswerPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Essay View Question"
-             x:DataType="viewmodels:EssayQuestionsViewModel"
+             Title="Set A Set B View Answer"
+             x:DataType="viewmodels:SetASetBAnswersViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
-        <viewmodels:EssayQuestionsViewModel />
+        <viewmodels:SetASetBAnswersViewModel />
     </ContentPage.BindingContext>
 
     <ListView
@@ -20,13 +20,13 @@
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Questions}"
+        ItemsSource="{Binding Answers}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:QuestionModel">
+            <DataTemplate x:DataType="models:AnswerModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
@@ -51,6 +51,10 @@
                                         FontSize="Small"
                                         Text="Question: "
                                         VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="Answer: "
+                                        VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout VerticalOptions="Center">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
@@ -69,9 +73,13 @@
                                         FontSize="Small"
                                         Text="{Binding Question}"
                                         VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding CorrectAnswer}"
+                                        VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:EssayQuestionsViewModel}}, Path=SelectedQuestionCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:SetASetBAnswersViewModel}}, Path=SelectedAnswerCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>

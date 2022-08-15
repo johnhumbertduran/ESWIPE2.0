@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.MultipleChoiceQuizPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:QuizViewModel"
-             Title="Multiple Choice"
+             Title="Multiple Choice Quiz"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">

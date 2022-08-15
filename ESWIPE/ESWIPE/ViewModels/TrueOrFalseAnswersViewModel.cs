@@ -76,13 +76,13 @@ namespace ESWIPE.ViewModels
         {
             if (answer != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Delete Question");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Answer", "Delete Answer");
 
-                if (response == "Update Question")
+                if (response == "Update Answer")
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new TrueOrFalseAddAnswerPage(answer));
                 }
-                else if (response == "Delete Question")
+                else if (response == "Delete Answer")
                 {
                     IsBusy = true;
                     bool deleteResponse = await _answerService.DeleteAnswer(answer.Key);

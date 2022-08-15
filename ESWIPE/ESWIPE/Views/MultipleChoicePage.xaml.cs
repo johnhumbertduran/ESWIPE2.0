@@ -17,14 +17,14 @@ namespace ESWIPE.Views
         public MultipleChoicePage()
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Create Module";
+            CreateQuestionLabel.Text = "Create Question";
             BindingContext = new QuestionsViewModel();
         }
 
         public MultipleChoicePage(QuestionModel question)
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Update Module";
+            CreateQuestionLabel.Text = "Update Question";
             BindingContext = new QuestionsViewModel(question);
         }
 

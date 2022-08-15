@@ -5,16 +5,14 @@ using Firebase.Database;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
 {
-    public class IdentificationAnswersViewModel : ViewModelBase
+    public class SetASetBAnswersViewModel : ViewModelBase
     {
         #region Properties
         private bool _isRefreshing;
@@ -30,23 +28,23 @@ namespace ESWIPE.ViewModels
         #endregion
 
         #region Constructor
-        public IdentificationAnswersViewModel()
+        public SetASetBAnswersViewModel()
         {
             //Title = "Teacher's Data";
             _answerService = DependencyService.Resolve<IAnswerService>();
             IsRefreshing = true;
-            GetAllIdentificationAnswer();
+            GetAllSetASetBAnswer();
             IsBusy = IsRefreshing = false;
         }
         #endregion
 
         #region Methods
-        private void GetAllIdentificationAnswer()
+        private void GetAllSetASetBAnswer()
         {
             IsBusy = true;
             Task.Run(async () =>
             {
-                var answersList = await _answerService.GetIdentificationAnswer();
+                var answersList = await _answerService.GetSetASetBAnswer();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -70,7 +68,7 @@ namespace ESWIPE.ViewModels
         public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
         {
             IsRefreshing = true;
-            GetAllIdentificationAnswer();
+            GetAllSetASetBAnswer();
         });
 
 
@@ -78,19 +76,19 @@ namespace ESWIPE.ViewModels
         {
             if (answer != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Answer", "Delete Answer");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Set Answer", "Delete Set Answer");
 
-                if (response == "Update Answer")
+                if (response == "Update Set Answer")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationAddAnswerPage(answer));
+                    await Application.Current.MainPage.Navigation.PushAsync(new SetASetBAddAnswerPage(answer));
                 }
-                else if (response == "Delete Answer")
+                else if (response == "Delete Set Answer")
                 {
                     IsBusy = true;
                     bool deleteResponse = await _answerService.DeleteAnswer(answer.Key);
                     if (deleteResponse)
                     {
-                        GetAllIdentificationAnswer();
+                        GetAllSetASetBAnswer();
                     }
                 }
             }

@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.TrueOrFalseQuizPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:QuizViewModel"
-             Title="True or False"
+             Title="True or False Quiz"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">

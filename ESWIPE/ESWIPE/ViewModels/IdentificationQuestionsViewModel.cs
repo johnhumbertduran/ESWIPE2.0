@@ -79,11 +79,11 @@ namespace ESWIPE.ViewModels
         {
             if (question != null)
             {
-                var ModuleData = await GetAnswer(question.CreatedBy, question.Quarters, question.Question);
+                var AnswerData = await GetAnswer(question.CreatedBy, question.Quarters, question.Question);
 
-                if (ModuleData != null)
+                if (AnswerData != null)
                 {
-                    if (ModuleData.CorrectAnswer != "")
+                    if (AnswerData.CorrectAnswer != "")
                     {
                         var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answer", "Delete Question");
 

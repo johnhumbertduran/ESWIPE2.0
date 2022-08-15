@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.IdentificationViewQuizPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Identification"
+             Title="Identification View Quiz"
              x:DataType="viewmodels:IdentificationQuizViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 

@@ -17,14 +17,14 @@ namespace ESWIPE.Views
         public IdentificationPage()
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Create Module";
+            CreateQuestionLabel.Text = "Create Question";
             BindingContext = new QuestionsViewModel();
         }
 
         public IdentificationPage(QuestionModel question)
         {
             InitializeComponent();
-            CreateQuestionLabel.Text = "Update Module";
+            CreateQuestionLabel.Text = "Update Question";
             BindingContext = new QuestionsViewModel(question);
         }
 

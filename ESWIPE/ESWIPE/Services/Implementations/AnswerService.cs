@@ -4,6 +4,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace ESWIPE.Services.Implementations
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine($"Error:{ex}");
                     return false;
                 }
             }
@@ -215,6 +217,7 @@ namespace ESWIPE.Services.Implementations
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"Error:{ex}");
                 return false;
             }
         }

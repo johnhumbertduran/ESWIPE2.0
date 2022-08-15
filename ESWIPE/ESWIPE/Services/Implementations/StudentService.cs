@@ -9,6 +9,7 @@ using ESWIPE.Services.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using System.Diagnostics;
 
 namespace ESWIPE.Services.Implementations
 {
@@ -36,6 +37,7 @@ namespace ESWIPE.Services.Implementations
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine($"Error:{ex}");
                     return false;
                 }
             }
@@ -67,6 +69,7 @@ namespace ESWIPE.Services.Implementations
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"Error:{ex}");
                 return false;
             }
         }

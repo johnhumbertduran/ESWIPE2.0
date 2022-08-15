@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.IdentificationViewAnswerPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Identification"
+             Title="Identification View Answers"
              x:DataType="viewmodels:IdentificationAnswersViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 

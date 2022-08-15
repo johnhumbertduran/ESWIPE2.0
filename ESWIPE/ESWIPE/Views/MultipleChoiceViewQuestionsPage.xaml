@@ -4,7 +4,7 @@
              x:Class="ESWIPE.Views.MultipleChoiceViewQuestionsPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
-             Title="Multiple Choice"
+             Title="Multiple Choice View Questions"
              x:DataType="viewmodels:MultipleChoiceQuestionsViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
