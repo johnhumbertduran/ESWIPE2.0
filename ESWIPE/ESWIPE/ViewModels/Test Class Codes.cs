@@ -100,13 +100,13 @@ namespace ESWIPE.ViewModels
                         }
                         else if (AnswerData.CorrectAnswer == "" && AnswerData.Answer == "")
                         {
-                            // Add Answer and Correct Answer here
+                            // Add Answer and Add Correct Answer here
 
                         }
                     }
                     else
                     {
-                        // Correct Answer and View Answers Here
+                        // Correct Answer and View Answers here since this is greater than 3 meaning the Not Correct Answers are full
 
                         if (AnswerData.CorrectAnswer != "")
                         {
@@ -121,7 +121,7 @@ namespace ESWIPE.ViewModels
                 }
                 else
                 {
-                    // Both Add Answer and CorrectAnswer here with no conditions
+                    // Both Add Answer and CorrectAnswer here with no conditions but ni View Answers since there is no data for this question
                 }
             }
         });
