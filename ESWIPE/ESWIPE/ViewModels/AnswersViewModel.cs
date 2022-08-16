@@ -63,6 +63,7 @@ namespace ESWIPE.ViewModels
             }
         }
 
+        // Correct Answer Command
         private async void SaveCorrectAnswer()
         {
             if (string.IsNullOrEmpty(_answerDetail.CorrectAnswer))
@@ -74,6 +75,46 @@ namespace ESWIPE.ViewModels
                 if (IsBusy) { return; }
                 IsBusy = true;
                 bool res = await _answerService.AddorUpdateAnswer(AnswerDetail);
+                if (res)
+                {
+                    if (!string.IsNullOrWhiteSpace(AnswerDetail.Key))
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Update Info", "Answer updated Succesfully!", "OK");
+
+                        await Shell.Current.GoToAsync("..");
+                        //await Application.Current.MainPage.Navigation.PushAsync(new AdminTeacherPage());
+                    }
+                    else
+                    {
+                        AnswerDetail = new AnswerModel() { };
+                        await Application.Current.MainPage.DisplayAlert("Adding Answer Info", "Answer succesfully saved!", "OK");
+                        await Shell.Current.GoToAsync("..");
+                    }
+                }
+                IsBusy = false;
+            }
+        }
+        
+        // Answer Command
+        public Command SaveAnswerCommand
+        {
+            get
+            {
+                return new Command(SaveAnswer);
+            }
+        }
+
+        private async void SaveAnswer()
+        {
+            if (string.IsNullOrEmpty(_answerDetail.Answer))
+            {
+                await App.Current.MainPage.DisplayAlert("Empty Values", "Please input the empty values", "OK");
+            }
+            else
+            {
+                if (IsBusy) { return; }
+                IsBusy = true;
+                bool res = await _answerService.AddorUpdateNotCorrectAnswer(AnswerDetail);
                 if (res)
                 {
                     if (!string.IsNullOrWhiteSpace(AnswerDetail.Key))

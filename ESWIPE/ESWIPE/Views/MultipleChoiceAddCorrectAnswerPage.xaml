@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ESWIPE.Views.MultipleChoiceAddAnswerPage"
+             x:Class="ESWIPE.Views.MultipleChoiceAddCorrectAnswerPage"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              x:DataType="viewmodels:AnswersViewModel"
-             Title="MultipleChoice Add Answer"
+             Title="MultipleChoice Add Correct Answer"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
@@ -56,9 +56,9 @@
                                             <Entry Margin="30,5,35,5"
                                                     x:Name="Answer"
                                                     HorizontalOptions="FillAndExpand"
-                                                    Placeholder="Answer"
+                                                    Placeholder="Correct Answer"
                                                     PlaceholderColor="{AppThemeBinding Dark={StaticResource SystemGrayDark}, Light={StaticResource SystemGray}}"
-                                                    Text="{Binding AnswerDetail.Answer, Mode=TwoWay}"
+                                                    Text="{Binding AnswerDetail.CorrectAnswer, Mode=TwoWay}"
                                                     TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}" />
                                         </StackLayout>
                                     </Frame>
@@ -70,7 +70,7 @@
                                         Margin="0,20,0,10"
                                         Padding="30,15,30,15"
                                         Background="#CD79E7"
-                                        Command="{Binding SaveAnswerCommand}"
+                                        Command="{Binding SaveCorrectAnswerCommand}"
                                         CornerRadius="30"
                                         FontAttributes="Bold"
                                         FontSize="20"

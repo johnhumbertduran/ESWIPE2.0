@@ -12,16 +12,16 @@ using Xamarin.Forms.Xaml;
 namespace ESWIPE.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MultipleChoiceAddAnswerPage : ContentPage
+    public partial class MultipleChoiceAddCorrectAnswerPage : ContentPage
     {
-        public MultipleChoiceAddAnswerPage()
+        public MultipleChoiceAddCorrectAnswerPage()
         {
             InitializeComponent();
             CreateAnswerLabel.Text = "Create Answer";
             BindingContext = new AnswersViewModel();
         }
 
-        public MultipleChoiceAddAnswerPage(AnswerModel question)
+        public MultipleChoiceAddCorrectAnswerPage(AnswerModel question)
         {
             InitializeComponent();
             CreateAnswerLabel.Text = "Update Answer";

@@ -9,6 +9,7 @@ namespace ESWIPE.Services.Interfaces
     public interface IAnswerService
     {
         Task<bool> AddorUpdateAnswer(AnswerModel answerModel);
+        Task<bool> AddorUpdateNotCorrectAnswer(AnswerModel answerModel);
         Task<bool> DeleteAnswer(string key);
         Task<List<AnswerModel>> GetAllAnswer();
         Task<List<AnswerModel>> GetEssayAnswer();
