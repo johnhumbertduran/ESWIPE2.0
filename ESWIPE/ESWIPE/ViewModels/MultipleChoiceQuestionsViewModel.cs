@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
@@ -78,31 +79,528 @@ namespace ESWIPE.ViewModels
         {
             if (question != null)
             {
+
                 var AnswerData = await GetAnswer(question.CreatedBy, question.Quarters, question.Question);
+
+                if (AnswerData != null)
+                {
+
+                    if (AnswerData.Answer.Count() < 3)
+                    {
+
+                        if (AnswerData.CorrectAnswer != "" && AnswerData.Answer != "")
+                        {
+                            //Add Answer and View Answers since Correct Answer has a data
+
+                        }
+                        else if (AnswerData.Answer != "")
+                        {
+                            // Add Answer and Add Correct Answer and View Answers here
+
+
+                        }
+                        else if (AnswerData.CorrectAnswer == "" && AnswerData.Answer == "")
+                        {
+                            // Add Answer and Correct Answer here
+
+                        }
+                    }
+                    else
+                    {
+                        // Correct Answer and View Answers Here
+
+                        if (AnswerData.CorrectAnswer != "")
+                        {
+                            // View Answers here
+
+                        }
+                        else
+                        {
+                            // Add Correct Answer and View Answers
+                        }
+                    }
+                }
+                else
+                {
+                    // Both Add Answer and CorrectAnswer here with no conditions
+                }
+
+
+                //############################################################################
+                //############################################################################
+                //############################################################################
+                //############################################################################
+                //############################################################################
+                //############################################################################
+
+                //var AnswerData = await GetAnswer(question.CreatedBy, question.Quarters, question.Question);
 
                 if (AnswerData != null)
                 {
                     if (AnswerData.CorrectAnswer != "" && AnswerData.Answer != "")
                     {
                         // View Answer and Correct Answer here
+                        //Edit View and Add Answer and Correct Answer
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answers", "Delete Question");
+                        if(AnswerData.Answer.Count() <= 3)
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answers", "Add Correct Answers", "View Answers", "Delete Question");
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "View Answers")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
+                            if (response == "Update Question")
                             {
-                                GetAllMultipleChoiceQuestion();
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Answers")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
+                            }
+                            else if (response == "Add Correct Answers")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                            }
+                            else if (response == "View Answers")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answers", "View Answers", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Correct Answers")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                            }
+                            else if (response == "View Answers")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+
+                    }
+                    else if (AnswerData.CorrectAnswer != "")
+                    {
+                        // Add Answer and Correct Answer here
+
+                        if (AnswerData.Answer.Count() <= 3)
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "View Answer", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Correct Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
+                            }
+                            else if (response == "View Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Correct Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+
+                    }
+                    else if (AnswerData.Answer != "")
+                    {
+                        // Add Answer and Correct Answer here
+
+                        if (AnswerData.Answer.Count() <= 3)
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "View Answer", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
+                            }
+                            else if (response == "View Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Correct Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
                             }
                         }
 
@@ -111,27 +609,102 @@ namespace ESWIPE.ViewModels
                     {
                         // Add Answer and Correct Answer here
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Add Correct Answer", "Delete Question");
+                        if (AnswerData.Answer.Count() <= 3)
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answer", "Delete Question");
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "Add Answer")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
-                        }
-                        else if (response == "Add Correct Answer")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
+                            if (response == "Update Question")
                             {
-                                GetAllMultipleChoiceQuestion();
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "View Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "Delete Question");
+
+                            if (response == "Update Question")
+                            {
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                            }
+                            else if (response == "Add Correct Answer")
+                            {
+                                if (Preferences.ContainsKey("essayQuestion"))
+                                {
+                                    Preferences.Remove("essayQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("identificationQuestion"))
+                                {
+                                    Preferences.Remove("identificationQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                                {
+                                    Preferences.Remove("multipleChoiceQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("setASetBQuestion"))
+                                {
+                                    Preferences.Remove("setASetBQuestion");
+                                }
+
+                                if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                                {
+                                    Preferences.Remove("trueOrFalseQuestion");
+                                }
+
+                                Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                                await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                            }
+                            else if (response == "Delete Question")
+                            {
+                                IsBusy = true;
+                                bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                                if (deleteResponse)
+                                {
+                                    GetAllMultipleChoiceQuestion();
+                                }
                             }
                         }
 
@@ -139,112 +712,220 @@ namespace ESWIPE.ViewModels
 
                     // Individual Adding and Viewing Answer and Correct Answer
 
-                    if (AnswerData.CorrectAnswer != "")
-                    {
-                        // View Correct Answer here
+                    //if (AnswerData.CorrectAnswer != "")
+                    //{
+                    //    // View Correct Answer here
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answers", "Delete Question");
+                    //    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Correct Answers", "Delete Question");
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "View Answers")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
-                            {
-                                GetAllMultipleChoiceQuestion();
-                            }
-                        }
+                    //    if (response == "Update Question")
+                    //    {
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    //    }
+                    //    else if (response == "View Correct Answers")
+                    //    {
+                    //        if (Preferences.ContainsKey("essayQuestion"))
+                    //        {
+                    //            Preferences.Remove("essayQuestion");
+                    //        }
 
-                    }
-                    else
-                    {
-                        // Add Correct Answer here
+                    //        if (Preferences.ContainsKey("identificationQuestion"))
+                    //        {
+                    //            Preferences.Remove("identificationQuestion");
+                    //        }
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "Delete Question");
+                    //        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    //        {
+                    //            Preferences.Remove("multipleChoiceQuestion");
+                    //        }
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "Add Answer")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
-                            {
-                                GetAllMultipleChoiceQuestion();
-                            }
-                        }
-                    }
+                    //        if (Preferences.ContainsKey("setASetBQuestion"))
+                    //        {
+                    //            Preferences.Remove("setASetBQuestion");
+                    //        }
 
-                    if (AnswerData.Answer != "")
-                    {
-                        // View Answer here
+                    //        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    //        {
+                    //            Preferences.Remove("trueOrFalseQuestion");
+                    //        }
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answers", "Delete Question");
+                    //        Preferences.Set("multipleChoiceQuestion", question.Question);
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "View Answers")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
-                            {
-                                GetAllMultipleChoiceQuestion();
-                            }
-                        }
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                    //    }
+                    //    else if (response == "Delete Question")
+                    //    {
+                    //        IsBusy = true;
+                    //        bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                    //        if (deleteResponse)
+                    //        {
+                    //            GetAllMultipleChoiceQuestion();
+                    //        }
+                    //    }
 
-                    }
-                    else
-                    {
-                        // Add Answer here
+                    //}
+                    //else
+                    //{
+                    //    // Add Correct Answer here
 
-                        var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Delete Question");
+                    //    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Correct Answer", "Delete Question");
 
-                        if (response == "Update Question")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
-                        }
-                        else if (response == "Add Answer")
-                        {
-                            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
-                        }
-                        else if (response == "Delete Question")
-                        {
-                            IsBusy = true;
-                            bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
-                            if (deleteResponse)
-                            {
-                                GetAllMultipleChoiceQuestion();
-                            }
-                        }
+                    //    if (response == "Update Question")
+                    //    {
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    //    }
+                    //    else if (response == "Add Answer")
+                    //    {
+                    //        if (Preferences.ContainsKey("essayQuestion"))
+                    //        {
+                    //            Preferences.Remove("essayQuestion");
+                    //        }
 
-                    }
+                    //        if (Preferences.ContainsKey("identificationQuestion"))
+                    //        {
+                    //            Preferences.Remove("identificationQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    //        {
+                    //            Preferences.Remove("multipleChoiceQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("setASetBQuestion"))
+                    //        {
+                    //            Preferences.Remove("setASetBQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    //        {
+                    //            Preferences.Remove("trueOrFalseQuestion");
+                    //        }
+
+                    //        Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
+                    //    }
+                    //    else if (response == "Delete Question")
+                    //    {
+                    //        IsBusy = true;
+                    //        bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                    //        if (deleteResponse)
+                    //        {
+                    //            GetAllMultipleChoiceQuestion();
+                    //        }
+                    //    }
+                    //}
+
+                    //if (AnswerData.Answer != "")
+                    //{
+                    //    // View Answer here
+
+                    //    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "View Answers Only", "Delete Question");
+
+                    //    if (response == "Update Question")
+                    //    {
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    //    }
+                    //    else if (response == "View Answers Only")
+                    //    {
+                    //        if (Preferences.ContainsKey("essayQuestion"))
+                    //        {
+                    //            Preferences.Remove("essayQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("identificationQuestion"))
+                    //        {
+                    //            Preferences.Remove("identificationQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    //        {
+                    //            Preferences.Remove("multipleChoiceQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("setASetBQuestion"))
+                    //        {
+                    //            Preferences.Remove("setASetBQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    //        {
+                    //            Preferences.Remove("trueOrFalseQuestion");
+                    //        }
+
+                    //        Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceViewAnswerPage());
+                    //    }
+                    //    else if (response == "Delete Question")
+                    //    {
+                    //        IsBusy = true;
+                    //        bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                    //        if (deleteResponse)
+                    //        {
+                    //            GetAllMultipleChoiceQuestion();
+                    //        }
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    // Add Answer here
+
+                    //    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Delete Question");
+
+                    //    if (response == "Update Question")
+                    //    {
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage(question));
+                    //    }
+                    //    else if (response == "Add Answer")
+                    //    {
+                    //        if (Preferences.ContainsKey("essayQuestion"))
+                    //        {
+                    //            Preferences.Remove("essayQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("identificationQuestion"))
+                    //        {
+                    //            Preferences.Remove("identificationQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                    //        {
+                    //            Preferences.Remove("multipleChoiceQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("setASetBQuestion"))
+                    //        {
+                    //            Preferences.Remove("setASetBQuestion");
+                    //        }
+
+                    //        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                    //        {
+                    //            Preferences.Remove("trueOrFalseQuestion");
+                    //        }
+
+                    //        Preferences.Set("multipleChoiceQuestion", question.Question);
+
+                    //        await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
+                    //    }
+                    //    else if (response == "Delete Question")
+                    //    {
+                    //        IsBusy = true;
+                    //        bool deleteResponse = await _questionService.DeleteQuestion(question.Key);
+                    //        if (deleteResponse)
+                    //        {
+                    //            GetAllMultipleChoiceQuestion();
+                    //        }
+                    //    }
+
+                    //}
                 }
                 else
                 {
                     // Both Add Answer and CorrectAnswer here with no conditions
 
-                    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Add Correct Answer", "Delete Question");
+                    var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Question", "Add Answer", "Add Correct Answer 2", "Delete Question");
 
                     if (response == "Update Question")
                     {
@@ -252,10 +933,64 @@ namespace ESWIPE.ViewModels
                     }
                     else if (response == "Add Answer")
                     {
+                        if (Preferences.ContainsKey("essayQuestion"))
+                        {
+                            Preferences.Remove("essayQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("identificationQuestion"))
+                        {
+                            Preferences.Remove("identificationQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                        {
+                            Preferences.Remove("multipleChoiceQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("setASetBQuestion"))
+                        {
+                            Preferences.Remove("setASetBQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                        {
+                            Preferences.Remove("trueOrFalseQuestion");
+                        }
+
+                        Preferences.Set("multipleChoiceQuestion", question.Question);
+
                         await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage());
                     }
-                    else if (response == "Add Correct Answer")
+                    else if (response == "Add Correct Answer 2")
                     {
+                        if (Preferences.ContainsKey("essayQuestion"))
+                        {
+                            Preferences.Remove("essayQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("identificationQuestion"))
+                        {
+                            Preferences.Remove("identificationQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("multipleChoiceQuestion"))
+                        {
+                            Preferences.Remove("multipleChoiceQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("setASetBQuestion"))
+                        {
+                            Preferences.Remove("setASetBQuestion");
+                        }
+
+                        if (Preferences.ContainsKey("trueOrFalseQuestion"))
+                        {
+                            Preferences.Remove("trueOrFalseQuestion");
+                        }
+
+                        Preferences.Set("multipleChoiceQuestion", question.Question);
+
                         await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage());
                     }
                     else if (response == "Delete Question")
