@@ -15,6 +15,7 @@ namespace ESWIPE.Services.Interfaces
         Task<List<AnswerModel>> GetEssayAnswer();
         Task<List<AnswerModel>> GetIdentificationAnswer();
         Task<List<AnswerModel>> GetMultipleChoiceAnswer();
+        Task<List<AnswerModel>> GetMultipleChoiceCorrectAnswer();
         Task<List<AnswerModel>> GetSetASetBAnswer();
         Task<List<AnswerModel>> GetTrueOrFalseAnswer();
     }

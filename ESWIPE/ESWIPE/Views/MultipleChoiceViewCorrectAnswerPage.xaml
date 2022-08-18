@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ESWIPE.Views.MultipleChoiceViewAnswerPage"
+             x:Class="ESWIPE.Views.MultipleChoiceViewCorrectAnswerPage"
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              Title="MultipleChoice View Answers"
-             x:DataType="viewmodels:MultipleChoiceAnswersViewModel"
+             x:DataType="viewmodels:MultipleChoiceCorrectAnswersViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
-        <viewmodels:MultipleChoiceAnswersViewModel />
+        <viewmodels:MultipleChoiceCorrectAnswersViewModel />
     </ContentPage.BindingContext>
 
     <ListView
@@ -20,7 +20,7 @@
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Answers}"
+        ItemsSource="{Binding CorrectAnswers}"
         RefreshCommand="{Binding RefreshCommand}"
         RefreshControlColor="blue"
         SelectionMode="None">
@@ -75,11 +75,11 @@
                                            VerticalOptions="Center" />
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                            FontSize="Small"
-                                           Text="{Binding Answer}"
+                                           Text="{Binding CorrectAnswer}"
                                            VerticalOptions="Center" />
                                     </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:MultipleChoiceAnswersViewModel}}, Path=SelectedAnswerCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:MultipleChoiceCorrectAnswersViewModel}}, Path=SelectedCorrectAnswerCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>

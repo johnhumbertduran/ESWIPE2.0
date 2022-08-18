@@ -469,6 +469,26 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
             if (Preferences.ContainsKey("identificationCode"))
             {
                 QuizCode = Preferences.Get("identificationCode", "identificationCodeValue");
@@ -479,7 +499,7 @@ namespace ESWIPE.Services.Implementations
                 QuizQuestion = Preferences.Get("identificationQuestion", "identificationQuestionValue");
             }
 
-            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "identification").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(a => a.Object.Quarters == Quarters).Where(b => b.Object.QuizType == "identification").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,
@@ -517,6 +537,26 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
             if (Preferences.ContainsKey("multipleChoiceCode"))
             {
                 QuizCode = Preferences.Get("multipleChoiceCode", "multipleChoiceCodeValue");
@@ -527,7 +567,75 @@ namespace ESWIPE.Services.Implementations
                 QuizQuestion = Preferences.Get("multipleChoiceQuestion", "multipleChoiceQuestionValue");
             }
 
-            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "multiplechoice").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(a => a.Object.Quarters == Quarters).Where(b => b.Object.QuizType == "multiplechoice").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Where(b => b.Object.Answer != null).Select(f => new AnswerModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                QuizType = f.Object.QuizType,
+                QuizCode = f.Object.QuizCode,
+                Section = f.Object.Section,
+                Question = f.Object.Question,
+                Answer = f.Object.Answer,
+                CorrectAnswer = f.Object.CorrectAnswer,
+                Key = f.Key
+            }).ToList();
+        }
+        
+        public async Task<List<AnswerModel>> GetMultipleChoiceCorrectAnswer()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("TeacherName"))
+            {
+                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
+            if (Preferences.ContainsKey("multipleChoiceCode"))
+            {
+                QuizCode = Preferences.Get("multipleChoiceCode", "multipleChoiceCodeValue");
+            }
+
+            if (Preferences.ContainsKey("multipleChoiceQuestion"))
+            {
+                QuizQuestion = Preferences.Get("multipleChoiceQuestion", "multipleChoiceQuestionValue");
+            }
+
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(a => a.Object.Quarters == Quarters).Where(b => b.Object.QuizType == "multiplechoice").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Where(b => b.Object.CorrectAnswer != null).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,
@@ -565,6 +673,26 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
             if (Preferences.ContainsKey("setASetBCode"))
             {
                 QuizCode = Preferences.Get("setASetBCode", "setASetBCodeValue");
@@ -575,7 +703,7 @@ namespace ESWIPE.Services.Implementations
                 QuizQuestion = Preferences.Get("setASetBQuestion", "setASetBQuestionValue");
             }
 
-            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "setasetb").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(a => a.Object.Quarters == Quarters).Where(b => b.Object.QuizType == "setasetb").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,
@@ -613,6 +741,26 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
             if (Preferences.ContainsKey("trueOrFalseCode"))
             {
                 QuizCode = Preferences.Get("trueOrFalseCode", "trueOrFalseCodeValue");
@@ -623,7 +771,7 @@ namespace ESWIPE.Services.Implementations
                 QuizQuestion = Preferences.Get("trueOrFalseQuestion", "trueOrFalseQuestionValue");
             }
 
-            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.QuizType == "trueorfalse").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(a => a.Object.Quarters == Quarters).Where(b => b.Object.QuizType == "trueorfalse").Where(b => b.Object.QuizCode == QuizCode).Where(b => b.Object.Question == QuizQuestion).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,

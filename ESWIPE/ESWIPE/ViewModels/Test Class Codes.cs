@@ -89,10 +89,10 @@ namespace ESWIPE.ViewModels
 
                         if (AnswerData.CorrectAnswer != "" && AnswerData.Answer != "")
                         {
-                            //Add Answer and View Answers since Correct Answer has a data
+                            //Add Answer and View Answer and View Correct Answer since Correct Answer has a data
 
                         }
-                        else if (AnswerData.Answer != "")
+                        else if (AnswerData.Answer != "" && AnswerData.CorrectAnswer == "")
                         {
                             // Add Answer and Add Correct Answer and View Answers here
 

@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace ESWIPE.ViewModels
 {
-    public class MultipleChoiceAnswersViewModel : ViewModelBase
+    public class MultipleChoiceCorrectAnswersViewModel : ViewModelBase
     {
         #region Properties
         private bool _isRefreshing;
@@ -23,38 +23,38 @@ namespace ESWIPE.ViewModels
         }
 
         private readonly IAnswerService _answerService;
-        public ObservableCollection<AnswerModel> Answers { get; set; } = new ObservableCollection<AnswerModel>();
+        public ObservableCollection<AnswerModel> CorrectAnswers { get; set; } = new ObservableCollection<AnswerModel>();
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
         #endregion
 
         #region Constructor
-        public MultipleChoiceAnswersViewModel()
+        public MultipleChoiceCorrectAnswersViewModel()
         {
             //Title = "Teacher's Data";
             _answerService = DependencyService.Resolve<IAnswerService>();
             IsRefreshing = true;
-            GetAllMultipleChoiceAnswer();
+            GetAllMultipleChoiceCorrectAnswer();
             IsBusy = IsRefreshing = false;
         }
         #endregion
 
         #region Methods
-        private void GetAllMultipleChoiceAnswer()
+        private void GetAllMultipleChoiceCorrectAnswer()
         {
             IsBusy = true;
             Task.Run(async () =>
             {
-                var answersList = await _answerService.GetMultipleChoiceAnswer();
+                var answersList = await _answerService.GetMultipleChoiceCorrectAnswer();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
 
-                    Answers.Clear();
+                    CorrectAnswers.Clear();
                     if (answersList?.Count > 0)
                     {
                         foreach (var answer in answersList)
                         {
-                            Answers.Add(answer);
+                            CorrectAnswers.Add(answer);
                         }
                     }
                     IsBusy = IsRefreshing = false;
@@ -68,11 +68,11 @@ namespace ESWIPE.ViewModels
         public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
         {
             IsRefreshing = true;
-            GetAllMultipleChoiceAnswer();
+            GetAllMultipleChoiceCorrectAnswer();
         });
 
 
-        public ICommand SelectedAnswerCommand => new Xamarin.Forms.Command<AnswerModel>(async (answer) =>
+        public ICommand SelectedCorrectAnswerCommand => new Xamarin.Forms.Command<AnswerModel>(async (answer) =>
         {
             if (answer != null)
             {
@@ -80,7 +80,7 @@ namespace ESWIPE.ViewModels
 
                 if (response == "Update Answer")
                 {
-                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddAnswerPage(answer));
+                    await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoiceAddCorrectAnswerPage(answer));
                 }
                 else if (response == "Delete Answer")
                 {
@@ -88,7 +88,7 @@ namespace ESWIPE.ViewModels
                     bool deleteResponse = await _answerService.DeleteAnswer(answer.Key);
                     if (deleteResponse)
                     {
-                        GetAllMultipleChoiceAnswer();
+                        GetAllMultipleChoiceCorrectAnswer();
                     }
                 }
             }
