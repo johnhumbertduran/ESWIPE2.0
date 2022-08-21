@@ -259,5 +259,10 @@ namespace ESWIPE.Views
                 return null;
             }
         }
+
+        private async void Q1Quiz_Clicked(object sender, EventArgs e)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new MultipleChoicePage());
+        }
     }
 }

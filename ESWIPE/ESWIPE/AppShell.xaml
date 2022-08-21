@@ -397,6 +397,7 @@
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentQuizPage}" Route="StudentQuizPage" />
     </FlyoutItem>
+    
     <FlyoutItem
         Title="Score"
         Icon="icon_score.png"
