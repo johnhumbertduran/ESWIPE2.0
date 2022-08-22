@@ -32,18 +32,18 @@ namespace ESWIPE.ViewModels
             //Title = "Teacher's Data";
             _quizService = DependencyService.Resolve<IQuizService>();
             IsRefreshing = true;
-            GetAllIdentificationQuiz();
+            GetAllQuiz();
             IsBusy = IsRefreshing = false;
         }
         #endregion
 
         #region Methods
-        private void GetAllIdentificationQuiz()
+        private void GetAllQuiz()
         {
             IsBusy = true;
             Task.Run(async () =>
             {
-                var quizzesList = await _quizService.GetIdentificationQuizzes();
+                var quizzesList = await _quizService.GetAllQuiz();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -67,7 +67,7 @@ namespace ESWIPE.ViewModels
         public ICommand RefreshCommand => new MvvmHelpers.Commands.Command(() =>
         {
             IsRefreshing = true;
-            GetAllIdentificationQuiz();
+            GetAllQuiz();
         });
 
 
@@ -75,7 +75,7 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Update Quiz", "Add Question", "View Question", "Delete Quiz");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Answer", "Add Question", "View Question", "Delete Quiz");
 
                 if (response == "Update Quiz")
                 {
@@ -169,7 +169,7 @@ namespace ESWIPE.ViewModels
                     bool deleteResponse = await _quizService.DeleteQuiz(quiz.Key);
                     if (deleteResponse)
                     {
-                        GetAllIdentificationQuiz();
+                        GetAllQuiz();
                     }
                 }
             }

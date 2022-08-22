@@ -5,13 +5,13 @@
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              Title="Quarter 1 Quiz"
-             x:DataType="viewmodels:EssayQuizViewModel"
+             x:DataType="viewmodels:StudentViewQuizViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
-        <viewmodels:QuizViewModel />
+        <viewmodels:StudentViewQuizViewModel />
     </ContentPage.BindingContext>
 
     <ListView
