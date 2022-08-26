@@ -391,7 +391,7 @@
     </FlyoutItem>
     
     
-    <FlyoutItem
+    <!--<FlyoutItem
         Title="Quiz"
         Icon="icon_quiz.png"
         IsVisible="{Binding IsStudent}">
@@ -403,7 +403,7 @@
         Icon="icon_score.png"
         IsVisible="{Binding IsStudent}">
         <ShellContent ContentTemplate="{DataTemplate local:StudentScorePage}" Route="StudentScorePage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
     
     
     <!--<FlyoutItem

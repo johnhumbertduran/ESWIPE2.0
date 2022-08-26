@@ -75,102 +75,11 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Answer", "Add Question", "View Question", "Delete Quiz");
+                var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Answer");
 
-                if (response == "Update Quiz")
+                if (response == "Answer")
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new IdentificationQuizPage(quiz));
-                }
-                else if (response == "Add Question")
-                {
-                    if (Preferences.ContainsKey("essayCode"))
-                    {
-                        Preferences.Remove("essayCode");
-                    }
-
-                    if (Preferences.ContainsKey("identificationCode"))
-                    {
-                        Preferences.Remove("identificationCode");
-                    }
-
-                    if (Preferences.ContainsKey("multipleChoiceCode"))
-                    {
-                        Preferences.Remove("multipleChoiceCode");
-                    }
-
-                    if (Preferences.ContainsKey("setASetBCode"))
-                    {
-                        Preferences.Remove("setASetBCode");
-                    }
-
-                    if (Preferences.ContainsKey("setACode"))
-                    {
-                        Preferences.Remove("setACode");
-                    }
-
-                    if (Preferences.ContainsKey("setBCode"))
-                    {
-                        Preferences.Remove("setBCode");
-                    }
-
-                    if (Preferences.ContainsKey("trueOrFalseCode"))
-                    {
-                        Preferences.Remove("trueOrFalseCode");
-                    }
-
-                    Preferences.Set("identificationCode", quiz.QuizCode);
-
-                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationPage());
-                }
-                else if (response == "View Question")
-                {
-                    if (Preferences.ContainsKey("essayCode"))
-                    {
-                        Preferences.Remove("essayCode");
-                    }
-
-                    if (Preferences.ContainsKey("identificationCode"))
-                    {
-                        Preferences.Remove("identificationCode");
-                    }
-
-                    if (Preferences.ContainsKey("multipleChoiceCode"))
-                    {
-                        Preferences.Remove("multipleChoiceCode");
-                    }
-
-                    if (Preferences.ContainsKey("setASetBCode"))
-                    {
-                        Preferences.Remove("setASetBCode");
-                    }
-
-                    if (Preferences.ContainsKey("setACode"))
-                    {
-                        Preferences.Remove("setACode");
-                    }
-
-                    if (Preferences.ContainsKey("setBCode"))
-                    {
-                        Preferences.Remove("setBCode");
-                    }
-
-                    if (Preferences.ContainsKey("trueOrFalseCode"))
-                    {
-                        Preferences.Remove("trueOrFalseCode");
-                    }
-
-                    Preferences.Set("identificationCode", quiz.QuizCode);
-
-                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationViewQuestionsPage());
-                }
-                else if (response == "Delete Quiz")
-                {
-                    IsBusy = true;
-                    bool deleteResponse = await _quizService.DeleteQuiz(quiz.Key);
-                    if (deleteResponse)
-                    {
-                        GetAllQuiz();
-                    }
                 }
             }
         });
