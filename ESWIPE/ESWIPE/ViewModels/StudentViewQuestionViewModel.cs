@@ -42,7 +42,7 @@ namespace ESWIPE.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                var questionsList = await _questionService.GetAllQuestion();
+                var questionsList = await _questionService.GetQuestionForStudent();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {

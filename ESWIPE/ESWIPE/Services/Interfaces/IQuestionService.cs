@@ -11,6 +11,7 @@ namespace ESWIPE.Services.Interfaces
         Task<bool> AddorUpdateQuestion(QuestionModel questionModel);
         Task<bool> DeleteQuestion(string key);
         Task<List<QuestionModel>> GetAllQuestion();
+        Task<List<QuestionModel>> GetQuestionForStudent();
         Task<List<QuestionModel>> GetEssayQuestions();
         Task<List<QuestionModel>> GetIdentificationQuestions();
         Task<List<QuestionModel>> GetMultipleChoiceQuestions();

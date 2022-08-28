@@ -107,6 +107,7 @@ namespace ESWIPE.ViewModels
                             Preferences.Set("Key", userDetails.Key);
                             Preferences.Set("Username", userDetails.Username);
                             Preferences.Set("StudentName", userDetails.StudentName);
+                            Preferences.Set("Teacher", userDetails.TeacherName);
                             Preferences.Set("Year", userDetails.Year);
                             Preferences.Set("Section", userDetails.Section);
 

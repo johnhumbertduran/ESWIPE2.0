@@ -32,7 +32,7 @@ namespace ESWIPE.Views
         {
             StudentName.Text = "";
             Year.Text = "";
-            Section.Text = "";
+            //Section.Text = "";
             Username.Text = "";
             Password.Text = "";
             StudentName.Focus();

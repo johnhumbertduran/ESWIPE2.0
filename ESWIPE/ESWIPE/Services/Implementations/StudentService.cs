@@ -43,6 +43,13 @@ namespace ESWIPE.Services.Implementations
             }
             else
             {
+
+                if (Preferences.ContainsKey("TeacherName"))
+                {
+                    TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+                }
+
+                studentModel.TeacherName = TeacherName;
                 studentModel.UserRole = "Student";
 
                 var response = await firebase.Child(nameof(StudentModel)).PostAsync(studentModel);

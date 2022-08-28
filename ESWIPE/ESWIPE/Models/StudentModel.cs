@@ -8,6 +8,7 @@ namespace ESWIPE.Models
     {
         public string Key { get; set; }
         public string StudentName { get; set; }
+        public string TeacherName { get; set; }
         public string Year { get; set; }
         public string Section { get; set; }
         public string Username { get; set; }
