@@ -1,5 +1,6 @@
 ﻿using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
+using ESWIPE.ViewModels;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System;
@@ -23,6 +24,7 @@ namespace ESWIPE.Services.Implementations
         public string Key;
         public string UserName;
         public string TeacherName;
+        public string Teacher;
         public string StudentName;
         public string Section;
         public string Quarters;
@@ -252,16 +254,16 @@ namespace ESWIPE.Services.Implementations
                 StudentName = Preferences.Get("StudentName", "StudentNameValue");
             }
             
-            if (Preferences.ContainsKey("Teacher"))
+            if (Preferences.ContainsKey("MyTeacher"))
             {
-                TeacherName = Preferences.Get("Teacher", "TeacherValue");
+                Teacher = Preferences.Get("MyTeacher", "TeacherValue");
             }
 
             if (Preferences.ContainsKey("Section"))
             {
                 Section = Preferences.Get("Section", "SectionValue");
             }
-            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == TeacherName).Where(b => b.Object.Section == Section).Select(f => new QuestionModel
+            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Select(f => new QuestionModel
             {
 
                 CreatedBy = f.Object.CreatedBy,

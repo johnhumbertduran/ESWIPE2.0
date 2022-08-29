@@ -80,6 +80,7 @@ namespace ESWIPE.ViewModels
                     Username = item.Object.Username,
                     Password = item.Object.Password,
                     StudentName = item.Object.StudentName,
+                    Teacher = item.Object.Teacher,
                     Year = item.Object.Year,
                     Section = item.Object.Section,
                     SubjectsCode = item.Object.SubjectsCode,

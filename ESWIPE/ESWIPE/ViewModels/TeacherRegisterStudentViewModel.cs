@@ -78,10 +78,10 @@ namespace ESWIPE.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert("Empty Year Value", "Please enter Year", "OK");
             }
-            else if (string.IsNullOrEmpty(_studentDetail.Section))
-            {
-                await App.Current.MainPage.DisplayAlert("Empty Section Value", "Please enter Section", "OK");
-            }
+            //else if (string.IsNullOrEmpty(_studentDetail.Section))
+            //{
+            //    await App.Current.MainPage.DisplayAlert("Empty Section Value", "Please enter Section", "OK");
+            //}
             else if (string.IsNullOrEmpty(_studentDetail.Username))
             {
                 await App.Current.MainPage.DisplayAlert("Empty Username Value", "Please enter Username", "OK");

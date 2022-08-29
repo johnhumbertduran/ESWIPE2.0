@@ -19,6 +19,7 @@ namespace ESWIPE.Views
         public string Key;
         public string UserName;
         public string StudentName;
+        public string Teacher;
         public string Year;
         public string Section;
         public StudentPage()
@@ -43,6 +44,11 @@ namespace ESWIPE.Views
             if (Preferences.ContainsKey("StudentName", ""))
             {
                 StudentName = Preferences.Get("StudentName", "");
+            }
+            
+            if (Preferences.ContainsKey("MyTeacher", ""))
+            {
+                Teacher = Preferences.Get("MyTeacher", "");
             }
 
             if (Preferences.ContainsKey("Year", ""))

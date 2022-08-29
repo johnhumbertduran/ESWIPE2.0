@@ -97,6 +97,7 @@ namespace ESWIPE.ViewModels
                                 Key = StudentUser.Key,
                                 Username = StudentUser.Username,
                                 StudentName = StudentUser.StudentName,
+                                Teacher = StudentUser.Teacher,
                                 Year = StudentUser.Year,
                                 Section = StudentUser.Section,
                                 SubjectsCode = StudentUser.SubjectsCode,
@@ -107,7 +108,7 @@ namespace ESWIPE.ViewModels
                             Preferences.Set("Key", userDetails.Key);
                             Preferences.Set("Username", userDetails.Username);
                             Preferences.Set("StudentName", userDetails.StudentName);
-                            Preferences.Set("Teacher", userDetails.TeacherName);
+                            Preferences.Set("MyTeacher", userDetails.Teacher);
                             Preferences.Set("Year", userDetails.Year);
                             Preferences.Set("Section", userDetails.Section);
 
@@ -136,6 +137,7 @@ namespace ESWIPE.ViewModels
                             {
                                 MessagingCenter.Send(this, "Teacher");
                             }
+
                             if (Username == TeacherUser.Username && Password == TeacherUser.Password)
                             {
                                 var userDetails = new TeacherModel()

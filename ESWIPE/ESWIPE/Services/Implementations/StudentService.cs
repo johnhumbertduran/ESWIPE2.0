@@ -22,7 +22,7 @@ namespace ESWIPE.Services.Implementations
 
         public string Key;
         public string UserName;
-        public string TeacherName;
+        public string Teacher;
         public string Section;
 
         //static int nextStudentNumber = 20220000;
@@ -46,10 +46,16 @@ namespace ESWIPE.Services.Implementations
 
                 if (Preferences.ContainsKey("TeacherName"))
                 {
-                    TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+                    Teacher = Preferences.Get("TeacherName", "TeacherNameValue");
+                }
+                
+                if (Preferences.ContainsKey("Section"))
+                {
+                    Section = Preferences.Get("Section", "SectionValue");
                 }
 
-                studentModel.TeacherName = TeacherName;
+                studentModel.Teacher = Teacher;
+                studentModel.Section = Section;
                 studentModel.UserRole = "Student";
 
                 var response = await firebase.Child(nameof(StudentModel)).PostAsync(studentModel);
@@ -95,7 +101,7 @@ namespace ESWIPE.Services.Implementations
 
             if (Preferences.ContainsKey("TeacherName"))
             {
-                TeacherName = Preferences.Get("TeacherName", "TeacherNameValue");
+                Teacher = Preferences.Get("TeacherName", "TeacherNameValue");
             }
 
             if (Preferences.ContainsKey("Section"))
@@ -122,6 +128,7 @@ namespace ESWIPE.Services.Implementations
             {
                 //StudentNumber = f.Object.StudentNumber,
                 StudentName = f.Object.StudentName,
+                Teacher = f.Object.Teacher,
                 Year = f.Object.Year,
                 Section = f.Object.Section,
                 Username = f.Object.Username,
