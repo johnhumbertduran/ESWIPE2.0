@@ -31,6 +31,7 @@ namespace ESWIPE.Services.Implementations
         public string QuizTypes;
         public string QuizCode;
         public string Sets;
+        public string StudentQuizCode;
 
         public async Task<bool> AddorUpdateQuestion(QuestionModel questionModel)
         {
@@ -263,7 +264,13 @@ namespace ESWIPE.Services.Implementations
             {
                 Section = Preferences.Get("Section", "SectionValue");
             }
-            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Select(f => new QuestionModel
+            
+            if (Preferences.ContainsKey("StudentQuizCode"))
+            {
+                StudentQuizCode = Preferences.Get("StudentQuizCode", "StudentQuizCodeValue");
+            }
+
+            return (await firebase.Child(nameof(QuestionModel)).OnceAsync<QuestionModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Where(b => b.Object.QuizCode == StudentQuizCode).Select(f => new QuestionModel
             {
 
                 CreatedBy = f.Object.CreatedBy,

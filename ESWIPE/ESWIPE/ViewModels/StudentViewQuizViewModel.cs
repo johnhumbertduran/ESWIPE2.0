@@ -16,6 +16,7 @@ namespace ESWIPE.ViewModels
     {
         #region Properties
         private bool _isRefreshing;
+        public string StudentQuizCode;
         public bool IsRefreshing
         {
             get => _isRefreshing;
@@ -75,7 +76,15 @@ namespace ESWIPE.ViewModels
         {
             if (quiz != null)
             {
-                    await Application.Current.MainPage.Navigation.PushAsync(new Q1StudentQuestionPage());
+
+                if (Preferences.ContainsKey("StudentQuizCode"))
+                {
+                    Preferences.Remove("StudentQuizCode");
+                }
+
+                Preferences.Set("StudentQuizCode", quiz.QuizCode);
+
+                await Application.Current.MainPage.Navigation.PushAsync(new Q1StudentQuestionPage());
                 //var response = await Application.Current.MainPage.DisplayActionSheet("I would like to", "Cancel", null, "Answer");
 
                 //if (response == "Answer")
