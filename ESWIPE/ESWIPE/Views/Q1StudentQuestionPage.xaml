@@ -35,36 +35,14 @@
                     <Grid Padding="10">
                         <Frame CornerRadius="20" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
                             <StackLayout Orientation="Horizontal">
-                                <!--<StackLayout VerticalOptions="Center">
-                                    --><!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="Date Created: "
-                                        VerticalOptions="Center" />-->
-                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text=""
-                                        VerticalOptions="Center" />--><!--
-                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="Instruction: "
-                                        VerticalOptions="Center" />
-                                </StackLayout>-->
                                 <StackLayout VerticalOptions="Center">
-                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="{Binding DateCreated}"
-                                        VerticalOptions="Center" />-->
-                                    <!--<Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
-                                        FontSize="Small"
-                                        Text="{Binding QuizType}"
-                                        VerticalOptions="Center" />-->
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
                                         Text="{Binding Question}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:StudentViewQuestionViewModel}}, Path=SelectedQuizCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:StudentViewQuestionViewModel}}, Path=SelectedQuestionCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>
