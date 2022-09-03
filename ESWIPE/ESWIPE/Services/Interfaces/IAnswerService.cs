@@ -12,6 +12,7 @@ namespace ESWIPE.Services.Interfaces
         Task<bool> AddorUpdateNotCorrectAnswer(AnswerModel answerModel);
         Task<bool> DeleteAnswer(string key);
         Task<List<AnswerModel>> GetAllAnswer();
+        Task<List<AnswerModel>> GetAnswerForStudent();
         Task<List<AnswerModel>> GetEssayAnswer();
         Task<List<AnswerModel>> GetIdentificationAnswer();
         Task<List<AnswerModel>> GetMultipleChoiceAnswer();

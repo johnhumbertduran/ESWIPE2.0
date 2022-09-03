@@ -1,5 +1,6 @@
 ﻿using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
+using ESWIPE.Views;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System;
@@ -23,12 +24,15 @@ namespace ESWIPE.Services.Implementations
         public string Key;
         public string UserName;
         public string TeacherName;
+        public string Teacher;
+        public string StudentName;
         public string Section;
         public string Quarters;
         public string QuizTypes;
         public string QuizCode;
         public string QuizQuestion;
         public string Sets;
+        public string StudentQuizCode;
         public async Task<bool> AddorUpdateAnswer(AnswerModel answerModel)
         {
             if (!string.IsNullOrWhiteSpace(answerModel.Key))
@@ -383,6 +387,54 @@ namespace ESWIPE.Services.Implementations
         public async Task<List<AnswerModel>> GetAllAnswer()
         {
             return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Select(f => new AnswerModel
+            {
+
+                CreatedBy = f.Object.CreatedBy,
+                DateCreated = f.Object.DateCreated,
+                Quarters = f.Object.Quarters,
+                QuizType = f.Object.QuizType,
+                QuizCode = f.Object.QuizCode,
+                Section = f.Object.Section,
+                Question = f.Object.Question,
+                Answer = f.Object.Answer,
+                CorrectAnswer = f.Object.CorrectAnswer,
+                Key = f.Key
+            }).ToList();
+        }
+        
+        public async Task<List<AnswerModel>> GetAnswerForStudent()
+        {
+            if (Preferences.ContainsKey("Key"))
+            {
+                Key = Preferences.Get("Key", "KeyValue");
+            }
+
+            if (Preferences.ContainsKey("Username"))
+            {
+                UserName = Preferences.Get("Username", "UsernameValue");
+            }
+
+            if (Preferences.ContainsKey("StudentName"))
+            {
+                StudentName = Preferences.Get("StudentName", "StudentNameValue");
+            }
+
+            if (Preferences.ContainsKey("MyTeacher"))
+            {
+                Teacher = Preferences.Get("MyTeacher", "TeacherValue");
+            }
+
+            if (Preferences.ContainsKey("Section"))
+            {
+                Section = Preferences.Get("Section", "SectionValue");
+            }
+
+            if (Preferences.ContainsKey("StudentQuizCode"))
+            {
+                StudentQuizCode = Preferences.Get("StudentQuizCode", "StudentQuizCodeValue");
+            }
+
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Where(b => b.Object.QuizCode == StudentQuizCode).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,
