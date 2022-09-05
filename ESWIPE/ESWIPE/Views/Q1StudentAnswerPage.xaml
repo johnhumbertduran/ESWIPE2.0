@@ -5,13 +5,13 @@
              xmlns:models="clr-namespace:ESWIPE.Models"
              xmlns:viewmodels="clr-namespace:ESWIPE.ViewModels"
              Title="Choose your answer"
-             x:DataType="viewmodels:StudentViewQuestionViewModel"
+             x:DataType="viewmodels:StudentViewAnswerViewModel"
              BackgroundColor="{AppThemeBinding 
                         Dark={StaticResource WindowBackgroundColorDark}, 
                         Light={StaticResource WindowBackgroundColor}}">
 
     <ContentPage.BindingContext>
-        <viewmodels:StudentViewQuestionViewModel />
+        <viewmodels:StudentViewAnswerViewModel />
     </ContentPage.BindingContext>
 
     <ListView
@@ -20,14 +20,14 @@
         HasUnevenRows="True"
         IsPullToRefreshEnabled="True"
         IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
-        ItemsSource="{Binding Question}"
+        ItemsSource="{Binding Answer}"
         RefreshCommand="{Binding RefreshCommand}"
         SeparatorColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}"
         RefreshControlColor="blue"
         SelectionMode="None">
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:QuestionModel">
+            <DataTemplate x:DataType="models:AnswerModel">
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem IsDestructive="True" Text="Delete" />
@@ -35,10 +35,14 @@
                     <Grid Padding="10">
                         <Frame CornerRadius="20" BackgroundColor="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}">
                             <StackLayout Orientation="Horizontal">
-                                <StackLayout VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal">
                                     <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
                                         FontSize="Small"
-                                        Text="{Binding Question}"
+                                        Text="{Binding Answer}"
+                                        VerticalOptions="Center" />
+                                    <Label TextColor="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"
+                                        FontSize="Small"
+                                        Text="{Binding CorrectAnswer}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>

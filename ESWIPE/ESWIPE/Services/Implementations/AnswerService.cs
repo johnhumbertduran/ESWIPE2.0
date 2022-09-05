@@ -1,4 +1,4 @@
-﻿using ESWIPE.Models;
+﻿ using ESWIPE.Models;
 using ESWIPE.Services.Interfaces;
 using ESWIPE.Views;
 using Firebase.Database;
@@ -33,6 +33,7 @@ namespace ESWIPE.Services.Implementations
         public string QuizQuestion;
         public string Sets;
         public string StudentQuizCode;
+        public string StudentQuestion;
         public async Task<bool> AddorUpdateAnswer(AnswerModel answerModel)
         {
             if (!string.IsNullOrWhiteSpace(answerModel.Key))
@@ -429,12 +430,37 @@ namespace ESWIPE.Services.Implementations
                 Section = Preferences.Get("Section", "SectionValue");
             }
 
+            if (Preferences.ContainsKey("quarter1pass"))
+            {
+                Quarters = "quarter1";
+            }
+
+            if (Preferences.ContainsKey("quarter2pass"))
+            {
+                Quarters = "quarter2";
+            }
+
+            if (Preferences.ContainsKey("quarter3pass"))
+            {
+                Quarters = "quarter3";
+            }
+
+            if (Preferences.ContainsKey("quarter4pass"))
+            {
+                Quarters = "quarter4";
+            }
+
             if (Preferences.ContainsKey("StudentQuizCode"))
             {
                 StudentQuizCode = Preferences.Get("StudentQuizCode", "StudentQuizCodeValue");
             }
+            
+            if (Preferences.ContainsKey("StudentQuestion"))
+            {
+                StudentQuestion = Preferences.Get("StudentQuestion", "StudentQuestionValue");
+            }
 
-            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Where(b => b.Object.QuizCode == StudentQuizCode).Select(f => new AnswerModel
+            return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Where(a => a.Object.CreatedBy == Teacher).Where(b => b.Object.Section == Section).Where(b => b.Object.QuizCode == StudentQuizCode).Where(b => b.Object.Quarters == Quarters).Where(b => b.Object.Question == StudentQuestion).Select(f => new AnswerModel
             {
 
                 CreatedBy = f.Object.CreatedBy,

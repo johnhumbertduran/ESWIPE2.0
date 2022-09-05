@@ -25,7 +25,7 @@ namespace ESWIPE.ViewModels
         }
 
         private readonly IAnswerService _answerService;
-        public ObservableCollection<AnswerModel> Question { get; set; } = new ObservableCollection<AnswerModel>();
+        public ObservableCollection<AnswerModel> Answer { get; set; } = new ObservableCollection<AnswerModel>();
         public static FirebaseClient firebase = new FirebaseClient("https://eswipe-37f7c-default-rtdb.asia-southeast1.firebasedatabase.app/");
         #endregion
 
@@ -46,7 +46,7 @@ namespace ESWIPE.ViewModels
             IsBusy = true;
             Task.Run(async () =>
             {
-                var questionsList = await _answerService.GetAnswerForStudent();
+                var answersList = await _answerService.GetAnswerForStudent();
 
                 Device.BeginInvokeOnMainThread(() =>
                 {

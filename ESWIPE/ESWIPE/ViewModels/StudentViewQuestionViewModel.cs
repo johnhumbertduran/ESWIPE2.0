@@ -80,12 +80,21 @@ namespace ESWIPE.ViewModels
             if (question != null)
             {
                 var AnswerData = await GetAnswer(question.CreatedBy, question.Quarters, question.Question);
+
+                if (Preferences.ContainsKey("StudentQuestion"))
+                {
+                    Preferences.Remove("StudentQuestion");
+                }
+
+                Preferences.Set("StudentQuestion", question.Question);
+
+
                 //await Application.Current.MainPage.Navigation.PushAsync(new Q1StudentQuestionPage());
                 //var response = await Application.Current.MainPage.DisplayActionSheet(question.Question, "Cancel", null, AnswerData.Answer, AnswerData.CorrectAnswer);
 
                 //if (response == "Answer")
                 //{
-                    await Application.Current.MainPage.Navigation.PushAsync(new IdentificationQuizPage());
+                await Application.Current.MainPage.Navigation.PushAsync(new Q1StudentAnswerPage());
                 //}
             }
         });
