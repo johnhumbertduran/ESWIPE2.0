@@ -46,7 +46,7 @@
                                         VerticalOptions="Center" />
                                 </StackLayout>
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:StudentViewQuestionViewModel}}, Path=SelectedQuestionCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:StudentViewAnswerViewModel}}, Path=SelectedAnswerCommand}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </Frame>

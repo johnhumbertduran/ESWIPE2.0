@@ -78,7 +78,11 @@ namespace ESWIPE.ViewModels
         {
             if (answer != null)
             {
-                var AnswerData = await GetAnswer(answer.CreatedBy, answer.Quarters, answer.Question);
+                if (answer.CorrectAnswer != "")
+                {
+                    await Application.Current.MainPage.DisplayAlert("test", "Okay Nice!", "Ok");
+                }
+                //var AnswerData = await GetAnswer(answer.CreatedBy, answer.Quarters, answer.Question);
                 //await Application.Current.MainPage.Navigation.PushAsync(new Q1StudentQuestionPage());
                 //var response = await Application.Current.MainPage.DisplayActionSheet(question.Question, "Cancel", null, AnswerData.Answer, AnswerData.CorrectAnswer);
 
