@@ -389,7 +389,6 @@ namespace ESWIPE.Services.Implementations
         {
             return (await firebase.Child(nameof(AnswerModel)).OnceAsync<AnswerModel>()).Select(f => new AnswerModel
             {
-
                 CreatedBy = f.Object.CreatedBy,
                 DateCreated = f.Object.DateCreated,
                 Quarters = f.Object.Quarters,
